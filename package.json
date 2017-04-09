@@ -22,7 +22,6 @@
     "node",
     "heroku",
     "express",
-    "request",
     "request"
   ],
   "license": "MIT"
