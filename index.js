@@ -24,3 +24,12 @@ var queryParams = '?' + encodeURIComponent('ServiceKey') + '=73Jk1pUmlpaKcb3esV4
 queryParams += '&' + encodeURIComponent('desc_kor') + '=' + encodeURIComponent('김치찌개'); /* 식품이름 */
 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* 페이지번호 */
 queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); /* 한 페이지 결과 수 */
+
+request({
+    url: url + queryParams,
+    method: 'GET'
+}, function (error, response, body) {
+    console.log('Status', response.statusCode);
+    //console.log('Headers', JSON.stringify(response.headers));
+    //console.log('Reponse received', body);
+});
