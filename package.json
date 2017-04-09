@@ -14,7 +14,7 @@
   "dependencies": {
     "ejs": "2.4.1",
     "express": "4.13.3",
-    "request": "@2.81.0"
+    "request": "2.81.0"
   },
   "repository": {
     "type": "git",
