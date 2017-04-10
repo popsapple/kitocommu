@@ -10,7 +10,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
+  response.render('/pages/index');
   /* NodeJs 식품정보 이름으로 갖고오기....*/
 
   var request = require('request');
@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
             "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
             "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
   }, function (error, response, body) {
-      response.render('pages/index', body);
+      response.render('/pages/index', body);
   });
 });
 
