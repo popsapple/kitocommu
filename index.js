@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
-  /* NodeJs 식품정보 이름으로 갖고오기.... */
+  /* NodeJs 식품정보 이름으로 갖고오기....
 
   var request = require('request');
 
@@ -27,7 +27,7 @@ app.get('/', function(request, response) {
             "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
   }, function (error, response, body) {
       console.log('Reponse received', response.body);
-  });
+  });*/
 });
 
 app.listen(app.get('port'), function() {
