@@ -23,15 +23,18 @@ app.listen(app.get('port'), function() {
 
 var request = require('request');
 
-var url = 'http://apis.data.go.kr/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList';
-var queryParams = '?' + encodeURIComponent('ServiceKey') + '=73Jk1pUmlpaKcb3esV43IVrmH4SVea%2FGn%2BXrgSkI4Mk16R0KYIrrPKwuGPS2qZAJPIk4JcxUIy7N3l0Sh6eBIQ%3D%3D'; /* Service Key*/
-queryParams += '&' + encodeURIComponent('desc_kor') + '=' + encodeURIComponent('짜장면'); /* 식품이름 */
-queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('0..n'); /* 페이지번호 */
-queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('0..n'); /* 한 페이지 결과 수 */
+var url = 'http://api.dbstore.or.kr:8880/foodinfo/get_id.do';
+var queryParams = '?' + encodeURIComponent('api_key') + '=DS64NUS4'; /* Service Key*/
+queryParams = '&' + encodeURIComponent('area') + '=서울'; /* Service Key*/
+queryParams += '&' + encodeURIComponent('sex') + '=' + encodeURIComponent('=m');
+queryParams += '&' + encodeURIComponent('age') + '=' + encodeURIComponent('=30');
 
 request({
     url: url + queryParams,
-    method: 'GET'
+    method: 'GET',
+    headers : {
+          "x-waple-authorization" : 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5'
+      }
 }, function (error, response, body) {
     console.log('Status', response.statusCode);
     console.log('Headers', JSON.stringify(response.headers));
