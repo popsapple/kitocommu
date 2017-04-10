@@ -36,7 +36,5 @@ request({
           "x-waple-authorization" : 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5',
           "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
 }, function (error, response, body) {
-    console.log('Status', response.statusCode);
-    console.log('Headers', JSON.stringify(response.headers));
     console.log('Reponse received', body);
 });
