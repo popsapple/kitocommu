@@ -1,9 +1,10 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.5",
+  "name": "kitocommu",
+  "version": "0.0.1",
   "description": "A sample Node.js app using Express 4",
   "engines": {
-    "node": "5.9.1"
+    "node": "5.9.1",
+    "npm": "4.2.0"
   },
   "main": "index.js",
   "scripts": {
@@ -11,7 +12,8 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "^4.13.3",
+    "request": "^2.81.0"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,8 @@
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "request"
   ],
   "license": "MIT"
 }
