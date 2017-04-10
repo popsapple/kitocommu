@@ -33,5 +33,5 @@ request({
     // console.log('Status', response.statusCode);
     //console.log('Headers', JSON.stringify(response.headers));
     //console.log('Reponse received', body);
-    response.render('pages/index',body);
+    //response.render('pages/index',body);
 });
