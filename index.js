@@ -25,7 +25,7 @@ app.get(url, function(req, res, body){
  req.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
  console.log('Reponse received', body);
- res.render('/pages/index');
+// res.render('/pages/index');
 });
 
 /*
