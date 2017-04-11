@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var new_app = express();
+var new_app = new express();
 
 app.set('port', (process.env.PORT || 5000));
 
