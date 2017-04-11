@@ -27,7 +27,7 @@ app2.use(function(req, res, next) {
 });
 
 app2.listen(app2.get(url), function(req, res) {
-  console.log('Succusess');
+  console.log('Succuddddddsess'+res);
 });
 
 
