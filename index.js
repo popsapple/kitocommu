@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var new_app = new express();
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -20,10 +19,11 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 url = (url + queryParams);
 
-new_app.listen(new_app.get(url), function(req, res) {
-  req.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
-  req.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+app.get(url), function(req, res) {
+  req.setHeaders('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
+  req.setHeaders('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
   console.log('Succusess', res);
+  res.render('pages/index');
 });
 
 /*
