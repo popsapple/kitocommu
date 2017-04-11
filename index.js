@@ -26,8 +26,12 @@ app2.use(function(req, res, next) {
   next();
 });
 
-app2.listen(app2.get(url), function(req, res) {
-  console.log('Succuddddddsess'+res);
+app2.listen(app2.get(url), function(req, res, body) {
+console.log('========================================================');
+  console.log('111111'+body);
+  console.log('2222'+req);
+  console.log('3333'+res.body);
+console.log('========================================================');
 });
 
 
