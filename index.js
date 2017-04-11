@@ -28,10 +28,9 @@ app2.use(function(reqest, response, next) {
 
 app2.listen(app2.get(url), function(error, response, body) {
 console.log('========================================================');
-  console.log('111111'+body);
+  console.log('111111'+app2.get(url));
   console.log('2222'+response);
   console.log('3333'+url);
-  console.log('44444'+error);
 console.log('========================================================');
 });
 
