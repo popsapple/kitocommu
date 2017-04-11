@@ -30,7 +30,8 @@ app2.listen(app2.get(url), function(req, res, body) {
 console.log('========================================================');
   console.log('111111'+body);
   console.log('2222'+req);
-  console.log('3333'+res.body);
+  console.log('3333'+url);
+  console.log('44444'+res);
 console.log('========================================================');
 });
 
