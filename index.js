@@ -20,12 +20,16 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 url = (url + queryParams);
 
-app2.get(url, function(req, res) {
+app2.use(function(req, res, next) {
   req.setHeaders('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
   req.setHeaders('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-  res.send('OK');
-  console.log('Succusess', res);
+  next();
 });
+
+app2.listen(app2.get(url, function(req, res) {
+  console.log('Succusess');
+});
+
 
 /*
 var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
