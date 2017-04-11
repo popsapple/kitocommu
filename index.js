@@ -27,8 +27,8 @@ app.get(url, function(req, res){
 // res.render('pages/index');
 });
 
-app.listen(app.get(url), function() {
-  console.log('Succusess');
+app.listen(app.get(url), function(req, res) {
+  console.log('Succusess', res);
 });
 
 /*
