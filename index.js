@@ -26,7 +26,7 @@ app2.use(function(req, res, next) {
   next();
 });
 
-app2.listen(app2.get(url, function(req, res) {
+app2.listen(app2.get(url), function(req, res) {
   console.log('Succusess');
 });
 
