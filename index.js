@@ -20,16 +20,11 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 url = (url + queryParams);
 
-app.get(url, function(request, response) {
-  request.set('x-waple-authorization', 'text/plain');
-  request.render('/pages/index');
-});
-
-app.get('/mockREQHeaderReader', function(req, res){
+app.get(url, function(req, res, body){
  req.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
  req.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
- console.log('Reponse received', res);
+ console.log('Reponse received', body);
  res.render('/pages/index');
 });
 
