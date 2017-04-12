@@ -28,6 +28,7 @@ request({
           "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
 }, function (error, response, body) {
   var parser = new xml2js.Parser();
+  console.log("Sucddddddddddddddd! ::"+body);
   parser.parseString(body, function(err, result) {
   console.log("Success!!!!! ::"+result);
   result.render('pages/index');
