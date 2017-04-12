@@ -34,7 +34,7 @@ request({
 }, function (error, response, body) {
   body = JSON.parse(body);
     console.log(body);
-  response.render('pages/index', { body: body });
+  //response.render('pages/index', { body: body });
 });
 
 });
