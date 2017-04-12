@@ -9,14 +9,14 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-var request = require('request');
+var request_list = require('request');
 
 app.get('/', function(request, response) {
   var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
   var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
 
-  request({
+  request_list({
       url: url + queryParams,
       method: 'GET',
       headers : {
@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
             "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
   }, function (error, res, body) {
       console.log('Reponse received', body);
-      response.render('pages/index', body);
+    //  response.render('pages/index', body);
   });
 });
 
