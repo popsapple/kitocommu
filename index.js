@@ -30,12 +30,11 @@ request({
     method: 'GET',
     headers : {
           "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
-          "content-type":"application/x-www-form-urlencoded; charset=UTF-8"},
-    views : __dirname + '/views',
-    view engine : 'ejs'
+          "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
 }, function (error, response, body) {
-  console.log('Reponse received', body);
-  body.render('pages/index');
+  body = JSON.parse(body);
+    console.log(body);
+  response.render('pages/index', { body: body });
 });
 
 });
