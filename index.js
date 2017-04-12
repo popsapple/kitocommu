@@ -20,8 +20,8 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 url = (url + queryParams);
 
-app2.setHeaders('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
-app2.setHeaders('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+app2.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
+app2.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
 app2.get(url, function(request, response) {
 
