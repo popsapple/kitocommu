@@ -11,22 +11,26 @@ app.set('view engine', 'ejs');
 
 var request = require('request');
 
-var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
-var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
-queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
+app.get('/', function(request, response) {
+  var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
+  var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
+  queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
 
-request({
-    url: url + queryParams,
-    method: 'GET',
-    headers : {
-          "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
-          "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
-}, function (error, response, body) {
-    console.log('Reponse received', body);
-    var data = body;
-    data = JSON.parse(data);
-    response.render('pages/index', { data: data });
+  request({
+      url: url + queryParams,
+      method: 'GET',
+      headers : {
+            "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
+            "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
+  }, function (error, res, body) {
+      console.log('Reponse received', body);
+      var data = body;
+      data = JSON.parse(data);
+      response.render('pages/index', { data: data });
+  });
 });
+
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
