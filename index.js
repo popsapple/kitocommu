@@ -26,11 +26,11 @@ app2.use(function(reqest, response, next) {
   next();
 });
 
-app2.listen(app2.get(url), function(error, response, body) {
+app2.listen(app2.get(url), function(request, response) {
 console.log('========================================================');
-  console.log('111111'+app2.get(url));
+  console.log('111111'+url);
   console.log('2222'+response);
-  console.log('3333'+url);
+  console.log('3333'+request,body);
 console.log('========================================================');
 });
 
