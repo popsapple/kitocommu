@@ -24,12 +24,12 @@ app2.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00O
 app2.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
 app2.listen(
-app2.get(url), function(request, response) {
+app2.get(url), function(error, response, body) {
 
   console.log('========================================================');
-  console.log('1111111111111111'+response);
-  console.log('2222222222222222'+request);
-  console.log('3333333333333333'+request.body);
+  console.log('1111111111111111'+error);
+  console.log('2222222222222222'+response);
+  console.log('3333333333333333'+body);
   console.log('========================================================');
 });
 
