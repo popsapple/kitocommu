@@ -29,7 +29,7 @@ request({
           "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
 }, function (error, response, body) {
   console.log('Reponse received', body);
-  body.render('pages/index');
+  response.render('pages/index');
 });
 
 });
