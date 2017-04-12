@@ -20,11 +20,16 @@ var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
 var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
 queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
 
-app.get(url, function(req, res, next) {
-   req.append('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
-   req.append('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-   res.locals.query = req.query;
-   res.render('pages/index');
+app.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
+app.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+app.get(url, function(req, res, body) {
+//   req.append('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
+//   req.append('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+console.log('Reponse dddd', res);
+console.log('Reponse recsssseived', body);
+  //res.locals.query = req.query;
+  // res.render('pages/index');
 });
 
 /*
