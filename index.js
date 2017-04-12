@@ -20,18 +20,18 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 url = (url + queryParams);
 
-app2.use(function(reqest, response, next) {
-  reqest.setHeaders('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
-  reqest.setHeaders('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+app2.set(function() {
+  console.log('========================================================');
+  app2.setHeaders('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
+  app2.setHeaders('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
   next();
-});
+},function(){
+  app2.get(url), function(request, response) {
 
-app2.listen(app2.get(url), function(request, response) {
-console.log('========================================================');
-  console.log('111111'+url);
-  console.log('2222'+response);
-  console.log('33333'+request.body);
-console.log('========================================================');
+    console.log('111111'+url);
+    console.log('2222'+response);
+    console.log('33333'+request.body);
+  console.log('========================================================');
 });
 
 
