@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var xml2js = require('xml2js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -26,7 +27,12 @@ request({
           "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
           "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
 }, function (error, response, body) {
-    response.render('pages/index');
+  var parser = new xml2js.Parser();
+  parser.parseString(body, function(err, result) {
+  console.log("Success!!!!! ::"+result);
+  result.render('pages/index');
+});
+
 });
 
 
