@@ -30,7 +30,7 @@ app2.listen(app2.get(url), function(request, response) {
 console.log('========================================================');
   console.log('111111'+url);
   console.log('2222'+response);
-  console.log('33333'+request,body);
+  console.log('33333'+request.body);
 console.log('========================================================');
 });
 
