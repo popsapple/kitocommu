@@ -39,8 +39,8 @@ app.get('/', function(request, response)  {
     });
 
     res.on('end', function () {
-      console.log('aaaaaaaaaaaaaa :============= ::'+str);
-      res.render('/pages/index', res);
+      console.log('1111111111111 :============= ::'+str);
+      response.render('pages/index', str);
     });
   }
 
