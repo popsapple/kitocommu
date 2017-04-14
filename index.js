@@ -32,8 +32,7 @@ app.get('/', function(request, response)  {
     });
 
     res.on('end', function () {
-      var contents = JSON.stringify(str, Object.getOwnPropertyNames(str));
-      console.log('333 :============= ::'+contents);
+      console.log('ssssssss :============= ::'+str);
       // merge res.locals
       options._locals = response.locals;
 
