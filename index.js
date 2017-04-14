@@ -32,9 +32,9 @@ app.get('/', function(request, response)  {
     });
 
     res.on('end', function () {
-      console.log('ddddd :============= ::'+str);
       //parse forecast.io message
       var data = JSON.parse(str.food_list);
+        console.log('ddddd :============= ::'+data);
       // merge res.locals
       opts._locals = response.locals;
 
