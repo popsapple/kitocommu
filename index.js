@@ -16,7 +16,7 @@ var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + enc
 queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
 
 app.get('/', function(request, response)  {
-  var options = {
+  var opts = {
     host: 'api.dbstore.or.kr',
     path: queryParams,
     port: '8880',
@@ -34,13 +34,13 @@ app.get('/', function(request, response)  {
     res.on('end', function () {
       console.log('ddddd :============= ::'+str);
       // merge res.locals
-      options._locals = response.locals;
+      opts._locals = response.locals;
 
       response.render('pages/index', str);
     });
   }
 
-  var req = data_respons.request(options, callback);
+  var req = data_respons.request(opts, callback);
 
   req.on('error', function(e) {
   console.log('ERROR: ' + e.message);
