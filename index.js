@@ -32,15 +32,15 @@ app.get('/', function(request, response)  {
     'content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
   };
 
-  callback = function(response) {
+  callback = function(res) {
     var str = ''
-    response.on('data', function (chunk) {
+    res.on('data', function (chunk) {
       str += chunk;
     });
 
-    response.on('end', function () {
+    res.on('end', function () {
       console.log('Succuss :============= ::'+str);
-      response.render('pages/index', str);
+      res.render('pages/index', str);
     });
   }
 
