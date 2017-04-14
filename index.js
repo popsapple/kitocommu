@@ -35,9 +35,9 @@ app.get('/', function(request, response)  {
       var contents = JSON.stringify(str, Object.getOwnPropertyNames(str));
       console.log('1111111111111 :============= ::'+contents);
       // merge res.locals
-      //options._locals = response.locals;
+      options._locals = response.locals;
 
-      //response.render('pages/index', contents);
+      response.render('pages/index', contents);
     });
   }
 
