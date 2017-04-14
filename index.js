@@ -19,7 +19,7 @@ app.get('/', function(request, response)  {
   app.set('x-waple-authorization', 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5');
   app.set('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  app.listen(app.get(url, function(request, response)  {
+  app.listen(app.get(url), function(request, response)  {
     console.log('==============================================================');
     console.log('AAAAAAAAAAA'+url);
     console.log('BBBBBBBBBBB'+request);
