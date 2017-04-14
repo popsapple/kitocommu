@@ -32,11 +32,12 @@ app.get('/', function(request, response)  {
     });
 
     res.on('end', function () {
-      console.log('1111111111111 :============= ::'+str);
+      var contents = str.JSON.stringify;
+      console.log('1111111111111 :============= ::'+contents);
       // merge res.locals
       options._locals = response.locals;
 
-      response.render('pages/index', str);
+      response.render('pages/index', contents);
     });
   }
 
