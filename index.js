@@ -24,7 +24,7 @@ app.get('/', function(request, response)  {
 };*/
 
   var options = {
-    host: 'api.dbstore.or.kr',
+    host: 'www.api.dbstore.or.kr',
     path: queryParams,
     port: '8880',
     method: 'POST',
@@ -40,6 +40,7 @@ app.get('/', function(request, response)  {
 
     response.on('end', function () {
       console.log('Succuss :============= ::'+str);
+      response.render('pages/index', str);
     });
   }
 
