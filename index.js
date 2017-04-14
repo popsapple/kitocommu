@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
 var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
 queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
+url += queryParams;
 
 app.get('/', function(request, response)  {
 
