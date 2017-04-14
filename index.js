@@ -33,7 +33,7 @@ app.get('/', function(request, response)  {
 
     res.on('end', function () {
       console.log('1111111111111 :============= ::'+str);
-
+      response.render('pages/index', str);
     });
   }
 
@@ -44,7 +44,6 @@ app.get('/', function(request, response)  {
 });
 
   req.end();
-  response.render('pages/index', str);
 });
 
 
