@@ -34,11 +34,11 @@ app.get('/', function(request, response)  {
     res.on('end', function () {
       console.log('ddddd :============= ::'+str);
       //parse forecast.io message
-      var data = JSON.parse(str);
+      var data = JSON.parse(req.food_list);
       // merge res.locals
       opts._locals = response.locals;
 
-      response.render('pages/index', req.food_list);
+      response.render('pages/index', data);
     });
   }
 
