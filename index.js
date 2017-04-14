@@ -33,11 +33,11 @@ app.get('/', function(request, response)  {
 
     res.on('end', function () {
       var contents = JSON.stringify(str, Object.getOwnPropertyNames(str));
-      console.log('222222222222 :============= ::'+contents);
+      console.log('333 :============= ::'+contents);
       // merge res.locals
       options._locals = response.locals;
 
-      response.render('pages/index', contents);
+      response.render('pages/index', str);
     });
   }
 
