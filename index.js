@@ -33,6 +33,7 @@ app.get('/', function(request, response)  {
 
     res.on('end', function () {
       console.log('1111111111111 :============= ::'+str);
+      opts._locals = self.locals();
       response.render('pages/index', str);
     });
   }
