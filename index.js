@@ -24,7 +24,7 @@ app.get('/', function(request, response)  {
 };*/
 
   var options = {
-    host: 'www.api.dbstore.or.kr',
+    host: 'api.dbstore.or.kr',
     path: queryParams,
     port: '8880',
     method: 'POST',
