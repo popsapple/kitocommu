@@ -16,13 +16,6 @@ var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + enc
 queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
 
 app.get('/', function(request, response)  {
-
-
-/*  options = {
-  host: 'www.random.org',
-  path: '/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
-};*/
-
   var options = {
     host: 'api.dbstore.or.kr',
     path: queryParams,
@@ -32,15 +25,15 @@ app.get('/', function(request, response)  {
     'content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
   };
 
+  var str = '';
   callback = function(res) {
-    var str = ''
     res.on('data', function (chunk) {
       str += chunk;
     });
 
     res.on('end', function () {
       console.log('1111111111111 :============= ::'+str);
-      response.render('pages/index', str);
+
     });
   }
 
@@ -51,7 +44,7 @@ app.get('/', function(request, response)  {
 });
 
   req.end();
-
+  response.render('pages/index', str);
 });
 
 
