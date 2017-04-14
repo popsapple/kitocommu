@@ -37,6 +37,11 @@ app.get('/', function(request, response)  {
   }
 
   var req = data_respons.request(options, callback);
+
+  req.on('error', function(e) {
+  console.log('ERROR: ' + e.message);
+});
+
   req.end();
 
 });
