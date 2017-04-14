@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
             "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
   }, function (error, res, body) {
       console.log('1111111111111111111111111', body);
-      response.render('pages/index', body);
+    //  response.render('pages/index', body);
   });
 });
 
