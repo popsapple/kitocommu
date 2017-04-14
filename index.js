@@ -34,11 +34,11 @@ app.get('/', function(request, response)  {
     res.on('end', function () {
       console.log('ddddd :============= ::'+str);
       //parse forecast.io message
-      var weather = JSON.parse(str);
+      var data = JSON.parse(str);
       // merge res.locals
       opts._locals = response.locals;
 
-      response.render('pages/index', weather);
+      response.render('pages/index', data);
     });
   }
 
