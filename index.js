@@ -33,12 +33,12 @@ app.get('/', function(request, response)  {
 
     res.on('end', function () {
       //parse forecast.io message
-      var data = JSON.parse(str.food_list);
-        console.log('ddddd :============= ::'+data);
+      var data = JSON.parse(str);
+        console.log('sssss :============= ::'+data);
       // merge res.locals
       opts._locals = response.locals;
 
-      response.render('pages/index', data);
+      response.render('pages/index', data.food_list);
     });
   }
 
