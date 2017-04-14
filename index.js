@@ -32,9 +32,9 @@ app.get('/', function(request, response)  {
     });
 
     res.on('end', function () {
-      console.log('ssssssss :============= ::'+str);
+      console.log('ddddd :============= ::'+str);
       // merge res.locals
-      options._locals = response.locals;
+      options._locals = response._locals;
 
       response.render('pages/index', str);
     });
