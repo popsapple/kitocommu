@@ -38,7 +38,7 @@ app.get('/', function(request, response)  {
       // merge res.locals
       opts._locals = response.locals;
 
-      response.render('pages/index', data.food_list);
+      response.render('pages/index', data.body);
     });
   }
 
