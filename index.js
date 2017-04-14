@@ -34,7 +34,7 @@ app.get('/', function(request, response)  {
     res.on('end', function () {
       console.log('ddddd :============= ::'+str);
       // merge res.locals
-      options._locals = response._locals;
+      options._locals = response.locals;
 
       response.render('pages/index', str);
     });
