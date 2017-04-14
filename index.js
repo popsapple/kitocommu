@@ -17,8 +17,15 @@ queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기�
 
 app.get('/', function(request, response)  {
 
+
+/*  options = {
+  host: 'www.random.org',
+  path: '/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+};*/
+
   var options = {
-    host: 'http://api.dbstore.or.kr:8880',
+    host: 'www.api.dbstore.or.kr',
+    port: '8880',
     path: queryParams,
     method: 'POST',
     headers: {'x-waple-authorization': 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5',
