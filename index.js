@@ -11,17 +11,17 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-var url = 'http://api.dbstore.or.krfoodinfo/search.do';
+var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
 var queryParams = '?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
 queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
-url += queryParams;
 
 app.get('/', function(request, response)  {
 
   var options = {
-    host: url,
+    host: 'http://api.dbstore.or.kr',
     port:'8880',
-    method: 'GET',
+    path:'/foodinfo/search.do'+queryParams,
+    method: 'POST',
     headers: {'x-waple-authorization': 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5',
     'content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
   };
