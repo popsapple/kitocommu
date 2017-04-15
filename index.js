@@ -8,6 +8,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
+app.use(express.bodyParser());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -17,9 +18,6 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response)  {
   var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
-  JSON.stringify(request.body);
-  request.header('Content-type','application/json');
-  request.header('Charset','utf8');
 
   if(request.keyword){
     console.log('11111111111111111111111111111111111 ::'+request.keyword);
