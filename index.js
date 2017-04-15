@@ -12,18 +12,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  var user_keyword;
-  request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
-
-  if(request.keyword){
-    console.log('111111111111111111111111111111111111 ::'+request.keyword);
-  }
-  if(request.body){
-    console.log('22222222222222222222222222222222222 ::'+request.body.keyword);
-  }
-  if(request.body){
-    console.log('33333333333333333333333333333333333 ::'+request.body);
-  }
 
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -46,7 +34,13 @@ app.get('/', function(request, response) {
     res.on('end', function () {
       //parse forecast.io message
       var data = JSON.parse(str);
-        console.log('sssss :============= ::'+data);
+        console.log('1111111111111111111111111111111111111 :============= ::'+data);
+      var user_keyword;
+      request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
+
+      if(request.body){
+        console.log('33333333333333333333333333333333333 ::'+JSON.parse(request.body));
+      }
       // merge res.locals
       opts._locals = response.locals;
 
