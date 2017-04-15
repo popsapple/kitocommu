@@ -32,6 +32,7 @@ app.get('/', function(request, response) {
     });
 
     res.on('end', function () {
+      var user_keyword;
       //parse forecast.io message
       var data = JSON.parse(str);
         console.log('1111111111111111111111111111111111111 :============= ::'+data);
