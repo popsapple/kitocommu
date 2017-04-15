@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// parse application/vnd.api+json as json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+
 app.get('/', function(request, response) {
     var user_keyword;
     request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
