@@ -78,7 +78,7 @@
       </li>
     </ul>
     <div style="font-size:30px; color:red; font-weight:600;">
-      <input type="text" name="keyword" value="" class="submit_text" /><button class="submit_item">전송</button>
+      <input type="text" name="keyword_item" value="" class="submit_text" /><button class="submit_item">전송</button>
     </div>
   </section>
 </div>
@@ -92,7 +92,7 @@
       url: '/',
       dataType: "json",
       type: 'GET',
-      data: {'keyword':'당근'}
+      data: JSON.stringify({ "keyword_item": "당근" })
       });
   });
 </script>
