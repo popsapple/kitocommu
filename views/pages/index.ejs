@@ -70,13 +70,15 @@
     <ul>
       <li>
         <h3>가져올 식품 제목</h3>
-        <% for(var i=0; i < food_list.length; i++) { %>
-           <strong><%= food_list[i].food_name %></strong>
-        <% } %>
+        <div class="food_list">
+          <% for(var i=0; i < food_list.length; i++) { %>
+             <strong><%= food_list[i].food_name %></strong>
+          <% } %>
+        </div>
       </li>
     </ul>
     <div style="font-size:30px; color:red; font-weight:600;">
-      근성의 승리입니다 ..ㅎㅎ.. 이제 식품DB에서 검색한 내용에 맞는 제품들과, 제품들의 성분표를 뽑아 올 수있어요 !! (현재는 임의로 '유기농'키워드 검색)
+      <input type="text" name="food_name" value="" class="submit_text" /><button class="submit_item">전송</button>
     </div>
   </section>
 </div>
@@ -84,5 +86,19 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+  $(".submit_item").click( function(){
+    $.ajax(
+      url: '/',
+      dataType: 'json',
+      type: 'GET',
+      data: {'keyword':$('.submit_text').val()},
+      success: function(data) {
+          if ( data == true ) {
+              console.log(data.food_name);
+          }
+      });
+  });
+</script>
 </body>
 </html>

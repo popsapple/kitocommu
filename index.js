@@ -11,11 +11,15 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-var url = 'http://api.dbstore.or.kr:8880/foodinfo/search.do';
-var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
-queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent('유기농');
+
 
 app.get('/', function(request, response)  {
+  var user_keyword = request.body.keyword;
+  user_keyword ? '' : user_keyword = '유기농';
+
+  var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
+  queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
+
   var opts = {
     host: 'api.dbstore.or.kr',
     path: queryParams,
