@@ -1,14 +1,17 @@
 var express = require('express');
 var data_respons = require('http');
 var bodyParser = require('body-parser');
+var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 
+app.use(bodyParser.json());
+app.use(bodyParserJsonError());
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response, body) {
+app.get('/', function(request, response) {
   var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
@@ -71,7 +74,6 @@ app.get('/', function(request, response, body) {
   req.end();
   next();
 });
-app.use(express.bodyParser());
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
