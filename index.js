@@ -1,6 +1,6 @@
 var express = require('express');
 var data_respons = require('http');
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser').json();
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -10,14 +10,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
-
-
-app.get('/', function(request, response)  {
+app.get('/', bodyParser, function(request, response) {
   var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
@@ -63,6 +56,16 @@ app.get('/', function(request, response)  {
 
   req.on('error', function(e) {
   console.log('ERROR: ' + e.message);
+
+  request.on('end', function () {
+    //parse forecast.io message
+    var data = JSON.parse(str);
+      console.log('sssss :============= ::'+data);
+    // merge res.locals
+    opts._locals = response.locals;
+
+    response.render('pages/index', data);
+  });
 });
 
   req.end();
