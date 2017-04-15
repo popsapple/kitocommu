@@ -88,7 +88,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
   $(".submit_item").click( function(){
-    $.ajax(
+    $.ajax({
       url: '/',
       dataType: 'json',
       type: 'GET',
@@ -97,6 +97,7 @@
           if ( data == true ) {
               console.log(data.food_name);
           }
+        }
       });
   });
 </script>
