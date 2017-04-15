@@ -56,7 +56,7 @@ app.get('/', function(request, response) {
       console.log('ERROR: ' + e.message);
     });
 
-  //req.end();
+  req.end();
   //next();
 });
 
