@@ -55,16 +55,14 @@ app.get('/', function(request, response) {
     var req = data_respons.request(opts, callback);
 
     req.on('error', function(e) {
-    console.log('ERROR: ' + e.message);
+      console.log('ERROR: ' + e.message);
 
-    opts._locals = response.locals;
+      opts._locals = response.locals;
 
-    response.render('pages/index', data);
+      response.render('pages/index', data);
+    });
+    req.end();
   });
-
-});
-
-  req.end();
 });
 
 app.listen(app.get('port'), function() {
