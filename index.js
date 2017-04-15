@@ -27,8 +27,8 @@ app.get('/', function(request, response)  {
   if(response.body){
     console.log('22222222222222222222222222222222222 ::'+response.body.keyword);
   }
-  if(request.param){
-    console.log('33333333333333333333333333333333333 ::'+request.param);
+  if(request.params){
+    console.log('33333333333333333333333333333333333 ::'+request.params);
   }
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
