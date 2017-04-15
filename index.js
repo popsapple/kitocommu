@@ -18,10 +18,10 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 app.get('/', function(request, response) {
     var user_keyword;
-    request.body.keyword_item ? user_keyword = request.body.keyword_item : user_keyword = '유기농';
+    request.body ? user_keyword = request.body : user_keyword = '유기농';
 
-    if(request.body) {
-      console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
+    if(response.body) {
+      console.log("DDDDDDDDDDDDDDDDDD ::"+response.body.keyword_item);
     }
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
