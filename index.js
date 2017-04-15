@@ -17,7 +17,8 @@ app.get('/', function(request, response) {
 
   if(request.body) {
     var reqBody = request.body;
-    console.log("DDDDDDDDDDDDDDDDDD ::"+reqBody);
+    var data_ = JSON.parse(reqBody);
+    console.log("DDDDDDDDDDDDDDDDDD ::"+data_);
   }
 
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
