@@ -18,7 +18,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 app.get('/', function(request, response) {
     var user_keyword;
-    request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
+    request.body.keyword_item ? user_keyword = request.body.keyword_item : user_keyword = '유기농';
 
     if(request.body) {
       console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
