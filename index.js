@@ -12,7 +12,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  request.on('end', function () {
     var user_keyword;
     request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
@@ -56,7 +55,6 @@ app.get('/', function(request, response) {
     req.on('error', function(e) {
       console.log('ERROR: ' + e.message);
     });
-  });
 
   //req.end();
   //next();
