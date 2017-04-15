@@ -2,7 +2,7 @@ var express = require('express');
 var data_respons = require('http');
 var bodyParser = require('body-parser').json();
 var app = express();
-
+app.use(express.bodyParser());
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', bodyParser, function(request, response) {
+app.get('/', function(request, response) {
   var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
