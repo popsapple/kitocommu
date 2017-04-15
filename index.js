@@ -24,8 +24,8 @@ app.get('/', function(request, response)  {
   if(request.keyword){
     console.log('11111111111111111111111111111111111 ::'+request.keyword);
   }
-  if(response.body){
-    console.log('22222222222222222222222222222222222 ::'+response.body.keyword);
+  if(request.body){
+    console.log('22222222222222222222222222222222222 ::'+request.body.keyword);
   }
   if(request.params){
     console.log('33333333333333333333333333333333333 ::'+request.params);
