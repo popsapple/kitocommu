@@ -5,18 +5,6 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-// parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'application/*+json' }));
-
-// parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'json' }));
-
-// parse some custom thing into a Buffer
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
-
-// parse an HTML body into a string
-app.use(bodyParser.text({ type: 'text/html' }));
-
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -34,9 +22,6 @@ app.get('/', function(request, response, body) {
     console.log('33333333333333333333333333333333333 ::'+request.body);
   }
 
-  if(body){
-    console.log('44444444444444444444444444444444444 ::'+body);
-  }
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
 
@@ -80,11 +65,13 @@ app.get('/', function(request, response, body) {
 
     response.render('pages/index', data);
   });
+
 });
 
   req.end();
+  next();
 });
-
+app.use(express.bodyParser());
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
