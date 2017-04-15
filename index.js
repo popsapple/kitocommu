@@ -1,17 +1,16 @@
 var express = require('express');
 var data_respons = require('http');
-var bodyParser = require('body-parser').json();
+var bodyParser = require('body-parser').;
 var app = express();
-app.use(express.bodyParser());
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.bodyParser());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  var user_keyword;
+/*  var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
   if(request.keyword){
@@ -22,7 +21,7 @@ app.get('/', function(request, response) {
   }
   if(request.params){
     console.log('33333333333333333333333333333333333 ::'+request.params);
-  }
+  }*/
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
 
