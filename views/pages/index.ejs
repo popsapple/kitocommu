@@ -90,9 +90,9 @@
   $(".submit_item").click( function(){
     $.ajax({
       url: '/',
-      dataType: 'json',
+			contentType: 'application/json',
       type: 'GET',
-      data: {keyword:'당근'},
+      data: {'keyword':'당근'},
       success: function(data) {
           if ( data == true ) {
               console.log(data.food_name);
