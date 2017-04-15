@@ -20,8 +20,8 @@ app.get('/', function(request, response) {
     var user_keyword;
     request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
-    if(response.body) {
-      console.log("DDDDDDDDDDDDDDDDDD ::"+response.body.keyword_item);
+    if(request.body) {
+      console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
     }
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
