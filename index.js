@@ -5,7 +5,18 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'application/*+json' }));
+
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'json' }));
+
+// parse some custom thing into a Buffer
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
+
+// parse an HTML body into a string
+app.use(bodyParser.text({ type: 'text/html' }));
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
