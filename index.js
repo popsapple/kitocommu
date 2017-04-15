@@ -16,7 +16,7 @@ app.get('/', function(request, response) {
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
   if(request.body) {
-    var reqBody = app.request.body.toString();
+    var reqBody = request.body.toString();
     reqBody = JSON.parse(reqBody);
     console.log("AAAAA ::"+reqBody);
   }
