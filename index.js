@@ -17,7 +17,7 @@ app.get('/', function(request, response) {
 
   if(request.body) {
     var reqBody = request.body.toString();
-    reqBody = JSON.parse(reqBody);
+    //reqBody = JSON.parse(reqBody);
     console.log("AAAAA ::"+reqBody);
   }
 
