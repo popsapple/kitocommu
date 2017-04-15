@@ -15,8 +15,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response)  {
   var user_keyword;
-  request.body ? user_keyword = request.body.keyword : user_keyword = '유기농';
-  console.log('11111111111111111111111111111111111');
+  request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
+  console.log('11111111111111111111111111111111111 ::');
+  console.log('2222222222222222222222222222222222222 ::'+user_keyword);
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
   console.log('22222222222222222222222222222222222');
