@@ -15,7 +15,6 @@ app.get('/', function(request, response) {
   var user_keyword;
   request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
 
-
   if(request.body){
     var item = JSON.parse(request.body);
   }
