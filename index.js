@@ -19,7 +19,7 @@ app.get('/', function(request, response)  {
   if(request.keyword){
   console.log('11111111111111111111111111111111111 ::'+request.keyword);
 }
-if(request.body.keyword){
+if(request.body){
   console.log('22222222222222222222222222222222222 ::'+request.body.keyword);
 }
   console.log('33333333333333333333333333333333333 ::'+user_keyword);
