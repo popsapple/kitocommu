@@ -26,7 +26,7 @@ if(request.data){
   console.log('22222222222222222222222222222222222 ::'+request.data.keyword);
 }
 if(request.body){
-  console.log('33333333333333333333333333333333333 ::'+request.body.keyword);
+  console.log('33333333333333333333333333333333333 ::'+request.body[0].keyword);
 }
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
