@@ -7,7 +7,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -22,10 +22,12 @@ app.get('/', function(request, response)  {
   if(request.keyword){
   console.log('11111111111111111111111111111111111 ::'+request.keyword);
 }
-if(request.body){
-  console.log('22222222222222222222222222222222222 ::'+request.body.keyword);
+if(request.data){
+  console.log('22222222222222222222222222222222222 ::'+request.data.keyword);
 }
-  console.log('33333333333333333333333333333333333 ::'+user_keyword);
+if(request.body){
+  console.log('33333333333333333333333333333333333 ::'+request.body.keyword);
+}
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
 
