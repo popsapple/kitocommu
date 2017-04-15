@@ -39,9 +39,7 @@ app.get('/', function(request, response) {
     });
 
     res.on('end', function () {
-      //parse forecast.io message
-      var data = JSON.parse(str);
-        console.log('sssss :============= ::'+data);
+
       // merge res.locals
       opts._locals = response.locals;
 
@@ -53,16 +51,6 @@ app.get('/', function(request, response) {
 
   req.on('error', function(e) {
   console.log('ERROR: ' + e.message);
-
-  request.on('end', function () {
-    //parse forecast.io message
-    var data = JSON.parse(str);
-      console.log('sssss :============= ::'+data);
-    // merge res.locals
-    opts._locals = response.locals;
-
-    response.render('pages/index', data);
-  });
 
 });
 
