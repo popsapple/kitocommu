@@ -58,8 +58,6 @@ app.get('/', function(request, response) {
       console.log('ERROR: ' + e.message);
 
       opts._locals = response.locals;
-
-      response.render('pages/index', data);
     });
     req.end();
   });
