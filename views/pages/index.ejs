@@ -90,15 +90,9 @@
   $(".submit_item").click( function(){
     $.ajax({
       url: '/',
-      contentType: "application/json; charset=utf-8",
       dataType: "json",
       type: 'GET',
-      data: {'keyword':'당근'},
-      success: function(data) {
-          if ( data == true ) {
-              console.log(data.food_name);
-          }
-        }
+      data: {'keyword':'당근'}
       });
   });
 </script>
