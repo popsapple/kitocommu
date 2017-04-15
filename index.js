@@ -72,7 +72,6 @@ app.get('/', function(request, response) {
 });
 
   req.end();
-  next();
 });
 
 app.listen(app.get('port'), function() {
