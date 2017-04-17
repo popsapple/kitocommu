@@ -8,11 +8,13 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-//Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.bodyParser());
 
 app.get('/', function(request, response) {
+
+    if(request.body) {
+      console.log("11111111111111111111 ::"+request.body.keyword_item);
+    }
     var user_keyword = '유기농';
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
@@ -51,12 +53,12 @@ app.get('/', function(request, response) {
     });
 
   req.end();
-  //next();
+  next();
 });
 
 app.listen(app.get('/'), function(request, response) {
   if(request.body) {
-    console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
+    console.log("222222222222222222 ::"+request.body.keyword_item);
   }
 });
 
