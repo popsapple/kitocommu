@@ -60,7 +60,7 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function(request, response) {
-  var user_keyword = request.body.name;
+  var user_keyword = request.body.keyword;
   SearchFoodInfo(user_keyword,response);
 });
 
