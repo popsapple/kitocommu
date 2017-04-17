@@ -14,7 +14,10 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-function SearchFoodInfo(user_keyword,request,response,type){
+function SearchFoodInfo(request,response,type){
+  var user_keyword;
+  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
+
   var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -55,14 +58,12 @@ function SearchFoodInfo(user_keyword,request,response,type){
 }
 
 app.get('/', function(request, response) {
-  var user_keyword;
-  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
-  SearchFoodInfo(user_keyword,request,response,'loaded');
+  SearchFoodInfo(request,response,'loaded');
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
-  SearchFoodInfo(user_keyword,request,response,'search');
+  SearchFoodInfo(request,response,'search');
 });
 
 app.listen(app.get('port'), function() {
