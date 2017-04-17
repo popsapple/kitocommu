@@ -1,22 +1,23 @@
 var express = require('express')
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
 var data_respons = require('http');
 var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-// configure the app to use bodyParser()
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+
+
+// Put these statements before you define any routes.
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
 
-app.get('/', function(request, response) {
+app.post('/', function(request, response) {
   var user_keyword = '유기농';
 
   if(request.body) {

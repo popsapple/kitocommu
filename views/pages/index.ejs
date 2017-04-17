@@ -84,7 +84,7 @@
 <script>
   $(".submit_item").click( function(){
     $.ajax({
-      type: "GET",
+      type: "POST",
           url: "/",
           data: JSON.stringify({"name" : "John"}),
           contentType: "application/json",
