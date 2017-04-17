@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-function SearchFoodInfo(user_keyword,request, response){
+function SearchFoodInfo(user_keyword,request,type){
   var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -40,7 +40,8 @@ function SearchFoodInfo(user_keyword,request, response){
       // merge res.locals
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
-      response.render('pages/index', data);
+      if(type == 'loaed') {response.render('pages/index', data);
+      } else {response.redirect('pages/index', data);}
     });
   }
 
@@ -56,12 +57,12 @@ function SearchFoodInfo(user_keyword,request, response){
 app.get('/', function(request, response) {
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
-  SearchFoodInfo(user_keyword,request, response);
+  SearchFoodInfo(user_keyword,request,'loaded');
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
-  response.redirect('/');
+  SearchFoodInfo(user_keyword,request,'search');
 });
 
 app.listen(app.get('port'), function() {
