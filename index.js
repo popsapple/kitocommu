@@ -1,6 +1,6 @@
-var express = require('express');
+var express = require('express')
+var bodyParser = require('body-parser')
 var data_respons = require('http');
-var bodyParser = require('body-parser');
 var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -9,7 +9,10 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.get('/', function(request, response) {
   var user_keyword = '유기농';
