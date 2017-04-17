@@ -95,8 +95,8 @@
                 $('#result').html(result['msg']);
             }*/
         },
-        error : function() {
-          alert('버그');
+        error : function(xhr, status, error) {
+          alert('버그 ::'+status);
         }
     });
   });
