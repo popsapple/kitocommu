@@ -85,8 +85,9 @@
   $(".submit_item").click( function(){
     $.ajax({
         url: '/',
-        dataType: 'json',
         type: 'GET',
+        contentType: 'application/json',
+        dataType: 'json',
         data: {'keyword_item':'성공했습니다'},
         success: function(result) {
           /*  if ( result['result'] == true ) {
