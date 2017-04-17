@@ -16,10 +16,9 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', function(response, request) {
   var user_keyword = '유기농';
-  var body = JSON.parse(request.body);
   
-  if(body) {
-    console.log("11111111111111111111 ::"+body.keyword_item);
+  if(request.body) {
+    console.log("11111111111111111111 ::"+request.body.keyword_item);
   }
 
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
