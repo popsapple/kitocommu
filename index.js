@@ -19,7 +19,6 @@ app.set('Content-Type', 'application/json');
 
 app.get('/', function(request, response) {
   var user_keyword = '유기농';
-  response.setHeader('Content-Type', 'application/json');
   if(request.body.name) {
     console.log("11111111111111111111 ::"+request.body.name);
     console.log("dddddddddddddddddddddddddddd ::"+request.body);
