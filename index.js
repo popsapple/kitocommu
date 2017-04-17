@@ -40,7 +40,7 @@ function SearchFoodInfo(user_keyword,response){
       var data = JSON.parse(str);
       // merge res.locals
       opts._locals = response.locals;
-
+      console.log("SSSSSSSSSSSSS ========"+data)
       response.render('pages/index', data);
     });
   }
