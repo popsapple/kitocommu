@@ -57,7 +57,7 @@ app.get('/', function(request, response) {
 });
 
 app.listen(app.get('/'), function(request, response) {
-  if(request.body) {
+  if(request) {
     console.log("222222222222222222 ::"+request.body.keyword_item);
   }
 });
