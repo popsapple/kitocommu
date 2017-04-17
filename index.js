@@ -40,7 +40,7 @@ function SearchFoodInfo(user_keyword,request,type){
       // merge res.locals
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
-      if(type == 'loaed') {response.render('pages/index', data);
+      if(type == 'loaded') {response.render('pages/index', data);
       } else {response.redirect('pages/index', data);}
     });
   }
