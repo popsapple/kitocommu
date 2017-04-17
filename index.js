@@ -17,6 +17,10 @@ app.set('view engine', 'ejs');
 
 
 
+app.get('/', function(request, response) {
+  response.render('pages/index');
+});
+
 app.post('/', function(request, response) {
   var user_keyword = '유기농';
 
@@ -26,7 +30,6 @@ app.post('/', function(request, response) {
 
 
   response.render('pages/index');
-
 });
 
 app.listen(app.get('port'), function() {
