@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.set('Content-Type', 'application/json');
 
 
 app.get('/', function(request, response) {
