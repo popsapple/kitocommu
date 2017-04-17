@@ -54,14 +54,14 @@ function SearchFoodInfo(user_keyword,request, response){
 }
 
 app.get('/', function(request, response) {
-  var user_keyword = '유기농';
+  var user_keyword;
+  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
   SearchFoodInfo(user_keyword,request, response);
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
-  console.log("가져오는 값 ::"+user_keyword);
-  SearchFoodInfo(user_keyword,request, response);
+  response.redirect('/');
 });
 
 app.listen(app.get('port'), function() {
