@@ -25,7 +25,7 @@ app.get('/', function(request, response) {
     console.log("22222222222222222222 ::"+response.body.keyword_item);
   }
 
-  response.on('end', function () {
+  request.on('end', function () {
     response.render('pages/index');
   });
 });
