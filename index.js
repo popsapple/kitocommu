@@ -13,12 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function(request, response) {
-    var user_keyword;
-    request.keyword ? user_keyword = request.keyword : user_keyword = '유기농';
-
-    if(request.body) {
-      console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
-    }
+    var user_keyword = '유기농';
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
     queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -59,8 +54,10 @@ app.get('/', function(request, response) {
   //next();
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+app.listen(app.get('/'), function(request, response) {
+  if(request.body) {
+    console.log("DDDDDDDDDDDDDDDDDD ::"+request.body.keyword_item);
+  }
 });
 
 
