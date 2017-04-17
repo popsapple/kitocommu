@@ -44,7 +44,7 @@ function SearchFoodInfo(request,response,type){
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
       if(type == 'loaded') {response.render('pages/index', data);
-      } else {response.redirect('pages/index', data);}
+      } else {response.render('pages/index', data);}
     });
   }
 
