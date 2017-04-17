@@ -24,6 +24,10 @@ app.get('/', function(request, response) {
   if(response.body) {
     console.log("22222222222222222222 ::"+response.body.keyword_item);
   }
+
+  request.on('end', function () {
+    response.render('pages/index');
+  });
 });
 
 app.listen(app.get('port'), function() {
