@@ -61,6 +61,7 @@ app.get('/', function(request, response) {
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
+  console.log("가져오는 값 ::"+user_keyword);
   SearchFoodInfo(user_keyword,response);
 });
 
