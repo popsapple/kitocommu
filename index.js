@@ -20,8 +20,8 @@ app.get('/', function(request, response) {
 
 
   if(request.body) {
-    var reqBody = JSON.stringify(request.body);
-    console.log("11111111111111111111 ::"+reqBody);
+    request.json();
+    console.log("11111111111111111111 ::"+request.body);
   }
 
 
