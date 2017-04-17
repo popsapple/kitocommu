@@ -86,14 +86,11 @@
     $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: '/index.js',
+        url: '/',
         contentType: "application/json",
-        data: {name:'전송에 성공했습니다'},
+        data: {'name':'전송에 성공했습니다'},
         success: function(result) {
           alert('잘 보냈어');
-          /*  if ( result['result'] == true ) {
-                $('#result').html(result['msg']);
-            }*/
         },
         error : function(xhr, status, error) {
           alert('버그 ::'+status);
