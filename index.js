@@ -57,13 +57,11 @@ function SearchFoodInfo(user_keyword){
 app.get('/', function(request, response) {
   var user_keyword = '유기농';
   SearchFoodInfo(user_keyword);
-  response.render('pages/index');
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.name;
   SearchFoodInfo(user_keyword);
-  response.render('pages/index');
 });
 
 app.listen(app.get('port'), function() {
