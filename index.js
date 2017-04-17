@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', function(response, request) {
   var user_keyword = '유기농';
-  
+
   if(request.body) {
     console.log("11111111111111111111 ::"+request.body.keyword_item);
   }
@@ -43,9 +43,9 @@ app.get('/', function(response, request) {
       //parse forecast.io message
       var data = JSON.parse(str);
       // merge res.locals
-      opts._locals = response.locals;
+      opts._locals = request.locals;
 
-      response.render('pages/index', data);
+      request.render('pages/index', data);
     });
   }
 
@@ -54,14 +54,14 @@ app.get('/', function(response, request) {
   req.on('error', function(e) {
   console.log('ERROR: ' + e.message);
 
-  request.on('end', function () {
+  response.on('end', function () {
     //parse forecast.io message
     var data = JSON.parse(str);
       console.log('sssss :============= ::'+data);
     // merge res.locals
-    opts._locals = response.locals;
+    opts._locals = request.locals;
 
-    response.render('pages/index', data);
+    request.render('pages/index', data);
   });
 
 });
