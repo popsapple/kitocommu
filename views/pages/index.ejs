@@ -70,6 +70,11 @@
     <ul>
       <li>
         <h3>가져올 식품 제목</h3>
+        <div class="food_list">
+          <% for(var i=0; i < food_list.length; i++) { %>
+             <strong><%= food_list[i].food_name %></strong>
+          <% } %>
+        </div>
       </li>
     </ul>
     <div style="font-size:30px; color:red; font-weight:600;">
@@ -86,7 +91,7 @@
     $.ajax({
       type: "POST",
           url: "/",
-          data: JSON.stringify({"name" : "John"}),
+          data: JSON.stringify({"keyword" : $(".submit_text").val()}),
           contentType: "application/json",
           success: function(d) {
               //Stuff
