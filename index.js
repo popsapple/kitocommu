@@ -20,7 +20,7 @@ app.get('/', function(request, response) {
   var user_keyword = '유기농';
 
   if(request.body) {
-    console.log("11111111111111111111 ::"+request.body);
+    console.log("DATA from AJAX = " + request.body.name);//This was the solution
   }
 
 

@@ -87,17 +87,16 @@
     var obj = jQuery.parseJSON(dataname);
 
     $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: '/',
-        contentType: "application/json",
-        data: obj,
-        success: function(result) {
-          alert('잘 보냈어');
-        },
-        error : function(xhr, status, error) {
-          alert('버그 ::'+data+' ::::: '+status);
-        }
+      type: "GET",
+          url: "/",
+          data: JSON.stringify({"name" : "잘 했어요"}), 
+          contentType: "application/json",
+          success: function(d) {
+              //Stuff
+          },
+          error: function(d) {
+              console.log("Error");
+          }
     });
   });
 </script>
