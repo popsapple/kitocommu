@@ -86,7 +86,7 @@
     $.ajax({
         type: 'GET',
         url: '/',
-        data: JSON.stringify({ name: '전송에 성공했습니다' }),
+        data: {name:'전송에 성공했습니다'},
         contentType: "application/json",
         dataType: 'json',
         success: function(result) {
