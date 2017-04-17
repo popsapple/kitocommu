@@ -83,12 +83,15 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
   $(".submit_item").click( function(){
+    var dataname = '{"name":"John"}';
+    var obj = jQuery.parseJSON(dataname);
+
     $.ajax({
         type: 'GET',
         dataType: 'json',
         url: '/',
         contentType: "application/json",
-        data: [ { name: "One", title: "1" } ],
+        data: obj,
         success: function(result) {
           alert('잘 보냈어');
         },
