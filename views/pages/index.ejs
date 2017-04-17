@@ -84,11 +84,11 @@
 <script>
   $(".submit_item").click( function(){
     $.ajax({
-        url: '/',
         type: 'GET',
-        contentType: 'application/json',
+        url: '/',
+        data: JSON.stringify({ Name: playersShip.name, Credits: playersShip.credits }),
+        contentType: "application/json",
         dataType: 'json',
-        data: {'keyword_item':'성공했습니다'},
         success: function(result) {
           /*  if ( result['result'] == true ) {
                 $('#result').html(result['msg']);
