@@ -18,9 +18,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   var user_keyword = '유기농';
 
-
   if(request.body) {
-    request.json();
     console.log("11111111111111111111 ::"+request.body);
   }
 
