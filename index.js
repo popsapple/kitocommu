@@ -1,7 +1,6 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 
-var data_respons = require('http');
 var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -15,8 +14,8 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-function SearchFoodInfo(user_keyword,response){
-
+function SearchFoodInfo(user_keyword,request, response){
+  var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
 
@@ -56,13 +55,13 @@ function SearchFoodInfo(user_keyword,response){
 
 app.get('/', function(request, response) {
   var user_keyword = '유기농';
-  SearchFoodInfo(user_keyword,response);
+  SearchFoodInfo(user_keyword,request, response);
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
   console.log("가져오는 값 ::"+user_keyword);
-  SearchFoodInfo(user_keyword,response);
+  SearchFoodInfo(user_keyword,request, response);
 });
 
 app.listen(app.get('port'), function() {
