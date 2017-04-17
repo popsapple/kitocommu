@@ -86,6 +86,7 @@
     $.ajax({
         type: 'GET',
         dataType: 'json',
+        url: '/',
         contentType: "application/json",
         data: {name:'전송에 성공했습니다'},
         success: function(result) {
@@ -93,6 +94,9 @@
           /*  if ( result['result'] == true ) {
                 $('#result').html(result['msg']);
             }*/
+        },
+        error : function() {
+          alert('버그');
         }
     });
   });
