@@ -6,17 +6,17 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
 
-
-
-app.get('/', function(request, response) {
+app.get('/', function(response, request) {
   var user_keyword = '유기농';
+
   if(request.body) {
     console.log("11111111111111111111 ::"+request.body.keyword_item);
   }
@@ -24,6 +24,54 @@ app.get('/', function(request, response) {
   if(response.body) {
     console.log("22222222222222222222 ::"+response.body.keyword_item);
   }
+
+  var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
+  queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
+
+  var opts = {
+    host: 'api.dbstore.or.kr',
+    path: queryParams,
+    port: '8880',
+    method: 'POST',
+    headers: {'x-waple-authorization': 'MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5',
+    'content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
+  };
+
+  var str = '';
+  callback = function(res) {
+    res.on('data', function (chunk) {
+      str += chunk;
+    });
+
+    res.on('end', function () {
+      //parse forecast.io message
+      var data = JSON.parse(str);
+      // merge res.locals
+      opts._locals = request.locals;
+
+      request.render('pages/index', data);
+    });
+  }
+
+  var req = data_respons.request(opts, callback);
+
+  req.on('error', function(e) {
+  console.log('ERROR: ' + e.message);
+
+  response.on('end', function () {
+    //parse forecast.io message
+    var data = JSON.parse(str);
+      console.log('sssss :============= ::'+data);
+    // merge res.locals
+    opts._locals = request.locals;
+
+    request.render('pages/index', data);
+  });
+
+});
+
+  req.end();
+  //next();
 });
 
 app.listen(app.get('port'), function() {
