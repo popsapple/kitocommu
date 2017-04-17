@@ -84,12 +84,16 @@
 <script>
   $(".submit_item").click( function(){
     $.ajax({
-      url: '/',
-      contentType: 'application/json',
-      dataType: "json",
-      type: 'GET',
-      data: { "keyword_item": "당근" }
-      });
+        url: '/',
+        dataType: 'json',
+        type: 'POST',
+        data: {'keyword_item':'성공했습니다'},
+        success: function(result) {
+          /*  if ( result['result'] == true ) {
+                $('#result').html(result['msg']);
+            }*/
+        }
+    });
   });
 </script>
 </body>
