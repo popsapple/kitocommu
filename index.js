@@ -14,9 +14,7 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-function SearchFoodInfo(request,response,type){
-  var user_keyword;
-  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
+function SearchFoodInfo(request,response,type,user_keyword){
   console.log("넘어오는 검색어 ::"+user_keyword);
   var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
@@ -62,12 +60,12 @@ function SearchFoodInfo(request,response,type){
 }
 
 app.get('/', function(request, response) {
-  SearchFoodInfo(request,response,'loaded');
+  SearchFoodInfo(request,response,'loaded','유기농');
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
-  SearchFoodInfo(request,response,'search');
+  SearchFoodInfo(request,response,'search',user_keyword);
 });
 
 app.listen(app.get('port'), function() {
