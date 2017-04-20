@@ -46,6 +46,7 @@ function SearchFoodInfo(request,response,type){
       if(type == 'loaded') {
         response.render('pages/index', data);
       } else {
+        console.log("검색시 실행확인"+data);
         response.render('pages/index', data);
       }
     });
@@ -71,11 +72,6 @@ app.post('/', function(request, response) {
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-});
-
-app.render('pages/index', {title: 'Unavailable'}, function(err, html){
-  console.log("실행합니다 ::"+html);
-  response.send(html);
 });
 
 
