@@ -15,8 +15,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-app.render('pages/index', {layout: false}, function(err, data){
-  response.send(data);
+app.render('pages/index', {title: 'Unavailable'}, function(err, html){
+  console.log("실행합니다 ::"+html);
+  response.send(html);
 });
 
 function SearchFoodInfo(request,response,type){
