@@ -50,6 +50,7 @@ function SearchFoodInfo(request,response,type){
         //response.send(JSON.stringify(data));
         response.json(JSON.stringify(data));
         response.write(JSON.stringify(data));
+        response.end();
       }
     });
   }
