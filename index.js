@@ -46,7 +46,7 @@ function SearchFoodInfo(request,response,type){
       if(type == 'loaded') {
         response.render('pages/index', data);
       } else {
-        response.render('pages/index', data);
+        response.send(data);
       }
     });
   }
