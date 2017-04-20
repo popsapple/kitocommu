@@ -14,6 +14,11 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
+app.render('pages/index', {layout: false}, function(err, data){
+  response.send(data);
+});
+
 function SearchFoodInfo(request,response,type){
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
@@ -43,8 +48,11 @@ function SearchFoodInfo(request,response,type){
       // merge res.locals
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
-      if(type == 'loaded') {response.render('pages/index', data);
-      } else {response.render('pages/index', data);}
+      if(type == 'loaded') {
+        response.render('pages/index', data);
+      } else {
+        response.render('pages/index', data);
+      }
     });
   }
 
