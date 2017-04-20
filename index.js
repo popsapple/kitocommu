@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 function SearchFoodInfo(request,response,type){
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
-  console.log("넘어오는 검색어 ::"+user_keyword)
+  console.log("넘어오는 검색어 ::"+user_keyword);
   var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -46,8 +46,8 @@ function SearchFoodInfo(request,response,type){
       if(type == 'loaded') {
         response.render('pages/index', data);
       } else {
-        console.log("검색시 실행확인"+JSON.stringify(data));
-        response.send(JSON.stringify(data));
+        console.log("검색시 실행확인"+data);
+        response.render('pages/index', data);
       }
     });
   }
