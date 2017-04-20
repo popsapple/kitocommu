@@ -91,7 +91,7 @@
     $.ajax({
       type: "POST",
           url: "/",
-          data: JSON.stringify({"keyword" : $(".submit_text").val}),
+          data: JSON.stringify({"keyword" : $(".submit_text").val()}),
           contentType: "application/json",
           success: function(d) {
               var html;
