@@ -93,14 +93,14 @@
           url: "/",
           data: JSON.stringify({"keyword" : $(".submit_text").val()}),
           contentType: "application/json",
-          success: function(d) {
+          success: function(data) {
             var html='';
-            for (var i = 0; i < d.food_list.length; i++) {
-                html += '<strong>'+d.food_list[i].food_name+'</strong>';
+            for (var i = 0; i < data.food_list.length; i++) {
+                html += '<strong>'+data.food_list[i].food_name+'</strong><a href="http://emart.ssg.com/search.ssg?target=all&query='+data.food_list[i].food_name+'">마트 주문하러가기</a>';
             }
             $('.food_list').html(html);
           },
-          error: function(d) {
+          error: function(data) {
               console.log("Error");
           }
     });
