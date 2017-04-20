@@ -95,8 +95,8 @@
           contentType: "application/json",
           success: function(d) {
               var html;
-              for (var i = 0; i < d.length; i++) {
-                  html += '<strong>'+food_list[i].food_name+'</strong>';
+              for (var i = 0; i < d.food_list.length; i++) {
+                  html += '<strong>'+d.food_list[i].food_name+'</strong>';
               }
               $('.food_list').html(html);
           },
