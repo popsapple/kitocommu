@@ -73,7 +73,7 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-app.render('/', {title: 'Unavailable'}, function(err, html){
+app.render('pages/index', {title: 'Unavailable'}, function(err, html){
   console.log("실행합니다 ::"+html);
   response.send(html);
 });
