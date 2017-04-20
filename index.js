@@ -47,7 +47,6 @@ function SearchFoodInfo(request,response,type){
         response.render('pages/index', data);
       } else {
         console.log("검색시 실행확인"+JSON.stringify(data));
-        //response.send(JSON.stringify(data));
         response.send(JSON.stringify(data));
       }
     });
