@@ -41,12 +41,8 @@ function SearchFoodInfo(request,response,type,user_keyword){
       // merge res.locals
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
-      if(type == 'loaded') {
-        response.render('pages/index', data);
-      } else {
-        console.log("검색시 실행확인"+data);
-        response.render('pages/index', data);
-      }
+      if(type == 'loaded') {response.render('pages/index', data);
+      } else {response.redirect('pages/index', data);}
     });
   }
 
