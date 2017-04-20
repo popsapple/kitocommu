@@ -14,8 +14,10 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-function SearchFoodInfo(request,response,type,user_keyword){
-  console.log("넘어오는 검색어 ::"+user_keyword);
+function SearchFoodInfo(request,response,type){
+  var user_keyword;
+  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
+  console.log("넘어오는 검색어 ::"+user_keyword)
   var data_respons = require('http');
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
@@ -41,8 +43,11 @@ function SearchFoodInfo(request,response,type,user_keyword){
       // merge res.locals
       opts._locals = response.locals;
       console.log("SSSSSSSSSSSSS ========"+data)
-      if(type == 'loaded') {response.render('pages/index', data);
-      } else {response.redirect('pages/index', data);}
+      if(type == 'loaded') {
+        response.render('pages/index', data);
+      } else {
+        response.render('pages/index', data);
+      }
     });
   }
 
@@ -56,12 +61,12 @@ function SearchFoodInfo(request,response,type,user_keyword){
 }
 
 app.get('/', function(request, response) {
-  SearchFoodInfo(request,response,'loaded','유기농');
+  SearchFoodInfo(request,response,'loaded');
 });
 
 app.post('/', function(request, response) {
   var user_keyword = request.body.keyword;
-  SearchFoodInfo(request,response,'search',user_keyword);
+  SearchFoodInfo(request,response,'search');
 });
 
 app.listen(app.get('port'), function() {
