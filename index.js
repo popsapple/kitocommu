@@ -49,7 +49,7 @@ function SearchFoodInfo(request,response,type){
         console.log("검색시 실행확인"+JSON.stringify(data));
         //response.send(JSON.stringify(data));
         response.json(JSON.stringify(data));
-        response.write(JSON.stringify(JSON.stringify(data)));
+        response.write(JSON.stringify(data));
       }
     });
   }
