@@ -93,13 +93,13 @@
           url: "/",
           data: JSON.stringify({"keyword" : $(".submit_text").val()}),
           contentType: "application/json",
-          success: function(d) {
-              //Stuff
-          },
-          error: function(d) {
-              console.log("Error");
+          success: function(result) {
+            var html;
+            for (var i = 0; i< result.length; i++) {
+                html += '<strong>' + food_list[i].food_name + '</strong>';
+            }
+            $('.food_list').html(html);
           }
-    });
   });
 </script>
 </body>
