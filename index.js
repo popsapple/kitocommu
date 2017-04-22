@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 // Import another file at begining.
 //'@import food_search.js';
 
-var userRepository = require("food_search.js");
+var foodSearch = require("food_search.js");
 
 app.get('/', function(request, response) {
   response.render('pages/index');

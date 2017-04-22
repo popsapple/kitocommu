@@ -43,6 +43,8 @@ function SearchFoodInfo(request,response,type){
 
   req.end();
 }
+
+var foodSearch = function (){  
 app.get('/', function(request, response) {
   console.log("??????");
 });
@@ -55,3 +57,6 @@ app.post('/food_search', function(request, response) {
   var user_keyword = request.body.keyword;
   SearchFoodInfo(request,response,'search');
 });
+};
+
+module.exports = foodSearch;
