@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
 
-<body>
+<body itemscope = "" itemtype = "http://schema.org/WebPage">
 
 <% include ../partials/nav.ejs %>
-<div class="container">
-  <article>
-    <hgroup>
+<div class="container" itemprop = "mainContentOfPage">
+  <article itemscope = "" itemtype = "http://schema.org/Thing">
+    <hgroup itemprop = "about">
       <h2>저탄고지 다이어 란..?</h2>
       <h3>저탄고지는 최근 수년간 전 세계 각국에서 많은 비평과 인기를 받으며 발전해온 다이어트 입니다.</h3>
     </hgroup>
-    <section>
+    <section itemprop = "description">
          유럽에서는 LCHF (Low Carb, High Fat) 이라고 불리고 있으며,
          목적에 따라 저탄고지라고도 부르지요. 의미를 서로 나누자면, LCHF(저탄수화물 고지방)가 좀 더 넓은 범위를 뜻하며,
          그 중 저탄고지는 LCHF에서도 탄수화물 제한을 가장 낮게 제한하는(20g 미만) 성격의 다이어트입니다.
@@ -25,86 +25,72 @@
          탄수화물 섭취를 낮추고 많은 양의 지방과 적당한 양의 단백질을 섭취하는, 저탄수화물 고지방의 다이어트입니다.
     </section>
   </article>
-  <article>
-    <hgroup>
-      <h2>저탄고지 다이어트 FAQ</h2>
-      <h3>저탄고지는 최근 수년간 전 세계 각국에서 많은 비평과 인기를 받으며 발전해온 다이어트 입니다.</h3>
+  <article itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <hgroup itemprop = "alternativeHeadline">
+      <h2>저탄고지 다이어트 대표 FAQ</h2>
+      <h3>저탄고지 다이어트에 대한 대표적인 질문과 답변을 보실 수 있습니다.</h3>
     </hgroup>
-    <h2>Collapsible Panel</h2>
-    <p>Click on the collapsible panel to open and close it.</p>
     <section class="panel-group">
       <ul>
-        <li class="panel panel-default">
+        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
           <div class="panel-heading">
-            <h4 class="panel-title">
+            <h4 class="panel-title" itemprop = "name" >
               <a data-toggle="collapse" href="#collapse1">키토제닉 다이어트는 어떤 다이어트인가요?</a>
             </h4>
           </div>
-          <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">저탄고지는 최근 수년간 전 세계 각국에서 많은 비평과 인기를 받으며 발전해온 다이어트 입니다.</div>
+          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body" itemprop = "text">
+              유럽에서는 LCHF (Low Carb, High Fat) 이라고 불리고 있으며,
+              목적에 따라 저탄고지라고도 부르지요. 의미를 서로 나누자면, LCHF(저탄수화물 고지방)가 좀 더 넓은 범위를 뜻하며,
+              그 중 저탄고지는 LCHF에서도 탄수화물 제한을 가장 낮게 제한하는(20g 미만) 성격의 다이어트입니다.
+            </div>
           </div>
         </li>
-        <li class="panel panel-default">
+        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
           <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" href="#collapse2">정말 효과가 좋은가요?</a>
+            <h4 class="panel-title" itemprop = "name" >
+              <a data-toggle="collapse" href="#collapse2">키토시스라고 하는 용어가 있던데 무슨 뜻인가요?</a>
             </h4>
           </div>
-          <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">네 매우 좋습니다 ^^ 그러니까 전 세계 에서 많은 관심을 받기 시작하는거죠</div>
+          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body" itemprop = "text">
+              간단히 말해, 탄수화물이 아닌 지방을 에너지원으로 소비하는 몸 상태를 얘기하는 것입니다. 우리몸은 진화를 하면서 여러가지 영양소를 에너지원으로 활용하게 되
+              었는데, 그 중 탄수화물은 가장 1차적인 주 에너지원으로 빠르고 급격하게 소비되나, 지방과 단백질의 경우는 2,3차 에너지원으로 느리게 소비됩니다. 1차 에너지원인
+              탄수화물 섭취를 조정해, 2-3차 에너지원인 지방을 에너지원으로 쓰는 상태가 키토시스 상태입니다.
+            </div>
           </div>
         </li>
-        <li class="panel panel-default">
+        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
           <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" href="#collapse3">디톡스 처럼 위험하진 않은가요?</a>
+            <h4 class="panel-title" itemprop = "name" >
+              <a data-toggle="collapse" href="#collapse3">키토시스 상태는 언제쯤 진입되나요? 어떻게 확인할 수 있죠?</a>
             </h4>
           </div>
-          <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">위험성의 경우 잘 관리하고 있습니다 ^^</div>
+          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body" itemprop = "text">보통 3~4주차 부터 시작되는게 일반적입니다만 개인별로 2~3주 정도의 차이는 있습니다. 시중에 나와 있는 소변검사
+            키트를 이용하시면 매일 매일 변화되는 몸을 확인해 보실 수 있으니 추천 드립니다. 그 외 입이 마른 상태, 소변 냄새, 땀 향기 등으로 알 수 있습니다만 정확성은
+             키트에 비해 다소 떨어집니다.</div>
+          </div>
+        </li>
+        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
+          <div class="panel-heading">
+            <h4 class="panel-title" itemprop = "name" >
+              <a data-toggle="collapse" href="#collapse3">칼로리 및 영양소는 어떻게 계산하나요?</a>
+            </h4>
+          </div>
+          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body" itemprop = "text">보통 1300~1500kcal정도 섭취합니다. 이 중 하루 섭취하는 탄수화물을 20g 정도이며(식이섬유를 섭취해야
+              하기 때문에 생야채 위주로 섭취합니다) 단백질은 제한을 두지 않는 편이며, 지방은 200g 정도 섭취하고 부족한 비타민 등등은 영양제 등으로 섭취합니다. 칼로리 제한식
+            이란 점에서 다른 다이어트와 다를 부분은 없지만, 건강상의 불이익이 덜한 편입니다. (생리불순, 빈혈, 탈모 등...)</div>
+          </div>
         </li>
       </ul>
     </section>
   </article>
-  <section>
-    <ul>
-      <li>
-        <h3>가져올 식품 제목</h3>
-        <div class="food_list">
-          <% for(var i=0; i < food_list.length; i++) { %>
-             <strong><%= food_list[i].food_name %></strong>
-          <% } %>
-        </div>
-      </li>
-    </ul>
-    <div style="font-size:30px; color:red; font-weight:600;">
-      <input type="text" name="keyword_item" value="" class="submit_text" /><button class="submit_item">전송</button>
-    </div>
-  </section>
 </div>
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script>
-  $(".submit_item").click( function(){
-    $.ajax({
-      type: "POST",
-          url: "/",
-          data: JSON.stringify({"keyword" : $(".submit_text").val()}),
-          contentType: "application/json",
-          success: function(data) {
-            var html='';
-            for (var i = 0; i < data.food_list.length; i++) {
-                html += '<strong>'+data.food_list[i].food_name+'</strong><a href="http://emart.ssg.com/search.ssg?target=all&query='+data.food_list[i].food_name+'">마트 주문하러가기</a>';
-            }
-            $('.food_list').html(html);
-          },
-          error: function(data) {
-              console.log("Error");
-          }
-    });
-  });
-</script>
 </body>
 </html>
