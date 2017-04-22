@@ -1,4 +1,5 @@
-var express = require('express')
+require('node-import');
+var express = require('express');
 var bodyParser = require('body-parser');
 
 var bodyParserJsonError = require('express-body-parser-json-error');
@@ -11,7 +12,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // 라우트 별 실행 파일...
-var food_search_js = require('./food_search.js');
+// Import another file at begining.
+'@import food_search.js';
 
 app.get('/', function(request, response) {
   response.render('pages/index');
