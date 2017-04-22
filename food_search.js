@@ -43,6 +43,9 @@ function SearchFoodInfo(request,response,type){
 
   req.end();
 }
+app.get('/', function(request, response) {
+  console.log("??????");
+});
 
 app.get('/food_search', function(request, response) {
   SearchFoodInfo(request,response,'loaded');

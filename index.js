@@ -13,7 +13,9 @@ app.set('view engine', 'ejs');
 
 // 라우트 별 실행 파일...
 // Import another file at begining.
-'@import food_search.js';
+//'@import food_search.js';
+
+var userRepository = require("food_search.js");
 
 app.get('/', function(request, response) {
   response.render('pages/index');
