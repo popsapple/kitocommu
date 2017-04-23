@@ -1,9 +1,6 @@
 module.exports.food_search = function (app) {
 function SearchFoodInfo(request,response,queryParams,type){
-  var user_keyword;
-  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
 
-  console.log("넘어오는 검색어 ::"+user_keyword);
   var data_respons = require('http');
 
   var opts = {
@@ -24,10 +21,9 @@ function SearchFoodInfo(request,response,queryParams,type){
     res.on('end', function () {
       //parse forecast.io message
       var data = JSON.parse(str);
-
       // merge res.locals
       opts._locals = response.locals;
-      data.user_keyword = user_keyword;
+      // data.user_keyword = user_keyword;
       if(type == 'render') {
         response.render('pages/food_search', data);
       }else {
@@ -46,6 +42,11 @@ function SearchFoodInfo(request,response,queryParams,type){
 }
 
 app.post('/food_search?seq_code', function(request, response) {
+  var food_category;
+  request.body.food_category ? food_category = request.body.food_category : food_category = 'F3JO1';
+  var food_seq;
+  request.body.food_seq ? food_seq = request.body.food_seq : food_seq = '74';
+
   var queryParams = '/foodinfo/food_detail.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('c') + '=' + encodeURIComponent(food_category);
   queryParams += '&' + encodeURIComponent('s') + '=' + encodeURIComponent(food_seq);
@@ -55,6 +56,9 @@ app.post('/food_search?seq_code', function(request, response) {
 });
 
 app.post('/food_search', function(request, response) {
+  var user_keyword;
+  request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
+
   var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
   queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
   SearchFoodInfo(request,response,queryParams,'render');
