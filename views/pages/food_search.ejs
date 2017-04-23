@@ -11,7 +11,7 @@
 <body itemscope = "" itemtype = "http://schema.org/WebPage">
 
 <% include ../partials/nav.ejs %>
-<div class="container">
+<div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
   <article class="food_list" itemscope = "" itemtype = "http://schema.org/Thing">
     <hgroup itemprop = "about">
       <h2><strong><%= user_keyword %>에 대한 음식들입니다.</strong></h2>
@@ -19,11 +19,15 @@
     <section>
       <ul class="food_list">
         <% for(var i=0; i < food_list.length; i++) { %>
-        <li>
-          <h3><%= food_list[i].food_name %></h3>
-          <div>
-            <strong></strong>
+        <li itemscope = "" itemtype = "http://schema.org/Thing">
+          <h3 itemprop = "name"><%= food_list[i].food_name %></h3>
+          <div itemprop = "description">
+            <figure itemprop = "image">
+              <img src="<%= food_list[i].thumb_img %>" alt="<%= food_list[i].food_name %>" />
+            </figure>
+            <em>칼로리 <span><%= food_list[i].kcal %></span></em>
           </div>
+          <button class="btn" itemprop = "url">상세 영양성분 보기</button>
         </li>
         <% } %>
       </ul>
