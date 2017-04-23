@@ -52,7 +52,6 @@ app.post('/food_search:seq_code', function(request, response) {
   queryParams += '&' + encodeURIComponent('s') + '=' + encodeURIComponent(food_seq);
   SearchFoodInfo(request,response,queryParams,'send');
 
-  next();
 });
 
 app.post('/food_search:search_list', function(request, response) {
