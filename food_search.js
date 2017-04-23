@@ -27,6 +27,7 @@ function SearchFoodInfo(request,response,queryParams,type){
       if(type == 'render') {
         response.render('pages/food_search', data);
       }else {
+        console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
         response.send(data);
       }
     });
