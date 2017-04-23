@@ -1,3 +1,4 @@
+module.exports.food_search = function () {
 function SearchFoodInfo(request,response,type){
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
@@ -55,3 +56,5 @@ app.post('/food_search', function(request, response) {
   var user_keyword = request.body.keyword;
   SearchFoodInfo(request,response,'search');
 });
+
+};

@@ -12,10 +12,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // 라우트 별 실행 파일...
-// Import another file at begining.
-//'@import food_search.js';
-
-var foo = imports('food_search');
+require('food_search.js').food_search();
 
 app.get('/', function(request, response) {
   response.render('pages/index');
