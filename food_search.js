@@ -41,8 +41,7 @@ function SearchFoodInfo(request,response,queryParams,type){
   req.end();
 }
 
-app.post('/food_search', function(request, response) {
-  if(request.body.result_type != "detail_list") {exit();}
+app.post('/food_search:seq_code', function(request, response) {
   var food_category;
   request.body.food_category ? food_category = request.body.food_category : food_category = 'F3JO1';
   var food_seq;
@@ -56,8 +55,7 @@ app.post('/food_search', function(request, response) {
   next();
 });
 
-app.post('/food_search', function(request, response) {
-  if(request.body.result_type != "search_list") {exit();}
+app.post('/food_search:search_list', function(request, response) {
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
 
