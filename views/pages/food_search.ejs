@@ -2,10 +2,6 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-  <!-- 합쳐지고 최소화된 최신 CSS -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <!-- 부가적인 테마 -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
 
 <body itemscope = "" itemtype = "http://schema.org/WebPage">
@@ -27,16 +23,47 @@
             </figure>
             <em>칼로리 <span><%= food_list[i].kcal %></span></em>
           </div>
-          <button class="btn" itemprop = "url">상세 영양성분 보기</button>
+          <button class="btn detail_submit" itemprop = "url" data-category="<%= food_list[i].code %>" data-sid="<%= food_list[i].seq %>" >상세 영양성분 보기</button>
         </li>
         <% } %>
       </ul>
     </section>
   </article>
 </div>
-<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<div class="modal">
+  <div class="food_detail">
+  </div>
+</div>
+<script>
+$(".detail_submit").on('click', function(){
+  $.ajax({
+    type: "POST",
+        url: "/food_search?seq_code",
+        data: JSON.stringify({
+          "food_category" : $(this).attr("data-category"),
+          "food_seq" : $(this).attr("data-sid")
+        }),
+        contentType: "application/json",
+        success: function(d) {
+            var html;
+            for (var i = 0; i < d.ing_list.length; i++) {
+              for(var key in ing_list[i]) {
+                if(key == 'name') {
+                  html += '<h2><strong>'+d.ing_list[i].key+'</strong>';
+                }
+                else if(key == 'vol_str') {
+                  html += d.ing_list[i].key+'</h2>';
+                }
+              }
+            }
+            $('.food_detail').html(html);
+        },
+        error: function(d) {
+            console.log("Error!!!!!!!!!!!!");
+        }
+  });
+});
+</script>
+  <% include ../partials/footer.ejs %>
 </body>
 </html>
