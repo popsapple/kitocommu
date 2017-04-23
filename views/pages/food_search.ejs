@@ -23,7 +23,7 @@
             </figure>
             <em>칼로리 <span><%= food_list[i].kcal %></span></em>
           </div>
-          <button class="btn detail_submit" itemprop = "url" data-category="<%= food_list[i].code %>" data-sid="<%= food_list[i].seq %>" >상세 영양성분 보기</button>
+          <button class="btn detail_submit" itemprop = "url" data-keyword="<%= keyword %>" data-category="<%= food_list[i].code %>" data-sid="<%= food_list[i].seq %>" >상세 영양성분 보기</button>
         </li>
         <% } %>
       </ul>
@@ -40,6 +40,7 @@ $(".detail_submit").on('click', function(){
     type: "POST",
         url: "/food_search?seq_code",
         data: JSON.stringify({
+          "keyword" : $(this).attr("data-keyword"),
           "food_category" : $(this).attr("data-category"),
           "food_seq" : $(this).attr("data-sid")
         }),
