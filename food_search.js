@@ -41,7 +41,8 @@ function SearchFoodInfo(request,response,queryParams,type){
   req.end();
 }
 
-app.post('/food_search/:result_type', function(request, response, next) {
+app.post('/food_search/:result_type', function(request, response) {
+  console.log("파람 받기 ::"+request.params.result_type);
   if(request.params.result_type == 'search_list') {
     var user_keyword;
     request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
@@ -62,7 +63,6 @@ app.post('/food_search/:result_type', function(request, response, next) {
     SearchFoodInfo(request,response,queryParams,'send');
   }
 
-  next();
 });
 
 };
