@@ -42,7 +42,7 @@ function SearchFoodInfo(request,response,queryParams,type){
 }
 
 app.post('/food_search/:result_type', function(request, response, next) {
-  if(req.params.result_type == 'search_list') {
+  if(request.params.result_type == 'search_list') {
     var user_keyword;
     request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
 
