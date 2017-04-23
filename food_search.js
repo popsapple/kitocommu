@@ -23,7 +23,7 @@ function SearchFoodInfo(request,response,queryParams,type){
       var data = JSON.parse(str);
       // merge res.locals
       opts._locals = response.locals;
-      request.body.keyword ? data.user_keyword = request.body.keyword : '';
+      request.body.keyword ? data.keyword = request.body.keyword : '';
       if(type == 'render') {
         response.render('pages/food_search', data);
       }else {
