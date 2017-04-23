@@ -56,7 +56,7 @@ app.post('/food_search?seq_code', function(request, response) {
   next();
 });
 
-app.post('/food_search', function(request, response) {
+app.post('/food_search?search_list', function(request, response) {
   var user_keyword;
   request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
 
