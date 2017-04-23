@@ -31,7 +31,8 @@ function SearchFoodInfo(request,response,type){
         response.render('pages/food_search', data);
       } else {
         data.user_keyword = user_keyword;
-        response.send(data);
+        //response.send(data);
+        response.render('pages/food_search', data);
       }
     });
   }
