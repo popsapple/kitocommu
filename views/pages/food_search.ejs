@@ -38,7 +38,7 @@
 $(".detail_submit").on('click', function(){
   $.ajax({
     type: "POST",
-        url: "/food_search:seq_code",
+        url: "/food_search/:seq_code",
         data: JSON.stringify({
           "keyword" : $(this).attr("data-keyword"),
           "result_type" : "detail_list",
