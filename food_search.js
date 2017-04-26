@@ -26,8 +26,6 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       request.body.keyword ? data.keyword = request.body.keyword : '';
       if(type == 'render') {
         response.render('pages/food_search', data);
-      }else if(type == 'render') {
-        response.render('pages/food_search_error',{'keyword':user_keyword});
       }
       else {
         console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
@@ -39,9 +37,7 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
   var req = data_respons.request(opts, callback);
 
   req.on('error', function(e) {
-    if(type == 'render') {
-      response.render('pages/food_search_error',{'keyword':user_keyword});
-    }
+    response.render('pages/food_search_error',{'keyword':user_keyword});
   });
 
   req.end();
