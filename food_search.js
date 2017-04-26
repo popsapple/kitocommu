@@ -24,7 +24,9 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       // merge res.locals
       opts._locals = response.locals;
       request.body.keyword ? data.keyword = request.body.keyword : '';
-      console.log("도데체 뭘 가져오는거야 ::"+data.food_list);
+
+      console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
+      
       if(type == 'render') {
         if(data.food_list == undefined) {
           response.render('pages/food_search_error',{'keyword':user_keyword});
@@ -52,7 +54,6 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
 }
 
 app.post('/food_search/:result_type', function(request, response) {
-  console.log("파람 받기 ::"+request.params.result_type);
   if(request.params.result_type == 'search_list') {
     var user_keyword;
     request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
