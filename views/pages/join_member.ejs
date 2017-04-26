@@ -7,7 +7,7 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <form method="get" action="/food_search/join_member_step2">
+      <form method="get" action="/join_member_step2">
         <fieldset>
           <legend>기본 인적사항</legend>
           <ul>
@@ -50,7 +50,7 @@
                 <h3>
                   <label for="joinSex">성별</label>
                 </h3>
-                <select id="joinSex" name="sex" >
+                <select id="joinSex" name="sex" required >
                   <option value="female">여성</option>
                   <option value="male">남성</option>
                 </select>
@@ -59,13 +59,13 @@
                 <h3>
                   <label for="joinHeight">키</label>
                 </h3>
-                <input id="joinHeight" name="height" type="text" value=""  pattern="^[0-9]*$" placeholder="키를 입력해주세요 (숫자만 가능합니다)" />
+                <input id="joinHeight" name="height" type="text" value=""  pattern="^[0-9]*$" placeholder="키를 입력해주세요 (숫자만 가능합니다)" required />
               </li>
               <li>
                 <h3>
                   <label for="joinWeight">몸무게</label>
                 </h3>
-                <input id="joinWeight" name="weight" type="text" value=""  pattern="^[0-9]*$" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" />
+                <input id="joinWeight" name="weight" type="text" value=""  pattern="^[0-9]*$" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" required />
               </li>
             </ul>
           </fieldset>
