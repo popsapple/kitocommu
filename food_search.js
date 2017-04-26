@@ -19,11 +19,16 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
     });
 
     res.on('end', function () {
+      if(str.length == 0) {
+        response.render('pages/food_search_error',{'keyword':user_keyword});
+        return false;
+      }
       //parse forecast.io message
       var data = JSON.parse(str);
       // merge res.locals
       opts._locals = response.locals;
       request.body.keyword ? data.keyword = request.body.keyword : '';
+
       if(type == 'render') {
         response.render('pages/food_search', data);
       }
