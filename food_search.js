@@ -32,6 +32,9 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
         response.send(data);
       }
     });
+    res.on('error', function(e) {
+      response.render('pages/food_search_error',{'keyword':user_keyword});
+    });
   }
 
   var req = data_respons.request(opts, callback);
