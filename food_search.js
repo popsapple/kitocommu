@@ -1,5 +1,5 @@
 module.exports.food_search = function (app) {
-function SearchFoodInfo(request,response,queryParams,type){
+function SearchFoodInfo(request,response,queryParams,type,user_keyword){
 
   var data_respons = require('http');
 
@@ -36,7 +36,9 @@ function SearchFoodInfo(request,response,queryParams,type){
   var req = data_respons.request(opts, callback);
 
   req.on('error', function(e) {
-    console.log('ERROR: ' + e.message);
+    if(type == 'render') {
+      response.render('pages/food_search_error',{'keyword':user_keyword});
+    }
   });
 
   req.end();
@@ -50,7 +52,7 @@ app.post('/food_search/:result_type', function(request, response) {
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
     queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
-    SearchFoodInfo(request,response,queryParams,'render');
+    SearchFoodInfo(request,response,queryParams,'render',user_keyword);
   }
   else {
     var food_category;
