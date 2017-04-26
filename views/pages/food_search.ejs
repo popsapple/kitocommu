@@ -50,15 +50,17 @@ $(".detail_submit").on('click', function(){
           console.log("받아오긴 받아옴");
             var html;
             for (var i = 0; i < data.ing_list.length; i++) {
-              for(var key in data.ing_list[i]) {
+              var j = 0;
+              for(var key in data.ing_list[i][j]) {
                 console.log("뭐지 ??"+key);
                 if(key == 'name') {
-                  html += '<h2><strong>'+data.ing_list[i].key+'</strong>';
+                  html += '<h2><strong>'+data.ing_list[i][j].key+'</strong>';
                 }
                 else if(key == 'vol_str') {
-                  html += data.ing_list[i].key+'</h2>';
+                  html += data.ing_list[i][j].key+'</h2>';
                 }
               }
+              j++;
             }
             $('.food_detail').html(html);
         },
