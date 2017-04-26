@@ -17,6 +17,11 @@ require('./food_search.js').food_search(app);
 // 회원관련 변수
 require('./member.js').member(app);
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
