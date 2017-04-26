@@ -19,10 +19,6 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
     });
 
     res.on('end', function () {
-      if(str.length == 0) {
-        response.render('pages/food_search_error',{'keyword':user_keyword});
-        return false;
-      }
       //parse forecast.io message
       var data = JSON.parse(str);
       // merge res.locals
@@ -30,10 +26,14 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       request.body.keyword ? data.keyword = request.body.keyword : '';
 
       if(type == 'render') {
-        response.render('pages/food_search', data);
+        if(data.food_list == '') {
+          response.render('pages/food_search_error',{'keyword':user_keyword});
+        }
+        else {
+          response.render('pages/food_search', data);
+        }
       }
       else {
-        console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
         response.send(data);
       }
     });
