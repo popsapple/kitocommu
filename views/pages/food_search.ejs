@@ -48,12 +48,11 @@ $(".detail_submit").on('click', function(){
         contentType: "application/json",
         success: function(data) {
           console.log("받아오긴 받아옴");
-            var html;
+            var html="";
             for (var i = 0; i < data.ing_list.length; i++) {
               var j = 0;
               var c = 0;
               for(var key in data.ing_list[j]) {
-                console.log("뭐지 ??"+key);
                 if(key == 'name') {
                   html += '<h2><strong>'+data.ing_list[j][key]+'</strong>';
                 }
