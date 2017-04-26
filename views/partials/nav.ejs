@@ -32,14 +32,18 @@
             <li><a href="#">추천 레시피</a></li>
           </ul>
         </li>
+        <li>
+          <form class="navbar-form navbar-left submit_item" method="post" action="/food_search/search_list" role="search">
+            <div class="form-group">
+              <input type="text" name="keyword" class="form-control submit_text" placeholder="검색어를 입력하세요 예) 바나나">
+            </div>
+            <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
+          </form>
+        </li>
+        <li>
+          <a class="btn btn-default" href="/join_member" role="button">회원가입하기</a>
+        </li>
       </ul>
-      <form class="navbar-form navbar-left submit_item" method="post" action="/food_search/search_list" role="search">
-        <div class="form-group">
-          <input type="text" name="keyword" class="form-control submit_text" placeholder="검색어를 입력하세요 예) 바나나">
-        </div>
-        <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
-      </form>
-      <a class="btn btn-default" href="/join_member" role="button">회원가입하기</a>
       <!--script>
         $(".submit_item").on('submit', function(){
           $.ajax({
