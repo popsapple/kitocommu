@@ -25,8 +25,8 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       opts._locals = response.locals;
       request.body.keyword ? data.keyword = request.body.keyword : '';
 
-      console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
-      
+    //  console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
+
       if(type == 'render') {
         if(data.food_list == undefined) {
           response.render('pages/food_search_error',{'keyword':user_keyword});

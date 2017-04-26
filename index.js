@@ -11,8 +11,11 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-// 라우트 별 실행 파일...
+// 식품정보찾기
 require('./food_search.js').food_search(app);
+
+// 회원관련 변수
+require('./member.js').member(app);
 
 app.get('/', function(request, response) {
   response.render('pages/index');

@@ -47,7 +47,6 @@ $(".detail_submit").on('click', function(){
         }),
         contentType: "application/json",
         success: function(data) {
-          console.log("받아오긴 받아옴");
             var html="";
             for (var i = 0; i < data.ing_list.length; i++) {
               var j = 0;
