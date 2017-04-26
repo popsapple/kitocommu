@@ -46,22 +46,22 @@ $(".detail_submit").on('click', function(){
           "food_seq" : $(this).attr("data-sid")
         }),
         contentType: "application/json",
-        success: function(d) {
+        success: function(data) {
           console.log("받아오긴 받아옴");
             var html;
-            for (var i = 0; i < d.ing_list.length; i++) {
-              for(var key in ing_list[i]) {
+            for (var i = 0; i < data.ing_list.length; i++) {
+              for(var key in data.ing_list[i]) {
                 if(key == 'name') {
-                  html += '<h2><strong>'+d.ing_list[i].key+'</strong>';
+                  html += '<h2><strong>'+data.ing_list[i].key+'</strong>';
                 }
                 else if(key == 'vol_str') {
-                  html += d.ing_list[i].key+'</h2>';
+                  html += data.ing_list[i].key+'</h2>';
                 }
               }
             }
             $('.food_detail').html(html);
         },
-        error: function(d) {
+        error: function(data) {
             console.log("Error!!!!!!!!!!!!");
         }
   });
