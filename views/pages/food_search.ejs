@@ -51,6 +51,7 @@ $(".detail_submit").on('click', function(){
             var html;
             for (var i = 0; i < data.ing_list.length; i++) {
               for(var key in data.ing_list[i]) {
+                console.log("뭐지 ??"+key);
                 if(key == 'name') {
                   html += '<h2><strong>'+data.ing_list[i].key+'</strong>';
                 }
