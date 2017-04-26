@@ -55,10 +55,10 @@ $(".detail_submit").on('click', function(){
               for(var key in data.ing_list[j]) {
                 console.log("뭐지 ??"+key);
                 if(key == 'name') {
-                  html += '<h2><strong>'+data.ing_list[j].key+'</strong>';
+                  html += '<h2><strong>'+data.ing_list[j][key]+'</strong>';
                 }
                 else if(key == 'vol_str') {
-                  html += data.ing_list[j].key+'</h2>';
+                  html += data.ing_list[j][key]+'</h2>';
                 }
                 if(data.ing_list[j].length == c){
                   j++;
