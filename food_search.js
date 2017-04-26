@@ -24,7 +24,7 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       // merge res.locals
       opts._locals = response.locals;
       request.body.keyword ? data.keyword = request.body.keyword : '';
-
+      console.log("도데체 뭘 가져오는거야 ::"+data.food_list);
       if(type == 'render') {
         if(data.food_list == '') {
           response.render('pages/food_search_error',{'keyword':user_keyword});
