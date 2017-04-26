@@ -51,16 +51,21 @@ $(".detail_submit").on('click', function(){
             var html;
             for (var i = 0; i < data.ing_list.length; i++) {
               var j = 0;
-              for(var key in data.ing_list[i][j]) {
+              var c = 0;
+              for(var key in data.ing_list[j]) {
                 console.log("뭐지 ??"+key);
                 if(key == 'name') {
-                  html += '<h2><strong>'+data.ing_list[i][j].key+'</strong>';
+                  html += '<h2><strong>'+data.ing_list[j].key+'</strong>';
+                  j++;
                 }
                 else if(key == 'vol_str') {
-                  html += data.ing_list[i][j].key+'</h2>';
+                  html += data.ing_list[j].key+'</h2>';
                 }
+                if(data.ing_list[j].length == c){
+                  j++;
+                }
+                c++;
               }
-              j++;
             }
             $('.food_detail').html(html);
         },
