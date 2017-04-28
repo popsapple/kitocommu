@@ -1,4 +1,4 @@
-function JoinMemberDB(){
+function JoinMemberDB(Memberschema){
   // 비밀번호 암호화저장
   // hash 값
   Memberschema.method('makingHash', function(){
