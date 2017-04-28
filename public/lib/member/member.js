@@ -27,7 +27,7 @@ function JoinMemberDB(mongoose,Memberschema,request){
     return is_true;
   });
 
-  var pw = request.params.pw;
+  var pw = request.query.pw;
   Memberschema.virtual('pw')
   .set(function() {
     this._pw = pw;
