@@ -66,12 +66,11 @@ function MemberDB(mongoose,type,request,response){
 
   if (type == 'login'){ // 로그인할때
     console.log("로그인체크");
-    var MemberInfo = mongoose.model('member', Memberschema);
+//    var MemberInfo = mongoose.model('member', Memberschema);
     var InfoFind = mongoose.model('member');
     InfoFind.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
-        //response.json(book);
         console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
     })
   }
@@ -82,8 +81,6 @@ function MemberDB(mongoose,type,request,response){
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose){
   for(var key in info){ // 값이 들어온 만큼...
-    console.error("어느 데이타가 안 들어오는거지1111 ::"+data[key]);
-    console.error("어느 데이타가 안 들어오는거지2222 ::"+info[key]);
     data[key] = info[key];
   }
   data.writed = new Date();
