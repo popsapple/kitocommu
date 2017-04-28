@@ -27,8 +27,9 @@ function JoinMemberDB(mongoose,Memberschema,request){
     return is_true;
   });
 
+  var pw = request.pw;
   Memberschema.virtual('pw')
-  .set(function(request.pw) {
+  .set(function() {
     this._pw = pw;
     this.hash = this.makingHash(); // 사용자정의 메소드 호출
     this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
