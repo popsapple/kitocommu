@@ -11,12 +11,6 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-// 식품정보찾기
-require('./public/lib/food/food_search.js').food_search(app);
-
-// 회원관련
-require('./public/lib/member/member.js').member(app);
-
 // DB 연결
 var mongoose    = require('mongoose');
 
@@ -25,6 +19,12 @@ db.on('error', console.error);
 db.once('open', function(){
     console.log("몽고디비에 연결되었습니다.");
 });
+
+// 식품정보찾기
+require('./public/lib/food/food_search.js').food_search(app);
+
+// 회원관련
+require('./public/lib/member/member.js').member(app,mongoose);
 
 
 app.get('/robots.txt', function (req, res) {

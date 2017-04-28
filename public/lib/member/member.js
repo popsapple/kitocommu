@@ -38,7 +38,8 @@ Member.join = function(info,data,request){
   });
 }
 
-module.exports.member = function (app) {
+module.exports.member = function (app,mongoose) {
+  var mongoose = mongoose;
   app.get('/join_member_step1', function(request, response) {
     response.render('member/join_member_step1');
   });
@@ -46,7 +47,7 @@ module.exports.member = function (app) {
   response.render('member/join_member_step2');
   });
   app.get('/join_member_step3', function(request, response) {
-//  SettingMemberDB(); // 시그마 정의
+    //  SettingMemberDB(); // 시그마 정의
   Member.join(request.query,SettingMemberDB(),request);
   });
 };
