@@ -33,7 +33,7 @@ Member.join = function(info,data,request,response,mongoose){
           return;
       }
 
-      response.render('member/join_member_step3');
+      response.render('member/join_member_step3',data);
 
   });
 }
