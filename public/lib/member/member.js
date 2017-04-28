@@ -1,4 +1,4 @@
-function JoinMemberDB(mongoose,Memberschema){
+function JoinMemberDB(mongoose,Memberschema,request){
   // 비밀번호 암호화저장
   // hash 값
   Memberschema.method('makingHash', function(){
@@ -28,15 +28,13 @@ function JoinMemberDB(mongoose,Memberschema){
   });
 
   Memberschema.virtual('pw')
-  .set(function(pw) {
+  .set(function(request.pw) {
     this._pw = pw;
     this.hash = this.makingHash(); // 사용자정의 메소드 호출
     this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
 
-  var MemberInfo = mongoose.model('member', Memberschema);
-  return MemberInfo;
 }
 
 function MemberDB(mongoose,type,request,response){
@@ -55,9 +53,12 @@ function MemberDB(mongoose,type,request,response){
     updated: { type: Date, default: Date.now }
   }, { collection: 'Memberschema' });
 
+
   if (type == 'join'){ // 가입할때
-    var JoinInfo = JoinMemberDB(mongoose,Memberschema);
-    return JoinInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+    JoinMemberDB(mongoose,Memberschema);
+    var MemberInfo = mongoose.model('member', Memberschema, request);
+    MemberInfo = new MemberInfo();
+    return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
   }
 
   if (type == 'login'){ // 로그인할때
