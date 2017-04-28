@@ -2,7 +2,7 @@ function JoinMemberDB(mongoose,Memberschema,request){
   // 비밀번호 암호화저장
   // hash 값
   Memberschema.method('makingHash', function(){
-    var dump = Math.around(new Date().valueOf()*Math.random());
+    var dump = Math.round(new Date().valueOf()*Math.random());
     return dump;
   });
 
