@@ -58,7 +58,7 @@ function MemberDB(mongoose,type,request,response){
   if (type == 'join'){ // 가입할때
     JoinMemberDB(mongoose,Memberschema,request);
     var MemberInfo = mongoose.model('member', Memberschema);
-    return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+    MemberInfo = new MemberInfo();
   }
 
   if (type == 'login'){ // 로그인할때
@@ -70,6 +70,7 @@ function MemberDB(mongoose,type,request,response){
     })
   }
 
+  return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
