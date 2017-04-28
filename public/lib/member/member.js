@@ -65,9 +65,10 @@ function MemberDB(mongoose,type,request,response){
   }
 
   if (type == 'login'){ // 로그인할때
+    console.log("로그인체크");
     var MemberInfo = mongoose.model('member', Memberschema);
     MemberInfo = new MemberInfo();
-    MemberInfo.findOne({id: request.params.id}, function(err, member){
+    MemberInfo.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
         //response.json(book);
