@@ -13,9 +13,9 @@ function SettingMemberDB(mongoose){
     updated: { type: Date, default: Date.now }
   });
 
-  var member_info = mongoose.model('member', Memberschema);
-
-  return member_info; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+  var MemberInfo = mongoose.model('member', Memberschema);
+  MemberInfo = new MemberInfo();
+  return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
