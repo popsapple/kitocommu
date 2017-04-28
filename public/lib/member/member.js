@@ -1,4 +1,4 @@
-function JoinMemberDB(Memberschema){
+function JoinMemberDB(mongoose,Memberschema){
   // 비밀번호 암호화저장
   // hash 값
   Memberschema.method('makingHash', function(){
@@ -56,7 +56,7 @@ function MemberDB(mongoose,type,request,response){
   }, { collection: 'Memberschema' });
 
   if (type == 'join'){ // 가입할때
-    var JoinInfo = JoinMemberDB(Memberschema);
+    var JoinInfo = JoinMemberDB(mongoose,Memberschema);
     return JoinInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
   }
 
