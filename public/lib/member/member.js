@@ -19,7 +19,7 @@ function SettingMemberDB(mongoose){
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Member.join = function(info,data,request,mongoose){
+Member.join = function(info,data,request,response,mongoose){
   for(var key in info){ // 값이 들어온 만큼...
     data[key] = info[key];
   }
@@ -47,6 +47,6 @@ module.exports.member = function (app,mongoose) {
   });
   app.get('/join_member_step3', function(request, response) {
     //  SettingMemberDB(); // 시그마 정의
-  Member.join(request.query,SettingMemberDB(mongoose),request,mongoose);
+  Member.join(request.query,SettingMemberDB(mongoose),request,response,mongoose);
   });
 };
