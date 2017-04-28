@@ -111,7 +111,6 @@ module.exports.member = function (app,mongoose) {
       response.render('member/login'); // 그냥 로그인 폼 출력
     } else {
       Member.login(request.query,request,response,mongoose);
-      });
     }
   });
 };
