@@ -56,8 +56,8 @@ function MemberDB(mongoose,type,request,response){
   var MemberInfo = mongoose.model('member', Memberschema);
 
   if (type == 'join'){ // 가입할때
-    var MemberInfo = JoinMemberDB(Memberschema);
-    return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+    var JoinInfo = JoinMemberDB(Memberschema);
+    return JoinInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
   }
 
   if (type == 'login'){ // 로그인할때
