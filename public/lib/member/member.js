@@ -1,4 +1,4 @@
-function SettingMemberDB(){
+function SettingMemberDB(mongoose){
   var Schema = mongoose.Schema;
   var Memberschema = new Schema({
     id:    String,
@@ -19,7 +19,7 @@ function SettingMemberDB(){
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Member.join = function(info,data,request){
+Member.join = function(info,data,request,mongoose){
   for(var key in info){ // 값이 들어온 만큼...
     data[key] = info[key];
   }
@@ -39,7 +39,6 @@ Member.join = function(info,data,request){
 }
 
 module.exports.member = function (app,mongoose) {
-  var mongoose = mongoose;
   app.get('/join_member_step1', function(request, response) {
     response.render('member/join_member_step1');
   });
@@ -48,6 +47,6 @@ module.exports.member = function (app,mongoose) {
   });
   app.get('/join_member_step3', function(request, response) {
     //  SettingMemberDB(); // 시그마 정의
-  Member.join(request.query,SettingMemberDB(),request);
+  Member.join(request.query,SettingMemberDB(mongoose),request,mongoose);
   });
 };
