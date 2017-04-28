@@ -1,6 +1,7 @@
 require('node-import');
 var express = require('express');
 var bodyParser = require('body-parser');
+var crypto = require('crypto');
 
 var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();

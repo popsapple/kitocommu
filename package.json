@@ -21,7 +21,8 @@
     "body-parser": "^1.17.1",
     "express-body-parser-json-error" : "^0.1.0",
     "mongoose" : "^4.9.6",
-    "mongodb" : "^2.2.26"
+    "mongodb" : "^2.2.26",
+    "crypto" :"^0.0.3"
   },
   "repository": {
     "type": "git",
