@@ -20,6 +20,8 @@ db.once('open', function(){
     console.log("몽고디비에 연결되었습니다.");
 });
 
+mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.mlab.com:23361/heroku_jzh3ndmz");
+
 // 식품정보찾기
 require('./public/lib/food/food_search.js').food_search(app);
 

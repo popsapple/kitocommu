@@ -11,7 +11,7 @@ function SettingMemberDB(mongoose){
     weight:  Number,
     writed: { type: Date, default: Date.now },
     updated: { type: Date, default: Date.now }
-  });
+  }, { collection: 'Memberschema' });
 
   var MemberInfo = mongoose.model('member', Memberschema);
   MemberInfo = new MemberInfo();
