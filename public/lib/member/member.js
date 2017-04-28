@@ -1,13 +1,13 @@
 function JoinMemberDB(){
   // 비밀번호 암호화저장
   // hash 값
-  Memberschema.method(makingHash(){
+  Memberschema.method('makingHash', function(){
     var dump = Math.around(new Date().valueOf()*Math.random());
     return dump;
   });
 
   // 비밀번호 암호화
-  Memberschema.method(encryptPassword(pw){
+  Memberschema.method('encryptPassword', function(pw){
     var dump = pw;
     var shasum = crypto.createHash('sha256');
     shasum.update(dump);
@@ -17,7 +17,7 @@ function JoinMemberDB(){
   });
 
   // 비밀번호 체크 시 사용
-  Memberschema.method(checkloginPassword(pw_text,pw){
+  Memberschema.method('checkloginPassword', function(pw_text,pw){
     var is_true = false;
     var shasum = crypto.createHash('sha256');
     shasum.update(pw_text);
