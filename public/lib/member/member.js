@@ -108,7 +108,7 @@ module.exports.member = function (app,mongoose) {
   });
   app.get('/join_member_step3', function(request, response) {
     //  MemberDB(); // 시그마 정의
-  Member.join(request.query,MemberDB(mongoose,'join'),request,response,mongoose);
+  Member.join(request.query,MemberDB(mongoose,'join',request,response),request,response,mongoose);
   });
   app.get('/login/:result_type', function(request, response) {
     if(request.params.result_type == 'login_form') {
