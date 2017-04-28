@@ -17,6 +17,16 @@ require('./public/lib/food/food_search.js').food_search(app);
 // 회원관련
 require('./public/lib/member/member.js').member(app);
 
+// DB 연결
+var mongoose    = require('mongoose');
+
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    console.log("몽고디비에 연결되었습니다.");
+});
+
+
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
