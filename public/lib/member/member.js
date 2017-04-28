@@ -1,4 +1,5 @@
 function SettingMemberDB(){
+  var Schema = mongoose.Schema;
   var Memberschema = new Schema({
     id:    String,
     password:  Buffer,
