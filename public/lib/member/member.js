@@ -53,14 +53,14 @@ function MemberDB(mongoose,type,request,response){
     updated: { type: Date, default: Date.now }
   }, { collection: 'Memberschema' });
 
+  var MemberInfo = mongoose.model('member', Memberschema);
+
   if (type == 'join'){ // 가입할때
-    var MemberInfo = JoinMemberDB().apply(this, arguments);
-    return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+    var joinMemberInfo = JoinMemberDB(Memberschema);
+    return joinMemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
   }
 
   if (type == 'login'){ // 로그인할때
-    var MemberInfo = mongoose.model('member', Memberschema);
-
     MemberInfo.findOne({id: request.params.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
