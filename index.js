@@ -12,14 +12,14 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // 식품정보찾기
-require('./food_search.js').food_search(app);
+require('./public/lib/food/food_search.js').food_search(app);
 
-// 회원관련 변수
-require('./member.js').member(app);
+// 회원관련
+require('./public/lib/member/member.js').member(app);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
-    res.send("User-agent: *\nDisallow: /");
+    res.send("User-agent: *\nDisallow:");
 });
 
 app.get('/', function(request, response) {
