@@ -74,6 +74,8 @@ function MemberDB(mongoose,type,request,response){
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose){
   for(var key in info){ // 값이 들어온 만큼...
+    console.error("어느 데이타가 안 들어오는거지1111 ::"+data[key]);
+    console.error("어느 데이타가 안 들어오는거지2222 ::"+info[key]);
     data[key] = info[key];
   }
   data.writed = new Date();
