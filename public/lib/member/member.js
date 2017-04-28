@@ -1,6 +1,7 @@
 function JoinMemberDB(mongoose,Memberschema,request){
 
   var crypto = global.crypto;
+
   // 비밀번호 암호화저장
   // hash 값
   Memberschema.method('makingHash', function(){
@@ -96,7 +97,7 @@ Member.join = function(info,data,request,response,mongoose){
   });
 }
 
-Member.login = function(info,request,response,mongoose){
+Member.login = function(request,response,mongoose){
 
   MemberDB(mongoose,'login',request,response);
 }
@@ -112,11 +113,12 @@ module.exports.member = function (app,mongoose) {
     //  MemberDB(); // 시그마 정의
   Member.join(request.query,MemberDB(mongoose,'join',request,response),request,response,mongoose);
   });
-  app.get('/login/:result_type', function(request, response) {
-    if(request.params.result_type == 'login_form') {
+
+  app.get('/login_form', function(request, response) {
       response.render('member/login'); // 그냥 로그인 폼 출력
-    } else {
-      Member.login(request.query,request,response,mongoose);
-    }
+  });
+
+  app.get('/login', function(request, response) {
+      Member.login(request,response,mongoose);
   });
 };
