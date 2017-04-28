@@ -1,21 +1,5 @@
-function SettingMemberDB(mongoose){
-  var Schema = mongoose.Schema;
-  var Memberschema = new Schema({
-    id:    String,
-    password:  String,
-    hash:  String,
-    nickname:  String,
-    email:  String,
-    tel:  Number,
-    sex:  String,
-    height:  Number,
-    weight:  Number,
-    writed: { type: Date, default: Date.now },
-    updated: { type: Date, default: Date.now }
-  }, { collection: 'Memberschema' });
-
+function JoinMemberDB(){
   // 비밀번호 암호화저장
-
   // hash 값
   Memberschema.method(makingHash(){
     var dump = Math.around(new Date().valueOf()*Math.random());
@@ -51,9 +35,40 @@ function SettingMemberDB(mongoose){
   })
   .get(function() { return this.password; });
 
-  var MemberInfo = mongoose.model('member', Memberschema);
-  MemberInfo = new MemberInfo();
-  return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+}
+
+function MemberDB(mongoose,type,request,response){
+  var Schema = mongoose.Schema;
+  var Memberschema = new Schema({
+    id:    String,
+    password:  String,
+    hash:  String,
+    nickname:  String,
+    email:  String,
+    tel:  Number,
+    sex:  String,
+    height:  Number,
+    weight:  Number,
+    writed: { type: Date, default: Date.now },
+    updated: { type: Date, default: Date.now }
+  }, { collection: 'Memberschema' });
+
+  if (type == 'join'){ // 가입할때
+    var MemberInfo = JoinMemberDB().apply(this, arguments);
+    return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+  }
+
+  if (type == 'login'){ // 로그인할때
+    var MemberInfo = mongoose.model('member', Memberschema);
+
+    MemberInfo.findOne({id: request.params.id}, function(err, member){
+        if(err) return response.status(500).json({error: err});
+        if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
+        //response.json(book);
+        console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
+    })
+  }
+
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
@@ -72,8 +87,12 @@ Member.join = function(info,data,request,response,mongoose){
       }
 
       response.render('member/join_member_step3',data);
-
   });
+}
+
+Member.login = function(info,request,response,mongoose){
+
+  MemberDB(mongoose,'login',request,response);
 }
 
 module.exports.member = function (app,mongoose) {
@@ -84,7 +103,15 @@ module.exports.member = function (app,mongoose) {
   response.render('member/join_member_step2');
   });
   app.get('/join_member_step3', function(request, response) {
-    //  SettingMemberDB(); // 시그마 정의
-  Member.join(request.query,SettingMemberDB(mongoose),request,response,mongoose);
+    //  MemberDB(); // 시그마 정의
+  Member.join(request.query,MemberDB(mongoose,'join'),request,response,mongoose);
+  });
+  app.get('/login/:result_type', function(request, response) {
+    if(request.params.result_type == 'login_form') {
+      response.render('member/login'); // 그냥 로그인 폼 출력
+    } else {
+      Member.login(request.query,request,response,mongoose);
+      });
+    }
   });
 };
