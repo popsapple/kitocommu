@@ -35,6 +35,8 @@ function JoinMemberDB(Memberschema){
   })
   .get(function() { return this.password; });
 
+  var MemberInfo = mongoose.model('member', Memberschema);
+  return MemberInfo;
 }
 
 function MemberDB(mongoose,type,request,response){
@@ -52,8 +54,6 @@ function MemberDB(mongoose,type,request,response){
     writed: { type: Date, default: Date.now },
     updated: { type: Date, default: Date.now }
   }, { collection: 'Memberschema' });
-
-  var MemberInfo = mongoose.model('member', Memberschema);
 
   if (type == 'join'){ // 가입할때
     var JoinInfo = JoinMemberDB(Memberschema);
