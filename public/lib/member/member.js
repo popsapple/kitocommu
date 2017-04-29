@@ -43,7 +43,7 @@ function MemberDB(mongoose,type,request,response){
   // 비밀번호 체크 시 사용
   Memberschema.method('checkloginPassword', function(pw_text,pw){
     var is_true = false;
-    var input = Memberschema.encryptPassword(pw_text,this.hash);
+    var input = this.encryptPassword(pw_text,this.hash);
     input == pw ? is_true = true : is_true = false ;
     return is_true;
   });
