@@ -10,9 +10,16 @@ function JoinMemberDB(mongoose,Memberschema,request){
   });
 
   // 비밀번호 암호화
-  Memberschema.method('encryptPassword', function(pw){
+  Memberschema.method('encryptPassword', function(pw,isHash){
     var dump = pw;
-    var shasum = crypto.createHash('sha256');
+    var shasum;
+    // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
+    // 임의의 값을 넣어두는 것
+    if(!isHash) {
+      shasum = crypto.createHash('sha256',this.hash);
+    }else {
+      shasum = crypto.createHash('sha256',isHash);
+    }
     shasum.update(dump);
     var output = shasum.digest('hex');
 
@@ -22,11 +29,8 @@ function JoinMemberDB(mongoose,Memberschema,request){
   // 비밀번호 체크 시 사용
   Memberschema.method('checkloginPassword', function(pw_text,pw){
     var is_true = false;
-    var shasum = crypto.createHash('sha256');
-    shasum.update(pw_text);
-    var output = shasum.digest('hex');
-
-    pw_text == pw ? is_true = true : is_true = false ;
+    var input = Memberschema.encryptPassword(pw_text,this.hash);
+    input == pw ? is_true = true : is_true = false ;
     return is_true;
   });
 
@@ -71,7 +75,9 @@ function MemberDB(mongoose,type,request,response){
     InfoFind.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
-        console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
+        //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
+        var passord_true = InfoFind.checkloginPassword(request.query.pw,member.password);
+        console.log("인증이 잘 되었는가? :: "+passord_true);
     })
   }
 
