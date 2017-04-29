@@ -1,4 +1,18 @@
-function JoinMemberDB(mongoose,Memberschema,request){
+function MemberDB(mongoose,type,request,response){
+  var Schema = mongoose.Schema;
+  var Memberschema = new Schema({
+    id:    String,
+    password:  String,
+    hash:  String,
+    nickname:  String,
+    email:  String,
+    tel:  Number,
+    sex:  String,
+    height:  Number,
+    weight:  Number,
+    writed: { type: Date, default: Date.now },
+    updated: { type: Date, default: Date.now }
+  }, { collection: 'Memberschema' });
 
   var crypto = global.crypto;
 
@@ -43,27 +57,7 @@ function JoinMemberDB(mongoose,Memberschema,request){
   })
   .get(function() { return this.password; });
 
-}
-
-function MemberDB(mongoose,type,request,response){
-  var Schema = mongoose.Schema;
-  var Memberschema = new Schema({
-    id:    String,
-    password:  String,
-    hash:  String,
-    nickname:  String,
-    email:  String,
-    tel:  Number,
-    sex:  String,
-    height:  Number,
-    weight:  Number,
-    writed: { type: Date, default: Date.now },
-    updated: { type: Date, default: Date.now }
-  }, { collection: 'Memberschema' });
-
-
   if (type == 'join'){ // 가입할때
-    JoinMemberDB(mongoose,Memberschema,request);
     var MemberInfo = mongoose.model('member', Memberschema);
     MemberInfo = new MemberInfo();
   }
