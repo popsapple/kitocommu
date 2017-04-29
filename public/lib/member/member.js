@@ -56,7 +56,12 @@ function MemberDB(mongoose,type,request,response){
   })
   .get(function() { return this.password; });
 
-  var MemberInfo = mongoose.model('member', Memberschema);
+  var MemberInfo;
+  try {
+    MemberInfo = mongoose.model('member');
+  } catch (error) {
+    MemberInfo = mongoose.model('member', Memberschema);
+  }
 
   if (type == 'login'){ // 로그인할때
     console.log("로그인체크");
