@@ -41,12 +41,12 @@ function MemberDB(mongoose,type,request,response){
   });
 
   // 비밀번호 체크 시 사용
-  Memberschema.method('checkloginPassword', function(pw_text,pw){
+  Memberschema.checkloginPassword(pw_text,pw){
     var is_true = false;
     var input = Memberschema.encryptPassword(pw_text,this.hash);
     input == pw ? is_true = true : is_true = false ;
     return is_true;
-  });
+  };
 
   var pw = request.query.pw;
   Memberschema.virtual('pw')
@@ -65,6 +65,7 @@ function MemberDB(mongoose,type,request,response){
   if (type == 'login'){ // 로그인할때
     console.log("로그인체크");
     var InfoFind = mongoose.model('member', Memberschema);
+    InfoFind = new InfoFind();
     InfoFind.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
