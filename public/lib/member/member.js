@@ -40,6 +40,14 @@ function MemberDB(mongoose,type,request,response){
     return output;
   });
 
+  // 비밀번호 체크 시 사용
+  Memberschema.method('checkloginPassword', function(pw_text,pw){
+    var is_true = false;
+    var input = Memberschema.encryptPassword(pw_text,this.hash);
+    input == pw ? is_true = true : is_true = false ;
+    return is_true;
+  });
+
   Memberschema.virtual('pw')
   .set(function() {
     this._pw = pw;
@@ -56,20 +64,11 @@ function MemberDB(mongoose,type,request,response){
   if (type == 'login'){ // 로그인할때
     console.log("로그인체크");
     var InfoFind = mongoose.model('member', Memberschema);
-
-    // 비밀번호 체크 시 사용
-    InfoFind.checkloginPassword = function(pw_text,pw){
-      var is_true = false;
-      var input = Memberschema.encryptPassword(pw_text,this.hash);
-      input == pw ? is_true = true : is_true = false ;
-      return is_true;
-    };
-
     InfoFind.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
-        var passord_true = InfoFind.checkloginPassword(request.query.pw,member.password);
+        var passord_true = member.checkloginPassword(request.query.pw,member.password);
         console.log("인증이 잘 되었는가? :: "+passord_true);
     })
   }
