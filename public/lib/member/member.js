@@ -69,7 +69,7 @@ function MemberDB(mongoose,type,request,response){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
-        var passord_true = this.checkloginPassword(request.query.pw,member.password);
+        var passord_true = InfoFind.checkloginPassword(request.query.pw,member.password);
         console.log("인증이 잘 되었는가? :: "+passord_true);
     })
   }
