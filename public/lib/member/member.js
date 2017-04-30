@@ -1,7 +1,7 @@
 function SettingSessionItem() {
   app.use(function(request, response) {
     if(request.session.user) {
-      res.locals.nickname = req.session.nickname;
+      response.locals.nickname = request.session.nickname;
     }
     else {
       request.locals.nickname = undefined;
