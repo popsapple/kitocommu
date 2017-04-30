@@ -2,7 +2,7 @@ function SettingSessionItem(app) {
   app.get('*', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;
     else response.locals.nickname = undefined;
-      next();
+    next();
   });
 }
 
