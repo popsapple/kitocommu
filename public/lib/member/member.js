@@ -2,6 +2,7 @@ function SettingSessionItem(app) {
   app.get('*', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;
     else response.locals.nickname = undefined;
+    console.log("세션이 없는건가 ::"+request.session.nickname);
     next();
   });
 }
