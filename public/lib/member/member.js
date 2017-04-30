@@ -1,3 +1,14 @@
+function SettingSessionItem() {
+  app.use(function(request, response) {
+    if(request.session.user) {
+      res.locals.nickname = req.session.nickname;
+    }
+    else {
+      request.locals.nickname = undefined;
+    }
+  });
+}
+
 function MemberDB(mongoose,type,request,response){
   var Schema = mongoose.Schema;
   var pw = request.query.pw;
@@ -109,6 +120,9 @@ Member.login = function(request,response,mongoose){
 }
 
 module.exports.member = function (app,mongoose) {
+  //처음에 세션변수(?) 정의
+  SettingSessionItem();
+
   app.get('/join_member_step1', function(request, response) {
     response.render('member/join_member_step1');
   });
