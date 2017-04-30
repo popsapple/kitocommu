@@ -1,10 +1,11 @@
 function SettingSessionItem(app) {
-  app.get('*', function(request, response) {
+  app.get('*', function(request, response,next) {
       try{
         response.locals.nickname = request.session.nickname;
       }catch (e) {
 
       }
+      next();
   });
 }
 
