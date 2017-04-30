@@ -1,4 +1,4 @@
-function SettingSessionItem() {
+function SettingSessionItem(app) {
   app.use(function(request, response) {
     if(request.session.user) {
       response.locals.nickname = request.session.nickname;
@@ -121,7 +121,7 @@ Member.login = function(request,response,mongoose){
 
 module.exports.member = function (app,mongoose) {
   //처음에 세션변수(?) 정의
-  SettingSessionItem();
+  SettingSessionItem(app);
 
   app.get('/join_member_step1', function(request, response) {
     response.render('member/join_member_step1');
