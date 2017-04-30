@@ -2,6 +2,9 @@ require('node-import');
 var express = require('express');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
 
 var bodyParserJsonError = require('express-body-parser-json-error');
 var app = express();
@@ -9,6 +12,14 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+  key: 'sid', // 세션키
+  secret: 'secret', // 비밀키
+  cookie: {
+    maxAge: 4000 * 60 * 60 // 쿠키 유효기간 4시간
+  }
+}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 

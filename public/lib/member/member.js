@@ -56,7 +56,7 @@ function MemberDB(mongoose,type,request,response){
   })
   .get(function() { return this.password; });
 
-  var MemberInfo;
+  var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
     MemberInfo = mongoose.model('member');
   } catch (error) {
@@ -64,13 +64,16 @@ function MemberDB(mongoose,type,request,response){
   }
 
   if (type == 'login'){ // 로그인할때
-    console.log("로그인체크");
     MemberInfo.findOne({id: request.query.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
         var passord_true = member.checkloginPassword(request.query.pw,member.password);
-        console.log("인증이 잘 되었는가? :: "+passord_true);
+        // 로그인 되면 세션 생성
+        if(passord_true) {
+          request.session.id = request.query.id;
+          request.session.nickname = request.query.nickname;
+        }
     })
   }
 
@@ -109,7 +112,7 @@ module.exports.member = function (app,mongoose) {
   response.render('member/join_member_step2');
   });
   app.get('/join_member_step3', function(request, response) {
-    //  MemberDB(); // 시그마 정의
+
   Member.join(request.query,MemberDB(mongoose,'join',request,response),request,response,mongoose);
   });
 
