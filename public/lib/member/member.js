@@ -73,6 +73,10 @@ function MemberDB(mongoose,type,request,response){
         if(passord_true) {
           request.session.id = request.query.id;
           request.session.nickname = request.query.nickname;
+          response.send("<script>alert('정상적으로 로그인 되었습니다'); location.href='/';</script>");
+        }
+        else {
+          response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.');</script>");
         }
     })
   }
