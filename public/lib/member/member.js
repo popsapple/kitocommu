@@ -10,7 +10,7 @@ function SettingSessionItem(app) {
 function MemberDB(mongoose,type,request,response){
   var Schema = mongoose.Schema;
   var request_list;
-  if (request.query){
+  if (request.query.id){
     request_list = request.query;
   }else {
     request_list = request.body;
