@@ -1,9 +1,9 @@
 function SettingSessionItem(app) {
-  app.use(function(request, response) {
+  app.get('*', function(request, response) {
       try{
         response.locals.nickname = request.session.nickname;
       }catch (e) {
-        
+
       }
   });
 }
