@@ -21,15 +21,6 @@ app.use(session({
   }
 }));
 
-app.use(function(request, response) {
-  if(request.session.user) {
-    res.locals.nickname = req.session.nickname;
-  }
-  else {
-    request.locals.nickname = undefined;
-  }
-});
-
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
