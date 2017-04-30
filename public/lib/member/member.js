@@ -17,6 +17,8 @@ function MemberDB(mongoose,type,request,response){
   }
 
   var pw = request_list.pw;
+
+  console.log("이걸 못 가져오는거지 ??:"+pw);
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
