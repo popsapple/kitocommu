@@ -9,7 +9,14 @@ function SettingSessionItem(app) {
 
 function MemberDB(mongoose,type,request,response){
   var Schema = mongoose.Schema;
-  var pw = request.query.pw;
+  var request_list;
+  if (request.query){
+    request_list = request.query;
+  }else {
+    request_list = request.body;
+  }
+
+  var pw = request_list.pw;
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
@@ -73,11 +80,11 @@ function MemberDB(mongoose,type,request,response){
   }
 
   if (type == 'login'){ // 로그인할때
-    MemberInfo.findOne({id: request.query.id}, function(err, member){
+    MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
         if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
-        var passord_true = member.checkloginPassword(request.query.pw,member.password);
+        var passord_true = member.checkloginPassword(request_list.pw,member.password);
         // 로그인 되면 세션 생성
         if(passord_true) {
           request.session.id = member.id;
@@ -136,7 +143,7 @@ module.exports.member = function (app,mongoose) {
       response.render('member/login'); // 그냥 로그인 폼 출력
   });
 
-  app.get('/login', function(request, response) {
+  app.post('/login', function(request, response) {
       Member.login(request,response,mongoose);
   });
 };
