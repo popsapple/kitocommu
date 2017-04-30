@@ -80,9 +80,9 @@ function MemberDB(mongoose,type,request,response){
         var passord_true = member.checkloginPassword(request.query.pw,member.password);
         // 로그인 되면 세션 생성
         if(passord_true) {
-          request.session.id = request.query.id;
-          request.session.nickname = request.query.nickname;
-          response.send("<script>alert('정상적으로 로그인 되었습니다'); location.href='/';</script>");
+          request.session.id = member.id;
+          request.session.nickname = member.nickname;
+          response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
         }
         else {
           response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.');</script>");
