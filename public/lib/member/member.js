@@ -154,8 +154,8 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_list') {
     data.findOne({id: request.session.id}, function(err, member){
-      response.render('member/modify_member',member);
-    }
+      response.render('member/modify_member', member);
+    });
   }
   else if(type == 'modfiy_submit') {
     data.updated = new Date();
@@ -173,7 +173,6 @@ Member.join = function(info,data,request,response,mongoose,type){
       });
     });
   }
-
 }
 
 Member.login = function(request,response,mongoose){
