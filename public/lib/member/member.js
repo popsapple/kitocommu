@@ -2,8 +2,8 @@ function SettingSessionItem(app) { // 로그인 세션구현
   app.get('*', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;
     else response.locals.nickname = undefined;
-    if(request.session.id) response.locals.id = request.session.id;
-    else response.locals.id = undefined;
+    if(request.session.userid) response.locals.userid = request.session.userid;
+    else response.locals.userid = undefined;
     next();
   });
 }
@@ -121,7 +121,7 @@ function MemberDB(mongoose,type,request,response){
         var passord_true = member.checkloginPassword(request_list.pw,member.password);
         // 로그인 되면 세션 생성
         if(passord_true) {
-          request.session.id = member.id;
+          request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
           request.session.nickname = member.nickname;
           response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
         }
@@ -153,15 +153,15 @@ Member.join = function(info,data,request,response,mongoose,type){
     });
   }
   else if(type == 'modfiy_list') {
-    data.findOne({id: request.session.id}, function(err, member){
-      console.log("아이디는 갖고오니? ::"+request.session.id);
+    data.findOne({id: request.session.userid}, function(err, member){
+      console.log("아이디는 갖고오니? ::"+request.sessionuserid);
       console.log("어떻게 뽑아오나 ::"+member);
       response.render('member/modify_member', member);
     });
   }
   else if(type == 'modfiy_submit') {
     data.updated = new Date();
-    data.findOne({id: request.session.id}, function(err, member){
+    data.findOne({id: request.session.userid}, function(err, member){
       for(var key in info){ // 값이 들어온 만큼...
         member[key] = data[key];
       }
