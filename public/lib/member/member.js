@@ -171,7 +171,7 @@ Member.join = function(info,data,request,response,mongoose,type){
       member.hash = member.makingHash(); // 사용자정의 메소드 호출
       member.password = member.encryptPassword(pw); // 사용자정의 메소드 호출
 
-      member.update (function(err){
+      member.save(function(err){
         if(err){
             console.log("모종의 이유로 에러가 남 ::"+err);
             request.json({result: 0});
