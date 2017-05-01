@@ -167,13 +167,9 @@ Member.join = function(info,data,request,response,mongoose,type){
         if(key == 'pw') pw = info[key];
       }
       member.updated = new Date();
-      data.virtual('pw')
-      .set(function() {
-        member._pw = pw;
-        member.hash = this.makingHash(); // 사용자정의 메소드 호출
-        member.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
-      })
-      .get(function() { return member.password; });
+
+      member.hash = member.makingHash(); // 사용자정의 메소드 호출
+      member.password = member.encryptPassword(pw); // 사용자정의 메소드 호출
 
       member.update (function(err){
         if(err){
