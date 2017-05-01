@@ -149,7 +149,7 @@ Member.join = function(info,data,request,response,mongoose,type){
           request.json({result: 0});
           return;
       }
-      response.send("<script>alert('"+member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
+      response.render('member/join_member_step3',data);
     });
   }
   else if(type == 'modfiy_list') {
@@ -160,18 +160,18 @@ Member.join = function(info,data,request,response,mongoose,type){
     });
   }
   else if(type == 'modfiy_submit') {
-    data.updated = new Date();
     data.findOne({id: request.session.userid}, function(err, member){
       for(var key in info){ // 값이 들어온 만큼...
         member[key] = data[key];
       }
+      member.updated = new Date();
       member.save(function(err){
         if(err){
             console.error(err);
             request.json({result: 0});
             return;
         }
-        response.render('member/join_member_step3',data);
+        response.send("<script>alert('"+member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
       });
     });
   }
