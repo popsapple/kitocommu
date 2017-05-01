@@ -161,15 +161,17 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_submit') {
     data.findOne({id: request.session.userid}, function(err, member){
+      var pw;
       for(var key in info){ // 값이 들어온 만큼...
         member[key] = info[key];
+        if(key == 'pw') pw = info[key];
       }
       member.updated = new Date();
       member.virtual('pw')
       .set(function() {
-        this._pw = info[pw];
+        this._pw = pw;
         this.hash = this.makingHash(); // 사용자정의 메소드 호출
-        this.password = this.encryptPassword(info[pw]); // 사용자정의 메소드 호출
+        this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
       })
       .get(function() { return this.password; });
 
