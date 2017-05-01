@@ -212,11 +212,11 @@ module.exports.member = function (app,mongoose) {
     //  Member.search_info(request,response,mongoose,'pw');
   });
 
-  app.get('/mypage', function(request, response) {
+  app.get('/mypage/list', function(request, response) {
       Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
   });
 
-  app.post('/mypage', function(request, response) {
+  app.post('/mypage/submit', function(request, response) {
       console.log("AAAAAAAAA");
       Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
   });
