@@ -154,6 +154,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_list') {
     data.findOne({id: request.session.id}, function(err, member){
+      console.log("아이디는 갖고오니? ::"+request.session.id);
       console.log("어떻게 뽑아오나 ::"+member);
       response.render('member/modify_member', member);
     });
