@@ -162,12 +162,12 @@ Member.join = function(info,data,request,response,mongoose,type){
   else if(type == 'modfiy_submit') {
     data.findOne({id: request.session.userid}, function(err, member){
       for(var key in info){ // 값이 들어온 만큼...
-        member[key] = data[key];
+        member[key] = info[key];
       }
       member.updated = new Date();
       member.save(function(err){
         if(err){
-            console.error(err);
+            console.log("모종의 이유로 에러가 남 ::"+err);
             request.json({result: 0});
             return;
         }
