@@ -212,13 +212,12 @@ module.exports.member = function (app,mongoose) {
     //  Member.search_info(request,response,mongoose,'pw');
   });
 
-  app.get('/mypage/:type', function(request, response) {
-    if(request.params.type == 'list') {
+  app.get('/mypage', function(request, response) {
       Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
-    }
-    else if(request.params.type == 'submit') {
+  });
+
+  app.post('/mypage', function(request, response) {
       console.log("AAAAAAAAA");
-      Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-    }
+      Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
   });
 };
