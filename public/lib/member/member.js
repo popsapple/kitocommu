@@ -217,6 +217,7 @@ module.exports.member = function (app,mongoose) {
       Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
     }
     else if(request.params.type == 'submit') {
+      console.log("AAAAAAAAA");
       Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
     }
   });
