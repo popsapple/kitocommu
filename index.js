@@ -4,9 +4,9 @@ var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
-
+var nodemailer = require('nodemailer');
 var bodyParserJsonError = require('express-body-parser-json-error');
+
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));

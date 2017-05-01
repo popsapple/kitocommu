@@ -1,11 +1,44 @@
-function SettingSessionItem(app) {
+function SettingSessionItem(app) { // 로그인 세션구현
   app.get('*', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;
     else response.locals.nickname = undefined;
-    console.log("세션이 없는건가 ::"+request.session.nickname);
+    if(request.session.id) response.locals.id = request.session.id;
+    else response.locals.id = undefined;
     next();
   });
 }
+
+function SandMemberLogininfo(app) { // 이메일 보내기
+  var mailer = require("nodemailer");
+
+  // Use Smtp Protocol to send Email
+  var smtpTransport = mailer.createTransport("SMTP",{
+      service: "Gmail",
+      auth: {
+          user: "gmail_id@gmail.com",
+          pass: "gmail_password"
+      }
+  });
+
+  var mail = {
+      from: "Yashwant Chavan <from@gmail.com>",
+      to: "to@gmail.com",
+      subject: "Send Email Using Node.js",
+      text: "Node.js New world for me",
+      html: "<b>Node.js New world for me</b>"
+  }
+
+  smtpTransport.sendMail(mail, function(error, response){
+      if(error){
+          console.log(error);
+      }else{
+          console.log("Message sent: " + response.message);
+      }
+
+      smtpTransport.close();
+  });
+}
+
 
 function MemberDB(mongoose,type,request,response){
   var Schema = mongoose.Schema;
@@ -18,7 +51,6 @@ function MemberDB(mongoose,type,request,response){
 
   var pw = request_list.pw;
 
-  console.log("이걸 못 가져오는거지 ??:"+pw);
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
@@ -103,22 +135,45 @@ function MemberDB(mongoose,type,request,response){
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Member.join = function(info,data,request,response,mongoose){
+Member.join = function(info,data,request,response,mongoose,type){
   for(var key in info){ // 값이 들어온 만큼...
     data[key] = info[key];
   }
-  data.writed = new Date();
-  data.updated = new Date();
 
-  data.save(function(err){
+  if(type == 'join'){
+    data.writed = new Date();
+    data.updated = new Date();
+    data.save(function(err){
       if(err){
           console.error(err);
           request.json({result: 0});
           return;
       }
+      response.send("<script>alert('"+member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
+    });
+  }
+  else if(type == 'modfiy_list') {
+    data.findOne({id: request.session.id}, function(err, member){
+      response.render('member/modify_member',member);
+    }
+  }
+  else if(type == 'modfiy_submit') {
+    data.updated = new Date();
+    data.findOne({id: request.session.id}, function(err, member){
+      for(var key in info){ // 값이 들어온 만큼...
+        member[key] = data[key];
+      }
+      member.save(function(err){
+        if(err){
+            console.error(err);
+            request.json({result: 0});
+            return;
+        }
+        response.render('member/join_member_step3',data);
+      });
+    });
+  }
 
-      response.render('member/join_member_step3',data);
-  });
 }
 
 Member.login = function(request,response,mongoose){
@@ -134,11 +189,10 @@ module.exports.member = function (app,mongoose) {
     response.render('member/join_member_step1');
   });
   app.get('/join_member_step2', function(request, response) {
-  response.render('member/join_member_step2');
+    response.render('member/join_member_step2');
   });
   app.get('/join_member_step3', function(request, response) {
-
-  Member.join(request.query,MemberDB(mongoose,'join',request,response),request,response,mongoose);
+    Member.join(request.query,MemberDB(mongoose,'join',request,response),request,response,mongoose,'join');
   });
 
   app.get('/login_form', function(request, response) {
@@ -147,5 +201,22 @@ module.exports.member = function (app,mongoose) {
 
   app.post('/login', function(request, response) {
       Member.login(request,response,mongoose);
+  });
+
+  app.post('/search_id', function(request, response) {
+      Member.search_info(request,response,mongoose,'id');
+  });
+
+  app.post('/search_pw', function(request, response) {
+    //  Member.search_info(request,response,mongoose,'pw');
+  });
+
+  app.post('/mypage/:type', function(request, response) {
+    if(request.params.type == 'list') {
+      Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
+    }
+    else if(request.params.type == 'submit') {
+      Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
+    }
   });
 };

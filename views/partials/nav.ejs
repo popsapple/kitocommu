@@ -41,16 +41,21 @@
             <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
           </form>
         </li>
-        <li>
-          <a class="btn btn-default" href="/join_member_step1" role="button">회원가입하기</a>
-        </li>
-        <li>
-          <%if(locals.nickname){%>
-            <%= locals.nickname %>
-          <%}else {%>
+        <%if(locals.nickname){%>
+          <li>
+            <strong>
+              <%= locals.nickname %> 님 환영합니다
+              <a href="/mypage/list" role="button">개인정보수정</a>
+            </strong>
+          </li>
+        <%}else {%>
+          <li>
+            <a class="btn btn-default" href="/join_member_step1" role="button">회원가입하기</a>
+          </li>
+          <li>
             <a class="btn btn-default" href="/login_form" role="button">로그인하기</a>
-          <%}%>
-        </li>
+          </li>
+        <%}%>
       </ul>
       <!--script>
         $(".submit_item").on('submit', function(){
