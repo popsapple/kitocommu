@@ -210,7 +210,7 @@ module.exports.member = function (app,mongoose) {
     //  Member.search_info(request,response,mongoose,'pw');
   });
 
-  app.post('/mypage/:type', function(request, response) {
+  app.get('/mypage/:type', function(request, response) {
     if(request.params.type == 'list') {
       Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
     }
