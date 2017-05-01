@@ -113,16 +113,6 @@ function MemberDB(mongoose,type,request,response){
     MemberInfo = mongoose.model('member', Memberschema);
   }
 
-  if (type == 'modfiy'){ // 수정할때
-    Memberschema.virtual('pw')
-    .set(function() {
-      this._pw = pw;
-      this.hash = this.makingHash(); // 사용자정의 메소드 호출
-      this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
-    })
-    .get(function() { return this.password; });
-  }
-
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
@@ -175,7 +165,15 @@ Member.join = function(info,data,request,response,mongoose,type){
         member[key] = info[key];
       }
       member.updated = new Date();
-      member.save(function(err){
+      member.virtual('pw')
+      .set(function() {
+        this._pw = pw;
+        this.hash = this.makingHash(); // 사용자정의 메소드 호출
+        this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+      })
+      .get(function() { return this.password; });
+
+      member.update (function(err){
         if(err){
             console.log("모종의 이유로 에러가 남 ::"+err);
             request.json({result: 0});
