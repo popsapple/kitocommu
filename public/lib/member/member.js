@@ -167,9 +167,10 @@ Member.join = function(info,data,request,response,mongoose,type){
         if(key == 'pw') pw = info[key];
       }
       member.updated = new Date();
-
-      member.hash = member.makingHash(); // 사용자정의 메소드 호출
-      member.password = member.encryptPassword(pw); // 사용자정의 메소드 호출
+      // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
+      // 이렇게 쓸 것 같으면 왜 필요하지?? 일단 질문글 올려서 확인해봐야 겠다.
+      member.hash = member.makingHash();
+      member.password = member.encryptPassword(pw);
 
       member.save(function(err){
         if(err){
