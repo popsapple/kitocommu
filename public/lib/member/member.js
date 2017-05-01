@@ -113,6 +113,16 @@ function MemberDB(mongoose,type,request,response){
     MemberInfo = mongoose.model('member', Memberschema);
   }
 
+  if (type == 'modfiy'){ // 수정할때
+    Memberschema.virtual('pw')
+    .set(function() {
+      this._pw = pw;
+      this.hash = this.makingHash(); // 사용자정의 메소드 호출
+      this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+    })
+    .get(function() { return this.password; });    
+  }
+
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
@@ -214,7 +224,7 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.get('/mypage/list', function(request, response) {
-      Member.join(request.query,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_list');
+      Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
   });
 
   app.post('/mypage/submit', function(request, response) {
