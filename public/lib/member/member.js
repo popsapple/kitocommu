@@ -163,6 +163,7 @@ Member.join = function(info,data,request,response,mongoose,type){
     data.findOne({id: request.session.userid}, function(err, member){
       for(var key in info){ // 값이 들어온 만큼...
         member[key] = info[key];
+        console.log("값이 안 들어가니?? ::"+info[key]);
       }
       member.updated = new Date();
       member.save(function(err){
