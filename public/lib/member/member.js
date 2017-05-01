@@ -116,7 +116,9 @@ function MemberDB(mongoose,type,request,response){
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
-        if(!member) return response.status(404).json({error: '입력하신 아이디에 대한 정보를 찾지 못했습니다.'});
+        if(!member){
+          response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
+        }
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
         var passord_true = member.checkloginPassword(request_list.pw,member.password);
         // 로그인 되면 세션 생성
@@ -126,7 +128,7 @@ function MemberDB(mongoose,type,request,response){
           response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
         }
         else {
-          response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.');</script>");
+          response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.'); location.href='/login_form';</script>");
         }
     })
   }
@@ -154,8 +156,6 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_list') {
     data.findOne({id: request.session.userid}, function(err, member){
-      console.log("아이디는 갖고오니? ::"+request.session.userid);
-      console.log("어떻게 뽑아오나 ::"+member);
       response.render('member/modify_member', member);
     });
   }
@@ -174,7 +174,6 @@ Member.join = function(info,data,request,response,mongoose,type){
 
       member.save(function(err){
         if(err){
-            console.log("모종의 이유로 에러가 남 ::"+err);
             request.json({result: 0});
             return;
         }
@@ -224,7 +223,11 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.post('/mypage/submit', function(request, response) {
-      console.log("AAAAAAAAA");
       Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
+  });
+
+  app.get('/logout', function(request, response) {
+    request.session.destroy();
+    return response.redirect('/');
   });
 };
