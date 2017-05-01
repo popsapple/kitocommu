@@ -167,9 +167,9 @@ Member.join = function(info,data,request,response,mongoose,type){
       member.updated = new Date();
       member.virtual('pw')
       .set(function() {
-        this._pw = pw;
+        this._pw = info[pw];
         this.hash = this.makingHash(); // 사용자정의 메소드 호출
-        this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+        this.password = this.encryptPassword(info[pw]); // 사용자정의 메소드 호출
       })
       .get(function() { return this.password; });
 
