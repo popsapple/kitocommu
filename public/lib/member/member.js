@@ -50,7 +50,7 @@ function MemberDB(mongoose,type,request,response){
   }
 
   var pw = request_list.pw;
-  var MemberInfo = new Object();
+
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
@@ -68,13 +68,13 @@ function MemberDB(mongoose,type,request,response){
 
   // 비밀번호 암호화저장
   // hash 값
-  MemberInfo.makingHash = function() {
+  Memberschema.method('makingHash', function(){
     var dump = Math.round(new Date().valueOf()*Math.random());
     return dump;
-  };
+  });
 
   // 비밀번호 암호화
-  MemberInfo.encryptPassword = function(pw,isHash) {
+  Memberschema.method('encryptPassword', function(pw,isHash){
     var dump = pw;
     var shasum;
     // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
@@ -88,25 +88,25 @@ function MemberDB(mongoose,type,request,response){
     var output = shasum.digest('hex');
 
     return output;
-  };
+  });
 
   // 비밀번호 체크 시 사용
-  MemberInfo.checkloginPassword = function(pw_text,pw) {
+  Memberschema.method('checkloginPassword', function(pw_text,pw){
     var is_true = false;
     var input = this.encryptPassword(pw_text,this.hash);
     input == pw ? is_true = true : is_true = false ;
     return is_true;
-  };
+  });
 
   Memberschema.virtual('pw')
   .set(function() {
     this._pw = pw;
-    this.hash = MemberInfo.makingHash(); // 사용자정의 메소드 호출
-    this.password = MemberInfo.encryptPassword(pw); // 사용자정의 메소드 호출
+    this.hash = this.makingHash(); // 사용자정의 메소드 호출
+    this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
 
-  // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
+  var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
     MemberInfo = mongoose.model('member');
   } catch (error) {
@@ -172,19 +172,20 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
-
+      var pw;
       for(var key in info){ // 값이 들어온 만큼...
-        if(key == 'pw') {
-          continue;
-        }
-        if(type == 'modfiy_submit'){
+        if(!member[key] && !info[key]){
           member[key] = info[key];
-          member.updated = new Date();
         }
+        console.log("값을 제대로 가져오는건가? ::"+info[key]);
+        if(key == 'pw') pw = info[key];
       }
 
-      member.hash = member.makingHash(); // 사용자정의 메소드 호출
-      member.password = member.encryptPassword(info['pw']); // 사용자정의 메소드 호출
+      member.updated = new Date();
+      // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
+      // 이렇게 쓸 것 같으면 왜 필요하지?? 일단 질문글 올려서 확인해봐야 겠다.
+      member.hash = member.makingHash();
+      member.password = member.encryptPassword(pw);
 
       member.save(function(err){
         if(err){
