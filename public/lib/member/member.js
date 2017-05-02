@@ -161,7 +161,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
-    var Schema = require('mongoose').model('member').Schema;
+
     console.log("시그마를 가져오는건가 ::"+Schema);
 
     if(type == 'modfiy_submit') {
@@ -175,9 +175,33 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
+      // 비밀번호 암호화
+      member.encryptPassword = function(pw,isHash){
+        var dump = pw;
+        var shasum;
+        // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
+        // 임의의 값을 넣어두는 것
+        if(!isHash) {
+          shasum = crypto.createHash('sha256',this.hash);
+        }else {
+          shasum = crypto.createHash('sha256',isHash);
+        }
+        shasum.update(dump);
+        var output = shasum.digest('hex');
 
-      member.hash = Schema.makingHash(); // 사용자정의 메소드 호출
-      member.password = Schema.encryptPassword(info[pw],member.hash); // 사용자정의 메소드 호출
+        return output;
+      };
+
+      // 비밀번호 체크 시 사용
+      member.checkloginPassword = function(pw_text,pw){
+        var is_true = false;
+        var input = this.encryptPassword(pw_text,this.hash);
+        input == pw ? is_true = true : is_true = false ;
+        return is_true;
+      };
+
+      member.hash = member.makingHash(); // 사용자정의 메소드 호출
+      member.password = member.encryptPassword(info[pw],member.hash); // 사용자정의 메소드 호출
       member.updated = new Date();
 
       member.save(function(err){
