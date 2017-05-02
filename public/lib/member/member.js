@@ -172,7 +172,6 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
-      var pw;
       for(var key in info){ // 값이 들어온 만큼...
         if(type == 'modfiy_submit'){
           member[key] = info[key];
@@ -180,12 +179,14 @@ Member.join = function(info,data,request,response,mongoose,type){
         }
         console.log("값을 제대로 가져오는건가? ::"+info[key]);
         console.log("값을 제대로 가져오는건가????? ::"+member[key]);
-        if(key == 'pw') pw = info[key];
       }
-      // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
-      // 이렇게 쓸 것 같으면 왜 필요하지?? 일단 질문글 올려서 확인해봐야 겠다.
-      member.hash = member.makingHash();
-      member.password = member.encryptPassword(pw);
+      member.virtual('pw')
+      .set(function() {
+        this._pw = info['pw'];
+        this.hash = this.makingHash(); // 사용자정의 메소드 호출
+        this.password = this.encryptPassword(info['pw']); // 사용자정의 메소드 호출
+      })
+      .get(function() { return this.password; });
 
       member.save(function(err){
         if(err){
