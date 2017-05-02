@@ -164,10 +164,14 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
     }else {
-      id_info = {nickname: info['nickname']};
+      id_info = {nickname: info['nickname'],email: info['email']};
     }
 
     data.findOne(id_info, function(err, member){
+      if(err){
+        response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
+        return false;
+      }
       var pw;
       for(var key in info){ // 값이 들어온 만큼...
         if(!info[key]){
