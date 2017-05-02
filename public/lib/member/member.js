@@ -108,9 +108,9 @@ function MemberDB(mongoose,type,request,response){
 
   var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
-    MemberInfo = mongoose.model('member');
-  } catch (error) {
     MemberInfo = mongoose.model('member', Memberschema);
+  } catch (error) {
+    MemberInfo = mongoose.model('member');
   }
 
   if (type == 'login'){ // 로그인할때
@@ -161,7 +161,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
-    var Schema = data.schema;
+    var Schema = mongoose.model('member').schema;
 
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
