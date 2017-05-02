@@ -191,7 +191,7 @@ Member.join = function(info,data,request,response,mongoose,type){
           response.send(member);
         }
         else{
-          response.send({"<script>alert('"+}member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
+          response.send({"<script>alert('"+member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>"});
         }
       });
     });
