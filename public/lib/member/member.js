@@ -165,8 +165,9 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
     }else if(type == 'double_check') {
-      console.log("!!!!!!!!!!!!! :: "+info['item_key']);
-      var is_double = "no";
+      var is_double = {
+        isdouble: "yes"
+      };
       if(info['item_key'] == 'nickname') {
         id_info = {nickname: info['item_val']}
       };
@@ -191,8 +192,7 @@ Member.join = function(info,data,request,response,mongoose,type){
 
       //회원가입 및 정보수정시 중복체크
       if(type == 'double_check') {
-        console.log("???????????? :: "+info['item_key']);
-        is_double = "yes";
+        is_double.isdouble = "yes";
         response.send(is_double);
       }
 
