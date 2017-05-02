@@ -160,7 +160,8 @@ Member.join = function(info,data,request,response,mongoose,type){
     });
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
-    var id_info;
+    var Searchschema;
+    var Schema = mongoose.Schema;
     if(type == 'modfiy_submit') {
       Searchschema = new Schema({
         id: request.session.userid
