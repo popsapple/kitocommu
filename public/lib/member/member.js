@@ -162,8 +162,6 @@ Member.join = function(info,data,request,response,mongoose,type){
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
 
-    console.log("시그마를 가져오는건가 ::"+Schema);
-
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
     }else {
