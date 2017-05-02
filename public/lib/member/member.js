@@ -166,8 +166,12 @@ Member.join = function(info,data,request,response,mongoose,type){
       id_info = {id: request.session.userid};
     }else if(type == 'double_check') {
       var is_double = "no";
-      if(info['item_key'] == 'nickname') id_info = {nickname: info['item_val']};
-      if(info['item_key'] == 'id') id_info = {id: info['item_val']};
+      if(info['item_key'] == 'nickname') {
+        id_info = {nickname: info['item_val']}
+      };
+      if(info['item_key'] == 'id') {
+       id_info = {id: info['item_val']};
+      };
     }else {
       id_info = {nickname: info['nickname']};
     }
