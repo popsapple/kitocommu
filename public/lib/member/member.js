@@ -164,7 +164,7 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
     }else {
-      id_info = {nickname: info['nickname'],email: info['email']};
+      id_info = {nickname: info['nickname']};
     }
 
     data.findOne(id_info, function(err, member){
