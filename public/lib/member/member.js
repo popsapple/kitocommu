@@ -50,7 +50,7 @@ function MemberDB(mongoose,type,request,response){
   }
 
   var pw = request_list.pw;
-  var MemberInfo;
+  var MemberInfo = new Object();
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
@@ -101,8 +101,8 @@ function MemberDB(mongoose,type,request,response){
   Memberschema.virtual('pw')
   .set(function() {
     this._pw = pw;
-    this.hash = this.makingHash(); // 사용자정의 메소드 호출
-    this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+    this.hash = MemberInfo.makingHash(); // 사용자정의 메소드 호출
+    this.password = MemberInfo.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
 
