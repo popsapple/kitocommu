@@ -174,13 +174,13 @@ Member.join = function(info,data,request,response,mongoose,type){
       }
       var pw;
       for(var key in info){ // 값이 들어온 만큼...
-        if(!info[key]){
-          continue;
+        if(type == 'modfiy_submit'){
+          member[key] = info[key];
+          member.updated = new Date();
         }
         console.log("값을 제대로 가져오는건가? ::"+info[key]);
         if(key == 'pw') pw = info[key];
       }
-      member.updated = new Date();
       // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
       // 이렇게 쓸 것 같으면 왜 필요하지?? 일단 질문글 올려서 확인해봐야 겠다.
       member.hash = member.makingHash();
