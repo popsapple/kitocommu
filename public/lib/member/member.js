@@ -205,7 +205,7 @@ Member.join = function(info,data,request,response,mongoose,type){
       };
 
       member.hash = member.makingHash(); // 사용자정의 메소드 호출
-      member.password = member.encryptPassword(info[pw],member.hash); // 사용자정의 메소드 호출
+      member.password = member.encryptPassword(info['pw'],member.hash); // 사용자정의 메소드 호출
       member.updated = new Date();
 
       member.save(function(err){
