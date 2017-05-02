@@ -166,8 +166,11 @@ Member.join = function(info,data,request,response,mongoose,type){
       id_info = {id: request.session.userid};
     }else if(type == 'double_check') {
       var is_double = {
-        isdouble: "yes"
+        isdouble: "no"
       };
+
+      is_double = JSON.parse(is_double);
+
       if(info['item_key'] == 'nickname') {
         id_info = {nickname: info['item_val']}
       };
@@ -193,7 +196,9 @@ Member.join = function(info,data,request,response,mongoose,type){
       //회원가입 및 정보수정시 중복체크
       if(type == 'double_check') {
         is_double.isdouble = "yes";
+        var is_double = JSON.parse(is_double);
         response.send(is_double);
+        return false;
       }
 
       // 비밀번호 암호화
