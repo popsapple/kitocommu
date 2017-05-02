@@ -93,13 +93,15 @@
     reg_list.reg_height = /^[0-9]*$/; //키 정규식
     reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
     var count = 0;
+    var is_true = true;
     for(var key in reg_list){
       if(!reg_list[key].test($('#'+input_list[count]).val())){
+        is_true = false;
         alert(dialog_list[count]);
-        return false;
       }
       count++;
     };
+    return is_true;
   };
   //정규표현식
 

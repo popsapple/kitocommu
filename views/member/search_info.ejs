@@ -37,13 +37,15 @@
     reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
     reg_list.reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //이메일정규식
     var count = 0;
+    var is_true = true;
     for(var key in reg_list){
       if(!reg_list[key].test($('#'+input_list[count]).val())){
+        is_true = false;
         alert(dialog_list[count]);
-        return false;
       }
       count++;
     };
+    return is_true;
   };
 
   $(".login_info_submit").on('click', function(){
