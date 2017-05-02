@@ -177,6 +177,7 @@ Member.join = function(info,data,request,response,mongoose,type){
         if(!info[key]){
           continue;
         }
+        console.log("값을 제대로 가져오는건가? ::"+info[key]);
         member[key] = info[key];
         if(key == 'pw') pw = info[key];
       }
