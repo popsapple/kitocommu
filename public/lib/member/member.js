@@ -274,6 +274,7 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.post('/member_double_check', function(request, response) {
+    console.log("애초에 안 들어오는 듯?");
     Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
   });
 
