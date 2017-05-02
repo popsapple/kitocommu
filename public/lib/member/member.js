@@ -178,8 +178,8 @@ Member.join = function(info,data,request,response,mongoose,type){
           continue;
         }
         console.log("값을 제대로 가져오는건가? ::"+info[key]);
-        member[key] = info[key];
         if(key == 'pw') pw = info[key];
+        if(key == 'pw') member[key] = info[key];
       }
       member.updated = new Date();
       // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
