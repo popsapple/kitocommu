@@ -269,7 +269,7 @@ module.exports.member = function (app,mongoose) {
     response.render('member/search_info'); // 팝업창 출력
   });
 
-  app.post('/member_double_check)', function(request, response) {
+  app.post('/double_check)', function(request, response) {
     Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
   });
 

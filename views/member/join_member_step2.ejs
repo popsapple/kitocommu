@@ -110,7 +110,7 @@
   $("#joinCheckId").on('click', function(){
     $.ajax({
       type: "POST",
-      url: "/member_double_check",
+      url: "/double_check",
       data: JSON.stringify({
         "item_key" : "id",
         "item_val" : $("#"+$(this).attr('data-item')).val()
