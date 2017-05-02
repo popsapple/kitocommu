@@ -211,7 +211,7 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.post('/search_id', function(request, response) {
-      Member.search_info(request,response,mongoose,'id');
+    //  Member.search_info(request,response,mongoose,'id');
   });
 
   app.post('/search_pw', function(request, response) {

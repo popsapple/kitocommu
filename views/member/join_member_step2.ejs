@@ -7,7 +7,7 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <form method="get" action="/join_member_step3">
+      <form method="get" action="/join_member_step3" onsubmit="CheckFormInput();">
         <fieldset>
           <legend>기본 인적사항</legend>
           <ul>
@@ -15,31 +15,31 @@
               <h3>
                 <label for="joinId">아이디</label>
               </h3>
-              <input id="joinId" name="id" type="text" value="" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*$" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다.)" required />
+              <input id="joinId" name="id" type="text" value="" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다. 8자 이상)" required />
             </li>
             <li>
               <h3>
                 <label for="joinPassword">비밀번호</label>
               </h3>
-              <input id="joinPassword" name="pw" type="password" pattern="^[0-9a-zA-Z]*$" placeholder="비밀번호를 입력하세요 (숫자,알파벳만 입력 가능합니다.)" required />
+              <input id="joinPassword" name="pw" type="password" placeholder="비밀번호를 입력하세요 (숫자,알파벳만 입력 가능합니다. 10자 이상)" required />
             </li>
             <li>
               <h3>
                 <label for="joinNickname">닉네임</label>
               </h3>
-              <input id="joinNickname" name="nickname" type="text" value="" placeholder="닉네임을 입력하세요" required />
+              <input id="joinNickname" name="nickname" type="text" value="" placeholder="닉네임을 입력하세요 (2~20자)" required />
             </li>
             <li>
               <h3>
                 <label for="joinEmail">이메일</label>
               </h3>
-              <input id="joinEmail" name="email" type="text" value="" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" placeholder="이메일을 입력하세요" required />
+              <input id="joinEmail" name="email" type="text" value="" placeholder="이메일을 입력하세요" required />
             </li>
             <li>
               <h3>
                 <label for="joinTel">전화번호</label>
               </h3>
-              <input id="joinTel" name="tel" type="text" value="" pattern="^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$" placeholder="전화번호를 입력하세요" required />
+              <input id="joinTel" name="tel" type="text" value="" placeholder="전화번호를 입력하세요" required />
             </li>
           </ul>
           </fieldset>
@@ -59,13 +59,13 @@
                 <h3>
                   <label for="joinHeight">키</label>
                 </h3>
-                <input id="joinHeight" name="height" type="text" value=""  pattern="^[0-9]*$" placeholder="키를 입력해주세요 (숫자만 가능합니다)" required />
+                <input id="joinHeight" name="height" type="text" value="" placeholder="키를 입력해주세요 (숫자만 가능합니다)" required />
               </li>
               <li>
                 <h3>
                   <label for="joinWeight">몸무게</label>
                 </h3>
-                <input id="joinWeight" name="weight" type="text" value=""  pattern="^[0-9]*$" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" required />
+                <input id="joinWeight" name="weight" type="text" value="" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" required />
               </li>
             </ul>
           </fieldset>
@@ -74,6 +74,37 @@
         </form>
     </section>
   </div>
+  <script>
+  function CheckFormInput(){
+    var input_list = ['joinId','joinNickname','joinPassword','joinEmail','joinTel','joinHeight','joinWeight'];
+    var dialog_list = ['아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요',
+    '닉네임은 8자 이상 영문소문자, 숫자, 특수문자',
+    '비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요',
+    '이메일은 형식에 맞게 입력해주세요',
+    '전화번호는 형식에 맞게 입력해주세요',
+    '키는 숫자만 입력 가능합니다',
+    '몸무게는 숫자만 입력 가능합니다'];
+    var reg_list = new Object;
+    reg_list.reg_uid = /^[a-z0-9_]{8+}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
+    reg_list.reg_nickname = /^[a-z0-9_]{8+}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
+    reg_list.reg_upw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-]|.*[0-9]).{10+}$/; //10자 이상 영문대소문자, 숫자, 특수문자 혼합하여 사용
+    reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
+    reg_list.reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //이메일정규식
+    reg_list.reg_phone = /^\d{2,3}\d{3,4}\d{4}$/; // 전화번호 정규표현식
+    reg_list.reg_height = /^[0-9]*$/; //키 정규식
+    reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
+    var count = 0;
+    for(var key in reg_list){
+      if(!reg_list[key].test($('#'+input_list[count]).val())){
+        alert(dialog_list[count]);
+        return false;
+      }
+      count++;
+    };
+  };
+  //정규표현식
+
+  </script>
 <% include ../partials/footer.ejs %>
 </body>
 </html>
