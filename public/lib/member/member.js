@@ -50,7 +50,7 @@ function MemberDB(mongoose,type,request,response){
   }
 
   var pw = request_list.pw;
-
+  var MemberInfo;
   var crypto = global.crypto;
   var Memberschema = new Schema({
     id:    String,
@@ -68,13 +68,13 @@ function MemberDB(mongoose,type,request,response){
 
   // 비밀번호 암호화저장
   // hash 값
-  Memberschema.method('makingHash', function(){
+  MemberInfo.method('makingHash', function(){
     var dump = Math.round(new Date().valueOf()*Math.random());
     return dump;
   });
 
   // 비밀번호 암호화
-  Memberschema.method('encryptPassword', function(pw,isHash){
+  MemberInfo.method('encryptPassword', function(pw,isHash){
     var dump = pw;
     var shasum;
     // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
@@ -91,7 +91,7 @@ function MemberDB(mongoose,type,request,response){
   });
 
   // 비밀번호 체크 시 사용
-  Memberschema.method('checkloginPassword', function(pw_text,pw){
+  MemberInfo.method('checkloginPassword', function(pw_text,pw){
     var is_true = false;
     var input = this.encryptPassword(pw_text,this.hash);
     input == pw ? is_true = true : is_true = false ;
@@ -106,7 +106,7 @@ function MemberDB(mongoose,type,request,response){
   })
   .get(function() { return this.password; });
 
-  var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
+  // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
     MemberInfo = mongoose.model('member');
   } catch (error) {
@@ -183,8 +183,8 @@ Member.join = function(info,data,request,response,mongoose,type){
         }
       }
 
-      member.hash = data.makingHash(); // 사용자정의 메소드 호출
-      member.password = data.encryptPassword(info['pw']); // 사용자정의 메소드 호출
+      member.hash = member.makingHash(); // 사용자정의 메소드 호출
+      member.password = member.encryptPassword(info['pw']); // 사용자정의 메소드 호출
 
       member.save(function(err){
         if(err){
