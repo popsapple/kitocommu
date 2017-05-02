@@ -138,11 +138,11 @@ function MemberDB(mongoose,type,request,response){
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose,type){
-  for(var key in info){ // 값이 들어온 만큼...
-    data[key] = info[key];
-  }
-
   if(type == 'join'){
+    for(var key in info){ // 값이 들어온 만큼...
+      data[key] = info[key];
+    }
+
     data.writed = new Date();
     data.updated = new Date();
     data.save(function(err){
@@ -169,6 +169,12 @@ Member.join = function(info,data,request,response,mongoose,type){
     }
 
     data.findOne(id_info, function(err, member){
+      console.log("가져오나??? ::"+member.nickname);
+      for(var key in info){ // 값이 들어온 만큼...
+        if(member[key] && info[key]){
+          member[key] = info[key];
+        }
+      }
       if(err){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
