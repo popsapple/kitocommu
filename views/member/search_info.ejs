@@ -49,6 +49,7 @@
   };
 
   $(".login_info_submit").on('click', function(){
+    CheckFormInput();
     $.ajax({
       type: "POST",
           url: "/search_login_info_submit",

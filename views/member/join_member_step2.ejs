@@ -7,7 +7,7 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <form method="get" action="/join_member_step3" onsubmit="CheckFormInput();">
+      <form method="get" action="/join_member_step3">
         <fieldset>
           <legend>기본 인적사항</legend>
           <ul>
@@ -70,7 +70,7 @@
             </ul>
           </fieldset>
           <a href="/" type="submit" class="btn btn-default ">가입 취소</a accesskey="z">
-          <button type="submit" class="btn btn-default ">회원가입하기</button accesskey="s">
+          <button type="submit" onclick="CheckFormInput();" class="btn btn-default ">회원가입하기</button accesskey="s">
         </form>
     </section>
   </div>
