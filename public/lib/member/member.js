@@ -160,69 +160,23 @@ Member.join = function(info,data,request,response,mongoose,type){
     });
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
-    var Searchschema;
-    var Schema = mongoose.Schema;
+    var id_info;
+    var Schema = data.schema;
+
     if(type == 'modfiy_submit') {
-      Searchschema = new Schema({
-        id: request.session.userid
-      }, { collection: 'Memberschema' });
+      id_info = {id: request.session.userid};
     }else {
-      Searchschema = new Schema({
-        nickname: info['nickname']
-      }, { collection: 'Memberschema' });
+      id_info = {nickname: info['nickname']};
     }
 
-    // 비밀번호 암호화저장
-    // hash 값
-    Searchschema.method('makingHash', function(){
-      var dump = Math.round(new Date().valueOf()*Math.random());
-      return dump;
-    });
-
-    // 비밀번호 암호화
-    Searchschema.method('encryptPassword', function(pw,isHash){
-      var dump = pw;
-      var shasum;
-      // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
-      // 임의의 값을 넣어두는 것
-      if(!isHash) {
-        shasum = crypto.createHash('sha256',this.hash);
-      }else {
-        shasum = crypto.createHash('sha256',isHash);
-      }
-      shasum.update(dump);
-      var output = shasum.digest('hex');
-
-      return output;
-    });
-
-    Searchschema.virtual('pw')
-    .set(function() {
-      this._pw = pw;
-      this.hash = this.makingHash(); // 사용자정의 메소드 호출
-      this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
-    })
-    .get(function() { return this.password; });
-
-    data.findOne(Searchschema, function(err, member){
+    data.findOne(id_info, function(err, member){
       if(err){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
-      member.virtual('pw')
-      .set(function() {
-        for(var key in info){ // 값이 들어온 만큼...
-          if(!member[key] && !info[key]){
-            member[key] = info[key];
-          }
-          console.log("값을 제대로 가져오는건가? ::"+info[key]);
-        }
-        this.pw = info[key];
-        this.hash = this.makingHash(); // 사용자정의 메소드 호출
-        this.password = this.encryptPassword(this.pw); // 사용자정의 메소드 호출
-      })
-      .get(function() { return this.password; });
 
+      member.hash = Schema.makingHash(); // 사용자정의 메소드 호출
+      member.password = Schema.encryptPassword(info[pw],member.hash); // 사용자정의 메소드 호출
       member.updated = new Date();
 
       member.save(function(err){
