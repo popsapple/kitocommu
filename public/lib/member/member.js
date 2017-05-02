@@ -183,8 +183,8 @@ Member.join = function(info,data,request,response,mongoose,type){
         }
       }
 
-      member.hash = this.makingHash(); // 사용자정의 메소드 호출
-      member.password = this.encryptPassword(info['pw']); // 사용자정의 메소드 호출
+      member.hash = data.makingHash(); // 사용자정의 메소드 호출
+      member.password = data.encryptPassword(info['pw']); // 사용자정의 메소드 호출
 
       member.save(function(err){
         if(err){
