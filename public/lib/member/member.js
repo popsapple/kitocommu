@@ -177,11 +177,6 @@ Member.join = function(info,data,request,response,mongoose,type){
     }
 
     data.findOne(id_info, function(err, member){
-      //회원가입 및 정보수정시 중복체크
-      if(type == 'double_check') {
-        is_double = "yes";
-        response.send(is_double);
-      }
 
       for(var key in info){ // 값이 들어온 만큼...
         if(member[key] && info[key]){
@@ -192,6 +187,14 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
+
+      //회원가입 및 정보수정시 중복체크
+      if(type == 'double_check') {
+        console.log("???????????? :: "+info['item_key']);
+        is_double = "yes";
+        response.send(is_double);
+      }
+
       // 비밀번호 암호화
       member.encryptPassword = function(pw,isHash){
 
