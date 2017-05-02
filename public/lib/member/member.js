@@ -159,10 +159,20 @@ Member.join = function(info,data,request,response,mongoose,type){
       response.render('member/modify_member', member);
     });
   }
-  else if(type == 'modfiy_submit') {
-    data.findOne({id: request.session.userid}, function(err, member){
+  else if(type == 'modfiy_submit' || type == 'login_info_submit') {
+    var id_info;
+    if(type == 'modfiy_submit') {
+      id_info = {id: request.session.userid};
+    }else {
+      id_info = {nickname: info['nickname']};
+    }
+
+    data.findOne(id_info, function(err, member){
       var pw;
       for(var key in info){ // 값이 들어온 만큼...
+        if(!info[key]){
+          continue;
+        }
         member[key] = info[key];
         if(key == 'pw') pw = info[key];
       }
@@ -177,7 +187,12 @@ Member.join = function(info,data,request,response,mongoose,type){
             request.json({result: 0});
             return;
         }
-        response.send("<script>alert('"+member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
+        if(type == 'login_info_submit') {
+          response.send(member);
+        }
+        else{
+          response.send({"<script>alert('"+}member.nickname+"님 정상적으로 정보가 변경되었습니다.'); location.href='/';</script>");
+        }
       });
     });
   }
@@ -210,13 +225,13 @@ module.exports.member = function (app,mongoose) {
       Member.login(request,response,mongoose);
   });
 
-  app.post('/search_id', function(request, response) {
-    //  Member.search_info(request,response,mongoose,'id');
+  app.post('/search_login_info', function(request, response) {
+    response.render('member/search_info'); // 팝업창 출력
   });
 
-  app.post('/search_pw', function(request, response) {
-    //  Member.search_info(request,response,mongoose,'pw');
-  });
+  app.post('/search_login_info_submit', function(request, response) {
+    Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
+});
 
   app.get('/mypage/list', function(request, response) {
       Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');

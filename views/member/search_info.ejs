@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body itemscope = "" itemtype = "http://schema.org/WebPage">
+  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <section>
+      <form>
+        <fieldset>
+          <legend>회원가입시 입력하신 정보를 작성해주세요, 아이디와 임시 비밀번호가 발급됩니다.</legend>
+          <ul>
+            <li>
+              <h3>
+                <label for="searchNickname">닉네임</label>
+              </h3>
+              <input id="searchNickname" name="nickname" type="text" value="<%= nickname %>" placeholder="닉네임을 입력하세요 (2~20자)" required />
+            </li>
+            <li>
+              <h3>
+                <label for="searchEmail">이메일</label>
+              </h3>
+              <input id="searchEmail" name="email" type="text" value="<%= email %>" placeholder="이메일을 입력하세요" required />
+            </li>
+          </ul>
+        </fieldset>
+        <button type="submit" class="btn btn-default login_info_submit">정보찾기</button accesskey="s">
+      </form>
+    </section>
+  </div>
+  <script>
+  function CheckFormInput(){
+    var input_list = ['searchNickname','searchEmail'];
+    var dialog_list = ['닉네임은 8자 이상 영문소문자, 숫자, 특수문자',
+    '이메일은 형식에 맞게 입력해주세요'];
+    var reg_list = new Object;
+    reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
+    reg_list.reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //이메일정규식
+    var count = 0;
+    for(var key in reg_list){
+      if(!reg_list[key].test($('#'+input_list[count]).val())){
+        alert(dialog_list[count]);
+        return false;
+      }
+      count++;
+    };
+  };
+
+  $(".login_info_submit").on('click', function(){
+    $.ajax({
+      type: "POST",
+          url: "/search_login_info_submit",
+          data: JSON.stringify({
+            "pw" : "d241_34a516BC",
+            "nickname" : $("#searchNickname").val(),
+            "email" : $("#searchEmail").val()
+          }),
+          contentType: "application/json",
+          success: function(data) {
+              alert("회원님의 아이디는"+data.id+"이고 비밀번호는"+data.pw+"입니다. 반드시 정보수정에 가서 비밀번호를 변경해주세요.");
+          },
+          error: function(data) {
+              console.log("Error!!!!!!!!!!!!");
+          }
+    });
+  });
+
+  </script>
+</body>
+</html>
