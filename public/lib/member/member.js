@@ -162,12 +162,48 @@ Member.join = function(info,data,request,response,mongoose,type){
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
     if(type == 'modfiy_submit') {
-      id_info = {id: request.session.userid};
+      Searchschema = new Schema({
+        id: request.session.userid
+      }, { collection: 'Memberschema' });
     }else {
-      id_info = {nickname: info['nickname']};
+      Searchschema = new Schema({
+        nickname: info['nickname']
+      }, { collection: 'Memberschema' });
     }
 
-    data.findOne(id_info, function(err, member){
+    // 비밀번호 암호화저장
+    // hash 값
+    Searchschema.method('makingHash', function(){
+      var dump = Math.round(new Date().valueOf()*Math.random());
+      return dump;
+    });
+
+    // 비밀번호 암호화
+    Searchschema.method('encryptPassword', function(pw,isHash){
+      var dump = pw;
+      var shasum;
+      // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
+      // 임의의 값을 넣어두는 것
+      if(!isHash) {
+        shasum = crypto.createHash('sha256',this.hash);
+      }else {
+        shasum = crypto.createHash('sha256',isHash);
+      }
+      shasum.update(dump);
+      var output = shasum.digest('hex');
+
+      return output;
+    });
+
+    Searchschema.virtual('pw')
+    .set(function() {
+      this._pw = pw;
+      this.hash = this.makingHash(); // 사용자정의 메소드 호출
+      this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+    })
+    .get(function() { return this.password; });
+
+    data.findOne(Searchschema, function(err, member){
       if(err){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
@@ -187,10 +223,6 @@ Member.join = function(info,data,request,response,mongoose,type){
       .get(function() { return this.password; });
 
       member.updated = new Date();
-    /*  // 비밀번호 저장에 관련된것 중에 virtual 부분은 맨 처음 가입시에만 필요함...인데...
-      // 이렇게 쓸 것 같으면 왜 필요하지?? 일단 질문글 올려서 확인해봐야 겠다.
-      member.hash = member.makingHash();
-      member.password = member.encryptPassword(pw);*/
 
       member.save(function(err){
         if(err){
