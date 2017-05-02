@@ -225,7 +225,7 @@ module.exports.member = function (app,mongoose) {
       Member.login(request,response,mongoose);
   });
 
-  app.post('/search_login_info', function(request, response) {
+  app.get('/search_login_info', function(request, response) {
     response.render('member/search_info'); // 팝업창 출력
   });
 
