@@ -159,7 +159,7 @@ Member.join = function(info,data,request,response,mongoose,type){
       response.render('member/modify_member', member);
     });
   }
-  else if(type == 'modfiy_submit' || type == 'login_info_submit') {
+  else if(type == 'modfiy_submit' || type == 'login_info_submit' || type == 'double_check') {
     var id_info;
 
     if(type == 'modfiy_submit') {
