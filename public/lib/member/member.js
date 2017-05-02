@@ -172,14 +172,6 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
-      for(var key in info){ // 값이 들어온 만큼...
-        if(type == 'modfiy_submit'){
-          member[key] = info[key];
-          member.updated = new Date();
-        }
-        console.log("값을 제대로 가져오는건가? ::"+info[key]);
-        console.log("값을 제대로 가져오는건가????? ::"+member[key]);
-      }
       member.virtual('pw')
       .set(function() {
         this._pw = info['pw'];
@@ -188,6 +180,15 @@ Member.join = function(info,data,request,response,mongoose,type){
       })
       .get(function() { return this.password; });
 
+      for(var key in info){ // 값이 들어온 만큼...
+        if(key == 'pw') {
+          continue;
+        }
+        if(type == 'modfiy_submit'){
+          member[key] = info[key];
+          member.updated = new Date();
+        }
+      }
       member.save(function(err){
         if(err){
             request.json({result: 0});
