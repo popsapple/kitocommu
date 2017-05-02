@@ -164,23 +164,32 @@ Member.join = function(info,data,request,response,mongoose,type){
 
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
+    }else if(type == 'double_check') {
+      var is_double = "no";
+      id_info = {info['item_kdy']: info['item_val']};
     }else {
       id_info = {nickname: info['nickname']};
     }
 
     data.findOne(id_info, function(err, member){
-      console.log("가져오나??? ::"+member.nickname);
+      //회원가입 및 정보수정시 중복체크
+      if(type == 'double_check') {
+        is_double = "yes";
+        response.send(is_double);
+      }
+
       for(var key in info){ // 값이 들어온 만큼...
         if(member[key] && info[key]){
           member[key] = info[key];
         }
       }
-      if(err){
+      if(err || !(member.nickname)){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
       // 비밀번호 암호화
       member.encryptPassword = function(pw,isHash){
+
         var dump = pw;
         var shasum;
         // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
@@ -255,9 +264,13 @@ module.exports.member = function (app,mongoose) {
     response.render('member/search_info'); // 팝업창 출력
   });
 
+  app.post('/member_double_check)', function(request, response) {
+    Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
+  });
+
   app.post('/search_login_info_submit', function(request, response) {
     Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
-});
+  });
 
   app.get('/mypage/list', function(request, response) {
       Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
