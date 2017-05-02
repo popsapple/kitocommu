@@ -107,13 +107,11 @@ function MemberDB(mongoose,type,request,response){
   .get(function() { return this.password; });
 
   var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
-/*  try {
+  try {
     MemberInfo = mongoose.model('member', Memberschema);
   } catch (error) {
     MemberInfo = mongoose.model('member');
-  }*/
-
-  MemberInfo = mongoose.model('member', Memberschema);
+  }
 
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
@@ -163,7 +161,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
-    var Schema = require('mongoose').model('member').schema;
+    var Schema = require('mongoose').model('member').Schema;
     console.log("시그마를 가져오는건가 ::"+Schema);
 
     if(type == 'modfiy_submit') {
