@@ -165,6 +165,7 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
     }else if(type == 'double_check') {
+      console.log("!!!!!!!!!!!!! :: "+info['item_key']);
       var is_double = "no";
       if(info['item_key'] == 'nickname') {
         id_info = {nickname: info['item_val']}
