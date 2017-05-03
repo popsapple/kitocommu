@@ -153,15 +153,16 @@ Member.join = function(info,data,request,response,mongoose,type){
       updated: { type: Date, default: Date.now }
     }, { collection: 'Memberschema' });
 
+    var save_data = new data(Memberschema);
     // 비밀번호 암호화저장
     // hash 값
-    Memberschema.makingHash = function(){
+    save_data.makingHash = function(){
       var dump = Math.round(new Date().valueOf()*Math.random());
       return dump;
     };
 
     // 비밀번호 암호화
-    Memberschema.encryptPassword = function(pw,isHash){
+    save_data.encryptPassword = function(pw,isHash){
       var dump = pw;
       var shasum;
       // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
@@ -178,14 +179,14 @@ Member.join = function(info,data,request,response,mongoose,type){
     };
 
     // 비밀번호 체크 시 사용
-    Memberschema.checkloginPassword = function(pw_text,pw){
+    save_data.checkloginPassword = function(pw_text,pw){
       var is_true = false;
       var input = this.encryptPassword(pw_text,this.hash);
       input == pw ? is_true = true : is_true = false ;
       return is_true;
     };
 
-    Memberschema.virtual('pw')
+    save_data.virtual('pw')
     .set(function() {
       this._pw = pw;
       this.hash = this.makingHash(); // 사용자정의 메소드 호출
@@ -193,7 +194,6 @@ Member.join = function(info,data,request,response,mongoose,type){
     })
     .get(function() { return this.password; });
 
-    var save_data = new data(Memberschema);
     for(var key in info){ // 값이 들어온 만큼...
       save_data[key] = info[key];
     }
