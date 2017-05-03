@@ -140,11 +140,12 @@ function MemberDB(mongoose,type,request,response){
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose,type){
   if(type == 'join'){
-    var data = new data();
+    var data_list = {};
     for(var key in info){ // 값이 들어온 만큼...
-      data[key] = info[key];
+      data_list[key] = info[key];
     }
 
+    var new_Data = new data(data_list);
     data.writed = new Date();
     data.updated = new Date();
     data.save(function(err){
