@@ -159,23 +159,37 @@ Member.join = function(info,data,request,response,mongoose,type){
       response.render('member/modify_member', member);
     });
   }
-  else if(type == 'modfiy_submit' || type == 'login_info_submit' || type == 'double_check') {
+  else if(type == 'double_check') {
+    var id_info;
+    var is_double = {
+      isdouble: "no"
+    };
+    if(info['item_key'] == 'nickname') {
+      id_info = {nickname: info['item_val']}
+    };
+    if(info['item_key'] == 'id') {
+     id_info = {id: info['item_val']};
+    };
+    data.findOne(id_info, function(err, member){
+      if(err){
+        is_double = {
+          isdouble: "no"
+        };
+      }
+      else{
+        is_double = {
+          isdouble: "yes"
+        };
+      };
+    });
+    response.send(is_double);
+  }
+  else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
 
     if(type == 'modfiy_submit') {
       id_info = {id: request.session.userid};
-    }else if(type == 'double_check') {
-      var is_double = {
-        isdouble: "yes"
-      };
-
-      if(info['item_key'] == 'nickname') {
-        id_info = {nickname: info['item_val']}
-      };
-      if(info['item_key'] == 'id') {
-       id_info = {id: info['item_val']};
-      };
-    }else {
+    }else if(type == 'login_info_submit') {
       id_info = {nickname: info['nickname']};
     }
 
@@ -190,12 +204,6 @@ Member.join = function(info,data,request,response,mongoose,type){
         if(member[key] && info[key]){
           member[key] = info[key];
         }
-      }
-
-      //회원가입 및 정보수정시 중복체크
-      if(type == 'double_check') {
-        response.send(is_double);
-        return false;
       }
 
       // 비밀번호 암호화
