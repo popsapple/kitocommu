@@ -181,11 +181,6 @@ Member.join = function(info,data,request,response,mongoose,type){
 
     data.findOne(id_info, function(err, member){
 
-      for(var key in info){ // 값이 들어온 만큼...
-        if(member[key] && info[key]){
-          member[key] = info[key];
-        }
-      }
       if(err){  // 아무것도 못 찾았을 때
         //회원가입 및 정보수정시 중복체크
         if(type == 'double_check') {
@@ -197,6 +192,12 @@ Member.join = function(info,data,request,response,mongoose,type){
         return false;
       }
 
+      for(var key in info){ // 값이 들어온 만큼...
+        if(member[key] && info[key]){
+          member[key] = info[key];
+        }
+      }
+      
       //회원가입 및 정보수정시 중복체크
       if(type == 'double_check') {
         is_double.isdouble = "yes";
