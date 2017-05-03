@@ -298,6 +298,13 @@ Member.join = function(info,data,request,response,mongoose,type){
         }
       }
 
+      // 비밀번호 암호화저장
+      // hash 값
+      member.makingHash = function(){
+        var dump = Math.round(new Date().valueOf()*Math.random());
+        return dump;
+      };
+
       // 비밀번호 암호화
       member.encryptPassword = function(pw,isHash){
 
