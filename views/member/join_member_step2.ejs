@@ -16,7 +16,7 @@
                 <label for="joinId">아이디</label>
               </h3>
               <input id="joinId" name="id" type="text" value="" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다. 8자 이상)" required />
-              <button id="joinCheckId" data-item="joinId" data-val="false">중복확인하기</button>
+              <button id="joinCheckId" class="dobule_check" data-item="joinId" data-val="false">중복확인하기</button>
             </li>
             <li>
               <h3>
@@ -29,7 +29,7 @@
                 <label for="joinNickname">닉네임</label>
               </h3>
               <input id="joinNickname" name="nickname" type="text" value="" placeholder="닉네임을 입력하세요 (2~20자)" required />
-              <button id="joinCheckNickname" data-item="joinNickname" data-val="false">중복확인하기</button>
+              <button id="joinCheckNickname" class="dobule_check" data-item="joinNickname" data-val="false">중복확인하기</button>
             </li>
             <li>
               <h3>
@@ -101,49 +101,52 @@
     var count = 0;
     var is_true = true;
     for(var key in reg_list){
-      if(!reg_list[key].test($('#'+input_list[count]).val())){
-        //이벤트막고 , 기본동작 중지
-        event.stopPropagation();
-        event.preventDefault();
+      if(key != "reg_double_id" && key != "reg_double_nick") {
+        if(!reg_list[key].test($('#'+input_list[count]).val())){
+          //이벤트막고 , 기본동작 중지
+          event.stopPropagation();
+          event.preventDefault();
 
-        is_true = false;
-        alert(dialog_list[count]);
+          is_true = false;
+          alert(dialog_list[count]);
+        }
       }
-      if($('#'+input_list[count]).attr('data-val') && !reg_list[key].test($('#'+input_list[count]).attr('data-val'))){
-        //이벤트막고 , 기본동작 중지
-        event.stopPropagation();
-        event.preventDefault();
+      else{
+        if(!reg_list[key].test($('#'+input_list[count]).attr('data-val'))){
+          //이벤트막고 , 기본동작 중지
+          event.stopPropagation();
+          event.preventDefault();
 
-        is_true = false;
-        alert(dialog_list[count]);
+          is_true = false;
+          alert(dialog_list[count]);
+        }
       }
       count++;
     };
     return is_true;
   };
   //정규표현식
-
-  $("#joinCheckId").on('click', function(){
+  $(".dobule_check").on('click', function(){
     var obj = $(this);
     $.ajax({
       type: "POST",
       url: "/member_double_check",
       data: JSON.stringify({
-        "item_key" : "id",
+        "item_key" : $("#"+obj.attr('data-item')).attr('name'),
         "item_val" : $("#"+obj.attr('data-item')).val()
       }),
       contentType: "application/json",
       success: function(data) {
         if(data.isdouble != 'no'){
-          alert("입력하신 아이디는 사용하실 수 없습니다.");
+          alert("중복입니다 사용하실 수 없습니다.");
           $("#"+obj.attr('data-val')).val("false");
         }else{
-          alert("입력하신 아이디는 사용하실 수 있습니다.");
+          alert("사용하실 수 있습니다.");
           $("#"+obj.attr('data-val')).val("true");
         }
       },
       error: function(data) {
-        alert("입력하신 아이디는 사용하실 수 있습니다.");
+        alert("사용하실 수 있습니다.");
         $("#"+obj.attr('data-val')).val("true");
       }
     });
