@@ -175,7 +175,6 @@ Member.join = function(info,data,request,response,mongoose,type){
         member_ = member;
         if(err){  // 아무것도 못 찾았을 때
           response.send(is_double);
-          console.log("도대체 왜 이러는거야"+member_.id);
           return false;
         }
         if(member_.id != ''){
@@ -183,6 +182,7 @@ Member.join = function(info,data,request,response,mongoose,type){
             isdouble: "no"
           };
         }
+        console.log("도대체 왜 이러는거야"+member_.id);
         response.send(is_double);
     });
 
