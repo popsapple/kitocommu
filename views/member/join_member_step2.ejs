@@ -102,6 +102,18 @@
     var is_true = true;
     for(var key in reg_list){
       if(!reg_list[key].test($('#'+input_list[count]).val())){
+        //이벤트막고 , 기본동작 중지
+        event.stopPropagation();
+        event.preventDefault();
+
+        is_true = false;
+        alert(dialog_list[count]);
+      }
+      if($('#'+input_list[count]).attr('data-val') && !reg_list[key].test($('#'+input_list[count]).attr('data-val'))){
+        //이벤트막고 , 기본동작 중지
+        event.stopPropagation();
+        event.preventDefault();
+
         is_true = false;
         alert(dialog_list[count]);
       }
@@ -110,7 +122,7 @@
     return is_true;
   };
   //정규표현식
-  
+
   $("#joinCheckId","#joinCheckNickname").on('click', function(){
     var obj = $(this);
     $.ajax({
