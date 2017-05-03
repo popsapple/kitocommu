@@ -41,7 +41,7 @@
             <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
           </form>
         </li>
-        <%if(locals.nickname){%>
+        <%if(locals.nickname && !locals.ispage){%>
           <li>
             <strong>
               <%= locals.nickname %> 님 환영합니다
