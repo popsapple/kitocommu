@@ -105,7 +105,7 @@ function MemberDB(mongoose,type,request,response){
     this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
-  
+
   mongoose.models = {};
   mongoose.modelSchemas = {};
 
@@ -137,13 +137,14 @@ function MemberDB(mongoose,type,request,response){
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose,type){
   if(type == 'join'){
+    var save_data = new data();
     for(var key in info){ // 값이 들어온 만큼...
-      data[key] = info[key];
+      save_data[key] = info[key];
     }
     console.log("여기까지들어왔음");
-    data.writed = new Date();
-    data.updated = new Date();
-    data.save(function(err){
+    save_data.writed = new Date();
+    save_data.updated = new Date();
+    save_data.save(function(err){
       if(err){
           console.error(err);
           request.json({result: 0});
