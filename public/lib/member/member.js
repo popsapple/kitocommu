@@ -134,21 +134,19 @@ function MemberDB(mongoose,type,request,response){
     })
   }
 
-  return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+  return new MemberInfo(); // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose,type){
   if(type == 'join'){
-    var data_list = {};
     for(var key in info){ // 값이 들어온 만큼...
-      data_list[key] = info[key];
+      data[key] = info[key];
     }
 
-    var new_Data = new data(data_list);
-    new_Data.writed = new Date();
-    new_Data.updated = new Date();
-    new_Data.save(function(err){
+    data.writed = new Date();
+    data.updated = new Date();
+    data.save(function(err){
       if(err){
           console.error(err);
           request.json({result: 0});
