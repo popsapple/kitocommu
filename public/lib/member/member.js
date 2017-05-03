@@ -174,17 +174,20 @@ Member.join = function(info,data,request,response,mongoose,type){
     data.findOne(id_info, function(err, member){
         member_ = member;
         if(err){  // 아무것도 못 찾았을 때
+          is_double = {
+            isdouble: "no"
+          };
           response.send(is_double);
           return false;
         }
         if(member_){
           is_double = {
-            isdouble: "no"
+            isdouble: "yes"
           };
         }
         else{
           is_double = {
-            isdouble: "yes"
+            isdouble: "no"
           };
         }
         console.log("도대체 왜 이러는거야"+is_double);
