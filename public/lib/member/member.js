@@ -169,8 +169,6 @@ Member.join = function(info,data,request,response,mongoose,type){
         isdouble: "no"
       };
 
-      is_double = JSON.parse(is_double);
-
       if(info['item_key'] == 'nickname') {
         id_info = {nickname: info['item_val']}
       };
@@ -188,7 +186,7 @@ Member.join = function(info,data,request,response,mongoose,type){
           member[key] = info[key];
         }
       }
-      if(err || !(member.nickname)){
+      if(err){
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
       }
@@ -196,7 +194,6 @@ Member.join = function(info,data,request,response,mongoose,type){
       //회원가입 및 정보수정시 중복체크
       if(type == 'double_check') {
         is_double.isdouble = "yes";
-        var is_double = JSON.parse(is_double);
         response.send(is_double);
         return false;
       }
