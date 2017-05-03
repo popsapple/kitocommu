@@ -173,19 +173,20 @@ Member.join = function(info,data,request,response,mongoose,type){
     };
     data.findOne(id_info, function(err, member){
         member_ = member;
-    });
-    console.log("도대체 왜 이러는거야"+member_.id);
-    if(member_.id != ''){
-      is_double = {
-        isdouble: "no"
-      };
-    }else{
-      is_double = {
-        isdouble: "yes"
-      };
-    }
+        console.log("도대체 왜 이러는거야"+member_.id);
+        if(member_.id != ''){
+          is_double = {
+            isdouble: "no"
+          };
+        }else{
+          is_double = {
+            isdouble: "yes"
+          };
+        }
 
-    response.send(is_double);
+        response.send(is_double);
+    });
+
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;
