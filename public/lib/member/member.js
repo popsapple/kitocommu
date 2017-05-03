@@ -172,10 +172,9 @@ Member.join = function(info,data,request,response,mongoose,type){
      id_info = {id: info['item_val']};
     };
     data.findOne(id_info, function(err, member){
-      if(!err) {
         member_ = member;
-      }
     });
+    console.log("도대체 왜 이러는거야"+member_.id);
     if(member_.id != ''){
       is_double = {
         isdouble: "no"
