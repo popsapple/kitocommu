@@ -177,12 +177,17 @@ Member.join = function(info,data,request,response,mongoose,type){
           response.send(is_double);
           return false;
         }
-        if(member_.id != ''){
+        if(member_.id){
           is_double = {
             isdouble: "no"
           };
         }
-        console.log("도대체 왜 이러는거야"+member_.id);
+        else{
+          is_double = {
+            isdouble: "yes"
+          };
+        }
+        console.log("도대체 왜 이러는거야"+is_double);
         response.send(is_double);
     });
 
