@@ -176,7 +176,7 @@ Member.join = function(info,data,request,response,mongoose,type){
         member_ = member;
       }
     });
-    if(member_ != ''){
+    if(member_.id != ''){
       is_double = {
         isdouble: "no"
       };
