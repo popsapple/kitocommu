@@ -136,7 +136,9 @@ function MemberDB(mongoose,type,request,response){
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,data,request,response,mongoose,type){
+
   if(type == 'join'){
+    var Schema = mongoose.Schema;
     var Memberschema = new Schema({
       id:    String,
       password:  String,
