@@ -161,6 +161,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   }
   else if(type == 'double_check') {
     var id_info;
+    var member_ = '';
     var is_double = {
       isdouble: "no"
     };
@@ -170,8 +171,12 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(info['item_key'] == 'id') {
      id_info = {id: info['item_val']};
     };
-    var query = data.findOne(id_info);
-    if(query.length == 0){
+    data.findOne(id_info, function(err, member){
+      if(!err) {
+        member_ = member;
+      }
+    });
+    if(member_ != ''){
       is_double = {
         isdouble: "no"
       };
