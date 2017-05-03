@@ -146,9 +146,9 @@ Member.join = function(info,data,request,response,mongoose,type){
     }
 
     var new_Data = new data(data_list);
-    data.writed = new Date();
-    data.updated = new Date();
-    data.save(function(err){
+    new_Data.writed = new Date();
+    new_Data.updated = new Date();
+    new_Data.save(function(err){
       if(err){
           console.error(err);
           request.json({result: 0});
