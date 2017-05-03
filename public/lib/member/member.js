@@ -177,7 +177,7 @@ Member.join = function(info,data,request,response,mongoose,type){
           response.send(is_double);
           return false;
         }
-        if(member_.id){
+        if(member_){
           is_double = {
             isdouble: "no"
           };
