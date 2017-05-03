@@ -170,18 +170,17 @@ Member.join = function(info,data,request,response,mongoose,type){
     if(info['item_key'] == 'id') {
      id_info = {id: info['item_val']};
     };
-    data.findOne(id_info, function(err, member){
-      if(err){
-        is_double = {
-          isdouble: "no"
-        };
-        response.send(is_double);
-        return;
-      }
+    var query = data.findOne(id_info);
+    if(query.length == 0){
+      is_double = {
+        isdouble: "no"
+      };
+    }else{
       is_double = {
         isdouble: "yes"
       };
-    });
+    }
+
     response.send(is_double);
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
