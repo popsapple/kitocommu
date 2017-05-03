@@ -105,6 +105,9 @@ function MemberDB(mongoose,type,request,response){
     this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
+  
+  mongoose.models = {};
+  mongoose.modelSchemas = {};
 
   var MemberInfo = mongoose.model('member', Memberschema);
 
