@@ -113,7 +113,8 @@ function MemberDB(mongoose,type,request,response){
     console.log("BBBB");
     MemberInfo = mongoose.model('member');
   }
-
+  MemberInfo = new MemberInfo();
+  
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
