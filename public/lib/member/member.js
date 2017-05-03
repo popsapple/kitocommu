@@ -109,10 +109,8 @@ function MemberDB(mongoose,type,request,response){
   var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
 
   if (mongoose.models.member) {
-    console.log("AAAAA");
     MemberInfo = mongoose.model('member');
   } else {
-    console.log("BBBBB");
     MemberInfo = mongoose.model('member', Memberschema);
   }
 
@@ -136,7 +134,8 @@ function MemberDB(mongoose,type,request,response){
     })
   }
 
-  return MemberInfo; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
+  var MemberInfo_ = new MemberInfo();
+  return MemberInfo_; // Member 안에 들어갈 DB 내용을 정의하고 리턴시킨다.
 }
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
