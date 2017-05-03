@@ -163,7 +163,7 @@ Member.join = function(info,data,request,response,mongoose,type){
     var id_info;
     var member_ = '';
     var is_double = {
-      isdouble: "no"
+      isdouble: "yes"
     };
     if(info['item_key'] == 'nickname') {
       id_info = {nickname: info['item_val']}
@@ -173,17 +173,16 @@ Member.join = function(info,data,request,response,mongoose,type){
     };
     data.findOne(id_info, function(err, member){
         member_ = member;
-        console.log("도대체 왜 이러는거야"+member_.id);
+        if(err){  // 아무것도 못 찾았을 때
+          response.send(is_double);
+          console.log("도대체 왜 이러는거야"+member_.id);
+          return false;
+        }
         if(member_.id != ''){
           is_double = {
             isdouble: "no"
           };
-        }else{
-          is_double = {
-            isdouble: "yes"
-          };
         }
-
         response.send(is_double);
     });
 
