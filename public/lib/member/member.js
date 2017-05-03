@@ -206,7 +206,7 @@ Member.join = function(info,data,request,response,mongoose,type){
           request.json({result: 0});
           return;
       }
-      response.render('member/join_member_step3',data);
+      response.render('member/join_member_step3',save_data);
     });
   }
   else if(type == 'modfiy_list') {
