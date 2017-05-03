@@ -136,15 +136,15 @@
       success: function(data) {
         if(data.isdouble != 'no'){
           alert("중복입니다 사용하실 수 없습니다.");
-          $("#"+obj.attr('data-val')).val("false");
+          obj.attr('data-val','false');
         }else{
           alert("사용하실 수 있습니다.");
-          $("#"+obj.attr('data-val')).val("true");
+          obj.attr('data-val','true');
         }
       },
       error: function(data) {
         alert("사용하실 수 있습니다.");
-        $("#"+obj.attr('data-val')).val("true");
+        obj.attr('data-val','true');
       }
     });
   });
