@@ -186,7 +186,7 @@ Member.join = function(info,data,request,response,mongoose,type){
       return is_true;
     };
 
-    save_data.virtual('pw')
+    Memberschema.virtual('pw')
     .set(function() {
       this._pw = pw;
       this.hash = this.makingHash(); // 사용자정의 메소드 호출
