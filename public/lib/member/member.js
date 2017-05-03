@@ -101,8 +101,8 @@ function MemberDB(mongoose,type,request,response){
   Memberschema.virtual('pw')
   .set(function() {
     this._pw = pw;
-    this.hash = this.makingHash(); // 사용자정의 메소드 호출
-    this.password = this.encryptPassword(pw); // 사용자정의 메소드 호출
+    this.hash = Memberschema.makingHash(); // 사용자정의 메소드 호출
+    this.password = Memberschema.encryptPassword(pw); // 사용자정의 메소드 호출
   })
   .get(function() { return this.password; });
 
