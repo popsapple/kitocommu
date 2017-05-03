@@ -134,10 +134,7 @@
       }),
       contentType: "application/json",
       success: function(data) {
-        if(data.isdouble == 'no'){
-          alert("입력하신 아이디는 사용하실 수 있습니다.");
-          $("#"+obj.attr('data-val')).val("true");
-        }else{
+        if(data.isdouble == 'yes'){
           alert("입력하신 아이디는 사용하실 수 없습니다.");
           $("#"+obj.attr('data-val')).val("false");
         }
@@ -146,9 +143,6 @@
         if(data.isdouble == 'no'){
           alert("입력하신 아이디는 사용하실 수 있습니다.");
           $("#"+obj.attr('data-val')).val("true");
-        }else{
-          alert("입력하신 아이디는 사용하실 수 없습니다.");
-          $("#"+obj.attr('data-val')).val("false");
         }
       }
     });
