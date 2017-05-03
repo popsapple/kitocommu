@@ -182,15 +182,9 @@ Member.join = function(info,data,request,response,mongoose,type){
     data.findOne(id_info, function(err, member){
 
       if(err){  // 아무것도 못 찾았을 때
-        //회원가입 및 정보수정시 중복체크
-        if(type == 'double_check') {
-          is_double.isdouble = "no";
-        }
-        else{
           response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
           return false;
-        }
-      }else {
+      }else { //회원가입 및 정보수정시 중복체크
         is_double.isdouble = "yes";
       }
 
