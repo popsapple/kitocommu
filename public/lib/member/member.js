@@ -106,10 +106,11 @@ function MemberDB(mongoose,type,request,response){
   })
   .get(function() { return this.password; });
 
-  let MemberInfo = mongoose.model('member'); // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
+    console.log("AAAA");
     MemberInfo = mongoose.model('member', Memberschema);
   } catch (error) {
+    console.log("BBBB");
     MemberInfo = mongoose.model('member');
   }
 
