@@ -15,7 +15,7 @@
               <h3>
                 <label for="joinId">아이디</label>
               </h3>
-              <input id="joinId" name="id" type="text" value="<%= id %>" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다. 8자 이상)" required />
+              <input id="joinId" name="id" type="text" value="<%= id %>" readonly required />
             </li>
             <li>
               <h3>
@@ -28,6 +28,7 @@
                 <label for="joinNickname">닉네임</label>
               </h3>
               <input id="joinNickname" name="nickname" type="text" value="<%= nickname %>" placeholder="닉네임을 입력하세요 (2~20자)" required />
+              <button id="joinCheckNickname" data-item="joinNickname" data-val="false">중복확인하기</button>
             </li>
             <li>
               <h3>
@@ -76,14 +77,15 @@
   </div>
   <script>
   function CheckFormInput(){
-    var input_list = ['joinId','joinNickname','joinPassword','joinEmail','joinTel','joinHeight','joinWeight'];
+    var input_list = ['joinId','joinNickname','joinPassword','joinEmail','joinTel','joinHeight','joinWeight','joinCheckNickname'];
     var dialog_list = ['아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요',
     '닉네임은 8자 이상 영문소문자, 숫자, 특수문자',
     '비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요',
     '이메일은 형식에 맞게 입력해주세요',
     '전화번호는 형식에 맞게 입력해주세요',
     '키는 숫자만 입력 가능합니다',
-    '몸무게는 숫자만 입력 가능합니다'];
+    '몸무게는 숫자만 입력 가능합니다',
+    '닉네임 중복체크를 진행해주세요'];
     var reg_list = new Object;
     reg_list.reg_uid = /^[a-z0-9_]{8,}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
     reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
@@ -92,6 +94,7 @@
     reg_list.reg_phone = /^\d{2,3}\d{3,4}\d{4}$/; // 전화번호 정규표현식
     reg_list.reg_height = /^[0-9]*$/; //키 정규식
     reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
+    reg_list.reg_double_nick= /^[true]$/; //닉네임 중복체크
     var count = 0;
     var is_true = true;
     for(var key in reg_list){
@@ -100,7 +103,7 @@
         //이벤트막고 , 기본동작 중지
         event.stopPropagation();
         event.preventDefault();
-        
+
         is_true = false;
         alert(dialog_list[count]);
       }
@@ -109,7 +112,30 @@
     return is_true;
   };
   //정규표현식
-
+  $("#joinCheckId","#joinCheckNickname").on('click', function(){
+    var obj = $(this);
+    $.ajax({
+      type: "POST",
+      url: "/member_double_check",
+      data: JSON.stringify({
+        "item_key" : "id",
+        "item_val" : $("#"+obj.attr('data-item')).val()
+      }),
+      contentType: "application/json",
+      success: function(data) {
+        if(data.isdouble == 'no'){
+          alert("입력하신 아이디는 사용하실 수 있습니다.");
+          $("#"+obj.attr('data-val')).val("true");
+        }else{
+          alert("입력하신 아이디는 사용하실 수 없습니다.");
+          $("#"+obj.attr('data-val')).val("false");
+        }
+      },
+      error: function(data) {
+          console.log("Error!"+data);
+      }
+    });
+  });
   </script>
 <% include ../partials/footer.ejs %>
 </body>
