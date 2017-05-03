@@ -193,7 +193,7 @@ Member.join = function(info,data,request,response,mongoose,type){
         console.log("도대체 왜 이러는거야"+is_double);
         response.send(is_double);
     });
-
+    return false;
   }
   else if(type == 'modfiy_submit' || type == 'login_info_submit') {
     var id_info;

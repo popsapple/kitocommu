@@ -16,7 +16,7 @@
                 <label for="joinId">아이디</label>
               </h3>
               <input id="joinId" name="id" type="text" value="" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다. 8자 이상)" required />
-              <button id="joinCheckId" class="dobule_check" data-item="joinId" data-val="false">중복확인하기</button>
+              <input type="button" id="joinCheckId" class="dobule_check" data-item="joinId" value="false">중복확인하기</button>
             </li>
             <li>
               <h3>
@@ -29,7 +29,7 @@
                 <label for="joinNickname">닉네임</label>
               </h3>
               <input id="joinNickname" name="nickname" type="text" value="" placeholder="닉네임을 입력하세요 (2~20자)" required />
-              <button id="joinCheckNickname" class="dobule_check" data-item="joinNickname" data-val="false">중복확인하기</button>
+              <input type="button" id="joinCheckNickname" class="dobule_check" data-item="joinNickname" value="false">중복확인하기</button>
             </li>
             <li>
               <h3>
@@ -139,15 +139,15 @@
       success: function(data) {
         if(data.isdouble != 'no'){
           alert("중복입니다 사용하실 수 없습니다.");
-          obj.attr('data-val','false');
+          obj.val('false');
         }else{
           alert("사용하실 수 있습니다.");
-          obj.attr('data-val','true');
+          obj.val('true');
         }
       },
       error: function(data) {
         alert("사용하실 수 있습니다.");
-        obj.attr('data-val','true');
+        obj.val('true');
       }
     });
   });
