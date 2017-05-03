@@ -107,10 +107,13 @@ function MemberDB(mongoose,type,request,response){
   .get(function() { return this.password; });
 
   var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
-  try {
-    MemberInfo = mongoose.model('member', Memberschema);
-  } catch (error) {
+
+  if (mongoose.models.member) {
+    console.log("AAAAA");
     MemberInfo = mongoose.model('member');
+  } else {
+    console.log("BBBBB");
+    MemberInfo = mongoose.model('member', Memberschema);
   }
 
   if (type == 'login'){ // 로그인할때
