@@ -134,7 +134,7 @@
       }),
       contentType: "application/json",
       success: function(data) {
-        if(data.isdouble != 'yes'){
+        if(data.isdouble != 'no'){
           alert("입력하신 아이디는 사용하실 수 없습니다.");
           $("#"+obj.attr('data-val')).val("false");
         }else{
