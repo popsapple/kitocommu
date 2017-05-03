@@ -106,15 +106,13 @@ function MemberDB(mongoose,type,request,response){
   })
   .get(function() { return this.password; });
 
+  var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
   try {
-    console.log("AAAA");
     MemberInfo = mongoose.model('member', Memberschema);
   } catch (error) {
-    console.log("BBBB");
     MemberInfo = mongoose.model('member');
   }
-  MemberInfo = new MemberInfo();
-  
+
   if (type == 'login'){ // 로그인할때
     MemberInfo.findOne({id: request_list.id}, function(err, member){
         if(err) return response.status(500).json({error: err});
