@@ -109,9 +109,9 @@ function MemberDB(mongoose,type,request,response){
   var MemberInfo; // 몽구스를 기존에 정의도니 schmea 가 있을 경우 overwrtie가 안 되기 때문에 에러처리가 필요하다
 
   if (mongoose.models.member) {
-    MemberInfo = mongoose.model('member');
+    MemberInfo = module.exports = mongoose.model('member');
   } else {
-    MemberInfo = mongoose.model('member', Memberschema);
+    MemberInfo = module.exports = mongoose.model('member', Memberschema);
   }
 
   if (type == 'login'){ // 로그인할때
