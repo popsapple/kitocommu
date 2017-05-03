@@ -185,11 +185,13 @@ Member.join = function(info,data,request,response,mongoose,type){
         //회원가입 및 정보수정시 중복체크
         if(type == 'double_check') {
           is_double.isdouble = "no";
-          response.send(is_double);
+        }
+        else{
+          response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
           return false;
         }
-        response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
-        return false;
+      }else {
+        is_double.isdouble = "yes";
       }
 
       for(var key in info){ // 값이 들어온 만큼...
@@ -197,10 +199,9 @@ Member.join = function(info,data,request,response,mongoose,type){
           member[key] = info[key];
         }
       }
-      
+
       //회원가입 및 정보수정시 중복체크
       if(type == 'double_check') {
-        is_double.isdouble = "yes";
         response.send(is_double);
         return false;
       }
