@@ -1,5 +1,5 @@
 function SettingSessionItem(app) { // 로그인 세션구현
-  app.get('*', function(request, response,next) {
+  app.get('/', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;
     else response.locals.nickname = undefined;
     if(request.session.userid) response.locals.userid = request.session.userid;
@@ -117,6 +117,31 @@ function MemberDB(mongoose,type,request,response){
         if(!member){
           response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
         }
+        // 비밀번호 암호화
+        member.encryptPassword = function(pw,isHash){
+
+          var dump = pw;
+          var shasum;
+          // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
+          // 임의의 값을 넣어두는 것
+          if(!isHash) {
+            shasum = crypto.createHash('sha256',this.hash);
+          }else {
+            shasum = crypto.createHash('sha256',isHash);
+          }
+          shasum.update(dump);
+          var output = shasum.digest('hex');
+
+          return output;
+        };
+
+        // 비밀번호 체크 시 사용
+        member.checkloginPassword = function(pw_text,pw){
+          var is_true = false;
+          var input = this.encryptPassword(pw_text,this.hash);
+          input == pw ? is_true = true : is_true = false ;
+          return is_true;
+        };
         //console.log("조회한 아이디 값에 맞는 회원의 정보 :: "+member);
         var passord_true = member.checkloginPassword(request_list.pw,member.password);
         // 로그인 되면 세션 생성
