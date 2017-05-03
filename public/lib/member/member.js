@@ -162,7 +162,7 @@ Member.join = function(info,data,request,response,mongoose,type){
   else if(type == 'double_check') {
     var id_info;
     var is_double = {
-      isdouble: "yes"
+      isdouble: "no"
     };
     if(info['item_key'] == 'nickname') {
       id_info = {nickname: info['item_val']}
@@ -178,6 +178,9 @@ Member.join = function(info,data,request,response,mongoose,type){
         response.send(is_double);
         return;
       }
+      is_double = {
+        isdouble: "yes"
+      };
     });
     response.send(is_double);
   }
