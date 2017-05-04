@@ -36,7 +36,7 @@ Member.join = function(info,request,response,mongoose,type){
   });
 }
 
-Member.login = function(info,request,response,mongoose,type){
+Member.login = function(request,response,mongoose){
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
   //save_data = new save_data(save_data.schema);
@@ -84,11 +84,11 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.get('/login_form', function(request, response) {
-      response.render('member/login'); // 그냥 로그인 폼 출력
+    response.render('member/login'); // 그냥 로그인 폼 출력
   });
 
   app.post('/login', function(request, response) {
-//      Member.login(request,response,mongoose);
+     Member.login(request,response,mongoose);
   });
 
   app.get('/search_login_info', function(request, response) {
