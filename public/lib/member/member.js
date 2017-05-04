@@ -111,7 +111,7 @@ Member.modfiy_list = function(info,request,response,mongoose){
   });
 }
 
-Member.modfiy_submit = function(info,request,response,mongoose,type){
+Member.search_login_info = function(info,request,response,mongoose,type){
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
   save_data = new save_data(save_data.schema);
@@ -181,7 +181,7 @@ module.exports.member = function (app,mongoose) {
 
   app.post('/search_login_info_submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
-//    Member.login_info_submit(request.body,request,response,mongoose);
+  Member.search_login_info(request.body,request,response,mongoose);
   });
 
   app.get('/mypage/list', function(request, response) {
@@ -191,7 +191,7 @@ module.exports.member = function (app,mongoose) {
 
   app.post('/mypage/submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-  Member.modfiy_submit(request.body,request,response,mongoose);
+  //Member.modfiy_submit(request.body,request,response,mongoose);
   });
 
   app.get('/logout', function(request, response) {
