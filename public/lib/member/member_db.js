@@ -36,7 +36,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     // 비밀번호 체크 시 사용
     obj.checkloginPassword = function(pw_text,pw){
       var is_true = false;
-      var input = this.encryptPassword(pw_text,this.hash);
+      var input = obj.encryptPassword(pw_text,obj.hash);
       input == pw ? is_true = true : is_true = false ;
       return is_true;
     };
