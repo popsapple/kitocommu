@@ -14,13 +14,15 @@ Member.join = function(info,request,response,mongoose,type){
   save_data = global.MEMBER_DB.model;
   save_data = new save_data(save_data.schema);
   var save_data_test = global.MEMBER_DB.model_test;
-  // 디비를 갖고 온 후에 사용할 메서드
-  var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
-  save_data.settingPassword();
 
   for(var key in info){ // 값이 들어온 만큼...
     save_data[key] = info[key];
   }
+  
+  // 디비를 갖고 온 후에 사용할 메서드
+  var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
+  save_data.settingPassword();
+
   console.log("Step01");
   console.log("Step01 ::"+save_data_test);
   save_data.writed = new Date();
