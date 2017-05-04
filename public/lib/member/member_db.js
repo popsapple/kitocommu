@@ -29,7 +29,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       }
       shasum.update(dump);
       var output = shasum.digest('hex');
-
+      console.log("아웃풋은 되는건가 ::"+output);
       return output;
     };
 
@@ -52,6 +52,8 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
         obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
       })
       .get(function() { return this.password; });
+
+      console.log("리턴 자체가 안된건가 ::"+obj.password);
     }
   },
   MemberDbSetting  : function (mongoose,request,response){
