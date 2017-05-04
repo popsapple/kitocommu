@@ -1,4 +1,4 @@
-module.exports = {
+exports = module.exports = function () {
   MemberMethod(obj,mongoose,request,response){
     var request_list;
     if (request.query.id){
