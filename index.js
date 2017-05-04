@@ -38,7 +38,7 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
-require('./public/lib/member/member.js').member(app,mongoose);
+require('./public/lib/member/member_.js').member(app,mongoose);
 
 
 app.get('/robots.txt', function (req, res) {
