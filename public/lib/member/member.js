@@ -18,13 +18,13 @@ Member.join = function(info,request,response,mongoose,type){
   for(var key in info){ // 값이 들어온 만큼...
     save_data[key] = info[key];
   }
-  
+
   // 디비를 갖고 온 후에 사용할 메서드
   var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
   save_data.settingPassword();
 
   console.log("Step01");
-  console.log("Step01 ::"+save_data_test);
+  console.log("Step01 ::"+save_data.password);
   save_data.writed = new Date();
   save_data.updated = new Date();
   save_data.save(function(err){

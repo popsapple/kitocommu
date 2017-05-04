@@ -47,9 +47,9 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     obj.settingPassword = function(){
       Schmea_.virtual('pw')
       .set(function() {
-        this._pw = pw;
-        this.hash = obj.makingHash(); // 사용자정의 메소드 호출
-        this.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
+        obj._pw = pw;
+        obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
+        obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
       })
       .get(function() { return this.password; });
     }
@@ -66,7 +66,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       hash:  String,
       nickname:  String,
       email:  String,
-      tel:  Number,
+      tel:  String,
       sex:  String,
       height:  Number,
       weight:  Number,
