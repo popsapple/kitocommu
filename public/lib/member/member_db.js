@@ -1,4 +1,4 @@
-var member_db = { MemberMethod : function (obj,mongoose,request,response){
+exports = module.exports = { MemberMethod : function (obj,mongoose,request,response){
     var request_list;
     if (request.query.id){
       request_list = request.query;

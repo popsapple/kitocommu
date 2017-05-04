@@ -40,8 +40,6 @@ require('./public/lib/food/food_search.js').food_search(app);
 // 회원관련
 require('./public/lib/member/member.js').member(app,mongoose);
 
-const MEMBER_DB = require('./public/lib/member/member_db.js');
-
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
