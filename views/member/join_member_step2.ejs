@@ -96,8 +96,8 @@
     reg_list.reg_phone = /^\d{2,3}\d{3,4}\d{4}$/; // 전화번호 정규표현식
     reg_list.reg_height = /^[0-9]*$/; //키 정규식
     reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
-    reg_list.reg_double_id= /[yes]/; //아이디 중복체크
-    reg_list.reg_double_nick= /[yes]/; //닉네임 중복체크
+    reg_list.reg_double_id= /(yes)/; //아이디 중복체크
+    reg_list.reg_double_nick= /(yes)/; //닉네임 중복체크
     var count = 0;
     var is_true = true;
     for(var key in reg_list){
