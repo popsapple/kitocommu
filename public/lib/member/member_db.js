@@ -1,4 +1,4 @@
-var member_db = MemberMethod(obj,mongoose,request,response){
+var member_db = { MemberMethod : function (obj,mongoose,request,response){
     var request_list;
     if (request.query.id){
       request_list = request.query;
@@ -53,7 +53,7 @@ var member_db = MemberMethod(obj,mongoose,request,response){
     }
     exports.obj = obj;
   },
-  MemberDbSetting (mongoose,request,response){
+  MemberDbSetting  : function (mongoose,request,response){
     var obj = this;
     var Schema = mongoose.Schema;
 
@@ -81,3 +81,4 @@ var member_db = MemberMethod(obj,mongoose,request,response){
 
     exports.MEMBER_MODEL_OBJ = MEMBER_MODEL_OBJ;
   }
+}
