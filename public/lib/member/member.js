@@ -1,5 +1,3 @@
-const MEMBER_DB = require('/public/lib/member/member_db.js').member_db();
-
 function SettingSessionItem(app) { // 로그인 세션구현
   app.get('/', function(request, response,next) {
     if(request.session.nickname) response.locals.nickname = request.session.nickname;

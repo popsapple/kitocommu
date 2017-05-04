@@ -24,7 +24,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // DB 연결
-var mongoose    = require('mongoose');
+var mongoose = require('mongoose');
 
 var db = mongoose.connection;
 db.on('error', console.error);
@@ -38,8 +38,9 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
-require('./public/lib/member/member_.js').member(app,mongoose);
+require('./public/lib/member/member.js').member(app,mongoose);
 
+const MEMBER_DB = require('./public/lib/member/member_db.js').member_db();
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
