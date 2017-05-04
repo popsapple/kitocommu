@@ -41,9 +41,11 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       return is_true;
     };
     console.log("Step05");
+    // 스키마 가져오기
+    var Schmea_ = require('mongoose').model('member').schema;
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
-      obj.schema.virtual('pw')
+      Schmea_.virtual('pw')
       .set(function() {
         this._pw = pw;
         this.hash = obj.makingHash(); // 사용자정의 메소드 호출
