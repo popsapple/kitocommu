@@ -43,7 +43,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     console.log("Step05");
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
-      Memberschema.virtual('pw')
+      obj.schema.virtual('pw')
       .set(function() {
         this._pw = pw;
         this.hash = obj.makingHash(); // 사용자정의 메소드 호출
