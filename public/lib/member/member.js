@@ -60,7 +60,7 @@ Member.login = function(request,response,mongoose){
   });
 }
 
-Member.double_check = function(request,response,mongoose){
+Member.double_check = function(info,request,response,mongoose){
   var id_info;
   var member_ = '';
   var is_double = {
