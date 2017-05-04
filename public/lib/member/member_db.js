@@ -1,5 +1,15 @@
 exports = {
-  MemberMethod(obj){
+  MemberMethod(obj,mongoose,request,response){
+    var request_list;
+    if (request.query.id){
+      request_list = request.query;
+    }else {
+      request_list = request.body;
+    }
+
+    var pw = request_list.pw;
+    var crypto = global.crypto;
+    console.log("step04");
     // 비밀번호 암호화저장
     // hash 값
     obj.makingHash = function(){
@@ -31,7 +41,7 @@ exports = {
       input == pw ? is_true = true : is_true = false ;
       return is_true;
     };
-    console.log("Step04");
+    console.log("Step05");
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
       Memberschema.virtual('pw')
@@ -42,21 +52,15 @@ exports = {
       })
       .get(function() { return this.password; });
     }
+
+    return obj;
   },
   MemberDbSetting (mongoose,request,response){
     var obj = this;
     var Schema = mongoose.Schema;
-    var request_list;
-    if (request.query.id){
-      request_list = request.query;
-    }else {
-      request_list = request.body;
-    }
+
     console.log("Step02");
 
-    var pw = request_list.pw;
-
-    var crypto = global.crypto;
     var Memberschema = new Schema({
       id:    String,
       password:  String,
