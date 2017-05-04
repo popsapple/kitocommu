@@ -112,18 +112,19 @@ Member.modfiy_list = function(info,request,response,mongoose){
 }
 
 Member.search_login_info = function(info,request,response,mongoose,type){
+  console.log("STEP01");
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
   save_data = new save_data(save_data.schema);
 
   var id_info = {nickname: info['nickname']};
-
+  console.log("STEP02");
   save_data.findOne(id_info, function(err, member){
     if(err){  // 아무것도 못 찾았을 때
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
     }
-
+    console.log("STEP03");
     for(var key in info){ // 값이 들어온 만큼...
       if(member[key] && info[key]){
         member[key] = info[key];
@@ -136,10 +137,12 @@ Member.search_login_info = function(info,request,response,mongoose,type){
     member.updated = new Date();
     member.save(function(err){
       if(err){
-          console.error(err);
-          request.json({result: 0});
-          return;
+        console.log("STEP04");
+        console.error(err);
+        request.json({result: 0});
+        return;
       }
+      console.log("STEP05");
       response.send("ok");
     });
   });
