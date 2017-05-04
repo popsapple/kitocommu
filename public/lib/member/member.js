@@ -111,6 +111,41 @@ Member.modfiy_list = function(info,request,response,mongoose){
   });
 }
 
+Member.modfiy_submit = function(info,request,response,mongoose,type){
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  save_data = global.MEMBER_DB.model;
+  save_data = new save_data(save_data.schema);
+
+  var id_info = {nickname: info['nickname']};
+
+  save_data.findOne(id_info, function(err, member){
+    if(err){  // 아무것도 못 찾았을 때
+        response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
+        return false;
+    }
+
+    for(var key in info){ // 값이 들어온 만큼...
+      if(member[key] && info[key]){
+        member[key] = info[key];
+      }
+    }
+    var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
+    // 디비를 갖고 온 후에 사용할 메서드
+    member.settingPassword();
+    member.writed = new Date();
+    member.updated = new Date();
+    member.save(function(err){
+      if(err){
+          console.error(err);
+          request.json({result: 0});
+          return;
+      }
+      member.ispage = "join_result";
+      response.send("<script>alert('"+member.nickname+"님 정상적으로 정보변경 되었습니다. 정보수정에서 비밀번호를 꼭 변경해주세요');</script>");
+    });
+  });
+}
+
 module.exports.member = function (app,mongoose) {
 
   global.MEMBER_DB = require('./member_db.js');
@@ -157,7 +192,7 @@ module.exports.member = function (app,mongoose) {
 
   app.post('/mypage/submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-//    Member.modfiy_submit(request.body,request,response,mongoose);
+  Member.modfiy_submit(request.body,request,response,mongoose);
   });
 
   app.get('/logout', function(request, response) {
