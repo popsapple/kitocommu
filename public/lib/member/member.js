@@ -41,7 +41,8 @@ Member.login = function(request,response,mongoose){
 
 module.exports.member = function (app,mongoose) {
 
-  global const MEMBER_DB = require('./public/lib/member/member_db.js');
+  const MEMBER_DB = require('./public/lib/member/member_db.js');
+  global MEMBER_DB;
 
   //처음에 세션변수(?) 정의
   SettingSessionItem(app);
