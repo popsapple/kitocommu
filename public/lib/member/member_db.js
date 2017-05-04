@@ -1,5 +1,4 @@
-module.exports.member_db = function() {
-  MemberMethod(obj,mongoose,request,response){
+var member_db = MemberMethod(obj,mongoose,request,response){
     var request_list;
     if (request.query.id){
       request_list = request.query;
@@ -82,4 +81,3 @@ module.exports.member_db = function() {
 
     exports.MEMBER_MODEL_OBJ = MEMBER_MODEL_OBJ;
   }
-}
