@@ -140,8 +140,7 @@ Member.modfiy_submit = function(info,request,response,mongoose,type){
           request.json({result: 0});
           return;
       }
-      member.ispage = "join_result";
-      response.send("<script>alert('"+member.nickname+"님 정상적으로 정보변경 되었습니다. 정보수정에서 비밀번호를 꼭 변경해주세요');</script>");
+      response.send("ok");
     });
   });
 }
