@@ -12,6 +12,7 @@ Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,request,response,mongoose,type){
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
+  save_data = new save_data(save_data.schema);
   var save_data_test = global.MEMBER_DB.model_test;
   // 디비를 갖고 온 후에 사용할 메서드
   var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
