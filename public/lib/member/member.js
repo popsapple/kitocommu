@@ -77,19 +77,16 @@ Member.double_check = function(info,request,response,mongoose){
   save_data = global.MEMBER_DB.model;
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
-  console.log("STEP01");
   save_data.findOne(id_info, function(err, member){
     member_ = member;
     if(err){  // 아무것도 못 찾았을 때
       is_double = {
         isdouble: "no"
       };
-      console.log("STEP02");
       response.send(is_double);
       return false;
     }
     if(member_){
-      console.log("STEP03");
       is_double = {
         isdouble: "yes"
       };
@@ -101,6 +98,24 @@ Member.double_check = function(info,request,response,mongoose){
       };
     }
     response.send(is_double);
+  });
+}
+
+Member.modfiy_list = function(info,request,response,mongoose){
+  var id_info;
+  if(info['item_key'] == 'nickname') {
+    id_info = {nickname: info['item_val']}
+  };
+  if(info['item_key'] == 'id') {
+   id_info = {id: info['item_val']};
+  };
+
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  save_data = global.MEMBER_DB.model;
+  //save_data = new save_data(save_data.schema);
+  // 디비를 갖고 온 후에 사용할 메서드
+  save_data.findOne(id_info, function(err, member){
+    response.render('member/modify_member', member);
   });
 }
 
@@ -145,7 +160,7 @@ module.exports.member = function (app,mongoose) {
 
   app.get('/mypage/list', function(request, response) {
   //  Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
-//    Member.modfiy_list(request.query,request,response,mongoose);
+  Member.modfiy_list(request.query,request,response,mongoose);
   });
 
   app.post('/mypage/submit', function(request, response) {
