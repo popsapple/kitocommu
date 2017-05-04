@@ -115,8 +115,6 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   console.log("STEP01");
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
-  save_data = new save_data(save_data.schema);
-
   var id_info = {nickname: info['nickname']};
   console.log("STEP02");
   save_data.findOne(id_info, function(err, member){
