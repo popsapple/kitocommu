@@ -111,6 +111,28 @@ Member.modfiy_list = function(info,request,response,mongoose){
   });
 }
 
+Member.modfiy_submit = function(info,request,response,mongoose,type){
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  save_data = global.MEMBER_DB.model;
+
+  save_data.findOne({id: request.session.userid}, function(err, member){
+    for(var key in info){ // 값이 들어온 만큼...
+      member[key] = info[key];
+    }
+    // 디비를 갖고 온 후에 사용할 메서드
+    var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
+    member.settingPassword();
+    member.updated = new Date();
+    member.save(function(err){
+      if(err){
+          request.json({result: 0});
+          return;
+      }
+      response.send("<script>alert('"+member.nickname+"님 정상적으로 정보변경 되었습니다');location.href='/';</script>");
+    });
+  });
+}
+
 Member.search_login_info = function(info,request,response,mongoose,type){
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
@@ -187,7 +209,7 @@ module.exports.member = function (app,mongoose) {
 
   app.post('/mypage/submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-  //Member.modfiy_submit(request.body,request,response,mongoose);
+  Member.modfiy_submit(request.body,request,response,mongoose);
   });
 
   app.get('/logout', function(request, response) {
