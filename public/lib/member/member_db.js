@@ -68,6 +68,6 @@ console.log("Step03");
 
   mongoose.models = {};
   mongoose.modelSchemas = {};
-console.log("Step04");
-  obj.model = mongoose.model('member', Memberschema);
+  console.log("Step04");
+  module.exports = mongoose.model('member', Memberschema);
 }

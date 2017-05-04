@@ -13,7 +13,6 @@ function SettingSessionItem(app) { // 로그인 세션구현
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,request,response,mongoose,type){
   var save_data = new MEMBER_DB(mongoose,request,response);
-  save_data = save_data.model;
   for(var key in info){ // 값이 들어온 만큼...
     save_data[key] = info[key];
   }
