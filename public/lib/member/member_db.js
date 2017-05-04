@@ -23,7 +23,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       // Hash가 아닌 Salt 인데... 이걸 치는 이유는 특정한 패턴의 비밀번호를 입력했을 때 해킹당하지 않게끔
       // 임의의 값을 넣어두는 것
       if(!isHash) {
-        shasum = crypto.createHash('sha256',this.hash);
+        shasum = crypto.createHash('sha256',obj.hash);
       }else {
         shasum = crypto.createHash('sha256',isHash);
       }
@@ -47,11 +47,11 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     obj.settingPassword = function(){
       Schmea_.virtual('pw')
       .set(function() {
-        this._pw = pw;
-        this.hash = obj.makingHash(); // 사용자정의 메소드 호출
-        this.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
+        obj._pw = pw;
+        obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
+        obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
       })
-      .get(function() { return this.password; });
+      .get(function() { return obj.password; });
     }
   },
   MemberDbSetting  : function (mongoose,request,response){
