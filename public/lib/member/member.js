@@ -1,4 +1,4 @@
-const MEMBER_DB = require('./public/lib/member/member_db');
+const MEMBER_DB = require('./public/lib/member/member_db.js');
 
 function SettingSessionItem(app) { // 로그인 세션구현
   app.get('/', function(request, response,next) {
