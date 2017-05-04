@@ -62,6 +62,7 @@ Member.login = function(request,response,mongoose){
 
 Member.double_check = function(request,response,mongoose){
   var id_info;
+  var member_ = '';
   var is_double = {
     isdouble: "yes"
   };
@@ -76,20 +77,25 @@ Member.double_check = function(request,response,mongoose){
   save_data = global.MEMBER_DB.model;
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
+  console.log("STEP01");
   save_data.findOne(id_info, function(err, member){
+    member_ = member;
     if(err){  // 아무것도 못 찾았을 때
       is_double = {
         isdouble: "no"
       };
+      console.log("STEP02");
       response.send(is_double);
       return false;
     }
-    if(member){
+    if(member_){
+      console.log("STEP03");
       is_double = {
         isdouble: "yes"
       };
     }
     else{
+      console.log("STEP04");
       is_double = {
         isdouble: "no"
       };
