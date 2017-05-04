@@ -1,4 +1,4 @@
-exports = {
+exports = module.exports = {
   MemberMethod(obj,mongoose,request,response){
     var request_list;
     if (request.query.id){
@@ -52,8 +52,7 @@ exports = {
       })
       .get(function() { return this.password; });
     }
-
-    return obj;
+    exports.obj = obj;
   },
   MemberDbSetting (mongoose,request,response){
     var obj = this;
@@ -79,8 +78,8 @@ exports = {
     mongoose.modelSchemas = {};
     console.log("Step03");
 
-    const MODEL_OBJ = mongoose.model('member', Memberschema);
+    const MEMBER_MODEL_OBJ = mongoose.model('member', Memberschema);
 
-    return MODEL_OBJ;
+    exports.MEMBER_MODEL_OBJ = MEMBER_MODEL_OBJ;
   }
 }
