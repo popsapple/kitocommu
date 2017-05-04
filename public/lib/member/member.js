@@ -50,7 +50,7 @@ Member.login = function(request,response,mongoose){
     }
 
     var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
-    var passord_true = member.checkloginPassword();
+    var passord_true = member.checkloginPassword(request_list.pw,member.password);
 
     // 로그인 되면 세션 생성
     if(passord_true) {
