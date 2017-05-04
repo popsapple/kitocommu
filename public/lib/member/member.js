@@ -10,7 +10,7 @@ function SettingSessionItem(app) { // 로그인 세션구현
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,request,response,mongoose,type){
-  var save_data_ = new MEMBER_DB();
+  var save_data_ = new global.MEMBER_DB();
   save_data_.MemberDbSetting(mongoose,request,response);
   var save_data = save_data_.MEMBER_MODEL_OBJ;
   // 디비를 갖고 온 후에 사용할 메서드
@@ -61,31 +61,31 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.post('/login', function(request, response) {
-      Member.login(request,response,mongoose);
+//      Member.login(request,response,mongoose);
   });
 
   app.get('/search_login_info', function(request, response) {
-    response.render('member/search_info'); // 팝업창 출력
+    //response.render('member/search_info'); // 팝업창 출력
   });
 
   app.post('/member_double_check', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
-    Member.double_check(request.body,request,response,mongoose);
+  //  Member.double_check(request.body,request,response,mongoose);
   });
 
   app.post('/search_login_info_submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
-    Member.login_info_submit(request.body,request,response,mongoose);
+//    Member.login_info_submit(request.body,request,response,mongoose);
   });
 
   app.get('/mypage/list', function(request, response) {
   //  Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
-    Member.modfiy_list(request.query,request,response,mongoose);
+//    Member.modfiy_list(request.query,request,response,mongoose);
   });
 
   app.post('/mypage/submit', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-    Member.modfiy_submit(request.body,request,response,mongoose);
+//    Member.modfiy_submit(request.body,request,response,mongoose);
   });
 
   app.get('/logout', function(request, response) {
