@@ -102,19 +102,11 @@ Member.double_check = function(info,request,response,mongoose){
 }
 
 Member.modfiy_list = function(info,request,response,mongoose){
-  var id_info;
-  if(info['item_key'] == 'nickname') {
-    id_info = {nickname: info['item_val']}
-  };
-  if(info['item_key'] == 'id') {
-   id_info = {id: info['item_val']};
-  };
-
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
-  save_data.findOne(id_info, function(err, member){
+  save_data.findOne({id: request.session.userid}, function(err, member){
     response.render('member/modify_member', member);
   });
 }
