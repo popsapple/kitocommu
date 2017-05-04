@@ -51,10 +51,10 @@ Member.login = function(request,response,mongoose){
 
     var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
     var passord_true = member.checkloginPassword(request.body.pw,member.password);
-
+console.log("LOGIN 03 ::"+passord_true+" ddd");
     // 로그인 되면 세션 생성
     if(passord_true) {
-      console.log("LOGIN 03");
+
       request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
       request.session.nickname = member.nickname;
       response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
