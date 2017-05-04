@@ -29,7 +29,6 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       }
       shasum.update(dump);
       var output = shasum.digest('hex');
-      console.log("아웃풋은 되는건가 ::"+output);
       return output;
     };
 
@@ -45,14 +44,8 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     var Schmea_ = require('mongoose').model('member').schema;
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
-      Schmea_.virtual('pw')
-      .set(function() {
-        obj._pw = pw;
-        obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
-        obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
-      })
-      .get(function() { return this.password; });
-
+      obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
+      obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
       console.log("리턴 자체가 안된건가 ::"+obj.password);
     }
   },
