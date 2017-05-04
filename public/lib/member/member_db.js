@@ -51,7 +51,6 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       })
       .get(function() { return this.password; });
     }
-    exports.obj = obj;
   },
   MemberDbSetting  : function (mongoose,request,response){
     var obj = this;
@@ -77,8 +76,6 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     mongoose.modelSchemas = {};
     console.log("Step03");
 
-    const MEMBER_MODEL_OBJ = mongoose.model('member', Memberschema);
-
-    exports.MEMBER_MODEL_OBJ = MEMBER_MODEL_OBJ;
+    mongoose.model('member', Memberschema);
   }
 }

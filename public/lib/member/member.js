@@ -10,13 +10,10 @@ function SettingSessionItem(app) { // 로그인 세션구현
 
 Member =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Member.join = function(info,request,response,mongoose,type){
-  var save_data_ = global.MEMBER_DB;
-  save_data_.MemberDbSetting(mongoose,request,response);
-  var save_data = save_data_.MEMBER_MODEL_OBJ;
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   // 디비를 갖고 온 후에 사용할 메서드
-  save_data_.MemberMethod(save_data,mongoose,request,response);
-  save_data = save_data_.obj;
-  save_data.settingPassword();
+  var save_data_ = new global.MEMBER_DB.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
+  save_data_.settingPassword();
 
   for(var key in info){ // 값이 들어온 만큼...
     save_data[key] = info[key];
