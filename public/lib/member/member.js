@@ -36,8 +36,31 @@ Member.join = function(info,request,response,mongoose,type){
   });
 }
 
-Member.login = function(request,response,mongoose){
-  MemberDB(mongoose,'login',request,response);
+Member.login = function(info,request,response,mongoose,type){
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  save_data = global.MEMBER_DB.model;
+  save_data = new save_data(save_data.schema);
+  // 디비를 갖고 온 후에 사용할 메서드
+
+  save_data.findOne({id: request.body.id}, function(err, member){
+    if(err) return response.status(500).json({error: err});
+    if(!member){
+      response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
+    }
+
+    var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
+    var passord_true = save_data_.checkloginPassword();
+
+    // 로그인 되면 세션 생성
+    if(passord_true) {
+      request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
+      request.session.nickname = member.nickname;
+      response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
+    }
+    else {
+      response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.'); location.href='/login_form';</script>");
+    }
+  });
 }
 
 module.exports.member = function (app,mongoose) {
