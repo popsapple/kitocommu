@@ -78,6 +78,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     mongoose.modelSchemas = {};
     console.log("Step03");
 
-    mongoose.model('member', Memberschema);
+    obj.model = mongoose.model('member', Memberschema);
+    obj.model_test = "AAAAAAA";
   }
 }
