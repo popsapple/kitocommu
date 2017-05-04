@@ -13,7 +13,6 @@ Member.join = function(info,request,response,mongoose,type){
   var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   save_data = global.MEMBER_DB.model;
   save_data = new save_data(save_data.schema);
-  var save_data_test = global.MEMBER_DB.model_test;
 
   for(var key in info){ // 값이 들어온 만큼...
     save_data[key] = info[key];
@@ -22,9 +21,6 @@ Member.join = function(info,request,response,mongoose,type){
   // 디비를 갖고 온 후에 사용할 메서드
   var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
   save_data.settingPassword();
-
-  console.log("Step01");
-  console.log("Step01 ::"+save_data.password);
   save_data.writed = new Date();
   save_data.updated = new Date();
   save_data.save(function(err){
@@ -43,9 +39,7 @@ Member.login = function(request,response,mongoose){
   save_data = global.MEMBER_DB.model;
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
-  console.log("LOGIN 01");
   save_data.findOne({id: request.body.id}, function(err, member){
-    console.log("LOGIN 02");
     if(err) return response.status(500).json({error: err});
     if(!member){
       response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
@@ -53,7 +47,6 @@ Member.login = function(request,response,mongoose){
 
     var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
     var passord_true = member.checkloginPassword(request.body.pw,member.password);
-console.log("LOGIN 03 ::"+passord_true+" ddd");
     // 로그인 되면 세션 생성
     if(passord_true) {
 
@@ -65,7 +58,44 @@ console.log("LOGIN 03 ::"+passord_true+" ddd");
       response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.'); location.href='/login_form';</script>");
     }
   });
-  console.log("LOGIN 04");
+}
+
+Member.double_check = function(request,response,mongoose){
+  var id_info;
+  var is_double = {
+    isdouble: "yes"
+  };
+  if(info['item_key'] == 'nickname') {
+    id_info = {nickname: info['item_val']}
+  };
+  if(info['item_key'] == 'id') {
+   id_info = {id: info['item_val']};
+  };
+
+  var save_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  save_data = global.MEMBER_DB.model;
+  //save_data = new save_data(save_data.schema);
+  // 디비를 갖고 온 후에 사용할 메서드
+  save_data.findOne(id_info, function(err, member){
+    if(err){  // 아무것도 못 찾았을 때
+      is_double = {
+        isdouble: "no"
+      };
+      response.send(is_double);
+      return false;
+    }
+    if(member){
+      is_double = {
+        isdouble: "yes"
+      };
+    }
+    else{
+      is_double = {
+        isdouble: "no"
+      };
+    }
+    response.send(is_double);
+  });
 }
 
 module.exports.member = function (app,mongoose) {
@@ -94,12 +124,12 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.get('/search_login_info', function(request, response) {
-    //response.render('member/search_info'); // 팝업창 출력
+    response.render('member/search_info'); // 팝업창 출력
   });
 
   app.post('/member_double_check', function(request, response) {
   //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
-  //  Member.double_check(request.body,request,response,mongoose);
+    Member.double_check(request.body,request,response,mongoose);
   });
 
   app.post('/search_login_info_submit', function(request, response) {

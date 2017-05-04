@@ -8,7 +8,6 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
 
     var pw = request_list.pw;
     var crypto = global.crypto;
-    console.log("step04");
     // 비밀번호 암호화저장
     // hash 값
     obj.makingHash = function(){
@@ -39,21 +38,17 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       input == pw ? is_true = true : is_true = false ;
       return is_true;
     };
-    console.log("Step05");
     // 스키마 가져오기
     var Schmea_ = require('mongoose').model('member').schema;
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
       obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
       obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
-      console.log("리턴 자체가 안된건가 ::"+obj.password);
     }
   },
   MemberDbSetting  : function (mongoose,request,response){
     var obj = this;
     var Schema = mongoose.Schema;
-
-    console.log("Step02");
 
     var Memberschema = new Schema({
       id:    String,
@@ -71,9 +66,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
 
     mongoose.models = {};
     mongoose.modelSchemas = {};
-    console.log("Step03");
 
     exports.model = mongoose.model('member', Memberschema);
-    exports.model_test = "AAAAAAA";
   }
 }
