@@ -40,7 +40,9 @@ Member.login = function(request,response,mongoose){
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
   save_data.findOne({id: request.body.id}, function(err, member){
-    if(err) return response.status(500).json({error: err});
+    if(err) {
+      return false;
+    }
     if(!member){
       response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
     }
