@@ -20,27 +20,12 @@ module.exports = function(grunt) {
          ],
          dest: 'public/result.js'
        }
-   },
-   uglify:{
-     options: {
-        mangle: false, // 변수와 함수명 유지
-        compress: {
-            dropconsole: true // 콘솔 제거
-        },
-        beautify: true, // 코드 문법 유지
-        preserveComments: false // 모든 주석 제거
-    },
-    build: {
-        src: 'public/result.js',
-        dest: 'public/result.min.js'
-      }
    }
   });
 
   // These plugins provide necessary tasks.{% if (min_concat) { %}
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['concat']);
 };
