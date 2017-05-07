@@ -20,19 +20,6 @@
          dest: 'public/result.js'
        }
    },
-   uglify:{
-     options: {
-        mangle: false,
-        compress: {
-            dropconsole: true
-        },
-        beautify: false
-    },
-    build: {
-         src: 'public/result.js',
-         dest: 'public/result.min.js'
-     }
-   },
    cssmin:{
      options: { shorthandCompacting: false, roundingPrecision: -1 },
      target: {
@@ -49,9 +36,8 @@
 
   // These plugins provide necessary tasks.{% if (min_concat) { %}
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat','uglify','cssmin']);
+  grunt.registerTask('default', ['concat','cssmin']);
 }
