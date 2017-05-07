@@ -21,11 +21,17 @@
        }
    },
    uglify:{
-     dist: {
-         files: {
-           'public/result.min.js': ['public/result.js']
-         }
-       }
+     options: {
+        mangle: false,
+        compress: {
+            dropconsole: true
+        },
+        beautify: false
+    },
+    build: {
+         src: 'public/result.js',
+         dest: 'public/result.min.js'
+     }
    },
    cssmin:{
      options: { shorthandCompacting: false, roundingPrecision: -1 },
