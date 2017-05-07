@@ -53,5 +53,6 @@
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+  //grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['concat','uglify','cssmin']);
 }
