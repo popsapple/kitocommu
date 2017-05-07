@@ -46,7 +46,6 @@
         }]
       }
     }
-
   });
 
   // These plugins provide necessary tasks.{% if (min_concat) { %}
@@ -56,5 +55,4 @@
 
   // Default task(s).
   grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
-
 }
