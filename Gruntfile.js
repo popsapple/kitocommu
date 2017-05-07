@@ -26,11 +26,6 @@
            'public/result.min.js': ['public/result.js']
          }
        }
-    },
-    build: {
-        src: 'public/result.js',
-        dest: 'public/result.min.js'
-      }
    },
    cssmin:{
      options: { shorthandCompacting: false, roundingPrecision: -1 },
