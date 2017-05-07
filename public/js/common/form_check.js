@@ -1,13 +1,13 @@
 function CheckFormInput(){
-  var input_list = ['joinId','joinNickname','joinPassword','joinEmail','joinTel','joinHeight','joinWeight','joinCheckNickname'];
-  var dialog_list = ['아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요',
-  '닉네임은 8자 이상 영문소문자, 숫자, 특수문자',
-  '비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요',
-  '이메일은 형식에 맞게 입력해주세요',
-  '전화번호는 형식에 맞게 입력해주세요',
-  '키는 숫자만 입력 가능합니다',
-  '몸무게는 숫자만 입력 가능합니다',
-  '닉네임 중복체크를 진행해주세요'];
+  var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckNickname"];
+  var dialog_list = ["아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요",
+  "닉네임은 8자 이상 영문소문자, 숫자, 특수문자",
+  "비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요",
+  "이메일은 형식에 맞게 입력해주세요",
+  "전화번호는 형식에 맞게 입력해주세요",
+  "키는 숫자만 입력 가능합니다",
+  "몸무게는 숫자만 입력 가능합니다",
+  "닉네임 중복체크를 진행해주세요"];
   var reg_list = new Object;
   reg_list.reg_uid = /^[a-z0-9_]{8,}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
   reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
@@ -96,6 +96,6 @@ $(".food_list .detail_submit").on('click', function(){
   });
 });
 
-$(document).ready (function(){
+$(document).ready(function(){
   $("#joinSex").val($("#joinSex").attr("data-sex"));
 });
