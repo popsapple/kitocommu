@@ -58,26 +58,6 @@
           </li>
         <%}%>
       </ul>
-      <!--script>
-        $(".submit_item").on('submit', function(){
-          $.ajax({
-            type: "POST",
-                url: "/food_search",
-                data: JSON.stringify({"keyword" : $(".submit_text").val()}),
-                contentType: "application/json",
-                success: function(d) {
-                    var html;
-                    for (var i = 0; i < d.food_list.length; i++) {
-                        html += '<strong>'+d.food_list[i].food_name+'</strong>';
-                    }
-                    $('.food_list').html(html);
-                },
-                error: function(d) {
-                    console.log("Error!!!!!!!!!!!!");
-                }
-          });
-        });
-      </script-->
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>

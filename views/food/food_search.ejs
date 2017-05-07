@@ -34,44 +34,6 @@
   <div class="food_detail">
   </div>
 </div>
-<script>
-$(".detail_submit").on('click', function(){
-  $.ajax({
-    type: "POST",
-        url: "/food_search/seq_code",
-        data: JSON.stringify({
-          "keyword" : $(this).attr("data-keyword"),
-          "result_type" : "detail_list",
-          "food_category" : $(this).attr("data-category"),
-          "food_seq" : $(this).attr("data-sid")
-        }),
-        contentType: "application/json",
-        success: function(data) {
-            var html="";
-            for (var i = 0; i < data.ing_list.length; i++) {
-              var j = 0;
-              var c = 0;
-              for(var key in data.ing_list[j]) {
-                if(key == 'name') {
-                  html += '<h2><strong>'+data.ing_list[j][key]+'</strong>';
-                }
-                else if(key == 'vol_str') {
-                  html += data.ing_list[j][key]+'</h2>';
-                }
-                if(data.ing_list[j].length == c){
-                  j++;
-                }
-                c++;
-              }
-            }
-            $('.food_detail').html(html);
-        },
-        error: function(data) {
-            console.log("Error!!!!!!!!!!!!");
-        }
-  });
-});
-</script>
   <% include ../partials/footer.ejs %>
 </body>
 </html>
