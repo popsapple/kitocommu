@@ -1,5 +1,5 @@
 module.exports.food_search = function (app) {
-function SearchFoodInfo(request,response,queryParams,type,user_keyword){
+function SearchFoodInfo(request,response,queryParams,type,user_food_keyword){
 
   var data_respons = require('http');
 
@@ -23,13 +23,13 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       var data = JSON.parse(str);
       // merge res.locals
       opts._locals = response.locals;
-      request.body.keyword ? data.keyword = request.body.keyword : '';
+      request.body.food_keyword ? data.food_keyword = request.body.food_keyword : '';
 
     //  console.log("어떻게 찍어오지 ::"+JSON.stringify(data));
 
       if(type == 'render') {
         if(data.food_list == undefined) {
-          response.render('food/food_search_error',{'keyword':user_keyword});
+          response.render('food/food_search_error',{'food_keyword':user_food_keyword});
         }
         else {
           response.render('food/food_search', data);
@@ -40,14 +40,14 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
       }
     });
     res.on('error', function(e) {
-      response.render('food/food_search_error',{'keyword':user_keyword});
+      response.render('food/food_search_error',{'food_keyword':user_food_keyword});
     });
   }
 
   var req = data_respons.request(opts, callback);
 
   req.on('error', function(e) {
-    response.render('food/food_search_error',{'keyword':user_keyword});
+    response.render('food/food_search_error',{'food_keyword':user_food_keyword});
   });
 
   req.end();
@@ -55,12 +55,12 @@ function SearchFoodInfo(request,response,queryParams,type,user_keyword){
 
 app.post('/food_search/:result_type', function(request, response) {
   if(request.params.result_type == 'search_list') {
-    var user_keyword;
-    request.body.keyword ? user_keyword = request.body.keyword : user_keyword = '유기농';
+    var user_food_keyword;
+    request.body.food_keyword ? user_food_keyword = request.body.food_keyword : user_food_keyword = '유기농';
 
     var queryParams = '/foodinfo/search.do?' + encodeURIComponent('uid') + '=' + encodeURIComponent('LQUV6MOX');
-    queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_keyword);
-    SearchFoodInfo(request,response,queryParams,'render',user_keyword);
+    queryParams += '&' + encodeURIComponent('w') + '=' + encodeURIComponent(user_food_keyword);
+    SearchFoodInfo(request,response,queryParams,'render',user_food_keyword);
   }
   else {
     var food_category;
