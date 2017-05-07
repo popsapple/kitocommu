@@ -17,7 +17,7 @@
            src: [
            'public/js/common/form_check.js'
          ],
-         dest: 'public/result.js'
+         dest: 'public/js/result.js'
        }
    },
    cssmin:{
