@@ -34,13 +34,27 @@ module.exports = function(grunt) {
         src: 'public/result.js',
         dest: 'public/result.min.js'
       }
-   }
+   },
+   cssmin:{
+     options: { shorthandCompacting: false, roundingPrecision: -1 },
+     target: {
+        files: [{
+          expand: true,
+          cwd: 'public/stylesheets',
+          src: ['*.css', '!*.min.css'],
+          dest: 'public/stylesheets',
+          ext: '.min.css'
+        }]
+      }
+    }
+
   });
 
   // These plugins provide necessary tasks.{% if (min_concat) { %}
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
 };
