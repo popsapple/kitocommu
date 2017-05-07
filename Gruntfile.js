@@ -21,6 +21,6 @@
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  // Default task(s).
-  grunt.registerTask('default', ['concat','cssmin']);
+  // Here is where we would define our task
+    grunt.registerTask('default', ['cssmin:target', 'concat:js']);
 }
