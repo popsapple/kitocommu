@@ -64,7 +64,7 @@ $(".food_list .detail_submit").on('click', function(){
     type: "POST",
         url: "/food_search/seq_code",
         data: JSON.stringify({
-          "keyword" : $(this).attr("data-keyword"),
+          "food_keyword" : $(this).attr("data-keyword"),
           "result_type" : "detail_list",
           "food_category" : $(this).attr("data-category"),
           "food_seq" : $(this).attr("data-sid")
