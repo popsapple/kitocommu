@@ -1,9 +1,7 @@
-/*global module:false*/
-module.exports = function(grunt) {
+﻿module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
     concat:{
        options: {
            banner: '/ 작업자 :: 현가람, 최종작업일 :: <%= grunt.template.today("yyyy-mm-dd") %> / ',  // 합치고 맨 처음에 출력할 내용
@@ -47,7 +45,6 @@ module.exports = function(grunt) {
         }]
       }
     }
-
   });
 
   // These plugins provide necessary tasks.{% if (min_concat) { %}
@@ -57,4 +54,4 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
-};
+}
