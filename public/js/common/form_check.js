@@ -1,5 +1,5 @@
 function CheckFormInput(){
-  var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckNickname"];
+  var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckId","joinCheckNickname"];
   var dialog_list = ["아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요",
   "닉네임은 8자 이상 영문소문자, 숫자, 특수문자",
   "비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요",
@@ -7,6 +7,7 @@ function CheckFormInput(){
   "전화번호는 형식에 맞게 입력해주세요",
   "키는 숫자만 입력 가능합니다",
   "몸무게는 숫자만 입력 가능합니다",
+  "아이디 중복체크를 진행해주세요",
   "닉네임 중복체크를 진행해주세요"];
   var reg_list = new Object;
   reg_list.reg_uid = /^[a-z0-9_]{8,}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
@@ -16,11 +17,12 @@ function CheckFormInput(){
   reg_list.reg_phone = /^\d{2,3}\d{3,4}\d{4}$/; // 전화번호 정규표현식
   reg_list.reg_height = /^[0-9]*$/; //키 정규식
   reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
+  reg_list.reg_double_id= /(yes)/; //닉네임 중복체크
   reg_list.reg_double_nick= /(yes)/; //닉네임 중복체크
   var count = 0;
   var is_true = true;
   for(var key in reg_list){
-    if(!reg_list[key].test($('#'+input_list[count]).val())){
+    if($('#'+input_list[count]) && !reg_list[key].test($('#'+input_list[count]).val())){
       //이벤트막고 , 기본동작 중지
       event.stopPropagation();
       event.preventDefault();
