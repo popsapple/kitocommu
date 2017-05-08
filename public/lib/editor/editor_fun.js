@@ -4,7 +4,8 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
   aws.config.update({
       secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
       accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
-      region: 'Asia Pacific (Seoul)'
+      region: 'Asia Pacific (Seoul)',
+      signatureVersion: 'v4'
   });
 
   console.log("SETP01 ::");
