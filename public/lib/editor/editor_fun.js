@@ -1,7 +1,6 @@
 exports = module.exports = { UploadFile : function (app,aws4,multer,multerS3,fs){
   //var uploadSetting = multer({dest:"../upload"});
-
-  aws4.sign(requestOptions, {
+  aws4.sign(opts, {
     secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
     accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A'
     /*,
