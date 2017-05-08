@@ -5,7 +5,7 @@
     pkg: grunt.file.readJSON('package.json'),
     concat: {
           js: {
-              files: {'public/result.js': 'public/js/**/*.js' }
+              files: {'public/js/result.js': 'public/js/**/*.js' }
           }
     },
     cssmin: {
