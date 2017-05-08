@@ -1,20 +1,13 @@
-exports = module.exports = { UploadFile : function (app,aws4,multer,multerS3,fs){
+exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs,s3){
   //var uploadSetting = multer({dest:"../upload"});
-  aws4.sign(opts, {
-    secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
-    accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A'
-    /*,
-    sessionToken: "<your-session-token>"
-    */
-  });
-
-  var s3 = new aws4.sign({service: 's3', path: '/', signQuery: true});
-  /*aws.config.signatureVersion = 'v4';
+  var s3 = new aws.S3();
   aws.config.update({
       secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
       accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
-      region: 'ap-northeast-2'
-  });*/
+      region: 'ap-northeast-2',
+      signatureVersion: 'v4'
+  });
+
   console.log("SETP01 ::");
     var upload = multer({
       storage: multerS3({

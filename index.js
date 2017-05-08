@@ -3,7 +3,11 @@ var express = require('express');
 var multer = require('multer');
 var multerS3 = require('multer-s3');
 var fs = require('file-system');
-var aws4  = require('aws4');
+var aws = require('aws-sdk');
+// import AWS object without services
+var aws = require('aws-sdk/global');
+// import individual service
+var s3 = require('aws-sdk/clients/s3');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
@@ -45,7 +49,7 @@ require('./public/lib/food/food_search.js').food_search(app);
 require('./public/lib/member/member.js').member(app,mongoose);
 
 // 에디터관련
-require('./public/lib/editor/editor.js').editor_con(app,aws4,multer,multerS3,fs);
+require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs,s3);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
