@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body itemscope = "" itemtype = "http://schema.org/WebPage">
+<% include ../partials/nav.ejs %>
+  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <section>
+      <textarea id="editor1"></textarea>
+      <script>
+      CKEDITOR.replace( 'editor1', {
+        filebrowserUploadUrl: '/upload',
+      });
+      </script>
+    </section>
+  </div>
+<% include ../partials/footer.ejs %>
+</body>
+</html>

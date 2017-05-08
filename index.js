@@ -1,5 +1,7 @@
 require('node-import');
 var express = require('express');
+var multer = require('multer');
+var fs = require('fs');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
@@ -39,6 +41,9 @@ require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
 require('./public/lib/member/member.js').member(app,mongoose);
+
+// 에디터관련
+require('./public/lib/editor/editor.js');
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
