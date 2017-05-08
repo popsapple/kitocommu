@@ -19,10 +19,8 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     })
     console.log("SETP02 ::");
     app.post('/upload', upload.single('upload'), function(req, res, next) {
-      app.configure(function(){
         app.use(express.methodOverride());
         app.use(express.bodyParser({keepExtensions:true,uploadDir:path.join(__dirname,'/files')}));
-      });
 
       var filePath = req.file.path;
       var fileName = req.file.filename;
