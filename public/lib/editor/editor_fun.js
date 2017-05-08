@@ -1,4 +1,4 @@
-exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs,s3){
+exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
   //var uploadSetting = multer({dest:"../upload"});
 
   aws.config.update({
