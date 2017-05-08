@@ -4,16 +4,21 @@
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-          js: {
-              files: {'public/js/result.js': 'public/js/**/*.js' }
-          }
+      files: {'public/js/result.js': 'public/js/**/*.js' }
     },
     cssmin: {
-        target: {
-            files: {
-                'public/stylesheets/main.min.css': 'public/stylesheets/main.css'
-            }
-        }
+      files: {
+        'public/stylesheets/main.min.css': 'public/stylesheets/main.css'
+      }
+    },
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'public/js/result.js',
+        dest: 'public/js/result.min.js'
+      }
     }
   });
 
@@ -22,5 +27,5 @@
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Here is where we would define our task
-    grunt.registerTask('default', ['cssmin:target', 'concat:js']);
+    grunt.registerTask('default', ['uglify', 'cssmin', 'concat']);
 }
