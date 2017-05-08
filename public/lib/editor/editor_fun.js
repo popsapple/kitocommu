@@ -7,6 +7,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       endpoint: 's3.ap-northeast-2.amazonaws.com',
       signatureVersion: 'v4'
   });
+
   var s3 = new aws.S3();
 
   console.log("SETP01 ::");
