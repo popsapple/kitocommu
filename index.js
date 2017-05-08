@@ -43,7 +43,7 @@ require('./public/lib/food/food_search.js').food_search(app);
 require('./public/lib/member/member.js').member(app,mongoose);
 
 // 에디터관련
-require('./public/lib/editor/editor.js');
+require('./public/lib/editor/editor.js').editor_con(app);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
