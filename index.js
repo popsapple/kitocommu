@@ -1,7 +1,7 @@
 require('node-import');
 var express = require('express');
 var multer = require('multer');
-var fs = require('fs');
+var fs = require('file-system');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
