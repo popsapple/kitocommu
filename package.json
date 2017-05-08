@@ -34,7 +34,8 @@
     "grunt-contrib-uglify": "2.3.0",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-cssmin": "2.1.0",
-    "aws-sdk": "2.49.0"
+    "aws-sdk": "2.49.0",
+    "method-override": "2.3.8"
   },
   "repository": {
     "type": "git",

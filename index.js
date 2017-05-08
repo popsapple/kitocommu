@@ -10,6 +10,7 @@ global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParserJsonError = require('express-body-parser-json-error');
+var methodOverride = require('method-override');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
