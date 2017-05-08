@@ -1,5 +1,6 @@
 require('node-import');
 var express = require('express');
+global.EXPRESS = express;
 var multer = require('multer');
 var multerS3 = require('multer-s3');
 var fs = require('file-system');
