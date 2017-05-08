@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js food_search.js",
+    "start": "node index.js",
     "postinstall": "grunt uglify concat cssmin"
   },
   "dependencies": {
@@ -25,7 +25,12 @@
     "mongodb" : "^2.2.26",
     "crypto" :"^0.0.3",
     "cookie-parser" : "^1.4.3",
-    "express-session" :"^1.15.2"
+    "express-session" :"^1.15.2",
+    "grunt": "1.0.1",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-uglify": "2.3.0",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-cssmin": "2.1.0"
   },
   "repository": {
     "type": "git",
