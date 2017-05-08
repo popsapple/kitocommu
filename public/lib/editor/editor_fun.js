@@ -1,4 +1,4 @@
-exports = module.exports = { UploadFile : function (app,multer,multerS3,fs){
+exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     //var uploadSetting = multer({dest:"../upload"});
     var s3 = new aws.S3({});
   console.log("SETP01 ::");
