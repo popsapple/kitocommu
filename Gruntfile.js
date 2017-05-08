@@ -4,12 +4,19 @@
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      files: {'public/js/result.js': 'public/js/**/*.js' }
+      basic: {
+        src: ['public/js/common/form_check.js'],
+        dest: 'public/js/result.js'
+      }
     },
     cssmin: {
-      files: {
-        'public/stylesheets/main.min.css': 'public/stylesheets/main.css'
-      }
+      minify:{
+         expand: true,
+         cwd: 'public/stylesheets/',
+         src: ['*.css', '!Nwagon.css'],
+         dest: 'public/stylesheets',
+         ext: '.min.css'
+     }
     },
     uglify: {
       build: {
