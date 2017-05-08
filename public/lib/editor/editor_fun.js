@@ -1,4 +1,4 @@
-exports = module.exports = { UploadFile : function (){
+exports = module.exports = { UploadFile : function (app,multer,fs){
     var uploadSetting = multer({dest:"../upload"});
     router.post('/upload', uploadSetting.single('upload'), function(req,res) {
     var tmpPath = req.file.path;

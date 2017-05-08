@@ -1,4 +1,4 @@
-module.exports.editor_con = function(app){
+module.exports.editor_con = function(app,multer,fs){
   global.EDITOR_FUNCTION = require('./editor_fun.js');
-  var UploadFile = new global.EDITOR_FUNCTION.UploadFile();
+  var UploadFile = new global.EDITOR_FUNCTION.UploadFile(app,multer,fs);
 }
