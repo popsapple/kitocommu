@@ -97,5 +97,5 @@ $(".food_list .detail_submit").on('click', function(){
 });
 
 $(document).ready(function(){
-  $("#joinSex").val($("#joinSex").attr("data-sex"));
+  $("#joinSex").attr("data-sex") ? $("#joinSex").val($("#joinSex").attr("data-sex")) : '';
 });
