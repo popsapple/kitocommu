@@ -1,7 +1,7 @@
 require('node-import');
 var express = require('express');
 var multer = require('multer');
-var multerS3 = require('multer-s3')
+var multerS3 = require('multer-s3');
 var fs = require('file-system');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
@@ -44,7 +44,7 @@ require('./public/lib/food/food_search.js').food_search(app);
 require('./public/lib/member/member.js').member(app,mongoose);
 
 // 에디터관련
-require('./public/lib/editor/editor.js').editor_con(app,multer,fs);
+require('./public/lib/editor/editor.js').editor_con(app,multer,multerS3,fs);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
