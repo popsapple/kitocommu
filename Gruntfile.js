@@ -12,9 +12,6 @@
       }
     },
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
       build: {
         src: 'public/js/result.js',
         dest: 'public/js/result.min.js'
@@ -25,7 +22,8 @@
   // These plugins provide necessary tasks.{% if (min_concat) { %}
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Here is where we would define our task
-    grunt.registerTask('default', ['uglify', 'cssmin', 'concat']);
+    grunt.registerTask('default', ['concat', 'cssmin', 'uglify']);
 }
