@@ -1,4 +1,8 @@
 function CheckFormInput(){
+  $(".dobule_check").each(function(){
+    $(this).trigger('click', ['check']);
+  });
+
   var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckId","joinCheckNickname"];
   var dialog_list = ["아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요",
   "닉네임은 8자 이상 영문소문자, 숫자, 특수문자",
@@ -35,7 +39,7 @@ function CheckFormInput(){
   return is_true;
 };
 //정규표현식
-$(".dobule_check").on('click', function(){
+$(".dobule_check").on('click', function(click_type){
   var obj = $(this);
   $.ajax({
     type: "POST",
@@ -50,21 +54,22 @@ $(".dobule_check").on('click', function(){
         alert("중복입니다 사용하실 수 없습니다.");
         obj.val('no');
       }else{
-        alert("사용하실 수 있습니다.");
-        obj.val('yes');
+        if(!click_type == 'check') {
+          alert("사용하실 수 있습니다.");
+          obj.val('yes');
+        }
       }
     },
     error: function(data) {
-      alert("사용하실 수 있습니다.");
-      obj.val('yes');
+      if(!click_type == 'check') {
+        alert("사용하실 수 있습니다.");
+        obj.val('yes');
+      }
     }
   });
 });
 
 $(".food_list .detail_submit").on('click', function(){
-  $(".dobule_check").each(function(){
-    $(this).trigger('click');
-  });
   $.ajax({
     type: "POST",
         url: "/food_search/seq_code",
