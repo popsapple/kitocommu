@@ -30,7 +30,14 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
 
       var filePath = req.file.path;
       var fileName = req.file.filename;
-      console.log("SETP03 ::"+filePath);
+      for(var key in req.query){
+        console.log("SETP03 ::"+key);
+        console.log("SETP03 == ::"+req.query[key]);
+      };
+      for(var key in req.file){
+        console.log("SETP04 ::"+key);
+        console.log("SETP04 == ::"+req.query[key]);
+      };
       var html;
       html = "";
       html += "<script type='text/javascript'>";
