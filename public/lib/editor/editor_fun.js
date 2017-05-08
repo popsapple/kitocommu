@@ -1,6 +1,12 @@
 exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
-    //var uploadSetting = multer({dest:"../upload"});
-    var s3 = new aws.S3({});
+  //var uploadSetting = multer({dest:"../upload"});
+  var s3 = new aws.S3();
+  aws.config.update({
+      secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
+      accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
+      region: 'Asia Pacific (Seoul)'
+  });
+
   console.log("SETP01 ::");
     var upload = multer({
       storage: multerS3({
