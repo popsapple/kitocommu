@@ -37,5 +37,12 @@
     "express",
     "request"
   ],
+  "devDependencies": {
+      "grunt": "1.0.1",
+      "grunt-cli": "0.1.13",
+      "grunt-contrib-uglify": "2.3.0",
+      "grunt-contrib-concat": "1.0.1",
+      "grunt-contrib-cssmin": "2.1.0"
+   },
   "license": "MIT"
 }
