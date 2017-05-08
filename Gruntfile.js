@@ -32,5 +32,5 @@
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Here is where we would define our task
-    grunt.registerTask('default', ['concat', 'cssmin', 'uglify']);
+  grunt.registerTask('default', ['concat', 'cssmin', 'uglify']);
 }
