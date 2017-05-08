@@ -62,6 +62,9 @@ $(".dobule_check").on('click', function(){
 });
 
 $(".food_list .detail_submit").on('click', function(){
+  $(".dobule_check").each(function(){
+    $(this).trigger('click');
+  });
   $.ajax({
     type: "POST",
         url: "/food_search/seq_code",

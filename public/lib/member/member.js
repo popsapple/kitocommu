@@ -89,9 +89,15 @@ Member.double_check = function(info,request,response,mongoose){
       return false;
     }
     if(member_){
-      is_double = {
-        isdouble: "yes"
-      };
+      if(request.session.nickname == info['item_val']){
+        is_double = {
+          isdouble: "no"
+        };
+      }else {
+        is_double = {
+          isdouble: "yes"
+        };
+      }
     }
     else{
       console.log("STEP04");
