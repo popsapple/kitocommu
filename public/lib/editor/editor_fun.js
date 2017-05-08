@@ -1,12 +1,13 @@
 exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs,s3){
   //var uploadSetting = multer({dest:"../upload"});
-  var s3 = new aws.S3();
+
   aws.config.update({
       secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
       accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
       region: 'ap-northeast-2',
       signatureVersion: 'v4'
   });
+  var s3 = new aws.S3();
 
   console.log("SETP01 ::");
     var upload = multer({
