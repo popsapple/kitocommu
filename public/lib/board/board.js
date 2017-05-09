@@ -28,7 +28,7 @@ Board.write = function(info,request,response,mongoose,collection){
         console.log("에러입니다");
         return;
     }
-    console.log("STEP 05 ::"+save_data._index);
+    console.log("STEP 05 ::"+save_data.index);
     response.render('board/write_ok',save_data);
   });
 }
