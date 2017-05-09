@@ -23,25 +23,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     if (type == 'save'){
-      var that = this;
-      function settingIndex() {
-        BOARD_DB_MODEL.findOne({post_index: obj.post_index}, function(err, board){
-          if(err) {
-            return false;
-          }
-          if(board){
-            console.log("인덱스값 증가됩니다 ::"+obj.post_index);
-            obj.post_index += 1;
-            setTimeout(settingIndex(),50);
-          } else {
-            console.log("인덱스값을 그대로 내보냅니다 ::"+obj.post_index);
-          //  console.log("인덱스값을 그대로 내보냅니다 ::"+board._index);
-            return false;
-          }
-        });
-      };
-
-      setTimeout(settingIndex(),50);
+      obj.post_index = BOARD_DB_MODEL.count();
     }
     //obj._index += 1;
   }
