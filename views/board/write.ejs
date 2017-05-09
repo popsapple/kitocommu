@@ -8,7 +8,9 @@
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
       <form method="post" action="/board_write">
+        <%if(locals.board_table_id){%>
           <input id="BoardTableId" type="hidden" value="<%= board_table_id %>" />
+        <%}%>
         <%if(locals.board_post_idx){%>
           <input id="BoardPostIdx" type="hidden" value="<%= board_post_idx %>" />
         <%}%>
