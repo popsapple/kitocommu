@@ -34,7 +34,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         html = "";
         html += "<script type='text/javascript'>";
         html += " var funcNum = " + req.query.CKEditorFuncNum + ";";
-        html += " var url ="+filePath;
+        html += " var url ="+"\""+filePath+"\"";
         html += " var message = \"업로드 완료\";";
         html += " window.parent.CKEDITOR.tools.callFunction(funcNum, url);";
         html += "</script>";
