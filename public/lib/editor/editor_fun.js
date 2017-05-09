@@ -46,11 +46,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
           console.log("SETP06 ::"+key);
           console.log("SETP06 == ::"+req.file[key]);
         };
-        console.log("==============================================");
-        for(var key in req){
-          console.log("SETP07 ::"+key);
-          console.log("SETP07 == ::"+req[key]);
-        };
         var html;
         html = "";
         html += "<script type='text/javascript'>";
