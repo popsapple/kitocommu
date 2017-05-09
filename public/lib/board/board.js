@@ -5,10 +5,16 @@ Board.write = function(info,request,response,mongoose,type){
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
   console.log("STEP 03 ::");
-  for(var key in info){ // 값이 들어온 만큼...
+/*  for(var key in info){ // 값이 들어온 만큼...
     console.log("STEP 04 ::");
     save_data[key] = info[key];
-  }
+  }*/
+  save_data.reply = "";
+  save_data.category = info.category;
+  save_data.is_notice = info.is_notice;
+  save_data.title = info.title;
+  save_data.contents = info.contents;
+  save_data.tags = info.tags;
 
   // 디비를 갖고 온 후에 사용할 메서드 - 나중에 스팸방지 달 때 쓰자
   // var save_data_ = new global.BOARD_DB.BoardMethod(save_data,mongoose,request,response);
