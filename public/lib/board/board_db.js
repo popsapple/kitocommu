@@ -24,7 +24,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     if (type == 'save'){
       var that = this;
-      this.settingIndex  = function(){
+      function settingIndex() {
         BOARD_DB_MODEL.findOne({_index: obj._index}, function(err, member){
           if(err) {
             return false;
@@ -32,7 +32,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           if(member){
             console.log("인덱스값 증가됩니다");
             obj._index += 1;
-            that.settingIndex();
+            settingIndex();
           } else {
             console.log("인덱스값을 그대로 내보냅니다");
             return false;
