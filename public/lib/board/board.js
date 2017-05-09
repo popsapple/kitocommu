@@ -37,7 +37,7 @@ module.exports.board_con = function(app,mongoose){
     response.render('board/write',data);
   });
 
-  app.post('/board_write', function(request, response) {
+  app.post('/board_write_submit', function(request, response) {
     console.log("STEP 01 ::");
   //  Board.write(request.body,request,response,mongoose);
   });
