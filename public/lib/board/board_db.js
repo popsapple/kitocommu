@@ -38,7 +38,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             return false;
           }
         });
-      }();
+      };
+      
+      settingIndex();
     }
     //obj._index += 1;
   }
