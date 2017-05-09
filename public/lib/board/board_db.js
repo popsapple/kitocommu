@@ -4,7 +4,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var Schema = mongoose.Schema;
 
     var Memberschema = new Schema({
-      reply:    String,
+      _index: true,
+      reply: String,
       writed:  { type: Date, default: Date.now },
       category:  String,
       is_notice:  String,
