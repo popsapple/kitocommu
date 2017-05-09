@@ -4,9 +4,9 @@ Board.write = function(info,request,response,mongoose,type){
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response);
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
-
+  console.log("STEP 03 ::");
   for(var key in info){ // 값이 들어온 만큼...
-    console.log("STEP 03 ::");
+    console.log("STEP 04 ::");
     save_data[key] = info[key];
   }
 
@@ -14,14 +14,15 @@ Board.write = function(info,request,response,mongoose,type){
   // var save_data_ = new global.BOARD_DB.BoardMethod(save_data,mongoose,request,response);
   save_data.writer = '관리자입니다'; //request.session.nickname;
   save_data.writed = new Date();
-  save_data.updated = new Date();
+  //save_data.updated = new Date();
   save_data.save(function(err){
     if(err){
         console.error(err);
         request.json({result: 0});
+        console.log("에러입니다");
         return;
     }
-    console.log("STEP 04 ::");
+    console.log("STEP 05 ::");
     response.render('board/write_ok',save_data);
   });
 }
