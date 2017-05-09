@@ -9,9 +9,12 @@
     <section>
       <textarea id="editor1"></textarea>
       <script>
+      CKEDITOR.plugins.addExternal( 'uploadfile', '/js/myplugins/uploadfile/' );
+
       CKEDITOR.replace( 'editor1', {
-        filebrowserUploadUrl: '/upload'
-      });
+        filebrowserUploadUrl: '/upload',
+        extraPlugins: 'uploadfile'
+      } );
       </script>
     </section>
   </div>
