@@ -6,7 +6,7 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
     //MemberIntroduce
     response.render('board/write');
   });*/
-  app.get('/board/write?new_post=true&board_table_id=MemberIntroduce', function(request, response) {
+  app.get('/board/write', function(request, response) {
     //MemberIntroduce
     var data = request.query;
     response.render('board/write',data);
