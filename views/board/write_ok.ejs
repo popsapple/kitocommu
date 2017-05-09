@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body itemscope = "" itemtype = "http://schema.org/WebPage">
+<% include ../partials/nav.ejs %>
+  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <section>
+      게시물 작성을 완료했습니다 ^^<br />
+      <%if(locals.board_title){%>
+        <%= board_title %>
+      <%}else {%>
+    </section>
+  </div>
+<% include ../partials/footer.ejs %>
+</body>
+</html>

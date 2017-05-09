@@ -1,10 +1,12 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,type){
+  console.log("STEP 02 ::");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response);
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
 
   for(var key in info){ // 값이 들어온 만큼...
+    console.log("STEP 03 ::");
     save_data[key] = info[key];
   }
 
@@ -19,6 +21,7 @@ Board.write = function(info,request,response,mongoose,type){
         request.json({result: 0});
         return;
     }
+    console.log("STEP 04 ::");
     response.render('board/write_ok',save_data);
   });
 }
@@ -27,12 +30,14 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/write', function(request, response) {
+    console.log("STEP 00 ::");
     //MemberIntroduce
     var data = request.query;
     response.render('board/write',data);
   });
 
   app.post('/board_write', function(request, response) {
-    Board.write(request.query,request,response,mongoose);
+    console.log("STEP 01 ::");
+    Board.write(request.body,request,response,mongoose);
   });
 }
