@@ -35,7 +35,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             settingIndex();
           } else {
             console.log("인덱스값을 그대로 내보냅니다 ::"+obj._index);
-            console.log("인덱스값을 그대로 내보냅니다 ::"+board._index);
+          //  console.log("인덱스값을 그대로 내보냅니다 ::"+board._index);
             return false;
           }
         });
