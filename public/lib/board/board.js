@@ -1,5 +1,5 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Board.write = function(info,request,response,mongoose,type,collection){
+Board.write = function(info,request,response,mongoose,collection){
   console.log("STEP 02 ::");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
