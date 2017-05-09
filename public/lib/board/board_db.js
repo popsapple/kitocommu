@@ -32,7 +32,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           if(board){
             console.log("인덱스값 증가됩니다 ::"+obj.index);
             obj.index += 1;
-            setTimeout(settingIndex(),1000);
+            setTimeout(settingIndex(),50);
           } else {
             console.log("인덱스값을 그대로 내보냅니다 ::"+obj.index);
           //  console.log("인덱스값을 그대로 내보냅니다 ::"+board._index);
@@ -41,7 +41,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       };
 
-      settingIndex();
+      setTimeout(settingIndex(),50);
     }
     //obj._index += 1;
   }
