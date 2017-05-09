@@ -3,7 +3,7 @@ function CheckFormInput(){
     $(this).trigger('click', ['check']);
   });
 
-  var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckId","joinCheckNickname"];
+  var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckId","joinCheckNickname","BoardTitle","BoardCategory","BoardNotice","BoardContents"];
   var dialog_list = ["아이디는 8자 이상 영문소문자, 숫자, 특수문자를 입력해주세요",
   "닉네임은 8자 이상 영문소문자, 숫자, 특수문자",
   "비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요",
@@ -12,7 +12,12 @@ function CheckFormInput(){
   "키는 숫자만 입력 가능합니다",
   "몸무게는 숫자만 입력 가능합니다",
   "아이디 중복체크를 진행해주세요",
-  "닉네임 중복체크를 진행해주세요"];
+  "닉네임 중복체크를 진행해주세요",
+  "제목에 내용을 입력해 주세요",
+  "카테고리를 선택해 주세요",
+  "공지사항 여부를 선택해 주세요",
+  "태그 내용을 입력해 주세요",
+  "글내용을 입력해 주세요"];
   var reg_list = new Object;
   reg_list.reg_uid = /^[a-z0-9_]{8,}$/; //8자 이상 영문소문자, 숫자, 특수문자 _ 사용가능
   reg_list.reg_nickname = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; //2~20자, 한글,영문,숫자 사용가능
@@ -23,6 +28,11 @@ function CheckFormInput(){
   reg_list.reg_weight = /^[0-9]*$/; //몸무게 정규식
   reg_list.reg_double_id= /(yes)/; //닉네임 중복체크
   reg_list.reg_double_nick= /(yes)/; //닉네임 중복체크
+  reg_list.reg_board_title= /^\S+$/; // 글제목 공백없는 임의의글자 하나 이상일때
+  reg_list.reg_board_category= /^\S+$/; // 글제목 공백없는 임의의글자 하나 이상일때
+  reg_list.reg_board_notie= /^\S+$/; // 공지사항여부 공백없는 임의의글자 하나 이상일때
+  reg_list.reg_board_tags= /^\S+$/; // 태그들 공백없는 임의의글자 하나 이상일때
+  reg_list.reg_board_contents= /^\S+$/; // 글내용 공백없는 임의의글자 하나 이상일때
   var count = 0;
   var is_true = true;
   for(var key in reg_list){
