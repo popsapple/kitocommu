@@ -23,7 +23,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     if (type == 'save'){
-      obj.post_index = BOARD_DB_MODEL.count();
+
+      BOARD_DB_MODEL.count({}, function(error, numOfDocs){
+          obj.post_index = numOfDocs;
+      });
     }
     //obj._index += 1;
   }
