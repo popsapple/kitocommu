@@ -25,7 +25,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     if (type == 'save'){
       var that = this;
       function settingIndex() {
-        BOARD_DB_MODEL.findOne({_index: obj.index}, function(err, board){
+        BOARD_DB_MODEL.findOne({index: obj.index}, function(err, board){
           if(err) {
             return false;
           }
