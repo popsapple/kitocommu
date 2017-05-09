@@ -7,7 +7,7 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <form method="get" action="/join_member_step3">
+      <form method="post" action="/board_write">
           <input id="BoardTableId" type="hidden" value="<%= board_table_id %>" />
         <%if(locals.board_post_idx){%>
           <input id="BoardPostIdx" type="hidden" value="<%= board_post_idx %>" />

@@ -49,6 +49,9 @@ require('./public/lib/member/member.js').member(app,mongoose);
 // 에디터관련
 require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 
+// 게시판관련
+require('./public/lib/board/board.js').board_con(app,mongoose);
+
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
