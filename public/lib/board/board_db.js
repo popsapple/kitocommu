@@ -3,7 +3,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var Schema = mongoose.Schema;
 
     var Memberschema = new Schema({
-      post_index: String,
+      post_index: Number,
       reply: String,
       writed:  { type: Date, default: Date.now },
       category:  String,
