@@ -64,11 +64,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       this.getCountArray = function(obj,type,callback){
         console.log("STEP01 ::");
         var i = 0;
+        obj.board_paging = {};
         if(type == 'all'){
           var countarray = renderOfCount.slice(0,page_length_);
           for(var c = 0; c < countarray.length; c++){
             console.log("몇번 반복 ::"+c);
-            obj.board_paging.paging = c;
+            obj.board_paging[c].paging = c;
           }
         }
         else{
@@ -80,7 +81,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             i++;
           }
         }
-        obj.board_paging = countarray;
         console.log("STEP02 ::"+obj.board_paging);
         callback(obj);
       };
