@@ -38,10 +38,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     page_num = page_num*page_length;
     page_length = ((page_num*page_length)+page_length)-1;
     var data = {};
-    BOARD_DB_MODEL.find({post_index: { $gt: page_num, $lt: page_length }}, function(err, board){
-      data.board_list = board;
-      for (key in data) {
-        console.log(key+" :::: "+data.board_list[key]);
+    BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
+      for (key in board) {
+        console.log(key+" :::: "+board[key]);
       }
       response.render('board/list', data);
     });
