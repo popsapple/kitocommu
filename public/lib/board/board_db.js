@@ -60,12 +60,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       for(var i = 0; i <= pageOfDocs; i++){
         pageOfCount[i] = i;
       }
-      var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
       this.getCountArray = function(obj,type,callback){
         console.log("STEP01 ::");
         obj.board_paging = [];
         if(type == 'all'){
-          var countarray = renderOfCount.slice(0,page_length_);
+          var countarray = pageOfCount.slice(0,page_length_);
           for(var c = 0; c < countarray.length; c++){
             console.log("몇번 반복 ::"+c);
             obj.board_paging.push({"paging":c});
@@ -73,8 +72,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
         else{
           for(var j = page_num_-4; j <= (page_num_+5); j++){
-            console.log("BBBBBBBB ::"+renderOfCount[j]);
-            if(renderOfCount[j]){
+            console.log("BBBBBBBB ::"+pageOfCount[j]);
+            if(pageOfCount[j]){
               obj.board_paging.push({"paging":j});
             }
           }
