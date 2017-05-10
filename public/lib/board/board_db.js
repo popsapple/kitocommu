@@ -61,7 +61,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         pageOfCount[i] = i;
       }
       var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
-      if(page_num <= (page_length_/2)){
+      if(page_num_ <= (page_length_/2)){
         obj.board_paging = renderOfCount.slice(0,page_length_);
       }else{
         obj.board_paging = renderOfCount.slice((page_num_-4),(page_num_+5));
