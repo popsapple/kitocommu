@@ -13,14 +13,12 @@ Board.write = function(info,request,response,mongoose,collection){
   save_data.tags = info.tags;
   save_data.writer = '관리자입니다'; //request.session.nickname;
   save_data.writed = new Date();
-  console.log("STEP01 ::::");
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
   function SaveFunction(save_data){
     save_data.save(function(err){
       if(err){
           console.error(err);
           request.json({result: 0});
-          console.log("에러입니다");
           return;
       }
       response.render('board/write_ok',save_data);
@@ -32,8 +30,20 @@ Board.write = function(info,request,response,mongoose,collection){
   });
 }
 
+Board.list_render = function(info,request,response,mongoose,collection){
+  var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  read_data = global.BOARD_DB.model;
+  var read_data_ = new global.BOARD_DB.getBoardLastIndex(read_data,mongoose,request,response,function(save_data){
+  //
+  });
+}
+
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
+
+  app.get('/board/list', function(request, response) {
+    Board.list_render(request.body,request,response,mongoose,'Board_MemberIntroduce');
+  });
 
   app.get('/board/write', function(request, response) {
     //MemberIntroduce

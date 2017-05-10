@@ -30,6 +30,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           callback(obj);
       });
     }
-    //obj._index += 1;
+  },getBoardListByIndex : function (obj,mongoose,request,response,callback){
+
+    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var page_num = parseInt(request.query.page);
+    var page_length = parseInt(request.query.page_length);
+    page_num = page_num*page_length;
+    page_length = ((page_num*page_length)+page_length)-1;
+    BOARD_DB_MODEL.find({post_index: { $gt: page_num, $lt: page_length }}, function(err, board){
+      response.render('member/list', board);
+    });
   }
 }
