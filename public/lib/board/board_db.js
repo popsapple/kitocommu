@@ -50,9 +50,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var numOfDocs;
     var pageOfDocs;
     var pageOfCount = [];
+    obj.board_table_id = request.query.board_table_id;
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
       numOfDocs = numOfDocs;
-      numOfDocs/page_length == 0 ? pageOfDocs = (numOfDocs/page_length) : pageOfDocs = (numOfDocs/page_length)+1;
+      numOfDocs%page_length == 0 ? pageOfDocs = (numOfDocs/page_length) : pageOfDocs = (numOfDocs/page_length)+1;
       for(var i = 0; i <= pageOfDocs; i++){
         pageOfCount[i] = i;
       }
