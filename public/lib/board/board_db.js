@@ -67,13 +67,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         var countarray;
         if(type == 'all'){
           countarray = renderOfCount.slice(0,(page_length_-1));
-          return countarray;
         }
-        for(var j = page_num_-4; j > (page_num_+5); j++){
-          if(renderOfCount[j]){
-            countarray[i] = j;
+        else{
+          for(var j = page_num_-4; j > (page_num_+5); j++){
+            if(renderOfCount[j]){
+              countarray[i] = j;
+            }
+            i++;
           }
-          i++;
         }
         callback();
         return countarray;
