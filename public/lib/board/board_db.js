@@ -80,7 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
         callback(obj);
       };
-      if(page_num_ <= ((page_length_-1)/2)){
+      if(page_num_ <= ((page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           response.render('board/list',obj);
         });
