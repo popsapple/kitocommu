@@ -64,20 +64,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       this.getCountArray = function(obj,type,callback){
         console.log("STEP01 ::");
         var i = 0;
-        var countarray;
         if(type == 'all'){
-          countarray = renderOfCount.slice(0,page_length_);
+          var countarray = renderOfCount.slice(0,page_length_);
           for(var c = 0; c < countarray.length; c++){
             console.log("몇번 반복 ::"+c);
-            countarray[c].paging = c;
+            obj.board_paging.paging = c;
           }
         }
         else{
-          countarray = [];
           for(var j = page_num_-4; j <= (page_num_+5); j++){
             console.log("BBBBBBBB ::"+renderOfCount[j]);
             if(renderOfCount[j]){
-              countarray[i].paging = j;
+              obj.board_paging[i].paging = j;
             }
             i++;
           }
