@@ -42,7 +42,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       for (key in board) {
         console.log(key+" :::: "+board[key]);
       }
-      response.render('board/list', data);
+      console.log(board[key]);
+      //response.render('board/list', board);
     });
   }
 }
