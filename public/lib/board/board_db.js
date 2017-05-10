@@ -40,7 +40,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gt: page_num, $lt: page_length }}, function(err, board){
       data.board_list = board;
-      response.render('member/list', data);
+      response.render('board/list', data);
     });
   }
 }
