@@ -39,7 +39,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     page_length = ((page_num*page_length)+page_length)-1;
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
-      for (key in board) {
+      for (var key in board) {
         console.log(key+" :::: "+board[key]);
       }
       console.log(board[key]);
