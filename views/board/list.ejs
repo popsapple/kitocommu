@@ -31,9 +31,15 @@
       <ul>
         <% for(var i=0; i < board_paging.length; i++) { %>
         <li>
-          <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
-            <%= board_paging[i].paging %>
-          </a>
+          <%= if(board_paging[i].paging != page) { %>
+            <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
+              <%= board_paging[i].paging %>
+            </a>
+          <%} else {%>
+            <a class="active" href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
+              <%= board_paging[i].paging %>
+            </a>
+          <%}%>
         </li>
         <%}%>
         <li>
