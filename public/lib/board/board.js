@@ -23,7 +23,6 @@ Board.write = function(info,request,response,mongoose,collection){
           console.log("에러입니다");
           return;
       }
-      console.log("STEP 03 ::::"+save_data.post_index);
       response.render('board/write_ok',save_data);
     });
   };

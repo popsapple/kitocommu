@@ -26,7 +26,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       BOARD_DB_MODEL.count({}, function(error, numOfDocs){
           obj.post_index = numOfDocs;
-          console.log("STEP02 ::::"+obj.post_index);
           // 동기적으로 실행해야 하므로 콜백으로 처리한 함수.
           callback(obj);
       });
