@@ -58,6 +58,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
+        console.log("몇번 반복 ::"+i);
         pageOfCount[i] = i;
       }
       this.getCountArray = function(obj,type,callback){
@@ -66,7 +67,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(type == 'all'){
           var countarray = pageOfCount.slice(0,page_length_);
           for(var c = 0; c < countarray.length; c++){
-            console.log("몇번 반복 ::"+c);
             obj.board_paging.push({"paging":c});
           }
         }
@@ -78,12 +78,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
           }
         }
-        console.log("STEP02 ::"+obj.board_paging);
         callback(obj);
       };
       if(page_num_ <= ((page_length_-1)/2)){
         this.getCountArray(obj,'all',function(obj){
-          console.log("STEP03 ::"+obj.board_paging);
           response.render('board/list',obj);
         });
       }else{
