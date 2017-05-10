@@ -62,6 +62,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
       var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
       this.getCountArray = function(type){
+        console.log("????????????????????");
         var i = 0;
         var countarray;
         if(type == 'all'){
