@@ -31,10 +31,12 @@ Board.write = function(info,request,response,mongoose,collection){
 }
 
 Board.list_render = function(info,request,response,mongoose,collection){
+  function PagingFunction(obj,mongoose,request,response){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
+  }
   var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  read_data = global.BOARD_DB.model;
-  var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(save_data){
-  //
+  var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+    PagingFunction(obj,mongoose,request,response);
   });
 }
 

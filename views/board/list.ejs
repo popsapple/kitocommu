@@ -20,10 +20,20 @@
               <%= board_list[i].writer %>
             </h3>
             <time>
-              <%= board_list[i].writed %>  
+              <%= board_list[i].writed %>
             </time>
           </hgroup>
         </li>
+        <%}%>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <% for(var i=0; i < board_paging.length; i++) { %>
+        <li>
+          <a href="/board/view?board_table_id=<%= board_list[i].board_table_id %>&post_index=<%= board_list[i].post_index %>">
+            <%= board_paging[i].paging_index %>
+          </a>
         <%}%>
       </ul>
     </section>

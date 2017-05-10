@@ -31,7 +31,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       });
     }
   },getBoardListByIndex : function (obj,mongoose,request,response,callback){
-
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
@@ -40,7 +39,30 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
       data.board_list = board;
-      response.render('board/list', data);
+      callback(data,mongoose,request,response);
+    });
+  },getBoardPagingByIndex : function (obj,mongoose,request,response){
+    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var page_num = parseInt(request.query.page);
+    var page_length = parseInt(request.query.page_length);
+    page_num = page_num*page_length;
+    page_length = ((page_num*page_length)+page_length)-1;
+    var numOfDocs;
+    var pageOfDocs;
+    var pageOfCount = [];
+    BOARD_DB_MODEL.count({}, function(error, numOfDocs){
+      numOfDocs = numOfDocs;
+      numOfDocs/page_length == 0 ? pageOfDocs = (numOfDocs/page_length) : pageOfDocs = (numOfDocs/page_length)+1;
+      for(var i = 0; i <= pageOfDocs; i++){
+        pageOfCount[i] = i;
+      }
+      obj.renderOfCount = new pageOfCount();
+      if(page_num <= page_length){
+        obj.renderOfCount = obj.renderOfCount.slice(0,page_length);
+      }else{
+        obj.renderOfCount = obj.renderOfCount.slice((page_num-4),(page_num+5));
+      }
+      response.render('board/list',obj);
     });
   }
 }
