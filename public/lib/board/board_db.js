@@ -68,7 +68,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(type == 'all'){
           countarray = renderOfCount.slice(0,page_length_);
           for(var i = 0; j < countarray.length; i++){
-            countarray[i]['paging'] = i;
+            countarray[i].paging = i;
           }
         }
         else{
@@ -76,7 +76,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           for(var j = page_num_-4; j <= (page_num_+5); j++){
             console.log("BBBBBBBB ::"+renderOfCount[j]);
             if(renderOfCount[j]){
-              countarray[i]['paging'] = j;
+              countarray[i].paging = j;
             }
             i++;
           }
