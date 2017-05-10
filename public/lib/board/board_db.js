@@ -61,8 +61,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         pageOfCount[i] = i;
       }
       var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
-      this.getCountArray = function(type,callback){
-        console.log("????????????????????");
+      this.getCountArray = function(obj,type,callback){
+        console.log("STEP01 ::");
         var i = 0;
         var countarray;
         if(type == 'all'){
@@ -76,15 +76,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             i++;
           }
         }
-        callback();
-        return countarray;
+        obj.board_paging = countarray;
+        console.log("STEP02 ::"+obj.board_paging);
+        callback(obj);
       };
       if(page_num_ <= ((page_length_-1)/2)){
-        obj.board_paging = this.getCountArray('all',function(){
+        this.getCountArray(obj,'all',function(obj){
+          console.log("STEP03 ::"+obj.board_paging);
           response.render('board/list',obj);
         });
       }else{
-        obj.board_paging = this.getCountArray('',function(){
+        this.getCountArray(obj,'',function(obj){
+          console.log("STEP03 ::"+obj.board_paging);
           response.render('board/list',obj);
         });
       }
