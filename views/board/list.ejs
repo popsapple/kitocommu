@@ -33,11 +33,11 @@
         <li>
           <% if(board_paging[i].paging != page_) { %>
             <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
-              <%= board_paging[i].paging %>
+              <%= board_paging[i].paging+1 %>
             </a>
           <%}else {%>
             <a class="active" href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
-              <%= board_paging[i].paging %>
+              <%= board_paging[i].paging+1 %>
             </a>
           <%}%>
         </li>
