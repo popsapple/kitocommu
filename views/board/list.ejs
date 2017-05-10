@@ -31,7 +31,7 @@
       <ul>
         <% for(var i=0; i < board_paging.length; i++) { %>
         <li>
-          <a href="/board/view?board_table_id=<%= board_list[i].board_table_id %>&post_index=<%= board_list[i].post_index %>">
+          <a href="/board/view?board_table_id=<%= board_list[i].board_table_id %>&post_index=<%= i %>">
             <%= i %>
           </a>
         <%}%>
