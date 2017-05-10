@@ -45,6 +45,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
+    var page_length_ = parseInt(request.query.page_length);
     page_num = page_num*page_length;
     page_length = ((page_num*page_length)+page_length)-1;
     var numOfDocs;
@@ -53,8 +54,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     obj.board_table_id = request.query.board_table_id;
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
       numOfDocs = numOfDocs;
-      numOfDocs%page_length == 0 ? pageOfDocs = (numOfDocs/page_length) : pageOfDocs = (numOfDocs/page_length)+1;
-      numOfDocs%page_length <= page_length ? pageOfDocs = 0 : '';
+      numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_) : pageOfDocs = (numOfDocs/page_length_)+1;
+      numOfDocs%page_length_ <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
         pageOfCount[i] = i;
       }

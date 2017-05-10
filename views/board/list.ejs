@@ -31,13 +31,13 @@
       <ul>
         <% for(var i=0; i < board_paging.length; i++) { %>
         <li>
-          <a href="/board/list?board_table_id=<%= board_table_id %>&post_index=<%= i %>&page_length=10">
+          <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= i %>&page_length=10">
             <%= i %>
           </a>
         </li>
         <%}%>
         <li>
-          <a href="/board/write?new_post=true&board_table_id=MemberIntroduce">자기소개</a>
+          <a href="/board/write?new_post=true&board_table_id=MemberIntroduce">글쓰기</a>
         </li>
       </ul>
     </section>
