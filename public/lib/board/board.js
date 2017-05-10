@@ -42,7 +42,7 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/list', function(request, response) {
-    Board.list_render(request.body,request,response,mongoose,'Board_MemberIntroduce');
+    Board.list_render(request.query,request,response,mongoose,'Board_MemberIntroduce');
   });
 
   app.get('/board/write', function(request, response) {

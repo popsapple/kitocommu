@@ -35,15 +35,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
-    page_num = 0;//page_num*page_length;
-    page_length = 10;//((page_num*page_length)+page_length)-1;
+    page_num = page_num*page_length;
+    page_length = ((page_num*page_length)+page_length)-1;
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
       for (var key in board) {
         console.log(key+" :::: "+board[key]);
       }
       console.log(board.length);
-      //response.render('board/list', board);
+      response.render('board/list', board);
     });
   }
 }
