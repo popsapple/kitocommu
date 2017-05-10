@@ -29,7 +29,9 @@ Board.write = function(info,request,response,mongoose,collection){
     });
   };
 
-  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save',callback);
+  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save',function(save_data){
+    SaveFunction(save_data);
+  });
 }
 
 module.exports.board_con = function(app,mongoose){
