@@ -82,6 +82,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }else{
         obj.board_paging = this.getCountArray(); //renderOfCount.slice((page_num_-4),(page_num_+5));
       }
+      console.log("!!!!!!!!!!!!!!");
       response.render('board/list',obj);
     });
   }
