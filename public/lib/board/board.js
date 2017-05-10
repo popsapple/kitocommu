@@ -12,39 +12,36 @@ Board.write = function(info,request,response,mongoose,collection){
   save_data.title = info.title;
   save_data.contents = info.contents;
   save_data.tags = info.tags;
-
-  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save');
-
-
-  // 디비를 갖고 온 후에 사용할 메서드 - 나중에 스팸방지 달 때 쓰자
-  // var save_data_ = new global.BOARD_DB.BoardMethod(save_data,mongoose,request,response);
   save_data.writer = '관리자입니다'; //request.session.nickname;
   save_data.writed = new Date();
-  //save_data.updated = new Date();
-  save_data.save(function(err){
-    if(err){
-        console.error(err);
-        request.json({result: 0});
-        console.log("에러입니다");
-        return;
-    }
-    console.log("STEP 05 ::"+save_data.post_index);
-    response.render('board/write_ok',save_data);
-  });
+  console.log("STEP01 ::::");
+  // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
+  function SaveFunction(save_data){
+    save_data.save(function(err){
+      if(err){
+          console.error(err);
+          request.json({result: 0});
+          console.log("에러입니다");
+          return;
+      }
+      console.log("STEP 03 ::::"+save_data.post_index);
+      response.render('board/write_ok',save_data);
+    });
+  };
+
+  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save',callback);
 }
 
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/write', function(request, response) {
-    console.log("STEP 00 ::");
     //MemberIntroduce
     var data = request.query;
     response.render('board/write',data);
   });
 
   app.post('/board_write_submit', function(request, response) {
-    console.log("STEP 01 ::");
     Board.write(request.body,request,response,mongoose,'Board_MemberIntroduce');
   });
 }
