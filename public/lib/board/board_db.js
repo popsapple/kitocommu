@@ -44,6 +44,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },getBoardPagingByIndex : function (obj,mongoose,request,response){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
+    var page_num_ = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
     var page_length_ = parseInt(request.query.page_length);
     page_num = page_num*page_length;
@@ -61,9 +62,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
       var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
       if(page_num <= page_length_){
-        obj.board_paging = renderOfCount.slice(0,page_length);
+        obj.board_paging = renderOfCount.slice(0,page_length_);
       }else{
-        obj.board_paging = renderOfCount.slice((page_num-4),(page_num+5));
+        obj.board_paging = renderOfCount.slice((page_num_-4),(page_num_+5));
       }
       response.render('board/list',obj);
     });
