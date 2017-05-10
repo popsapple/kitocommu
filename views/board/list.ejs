@@ -12,7 +12,7 @@
         <li>
           <hgroup>
             <h2>
-              <a href="/board/view?board_table_id=<%= board_list.board_table_id %>&post_index=<%= board_list[i].post_index %>">
+              <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
                 <%= board_list[i].title %>
               </a>
             </h2>
@@ -31,7 +31,7 @@
       <ul>
         <% for(var i=0; i < board_paging.length; i++) { %>
         <li>
-          <a href="/board/view?board_table_id=<%= board_list.board_table_id %>&post_index=<%= i %>&page_length=10">
+          <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= i %>&page_length=10">
             <%= i %>
           </a>
         <%}%>
