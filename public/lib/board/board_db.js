@@ -61,7 +61,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         pageOfCount[i] = i;
       }
       var renderOfCount = pageOfCount.slice(0); // slice 를 이용한 깊은 복사.
-      this.getCountArray = function(type){
+      this.getCountArray = function(type,callback){
         console.log("????????????????????");
         var i = 0;
         var countarray;
@@ -75,15 +75,19 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
           i++;
         }
+        callback();
         return countarray;
       };
       if(page_num_ <= ((page_length_-1)/2)){
-        obj.board_paging = this.getCountArray('all');
+        obj.board_paging = this.getCountArray('all',function(){
+          response.render('board/list',obj);
+        });
       }else{
-        obj.board_paging = this.getCountArray(); //renderOfCount.slice((page_num_-4),(page_num_+5));
+        obj.board_paging = this.getCountArray('',function(){
+          response.render('board/list',obj);
+        });
       }
-      console.log("!!!!!!!!!!!!!!");
-      response.render('board/list',obj);
+
     });
   }
 }
