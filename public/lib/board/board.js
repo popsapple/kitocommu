@@ -5,7 +5,6 @@ Board.write = function(info,request,response,mongoose,collection){
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
 
-  save_data.post_index = 0;
   save_data.reply = "";
   save_data.category = info.category;
   save_data.is_notice = info.is_notice;
