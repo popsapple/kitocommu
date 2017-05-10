@@ -39,7 +39,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
       data.board_list = board;
-      data.page = request.query.page;
+      data.page_ = request.query.page;
       callback(data,mongoose,request,response);
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response){
