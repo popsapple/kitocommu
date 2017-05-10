@@ -56,7 +56,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       for(var i = 0; i <= pageOfDocs; i++){
         pageOfCount[i] = i;
       }
-      var renderOfCount = new pageOfCount();
+      var renderOfCount = new pageOfCount;
       if(page_num <= page_length){
         obj.board_paging = renderOfCount.slice(0,page_length);
       }else{
