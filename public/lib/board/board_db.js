@@ -64,7 +64,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       this.getCountArray = function(obj,type,callback){
         console.log("STEP01 ::");
         var i = 0;
-        obj.board_paging = {};
+        obj.board_paging = [];
         if(type == 'all'){
           var countarray = renderOfCount.slice(0,page_length_);
           for(var c = 0; c < countarray.length; c++){
