@@ -66,8 +66,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.board_list = board;
       console.log("DDDDDDDDDDDDDD");
       data.board_post_length = data.board_list.length;
-      //data.board_list = data.board_list.slice(page_num,page_length);
+      data.board_list = data.board_list.slice(page_num,page_length);
       data.page_ = request.query.page;
+      data.search_option = search_option;
+      data.search_value = search_value;
       callback(data,mongoose,request,response);
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback){
