@@ -63,12 +63,12 @@ module.exports.board_con = function(app,mongoose){
     console.log("???????????:::"+board_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
-
+/*
   app.get('/board/search_post', function(request, response) {
     var board_id = request.query.board_table_id;
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
-
+*/
   app.get('/board/write', function(request, response) {
     if(request.session.nickname == undefined){
       response.send("<script>alert('로그인 후에 이용 부탁 드립니다.'); location.href='/login_form';</script>");
