@@ -41,6 +41,11 @@ Board.list_render = function(info,request,response,mongoose,collection){
   });
 }
 
+Board.view = function(info,request,response,mongoose,collection){
+  var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection);
+}
+
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
