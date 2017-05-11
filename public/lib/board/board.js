@@ -44,7 +44,7 @@ Board.list_render = function(info,request,response,mongoose,collection){
     PagingFunction(obj,mongoose,request,response);
   });
 }
-
+/*
 Board.search_render = function(info,request,response,mongoose,collection){
   function PagingFunction(obj,mongoose,request,response){
     var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search');
@@ -54,7 +54,7 @@ Board.search_render = function(info,request,response,mongoose,collection){
     PagingFunction(obj,mongoose,request,response);
   });
 }
-
+*/
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
