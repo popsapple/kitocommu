@@ -46,6 +46,16 @@ Board.view = function(info,request,response,mongoose,collection){
   var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection);
 }
 
+Board.search_render = function(info,request,response,mongoose,collection){
+  function PagingFunction(obj,mongoose,request,response){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search');
+  }
+  var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var read_data_ = new global.BOARD_DB.getBoardListBySearch(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+    PagingFunction(obj,mongoose,request,response);
+  });
+}
+
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
@@ -54,16 +64,23 @@ module.exports.board_con = function(app,mongoose){
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
+  app.get('/board/search_post', function(request, response) {
+    var board_id = 'Board_'+(request.query.board_table_id);
+    Board.search_render(request.query,request,response,mongoose,board_id);
+  });
+
   app.get('/board/write', function(request, response) {
     var data = request.query;
     response.render('board/write',data);
   });
 
   app.get('/board/view', function(request, response) {
-    Board.view(request.query,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = 'Board_'+(request.query.board_table_id);
+    Board.view(request.query,request,response,mongoose,board_id);
   });
 
   app.post('/board_write_submit', function(request, response) {
-    Board.write(request.body,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = 'Board_'+(request.query.board_table_id);
+    Board.write(request.body,request,response,mongoose,board_id);
   });
 }
