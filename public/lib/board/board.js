@@ -60,6 +60,7 @@ module.exports.board_con = function(app,mongoose){
 
   app.get('/board/list', function(request, response) {
     var board_id = request.query.board_table_id;
+    console.log("???????????:::"+board_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
