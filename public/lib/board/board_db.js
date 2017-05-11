@@ -49,10 +49,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
+    var search_option = request.query.search_option;
+    var search_value = request.query.search_value;
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
     var data = {};
-    BOARD_DB_MODEL.find({request.query.search_option: request.query.search_value}, function(err, board){
+    BOARD_DB_MODEL.find({search_option: search_value}, function(err, board){
       data.board_list = board;
       data.board_post_length = data.board_list.length;
       data.board_list = data.board_list.slice(page_num,page_length);
