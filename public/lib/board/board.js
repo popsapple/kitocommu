@@ -45,12 +45,27 @@ Board.list_render = function(info,request,response,mongoose,collection){
   });
 }
 
+Board.search_render = function(info,request,response,mongoose,collection){
+  function PagingFunction(obj,mongoose,request,response){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
+  }
+  var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+    PagingFunction(obj,mongoose,request,response);
+  });
+}
+
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/list', function(request, response) {
     var board_id = request.query.board_table_id
     Board.list_render(request.query,request,response,mongoose,board_id);
+  });
+
+  app.get('/board/search_post', function(request, response) {
+    var board_id = request.query.board_table_id
+    Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/write', function(request, response) {
