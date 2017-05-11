@@ -1,0 +1,40 @@
++<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body itemscope = "" itemtype = "http://schema.org/WebPage">
+<% include ../partials/nav.ejs %>
+  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <section>
+        <ul>
+          <li>
+            <h2>
+              <strong>제목</strong>
+              <em><%= title %></em>
+            </h2>
+          </li>
+          <li>
+            <strong>카테고리</strong>
+            <em><%= category %></em>
+          </li>
+          <li>
+            <strong>공지사항</strong>
+            <em><%= is_notice %></em>
+          </li>
+          <li>
+            <strong>글내용</strong>
+            <div class="contents">
+              <%= contents %>
+            </div>
+          </li>
+          <li>
+            <strong>태그</strong>
+            <em><%= tags %></em>
+          </li>
+        </ul>
+    </section>
+  </div>
+<% include ../partials/footer.ejs %>
+</body>
+</html>

@@ -25,6 +25,7 @@ Board.write = function(info,request,response,mongoose,collection){
     });
   };
 
+  global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
   var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save',function(save_data){
     SaveFunction(save_data);
   });
