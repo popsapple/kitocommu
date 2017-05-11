@@ -59,24 +59,31 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/list', function(request, response) {
-    Board.list_render(request.query,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = request.query.board_table_id;
+    Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/search_post', function(request, response) {
-    var board_id = request.query.board_table_id
+    var board_id = request.query.board_table_id;
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/write', function(request, response) {
+    if(request.session.nickname == undefined){
+      response.send("<script>alert('로그인 후에 이용 부탁 드립니다.'); location.href='/login_form';</script>");
+      return false;
+    }
     var data = request.query;
     response.render('board/write',data);
   });
 
   app.get('/board/view', function(request, response) {
-    Board.view(request.query,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = request.query.board_table_id;
+    Board.view(request.query,request,response,mongoose,board_id);
   });
 
   app.post('/board_write_submit', function(request, response) {
-    Board.write(request.body,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = request.query.board_table_id;
+    Board.write(request.body,request,response,mongoose,board_id);
   });
 }
