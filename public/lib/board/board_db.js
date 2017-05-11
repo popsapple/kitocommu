@@ -38,12 +38,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
     page_num = page_num*page_length;
-    page_length = page_num+page_length;
+    page_length = page_num+page_length-1;
     var data = {};
     BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
       data.board_list = board;
       data.page_ = request.query.page;
       callback(data,mongoose,request,response);
+    });
+  },getBoardPostByIndex : function (mongoose,request,response,callback){
+    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var page_num = parseInt(request.query.post_index);
+    BOARD_DB_MODEL.find({post_index: { post_index: page_num }}, function(err, board){
+      response.render('board/view',board);
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
