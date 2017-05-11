@@ -12,7 +12,7 @@
         <li>
           <hgroup>
             <h2>
-              <a href="/board/view?board_table_id='<%= board_table_id %>'&post_index=<%= board_list[i].post_index %>">
+              <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
                 <%= board_list[i].title %>
               </a>
             </h2>
@@ -46,18 +46,18 @@
         <% for(var i=0; i < board_paging.length; i++) { %>
         <li>
           <% if(board_paging[i].paging != page_) { %>
-            <a href="/board/list?board_table_id='<%= board_table_id %>'&page=<%= board_paging[i].paging %>&page_length=10">
+            <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
               <%= board_paging[i].paging+1 %>
             </a>
           <%}else {%>
-            <a class="active" href="/board/list?board_table_id='<%= board_table_id %>'&page=<%= board_paging[i].paging %>&page_length=10">
+            <a class="active" href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
               <%= board_paging[i].paging+1 %>
             </a>
           <%}%>
         </li>
         <%}%>
         <li>
-          <a href="/board/write?new_post=true&board_table_id='<%= board_table_id %>'">글쓰기</a>
+          <a href="/board/write?new_post=true&board_table_id=<%= board_table_id %>">글쓰기</a>
         </li>
       </ul>
     </section>
