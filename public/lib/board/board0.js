@@ -1,6 +1,5 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection){
-  console.log("STEP 02 ::");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
@@ -31,6 +30,11 @@ Board.write = function(info,request,response,mongoose,collection){
   });
 }
 
+Board.view = function(info,request,response,mongoose,collection){
+  var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection);
+}
+
 Board.list_render = function(info,request,response,mongoose,collection){
   function PagingFunction(obj,mongoose,request,response){
     var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
@@ -41,29 +45,46 @@ Board.list_render = function(info,request,response,mongoose,collection){
   });
 }
 
-Board.view = function(info,request,response,mongoose,collection){
-  var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection);
+Board.search_render = function(info,request,response,mongoose,collection){
+  function PagingFunction(obj,mongoose,request,response){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search');
+  }
+  var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var read_data_ = new global.BOARD_DB.getBoardListBySearch(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+    PagingFunction(obj,mongoose,request,response);
+  });
 }
 
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
 
   app.get('/board/list', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
+    var board_id = request.query.board_table_id;
+    console.log("???????????:::"+board_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
+  app.get('/board/search_post', function(request, response) {
+    var board_id = request.query.board_table_id;
+    Board.search_render(request.query,request,response,mongoose,board_id);
+  });
+
   app.get('/board/write', function(request, response) {
+    if(request.session.nickname == undefined){
+      response.send("<script>alert('로그인 후에 이용 부탁 드립니다.'); location.href='/login_form';</script>");
+      return false;
+    }
     var data = request.query;
     response.render('board/write',data);
   });
 
   app.get('/board/view', function(request, response) {
-    Board.view(request.query,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = request.query.board_table_id;
+    Board.view(request.query,request,response,mongoose,board_id);
   });
 
   app.post('/board_write_submit', function(request, response) {
-    Board.write(request.body,request,response,mongoose,'Board_MemberIntroduce');
+    var board_id = request.query.board_table_id;
+    Board.write(request.body,request,response,mongoose,board_id);
   });
 }
