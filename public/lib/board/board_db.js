@@ -45,13 +45,27 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.page_ = request.query.page;
       callback(data,mongoose,request,response);
     });
+  },getBoardListBySearch : function (obj,mongoose,request,response,callback){
+    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var page_num = parseInt(request.query.page);
+    var page_length = parseInt(request.query.page_length);
+    page_num = page_num*page_length;
+    page_length = page_num+page_length-1;
+    var data = {};
+    BOARD_DB_MODEL.find({request.query.search_option: request.query.search_value}, function(err, board){
+      data.board_list = board;
+      data.board_post_length = data.board_list.length;
+      data.board_list = data.board_list.slice(page_num,page_length);
+      data.page_ = request.query.page;
+      callback(data,mongoose,request,response);
+    });
   },getBoardPostByIndex : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.post_index);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       response.render('board/view',board);
     });
-  },getBoardPagingByIndex : function (obj,mongoose,request,response){
+  },getBoardPagingByIndex : function (obj,mongoose,request,response,type){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_num_ = parseInt(request.query.page);
@@ -63,6 +77,41 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var pageOfDocs;
     var pageOfCount = [];
     obj.board_table_id = request.query.board_table_id;
+    if(type == 'search'){
+      numOfDocs = obj.board_post_length.length;
+      numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
+      numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
+      for(var i = 0; i <= pageOfDocs; i++){
+        pageOfCount[i] = i;
+      }
+      this.getCountArray = function(obj,type,callback){
+        obj.board_paging = [];
+        if(type == 'all'){
+          var countarray = pageOfCount.slice(0,page_length_);
+          for(var c = 0; c < countarray.length; c++){
+            obj.board_paging.push({"paging":c});
+          }
+        }
+        else{
+          for(var j = page_num_-4; j <= (page_num_+5); j++){
+            if(pageOfCount[j]){
+              obj.board_paging.push({"paging":j});
+            }
+          }
+        }
+        callback(obj);
+      };
+      if(page_num_ < (page_length_-1)){
+        this.getCountArray(obj,'all',function(obj){
+          response.render('board/list',obj);
+        });
+      }else{
+        this.getCountArray(obj,'',function(obj){
+          response.render('board/list',obj);
+        });
+      }
+      return;
+    }
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
       numOfDocs = numOfDocs;
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
@@ -96,7 +145,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           response.render('board/list',obj);
         });
       }
-
     });
   }
 }
