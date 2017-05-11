@@ -48,7 +48,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },getBoardPostByIndex : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.post_index);
-    BOARD_DB_MODEL.find({post_index: page_num}, function(err, board){
+    BOARD_DB_MODEL.findOne({post_index: page_num}, function(err, board){
+      fon(var key in board){
+        console.log("POSTCON ::"+key+" :: "+board[key]);
+      }
       response.render('board/view',board);
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response){
