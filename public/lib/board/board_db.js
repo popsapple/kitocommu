@@ -51,19 +51,20 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_length = parseInt(request.query.page_length);
     var search_option = request.query.search_option;
     var search_value = request.query.search_value;
-    var seearch_hint;
+    var search_hint;
     if(search_option == "title"){
-      seearch_hint = {title: search_value};
+      search_hint = {title: search_value};
     }else if(search_option == "tags"){
-      seearch_hint = {tag: search_value};
+      search_hint = {tag: search_value};
     }else if(search_option == "writer"){
-      seearch_hint = {writer: search_value};
+      search_hint = {writer: search_value};
     }
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
     var data = {};
-    BOARD_DB_MODEL.find(seearch_hint, function(err, board){
+    BOARD_DB_MODEL.find(search_hint, function(err, board){
       data.board_list = board;
+      console.log("DDDDDDDDDDDDDD");
       data.board_post_length = data.board_list.length;
       data.board_list = data.board_list.slice(page_num,page_length);
       data.page_ = request.query.page;
