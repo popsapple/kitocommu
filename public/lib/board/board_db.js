@@ -93,21 +93,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var board_id = request.body.board_table_id;
     console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
-
-    });
-  /*  BOARD_DB_MODEL.findOneAndUpdate({post_index: {$lte: page_num}}, {$set:{$inc:{post_index: -1 }}},'',function(){
-      response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
-    });
-    mongoose.connection.collection("Board_"+board_id).findAndModify({
-    query: {post_index: {$gte: page_num_}},
-    update: { $set: {$inc:{post_index: -1 }}},
-    function(err,doc) {
-      response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
-    }});*/
-
-    BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
-    function (error, obj) {
-      response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+      BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
+      function (error, obj) {
+        response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+      });
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
