@@ -1,6 +1,5 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection){
-  console.log("STEP 02 ::");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
   save_data = new save_data(save_data.schema);
@@ -11,7 +10,7 @@ Board.write = function(info,request,response,mongoose,collection){
   save_data.title = info.title;
   save_data.contents = info.contents;
   save_data.tags = info.tags;
-  save_data.writer = '관리자입니다'; //request.session.nickname;
+  save_data.writer = 'request.session.nickname'; //request.session.nickname;
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
   function SaveFunction(save_data){
@@ -44,6 +43,11 @@ Board.list_render = function(info,request,response,mongoose,collection){
 Board.view = function(info,request,response,mongoose,collection){
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection);
+}
+
+Board.remove = function(info,request,response,mongoose,collection){
+  var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  var save_data_ = new global.BOARD_DB.onRemoveBoardPost(mongoose,request,response,collection);
 }
 
 Board.search_render = function(info,request,response,mongoose,collection){
@@ -82,5 +86,10 @@ module.exports.board_con = function(app,mongoose){
   app.post('/board_write_submit', function(request, response) {
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.write(request.body,request,response,mongoose,board_id);
+  });
+
+  app.post('/board_remove_submit', function(request, response) {
+    var board_id = 'Board_'+(request.body.board_table_id);
+    Board.remove(request.body,request,response,mongoose,board_id);
   });
 }
