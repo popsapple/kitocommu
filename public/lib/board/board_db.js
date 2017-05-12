@@ -64,8 +64,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var data = {};
     BOARD_DB_MODEL.find(search_hint, function(err, board){
       data.board_list = board;
-      console.log("DDDDDDDDDDDDDD");
       data.board_post_length = data.board_list.length;
+      console.log("DDDDDDDDDDDDDD ::: "+data.board_post_length);
       data.board_list = data.board_list.slice(page_num,page_length);
       data.page_ = request.query.page;
       data.searchoption = search_option;
@@ -91,7 +91,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var pageOfCount = [];
     obj.board_table_id = request.query.board_table_id;
     if(type == 'search'){
-      numOfDocs = obj.board_post_length.length;
+      numOfDocs = obj.board_post_length;
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
