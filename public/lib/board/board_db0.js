@@ -65,6 +65,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.find(search_hint, function(err, board){
       data.board_list = board;
       obj.board_post_length = data.board_list.length;
+      console.log("DDDDDDDDDDDDDD ::: "+obj.board_post_length);
       data.board_list = data.board_list.slice(page_num,page_length);
       data.page_ = request.query.page;
       data.searchoption = search_option;
