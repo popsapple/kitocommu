@@ -96,7 +96,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       BOARD_DB_MODEL.findAndModify(
       { post_index: { $gt: page_num } }, // query
       [['_id','asc']],  // sort order
-      {$set: $inc: { post_index: -1 }}, // replacement, replaces only the field "hi"
+      {$set: {$inc: { post_index: -1 }}}, // replacement, replaces only the field "hi"
       {}, // options
       function(err, object) {
           response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");

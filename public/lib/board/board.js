@@ -26,19 +26,22 @@ Board.write = function(info,request,response,mongoose,collection,type){
       });
     }
     else {
-      var post_index_ = info.post_index;
-      var post_category = info.post_category;
-      var post_notice = info.post_notice;
-      var post_title = info.post_title;
-      var post_contents = info.post_contents;
-      var post_tags = info.post_tags;
-      BOARD_DB_MODEL.update({ post_index: post_index_ }, { $set: {
-        category: post_category,
-        is_notice: post_notice,
-        title: post_title,
-        contents: post_contents,
-        tags: post_tags
-      } });
+      save_data.findOne({post_index: post_index_}, function(err, data){
+        data.post_index = info.post_index;
+        data.post_index = info.post_category;
+        data.post_index = info.post_notice;
+        data.post_index = info.post_title;
+        data.post_index = info.post_contents;
+        data.post_index = info.post_tags;
+
+        data.save(function(err){
+          if(err){
+              request.json({result: 0});
+              return;
+          }
+          response.render('board/write_ok',data);
+        });
+      });
     }
   };
 
