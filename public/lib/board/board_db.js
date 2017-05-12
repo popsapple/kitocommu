@@ -92,6 +92,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     obj.board_table_id = request.query.board_table_id;
     if(type == 'search'){
       numOfDocs = board_post_length;
+      console.log("AAAAAAAAAAA ::: "+numOfDocs);
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
