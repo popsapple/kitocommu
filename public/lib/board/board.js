@@ -65,7 +65,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/search_post', function(request, response) {
-    var board_id = 'Board_'+(request.query.boardtableid);
+    var board_id = 'Board_'+(request.query.board_table_id);
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
