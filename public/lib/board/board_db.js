@@ -43,7 +43,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
       var page_num = numOfDocs - page_num;
       var page_length = numOfDocs - page_num + page_length;
-      BOARD_DB_MODEL.sort({ post_index: -1 }).find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
+      BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}).sort({ post_index: -1 }, function(err, board){
         data.board_list = board;
         data.page_ = request.query.page;
         callback(data,mongoose,request,response);
@@ -66,7 +66,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
     var data = {};
-    BOARD_DB_MODEL.sort({ post_index: -1 }).find(search_hint,function(err, board){
+    BOARD_DB_MODEL.find(search_hint).sort({ post_index: -1 },function(err, board){
       data.board_list = board;
       obj.board_post_length = data.board_list.length;
       data.board_list = data.board_list.slice(page_num,page_length);
