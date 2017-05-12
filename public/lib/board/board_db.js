@@ -95,7 +95,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
 
     });
-    BOARD_DB_MODEL.findOneAndUpdate({post_index: {$gte: page_num}}, {$set:{$inc:{post_index: -1 }}});
+    BOARD_DB_MODEL.findOneAndUpdate({post_index: {$gte: page_num}}, {$set:{$inc:{post_index: -1 }}},'',function(){
+      response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+    });
   },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
