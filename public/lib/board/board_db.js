@@ -50,7 +50,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
     var search_option = request.query.search_option;
-    var search_value = request.query.search_value;
+    var search_value = "'"+request.query.search_value+"'";
     var search_hint;
     if(search_option == "title"){
       search_hint = {title: search_value};
