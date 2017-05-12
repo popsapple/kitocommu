@@ -63,8 +63,8 @@
         <li>
           <% if(board_paging[i].paging != page_) { %>
             <% if(locals.searchoption) { %>
-              <a href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&search_option=<%= search_option %>&search_value=<%= search_value %>">
-                <%= board_paging[i].paging+1 %>
+              <a href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
+                <%= board_paging[i].paging+searchoption1 %>
               </a>
             <%}else {%>
               <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
@@ -73,7 +73,7 @@
             <%}%>
           <%}else {%>
             <% if(locals.searchoption) { %>
-              <a class="active" href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&search_option=<%= search_option %>&search_value=<%= search_value %>">
+              <a class="active" href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
                 <%= board_paging[i].paging+1 %>
               </a>
             <%}else {%>
