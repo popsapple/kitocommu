@@ -43,7 +43,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
       var page_num = numOfDocs - page_num;
       var page_length = numOfDocs - page_num + page_length;
-      BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }},{$sort: { post_index: -1 }}}, function(err, board){
+      BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }},{$sort: { post_index: -1 }}, function(err, board){
         data.board_list = board;
         data.page_ = request.query.page;
         callback(data,mongoose,request,response);
