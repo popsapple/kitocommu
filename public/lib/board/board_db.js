@@ -106,7 +106,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }});*/
     mongoose.connection.collection("Board_"+board_id).findAndModify(
     {post_index: {$gte: page_num_}},          // criteria
-    [['_id':'asc']],            // sort
+    [['_id','asc']],            // sort
     {$set: {$inc:{post_index: -1 }}},  // update
     {},
     function (error, obj) {
