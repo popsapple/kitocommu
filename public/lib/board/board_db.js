@@ -104,11 +104,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     function(err,doc) {
       response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
     }});*/
-    mongoose.connection.collection("Board_"+board_id).findAndModify(
-    {post_index: {$gte: page_num_}},          // criteria
-    [['_id','asc']],            // sort
-    {$set: {$inc:{post_index: -1 }}},  // update
-    {},
+
+    BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
     function (error, obj) {
       response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
     });
