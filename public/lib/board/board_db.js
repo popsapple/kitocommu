@@ -22,14 +22,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },getBoardLastIndex : function (obj,mongoose,request,response,type,callback){
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
-    if (type == 'save'){
-
-      BOARD_DB_MODEL.count({}, function(error, numOfDocs){
-          obj.post_index = numOfDocs;
-          // 동기적으로 실행해야 하므로 콜백으로 처리한 함수.
-          callback(obj);
-      });
-    }
+    BOARD_DB_MODEL.count({}, function(error, numOfDocs){
+        obj.post_index = numOfDocs;
+        // 동기적으로 실행해야 하므로 콜백으로 처리한 함수.
+        callback(obj);
+    });
   },setBoardSortIndex : function(obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var save_data = BOARD_DB_MODEL.find().update({$sort: { post_index: -1 }});

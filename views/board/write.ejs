@@ -7,7 +7,11 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <form method="post" action="/board_write_submit">
+      <%if(!locals.board_title){%>
+        <form method="post" action="/board_write_submit">
+      <%} else {%>
+        <form method="post" action="/board_modify_submit">
+      <%}%>
         <%if(locals.board_table_id){%>
           <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
         <%}%>
@@ -67,7 +71,7 @@
       <%if(locals.board_title){%>
           <form method="post" action="/board_remove_submit">
             <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-            <input id="RemovePostIdx" name="_index" type="hidden" value="<%= board_post_idx %>" />
+            <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= board_post_idx %>" />
             <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">
           </form>
       <%}%>

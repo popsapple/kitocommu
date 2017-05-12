@@ -1,9 +1,10 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Board.write = function(info,request,response,mongoose,collection){
+Board.write = function(info,request,response,mongoose,collection,type){
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
-  save_data = new save_data(save_data.schema);
-
+  if(type=='save'){
+    save_data = new save_data(save_data.schema);
+  }
   save_data.reply = "";
   save_data.category = info.category;
   save_data.is_notice = info.is_notice;
@@ -14,18 +15,35 @@ Board.write = function(info,request,response,mongoose,collection){
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
   function SaveFunction(save_data){
-    save_data.save(function(err){
-      if(err){
-          console.error(err);
-          request.json({result: 0});
-          return;
-      }
-      response.render('board/write_ok',save_data);
-    });
+    if(type=='save'){
+      save_data.save(function(err){
+        if(err){
+            console.error(err);
+            request.json({result: 0});
+            return;
+        }
+        response.render('board/write_ok',save_data);
+      });
+    }
+    else {
+      var post_index_ = info.post_index;
+      var post_category = info.post_category;
+      var post_notice = info.post_notice;
+      var post_title = info.post_title;
+      var post_contents = info.post_contents;
+      var post_tags = info.post_tags;
+      BOARD_DB_MODEL.update({ post_index: post_index_ }, { $set: {
+        category: post_category,
+        is_notice: post_notice,
+        title: post_title,
+        contents: post_contents,
+        tags: post_tags
+      } });
+    }
   };
 
   global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
-  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,'save',function(save_data){
+  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data){
     SaveFunction(save_data);
   });
 }
@@ -85,7 +103,12 @@ module.exports.board_con = function(app,mongoose){
 
   app.post('/board_write_submit', function(request, response) {
     var board_id = 'Board_'+(request.body.board_table_id);
-    Board.write(request.body,request,response,mongoose,board_id);
+    Board.write(request.body,request,response,mongoose,board_id,'save');
+  });
+
+  app.post('/board_modify_submit', function(request, response) {
+    var board_id = 'Board_'+(request.body.board_table_id);
+    Board.write(request.body,request,response,mongoose,board_id,'modify');
   });
 
   app.post('/board_remove_submit', function(request, response) {
