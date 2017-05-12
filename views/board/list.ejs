@@ -32,14 +32,18 @@
         <li>
         <form method="get" action="/board/search_post">
           <input type="hidden" name="boardtableid" value="<%= board_table_id %>" />
-          <input type="hidden" name="page" value="0" />
+          <% if(locals.page) { %>
+            <input type="hidden" name="page" value="<%= page %>" />
+          <%}else {%>
+            <input type="hidden" name="page" value="0" />
+          <%}%>
           <input type="hidden" name="page_length" value="10" />
-          <select name="searchoption" value="" id="BoardSearchOption">
+          <select name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
             <option value="title">제목</option>
             <option value="tags">태그</option>
             <option value="writer">작성자</option>
           </select>
-          <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
+          <input name="searchvalue" value="<%= searchvalue %>" id="BoardSearchValue" type="text" />
           <input type="submit" value="검색하기" />
         </form>
         </li>
