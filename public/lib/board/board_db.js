@@ -84,7 +84,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num_ = page_num+1;
     var board_id = request.query.board_table_id;
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
-      BOARD_DB_MODEL.update({$inc: {post_index: -1}}, {$max: {post_index: page_num}}, {multi: true});
+      BOARD_DB_MODEL.update({$max: {post_index: page_num}}, {$inc: {post_index: -1}}, {multi: true});
       response.render("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){
