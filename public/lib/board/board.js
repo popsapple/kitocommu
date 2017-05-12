@@ -32,12 +32,12 @@ Board.write = function(info,request,response,mongoose,collection){
 }
 
 Board.list_render = function(info,request,response,mongoose,collection){
-  function PagingFunction(obj,mongoose,request,response,board_post_length){
-    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search',board_post_length);
+  function PagingFunction(obj,mongoose,request,response){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
   }
   var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
-    PagingFunction(obj,mongoose,request,response,obj.board_post_length);
+    PagingFunction(obj,mongoose,request,response);
   });
 }
 
@@ -47,12 +47,12 @@ Board.view = function(info,request,response,mongoose,collection){
 }
 
 Board.search_render = function(info,request,response,mongoose,collection){
-  function PagingFunction(obj,mongoose,request,response){
-    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search');
+  function PagingFunction(obj,mongoose,request,response,board_post_length){
+    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response,'search',board_post_length);
   }
   var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var read_data_ = new global.BOARD_DB.getBoardListBySearch(read_data,mongoose,request,response,function(obj,mongoose,request,response){
-    PagingFunction(obj,mongoose,request,response);
+    PagingFunction(obj,mongoose,request,response,read_data.board_post_length);
   });
 }
 
