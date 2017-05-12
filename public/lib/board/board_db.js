@@ -93,7 +93,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var board_id = request.body.board_table_id;
     console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
-      save_data.find({post_index: { $gt: page_num }}, function(err, data){
+      BOARD_DB_MODEL.find({post_index: { $gt: page_num }}, function(err, data){
         data.post_index -= 1;
         data.save(function(err){
           if(err){
