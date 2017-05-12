@@ -78,7 +78,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       response.render('board/view',board);
     });
-  },getBoardPagingByIndex : function (obj,mongoose,request,response,type){
+  },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_num_ = parseInt(request.query.page);
@@ -91,7 +91,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var pageOfCount = [];
     obj.board_table_id = request.query.board_table_id;
     if(type == 'search'){
-      numOfDocs = obj.board_post_length;
+      numOfDocs = board_post_length;
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
