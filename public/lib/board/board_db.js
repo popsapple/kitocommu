@@ -95,11 +95,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
 
     });
-    BOARD_DB_MODEL.findAndModify({
-      query : {post_index: {$gte: page_num}},
-      sort: { post_index: 1 },
-      update: { $inc: { post_index: -1 } }
-    });
+    BOARD_DB_MODEL.findOneAndUpdate({post_index: {$gte: page_num}}, {$set:{$inc:{post_index: -1 }}});
   },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
