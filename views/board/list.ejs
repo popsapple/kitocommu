@@ -31,6 +31,7 @@
       <ul>
         <li>
         <form method="get" action="/board/search_post">
+          <input type="hidden" name="boardtableid" value="<%= board_table_id %>" />
           <input type="hidden" name="page" value="0" />
           <input type="hidden" name="page_length" value="10" />
           <select name="searchoption" value="" id="BoardSearchOption">
