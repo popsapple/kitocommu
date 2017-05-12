@@ -89,7 +89,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },onRemoveBoardPost : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = request.body.post_index;
-    var page_num_ = parseInt(page_num)+1;
+    var page_num_ = parseInt(page_num);
     var board_id = request.body.board_table_id;
     console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
@@ -99,7 +99,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
     });*/
     mongoose.connection.collection("Board_"+board_id).findAndModify(
-    {post_index: {$lte: page_num}},     // query
+    {post_index: {$gte: page_num_}},     // query
     [['post_index','asc']],               // represents a sort order if multiple matches
     {$set: {$inc:{post_index: -1 }}},   // update statement
     {},    // options - new to return the modified document
