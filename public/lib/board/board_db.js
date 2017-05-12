@@ -75,6 +75,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = parseInt(request.query.post_index);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request.query.board_table_id;
+      board.post_index = request.query.post_index;
       response.render('board/view',board);
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
