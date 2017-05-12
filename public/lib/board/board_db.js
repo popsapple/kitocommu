@@ -37,13 +37,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
-    page_num = page_num*page_length;
-    page_length = page_num+page_length-1;
-    var data = {};
-    BOARD_DB_MODEL.find({post_index: { $gte: page_num, $lte: page_length }}, function(err, board){
-      data.board_list = board;
-      data.page_ = request.query.page;
-      callback(data,mongoose,request,response);
+    BOARD_DB_MODEL.count({}, function(error, numOfDocs){
+      page_num = numOfDocs-(page_num*page_length);
+      page_length = page_num-page_length+1;
+      var data = {};
+      BOARD_DB_MODEL.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
+        data.board_list = board;
+        data.page_ = request.query.page;
+        callback(data,mongoose,request,response);
+      });
     });
   },getBoardListBySearch : function (obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
@@ -91,7 +93,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     obj.board_table_id = request.query.board_table_id;
     if(type == 'search'){
       numOfDocs = board_post_length;
-      console.log("AAAAAAAAAAA ::: "+numOfDocs);
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
