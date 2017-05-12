@@ -88,9 +88,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
-    var page_num = request.query.post_index;
+    var page_num = request.body.post_index;
     var page_num_ = parseInt(page_num)+1;
-    var board_id = request.query.board_table_id;
+    var board_id = request.body.board_table_id;
     console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
       BOARD_DB_MODEL.update({$max: {post_index: page_num}}, {$inc: {post_index: -1}}, {multi: true});
