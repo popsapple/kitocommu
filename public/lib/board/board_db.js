@@ -49,8 +49,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
-    var search_option = request.query.search_option;
-    var search_value = "'"+request.query.search_value+"'";
+    var search_option = request.query.searchoption;
+    var search_value = "'"+request.query.searchvalue+"'";
     var search_hint;
     if(search_option == "title"){
       search_hint = {title: search_value};
@@ -62,7 +62,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
     var data = {};
-    BOARD_DB_MODEL.find({title: '10'}, function(err, board){
+    BOARD_DB_MODEL.find(search_hint, function(err, board){
       data.board_list = board;
       console.log("DDDDDDDDDDDDDD");
       data.board_post_length = data.board_list.length;
