@@ -38,8 +38,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       page_num = numOfDocs-(page_num*page_length);
       page_length = page_num-page_length+1;
       var data = {};
+      function sortList(a, b) {
+        if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+      }
       BOARD_DB_MODEL.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
         data.board_list = board;
+        data.board_list.sort(sortList);
         data.page_ = request.query.page;
         callback(data,mongoose,request,response);
       });
@@ -61,6 +65,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
     var data = {};
+    function sortList(a, b) {
+      if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+    }
     BOARD_DB_MODEL.find(search_hint, function(err, board){
       data.board_list = board;
       obj.board_post_length = data.board_list.length;
@@ -68,6 +75,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.page_ = request.query.page;
       data.searchoption = search_option;
       data.searchvalue = search_value;
+      data.board_list.sort(sortList);
       callback(data,mongoose,request,response);
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback){
