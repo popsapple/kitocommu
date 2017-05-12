@@ -93,13 +93,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var board_id = request.body.board_table_id;
     console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
-      BOARD_DB_MODEL.findAndModify(
-      { post_index: { $gt: page_num } }, // query
-      [['_id','asc']],  // sort order
-      {$set: {$inc: { post_index: -1 }}}, // replacement, replaces only the field "hi"
-      {}, // options
-      function(err, object) {
+      save_data.find({post_index: { $gt: page_num }}, function(err, data){
+        data.post_index -= 1;
+        data.save(function(err){
+          if(err){
+              request.json({result: 0});
+              return;
+          }
           response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+        });
       });
     });
   },getBoardPagingByIndex : function (obj,mongoose,request,response,type,board_post_length){

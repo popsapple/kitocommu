@@ -24,15 +24,15 @@ Board.write = function(info,request,response,mongoose,collection,type){
         }
         response.render('board/write_ok',save_data);
       });
-    }
-    else {
-      save_data.findOne({post_index: post_index_}, function(err, data){
+    } else {
+        save_data.findOne({post_index: post_index_}, function(err, data){
+
         data.post_index = info.post_index;
-        data.post_index = info.post_category;
-        data.post_index = info.post_notice;
-        data.post_index = info.post_title;
-        data.post_index = info.post_contents;
-        data.post_index = info.post_tags;
+        data.category = info.category;
+        data.is_notice = info.is_notice;
+        data.title = info.title;
+        data.contents = info.contents;
+        data.tags = info.tags;
 
         data.save(function(err){
           if(err){
