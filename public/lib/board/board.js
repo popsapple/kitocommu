@@ -80,7 +80,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_write_submit', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
+    var board_id = 'Board_'+(request.body.board_table_id);
     Board.write(request.body,request,response,mongoose,board_id);
   });
 }
