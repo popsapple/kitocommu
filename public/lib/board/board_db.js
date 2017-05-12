@@ -95,7 +95,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
 
     });
-    BOARD_DB_MODEL.findAndModify(
+    BOARD_DB_MODEL.findAndModify({
       query : {post_index: {$gte: page_num}},
       sort: { post_index: 1 },
       update: { $inc: { post_index: -1 } }
