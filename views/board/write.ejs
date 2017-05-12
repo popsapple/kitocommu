@@ -7,7 +7,7 @@
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
-      <%if(!locals.board_title){%>
+      <%if(!locals.title){%>
         <form method="post" action="/board_write_submit">
       <%} else {%>
         <form method="post" action="/board_modify_submit">
@@ -15,60 +15,60 @@
         <%if(locals.board_table_id){%>
           <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
         <%}%>
-        <%if(locals.board_post_idx){%>
-          <input id="BoardPostIdx" name="_index" type="hidden" value="<%= board_post_idx %>" />
+        <%if(locals.post_idx){%>
+          <input id="BoardPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
         <%}%>
         <fieldset>
           <ul>
             <li>
               <label for="BoardTitle">제목</label>
-              <%if(locals.board_title){%>
-                <input id="BoardTitle" name="title" type="text" value="<%= board_title %>" />
+              <%if(locals.title){%>
+                <input id="BoardTitle" name="title" type="text" value="<%= title %>" />
               <%}else {%>
                 <input id="BoardTitle" name="title" type="text" />
               <%}%>
             </li>
             <li>
               <label for="BoardCategory">카테고리</label>
-              <%if(locals.board_category){%>
-                <input id="BoardCategory" name="category" type="text" value="<%= board_category %>" />
+              <%if(locals.category){%>
+                <input id="BoardCategory" name="category" type="text" value="<%= category %>" />
               <%}else {%>
                 <input id="BoardCategory" name="category" type="text" />
               <%}%>
             </li>
             <li>
               <label for="BoardNotice">공지사항</label>
-              <%if(locals.board_notice){%>
-                <input id="BoardNotice" name="is_notice" type="text" value="<%= board_notice %>" />
+              <%if(locals.is_notice){%>
+                <input id="BoardNotice" name="is_notice" type="text" value="<%= is_notice %>" />
               <%}else {%>
                 <input id="BoardNotice" name="is_notice" type="text" />
               <%}%>
             </li>
             <li>
               <label for="BoardTags">태그 #으로 분리해서 적어주세요</label>
-              <%if(locals.board_tags){%>
-                <input id="BoardTags" name="tags" type="text" value="<%= board_tags %>" />
+              <%if(locals.tags){%>
+                <input id="BoardTags" name="tags" type="text" value="<%= tags %>" />
               <%}else {%>
                 <input id="BoardTags" name="tags" type="text" />
               <%}%>
             </li>
             <li>
               <label for="BoardContents">글내용</label>
-              <%if(locals.board_contents){%>
-                <textarea id="BoardContents" name="contents"><%= board_contents %></textarea>
+              <%if(locals.contents){%>
+                <textarea id="BoardContents" name="contents"><%= contents %></textarea>
               <%}else {%>
                 <textarea id="BoardContents" name="contents"></textarea>
               <%}%>
             </li>
           </ul>
         </fieldset>
-        <%if(!locals.board_title){%>
+        <%if(!locals.title){%>
           <button type="submit" class="btn btn-default">등록하기</button accesskey="s">
         <%} else{%>
           <button type="submit" class="btn btn-default">수정하기</button accesskey="s">
         <%}%>
       </form>
-      <%if(locals.board_title){%>
+      <%if(locals.title){%>
           <form method="post" action="/board_remove_submit">
             <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
             <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= board_post_idx %>" />

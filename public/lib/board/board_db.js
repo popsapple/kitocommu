@@ -78,13 +78,17 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.board_list.sort(sortList);
       callback(data,mongoose,request,response);
     });
-  },getBoardPostByIndex : function (mongoose,request,response,callback){
+  },getBoardPostByIndex : function (mongoose,request,response,callback,type){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.post_index);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request.query.board_table_id;
       board.post_index = request.query.post_index;
-      response.render('board/view',board);
+      if(type == 'modify'){
+        response.render('board/write',board);
+      }else {
+        response.render('board/view',board);
+      }
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
