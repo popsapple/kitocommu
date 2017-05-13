@@ -106,6 +106,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/view', function(request, response) {
+    console.log("============ 012121212 =========== :: ");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.view(request.query,request,response,mongoose,board_id);
   });
