@@ -61,6 +61,7 @@ Board.list_render = function(info,request,response,mongoose,collection){
 }
 
 Board.view = function(info,request,response,mongoose,collection,type){
+  console.log("============ 02===========");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection,type);
 }
@@ -95,6 +96,7 @@ module.exports.board_con = function(app,mongoose){
 
   app.get('/board/write', function(request, response) {
     if(request.body && request.query.post_index){
+      console.log("============ 01===========");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
       response.render('board/write',data);
