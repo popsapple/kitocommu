@@ -1,5 +1,6 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type){
+  console.log("WRITE STEP :: 03"+type);
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
   if(type=='save'){
@@ -14,7 +15,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.writer = 'request.session.nickname'; //request.session.nickname;
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
-  function SaveFunction(save_data,type){
+  function SaveFunction(save_data){
     if(type=='save'){
       save_data.save(function(err){
         if(err){
@@ -25,9 +26,9 @@ Board.write = function(info,request,response,mongoose,collection,type){
         response.render('board/write_ok',save_data);
       });
     } else {
-      console.log("WRITE STEP :: 03");
+      console.log("WRITE STEP :: 04");
         save_data.findOne({post_index: post_index_}, function(err, data){
-          console.log("WRITE STEP :: 04");
+          console.log("WRITE STEP :: 05");
         data.post_index = info.post_index;
         data.category = info.category;
         data.is_notice = info.is_notice;
