@@ -25,8 +25,9 @@ Board.write = function(info,request,response,mongoose,collection,type){
         response.render('board/write_ok',save_data);
       });
     } else {
+      console.log("WRITE STEP :: 03");
         save_data.findOne({post_index: post_index_}, function(err, data){
-
+          console.log("WRITE STEP :: 04");
         data.post_index = info.post_index;
         data.category = info.category;
         data.is_notice = info.is_notice;
@@ -39,6 +40,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
               request.json({result: 0});
               return;
           }
+          console.log("WRITE STEP :: 05");
           response.render('board/write_ok',data);
         });
       });
