@@ -9,8 +9,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
   });
 
   var s3 = new aws.S3();
-
-  console.log("SETP01 ::");
     var upload = multer({
       storage: multerS3({
         s3: s3,
@@ -18,7 +16,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       })
     })
     var upload_callback = upload.single('upload');
-    console.log("SETP02 ::");
     app.post('/upload', function(req, res, next) {
       upload_callback(req, res, function (err) {
         if (err) {
@@ -27,8 +24,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         }
         var filePath = req.file.location;
         for(var key in req.file){
-          console.log("SETP06 ::"+key);
-          console.log("SETP06 == ::"+req.file[key]);
         };
         var html;
         html = "";
