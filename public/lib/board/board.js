@@ -26,6 +26,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         response.render('board/write_ok',save_data);
       });
     } else {
+        var post_index_ = info.post_index;
         save_data.findOne({post_index: post_index_}, function(err, data){
         data.post_index = info.post_index;
         data.category = info.category;
