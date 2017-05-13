@@ -33,7 +33,8 @@ Board.write = function(info,request,response,mongoose,collection,type){
           request_list = request.body;
         }
         var post_index_ = request_list.post_index;
-        console.log("MODIFY STEP 01");
+        console.log("MODIFY STEP 01 ::"+post_index_);
+
         save_data.findOne({post_index: post_index_}, function(err, data){
         console.log("MODIFY STEP 02");
         data.post_index = request_list.post_index;
