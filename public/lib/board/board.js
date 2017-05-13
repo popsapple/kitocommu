@@ -95,11 +95,12 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/write', function(request, response) {
-    console.log("============ 00 =========== :: "+post_index);
+    console.log("============ 00 =========== :: ");
     if(request.query.post_index){
       console.log("============ 01===========");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
+        console.log("============ 0---0 =========== :: ");
       response.render('board/write',data);
     }
   });
