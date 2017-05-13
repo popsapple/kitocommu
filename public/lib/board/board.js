@@ -27,7 +27,9 @@ Board.write = function(info,request,response,mongoose,collection,type){
       });
     } else {
         var post_index_ = info.post_index;
+        console.log("MODIFY STEP 01");
         save_data.findOne({post_index: post_index_}, function(err, data){
+        console.log("MODIFY STEP 02");
         data.post_index = info.post_index;
         data.category = info.category;
         data.is_notice = info.is_notice;
@@ -36,6 +38,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.tags = info.tags;
 
         data.save(function(err){
+          console.log("MODIFY STEP 03");
           if(err){
               request.json({result: 0});
               return;
