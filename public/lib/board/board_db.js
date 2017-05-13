@@ -80,7 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback,type){
     var info;
-    request.query == undefined ?  info = request.body : info = request.query;
+    request.query == '' ?  info = request.body : info = request.query;
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(info.post_index);
     console.log("============ 0333==========="+page_num);
