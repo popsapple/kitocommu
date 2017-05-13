@@ -103,7 +103,7 @@ module.exports.board_con = function(app,mongoose){
     if(request.body && request.body.post_index){
       console.log("WRITE STEP :: 02");
       var board_id = 'Board_'+(request.body.board_table_id);
-      Board.view(request.body,request,response,mongoose,board_id,'modify');
+      Board.write(request.body,request,response,mongoose,board_id,'modify');
     }else{
       response.render('board/write',data);
     }
