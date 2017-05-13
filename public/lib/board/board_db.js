@@ -19,7 +19,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
 
     exports.model = mongoose.model('board', Memberschema);
-  },getBoardLastIndex : function (obj,mongoose,request,response,type,callback){
+  },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
