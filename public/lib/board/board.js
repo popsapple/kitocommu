@@ -95,8 +95,10 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board/write', function(request, response) {
-    var data = request.query;
+    var data = request.body;
+    console.log("WRITE STEP :: 01");
     if(request.body && request.body.post_index){
+      console.log("WRITE STEP :: 02");
       var board_id = 'Board_'+(request.body.board_table_id);
       Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
