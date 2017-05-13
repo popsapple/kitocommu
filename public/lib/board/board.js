@@ -26,16 +26,22 @@ Board.write = function(info,request,response,mongoose,collection,type){
         response.render('board/write_ok',save_data);
       });
     } else {
-        var post_index_ = info.post_index;
+        var request_list;
+        if (request.query.post_index){
+          request_list = request.query;
+        }else {
+          request_list = request.body;
+        }
+        var post_index_ = request_list.post_index;
         console.log("MODIFY STEP 01");
         save_data.findOne({post_index: post_index_}, function(err, data){
         console.log("MODIFY STEP 02");
-        data.post_index = info.post_index;
-        data.category = info.category;
-        data.is_notice = info.is_notice;
-        data.title = info.title;
-        data.contents = info.contents;
-        data.tags = info.tags;
+        data.post_index = request_list.post_index;
+        data.category = request_list.category;
+        data.is_notice = request_list.is_notice;
+        data.title = request_list.title;
+        data.contents = request_list.contents;
+        data.tags = request_list.tags;
 
         data.save(function(err){
           console.log("MODIFY STEP 03");
