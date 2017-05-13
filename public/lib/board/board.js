@@ -96,6 +96,7 @@ module.exports.board_con = function(app,mongoose){
 
   app.post('/board/write', function(request, response) {
     console.log("============ 00 =========== :: ");
+    var board_id = 'Board_'+(request.body.board_table_id);
     if(request.body.post_index){
       console.log("============ 01===========");
       Board.view(request.body,request,response,mongoose,board_id,'modify');
