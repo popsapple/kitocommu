@@ -15,7 +15,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.writer = 'request.session.nickname'; //request.session.nickname;
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
-  function SaveFunction(save_data){
+  function SaveFunction(save_data,type){
     if(type=='save'){
       save_data.save(function(err){
         if(err){
@@ -51,10 +51,10 @@ Board.write = function(info,request,response,mongoose,collection,type){
 
   if(type=='save'){
     global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
-    var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data,type){
-      SaveFunction(save_data,type);
-    });
   }
+  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data,type){
+    SaveFunction(save_data,type);
+  });
 }
 
 Board.list_render = function(info,request,response,mongoose,collection){
