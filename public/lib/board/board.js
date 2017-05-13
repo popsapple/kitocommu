@@ -2,7 +2,6 @@ Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type){
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
-  console.log("WHAT\'S TYPE ::"+type);
   if(type=='save'){
     save_data = new save_data(save_data.schema);
   }
@@ -33,10 +32,8 @@ Board.write = function(info,request,response,mongoose,collection,type){
           request_list = request.body;
         }
         var post_index_ = request_list.post_index;
-        console.log("MODIFY STEP 01 ::"+post_index_);
 
         save_data.findOne({post_index: post_index_}, function(err, data){
-        console.log("MODIFY STEP 02");
         data.post_index = request_list.post_index;
         data.category = request_list.category;
         data.is_notice = request_list.is_notice;
@@ -45,7 +42,6 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.tags = request_list.tags;
 
         data.save(function(err){
-          console.log("MODIFY STEP 03");
           if(err){
               request.json({result: 0});
               return;
@@ -75,7 +71,6 @@ Board.list_render = function(info,request,response,mongoose,collection){
 }
 
 Board.view = function(info,request,response,mongoose,collection,type){
-  console.log("============ 02===========");
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var save_data_ = new global.BOARD_DB.getBoardPostByIndex(mongoose,request,response,collection,type);
 }
@@ -109,13 +104,10 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board/write', function(request, response) {
-    console.log("============ 00 =========== :: ");
     var board_id = 'Board_'+(request.body.board_table_id);
     if(request.body.post_index){
-      console.log("============ 01===========");
       Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
-        console.log("============ 0---0 =========== :: ");
       response.render('board/write',data);
     }
   });
