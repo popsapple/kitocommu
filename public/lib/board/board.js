@@ -94,11 +94,11 @@ module.exports.board_con = function(app,mongoose){
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
-  app.get('/board/write', function(request, response) {
+  app.post('/board/write', function(request, response) {
     var data = request.query;
-    if(request.query && request.query.post_index){
-      var board_id = 'Board_'+(request.query.board_table_id);
-      Board.view(request.query,request,response,mongoose,board_id,'modify');
+    if(request.body && request.body.post_index){
+      var board_id = 'Board_'+(request.body.board_table_id);
+      Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
       response.render('board/write',data);
     }
