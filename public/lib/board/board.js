@@ -2,6 +2,7 @@ Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type){
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
+  console.log("WHAT\'S TYPE ::"+type);
   if(type=='save'){
     save_data = new save_data(save_data.schema);
   }
@@ -44,10 +45,12 @@ Board.write = function(info,request,response,mongoose,collection,type){
     }
   };
 
-  global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
-  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data,type){
-    SaveFunction(save_data,type);
-  });
+  if(type=='save'){
+    global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
+    var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data,type){
+      SaveFunction(save_data,type);
+    });
+  }
 }
 
 Board.list_render = function(info,request,response,mongoose,collection){
