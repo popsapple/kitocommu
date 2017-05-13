@@ -94,11 +94,11 @@ module.exports.board_con = function(app,mongoose){
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
-  app.get('/board/write', function(request, response) {
+  app.post('/board/write', function(request, response) {
     console.log("============ 00 =========== :: ");
-    if(request.query.post_index){
+    if(request.body.post_index){
       console.log("============ 01===========");
-      Board.view(request.query,request,response,mongoose,board_id,'modify');
+      Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
         console.log("============ 0---0 =========== :: ");
       response.render('board/write',data);
@@ -106,7 +106,6 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/view', function(request, response) {
-    console.log("============ 012121212 =========== :: ");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.view(request.query,request,response,mongoose,board_id);
   });
