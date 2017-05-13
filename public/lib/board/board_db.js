@@ -79,14 +79,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       callback(data,mongoose,request,response);
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback,type){
-    var info;
-    request.query.post_index == '' ? info = request.body : info = request.query;
+    var request_list;
+    if (request.query.post_index){
+      request_list = request.query;
+    }else {
+      request_list = request.body;
+    }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
-    var page_num = parseInt(info.post_index);
+    var page_num = parseInt(request_list.post_index);
     console.log("============ 0333==========="+page_num);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
-      board.board_table_id = info.board_table_id;
-      board.post_index = info.post_index;
+      board.board_table_id = request_list.board_table_id;
+      board.post_index = request_list.post_index;
       if(type == 'modify'){
         console.log("============ 04===========");
         response.render('board/write',board);
