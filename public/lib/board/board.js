@@ -99,14 +99,14 @@ module.exports.board_con = function(app,mongoose){
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
-  app.post('/board/write', function(request, response) {
+  app.get('/board/write', function(request, response) {
     var data = request.body;
     console.log("WRITE STEP :: 01");
-    if(request.body && request.body.post_index){
+    if(request.body && request.query.post_index){
       console.log("WRITE STEP :: 02");
-      var board_id = 'Board_'+(request.body.board_table_id);
+      var board_id = 'Board_'+(request.query.board_table_id);
       console.log("WRITE STEP :: 03");
-      Board.write(request.body,request,response,mongoose,board_id,'modify');
+      Board.write(request.query,request,response,mongoose,board_id,'modify');
     }else{
       console.log("WRITE STEP :: 02____");
       response.render('board/write',data);
