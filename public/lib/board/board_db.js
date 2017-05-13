@@ -83,7 +83,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     request.query == undefined ?  info = request.body : info = request.query;
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(info.post_index);
-    page_num == undefined ?  page_num = parseInt(info.post_index) : '';
     console.log("============ 03==========="+page_num);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = info.board_table_id;
