@@ -95,7 +95,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/write', function(request, response) {
-    if(request.body && request.query.post_index){
+    if(request.query && request.query.post_index){
       console.log("============ 01===========");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
