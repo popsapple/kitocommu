@@ -105,9 +105,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/write', function(request, response) {
-    console.log("SETP01111111");
     var board_id = 'Board_'+(request.query.board_table_id);
-    console.log("SETP01111111");
     if(request.query.post_index){
       console.log("SETP02222222");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
@@ -115,10 +113,7 @@ module.exports.board_con = function(app,mongoose){
 
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
         var temp_array = [];
-        var request_array = [];
-        for (var key in request.query){
-          request_array[key] = request.query[key];
-        }
+        var request_array request.query;
         var data_ = temp_array.concat(data[0],request_array);
         for (var key in data_){
           console.log("SETP066666666666 :: "+key+" :: "+data_[key]);
