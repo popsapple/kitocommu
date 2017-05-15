@@ -103,7 +103,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request_list.post_index);
-    BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
+    BOARD_DB_MODEL.find({post_index: page_num}, function(err,board){
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
