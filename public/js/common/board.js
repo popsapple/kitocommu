@@ -1,5 +1,7 @@
 $(document).ready(function(){
   $('#ajaxform').ajaxForm({
+    processData: false,
+    contentType: false,
     beforeSubmit: function (data, frm, opt) {
       return true;
     },
