@@ -117,6 +117,9 @@ module.exports.board_con = function(app,mongoose){
         for(var key in request.query){
           data[key] = request.query[key];
         }
+        for (var key in data){
+          console.log("STEP 055555555555 :: "+key+" :: ?????????"+data[key]);
+        }
         response.render('board/write',data);
       });
     }
