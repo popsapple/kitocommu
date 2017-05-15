@@ -102,6 +102,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       request_list = request.body;
     }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var BOARD_DB_MODEL_SCHEMA = global.BOARD_DB.schema;
     var page_num = parseInt(request_list.post_index);
     var board_info_;
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
@@ -109,8 +110,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
       for (var key in board){
-        console.log("===========BOARD TYPE KEY CHECK :: "+key);
-        console.log("=====BOARD TYPE VALUE CHECK :: "+board[key]);
+        if(BOARD_DB_MODEL_SCHEMA[key]){
+          console.log("=====BOARD TYPE VALUE CHECK :: "+board[key]);
+        }
       }
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
