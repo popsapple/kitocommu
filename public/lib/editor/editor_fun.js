@@ -44,8 +44,10 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         if (err) {
           return;
         }
-        var filePath = req.file.location;
-        for(var key in req.file){
+      //  var filePath = req.file.location;
+        for(var key in req){
+          console.log("CHECK THUMNAIL FILE === KEY === ::"+key);
+          console.log("CHECK THUMNAIL FILE === VAL === ::"+val);
         };
         var html;
         html ="\""+filePath+"\"";
