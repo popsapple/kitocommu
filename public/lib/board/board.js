@@ -105,6 +105,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/write', function(request, response) {
+    console.log("SETP01111111");
     var board_id = 'Board_'+(request.query.board_table_id);
     console.log("SETP01111111");
     if(request.query.post_index){
