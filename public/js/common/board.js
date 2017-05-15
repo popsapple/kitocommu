@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  $('#BoardThumnailForm').ajaxForm({
+
+  $('#ajaxform').ajaxForm({
     beforeSubmit: function (data, frm, opt) {
       return true;
     },
