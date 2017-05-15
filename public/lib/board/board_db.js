@@ -103,19 +103,17 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request_list.post_index);
+    var board_info;
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
+      board_info = board;
       if(type == 'modify'){
-        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config,b_type){
-          for (var key in b_type[0]){
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board_info,function(config,board_info){
+          for (var key in board_info){
             //config[0][key] = board_type[key];
-            console.log("BOARD TYPE CHECK :: "+key+" :: "+b_type[0][key]);
-          }
-          for (var key in b_type){
-            //config[0][key] = board_type[key];
-            console.log("BOARD TYPE CHECK022222222 :: "+key+" :: "+b_type[key]);
+            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_info[key]);
           }
           response.render('board/write',config[0]);
         });
