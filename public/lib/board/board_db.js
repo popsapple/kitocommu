@@ -109,7 +109,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(board){
-          response.render('board/write',board);
+          response.render('board/write',board[0]);
         });
       }else {
         response.render('board/view',board);
