@@ -106,12 +106,16 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = parseInt(request_list.post_index);
     var board_info_ = {};
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
-      board.board_table_id = request_list.board_table_id;
-      board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
+      var count = 0;
       for (var key in BOARD_DB_MODEL_SCHEMA){
+        if(count == 0){
+          board_info_.board_table_id = request_list.board_table_id;
+          board_info_.post_index = request_list.post_index;
+        }
         board_info_[key] = board[key];
         console.log("=====BOARD TYPE VALUE CHECK :: "+board[key]);
+        count++;
       }
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
@@ -122,7 +126,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           response.render('board/write',board_info_);
         });
       }else {
-        response.render('board/view',board);
+        response.render('board/view',board_info_);
       }
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
