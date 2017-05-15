@@ -119,7 +119,7 @@ module.exports.board_con = function(app,mongoose){
         for (var key in data){
           console.log("SETP066666666666 :: "+key+" :: "+data[key]);
         }
-        response.render('board/write',data);
+        response.render('board/write',data[0]);
       });
     }
   });
