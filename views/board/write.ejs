@@ -60,24 +60,6 @@
                 <textarea id="BoardContents" name="contents"></textarea>
               <%}%>
             </li>
-            <%if(locals.list_type == 'thumnail'){%>
-              <li>
-                <label for="BoardContents">썸네일</label>
-                <%if(locals.thumnail){%>
-                  <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-                    <input id="BoardThumnailValue" type="hidden" value="<%= thumnail %>" />
-                    <input id="BoardThumnail" type="file" value="" />
-                    <input type="submit" value="Submit" />
-                  </form>
-                <%}else {%>
-                  <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-                    <input id="BoardThumnailValue" type="hidden" value="" />
-                    <input id="BoardThumnail" type="file" value="" />
-                    <input type="submit" value="Submit" />
-                  </form>
-                <%}%>
-              </li>
-            <%}%>
           </ul>
         </fieldset>
         <%if(!locals.title){%>
@@ -86,6 +68,24 @@
           <button type="submit" class="btn btn-default">수정하기</button accesskey="s">
         <%}%>
       </form>
+      <%if(locals.list_type == 'thumnail'){%>
+        <div>
+          <label for="BoardContents">썸네일</label>
+          <%if(locals.thumnail){%>
+            <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+              <input id="BoardThumnailValue" type="hidden" value="<%= thumnail %>" />
+              <input id="BoardThumnail" type="file" value="" />
+              <input type="submit" value="Submit" />
+            </form>
+          <%}else {%>
+            <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+              <input id="BoardThumnailValue" type="hidden" value="" />
+              <input id="BoardThumnail" type="file" value="" />
+              <input type="submit" value="Submit" />
+            </form>
+          <%}%>
+        </div>
+      <%}%>
       <%if(locals.title){%>
           <form method="post" action="/board_remove_submit">
             <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
