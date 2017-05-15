@@ -96,11 +96,13 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   console.log("SETP00 :::::::::::");
   app.get('/board/list', function(request, response) {
+    console.log("SETP01 :::::::::::");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/search_post', function(request, response) {
+    console.log("SETP02 :::::::::::");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
@@ -121,21 +123,25 @@ module.exports.board_con = function(app,mongoose){
   });
 ;*/
   app.get('/board/view', function(request, response) {
+    console.log("SETP03 :::::::::::");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.view(request.query,request,response,mongoose,board_id);
   });
 
   app.post('/board_write_submit', function(request, response) {
+    console.log("SETP04 :::::::::::");
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.write(request.body,request,response,mongoose,board_id,'save');
   });
 
   app.post('/board_modify_submit', function(request, response) {
+    console.log("SETP05 :::::::::::");
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.write(request.body,request,response,mongoose,board_id,'modify');
   });
 
   app.post('/board_remove_submit', function(request, response) {
+    console.log("SETP06 :::::::::::");
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.remove(request.body,request,response,mongoose,board_id);
   });
