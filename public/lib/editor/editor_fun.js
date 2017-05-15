@@ -38,7 +38,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       });
     });
 
-    var thumnail_upload_callback = upload.single('thumnailfile');
+    var thumnail_upload_callback = upload.single('thumnailfile'); // 실제 input에 있는 name이랑 이름이 같아야 함
     app.post('/upload_thumnail', function(req, res, next) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
@@ -46,8 +46,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         }
         var filePath;
         for(var key in req.file){
-          console.log("CHECK THUMNAIL FILE === KEY === ::"+key);
-          console.log("CHECK THUMNAIL FILE === VAL === ::"+req[key]);
           filePath = req.file.location;
         };
         var html;
