@@ -38,26 +38,17 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       });
     });
 
-    var thumnail_upload_callback = upload.single('file');
+    var thumnail_upload_callback = upload.single('thumnailfile');
     app.post('/upload_thumnail', function(req, res, next) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
           return;
         }
         var filePath;
-        for(var key in req.files){
-          console.log("CHECK THUMNAIL FILE === KEY === ::"+key);
-          console.log("CHECK THUMNAIL FILE === VAL === ::"+req[key]);
-          filePath = req.files.location;
-        };
         for(var key in req.file){
           console.log("CHECK THUMNAIL FILE === KEY === ::"+key);
           console.log("CHECK THUMNAIL FILE === VAL === ::"+req[key]);
           filePath = req.file.location;
-        };
-        for(var key in req.query){
-          console.log("CHECK THUMNAIL FILE02 RES === KEY === ::"+key);
-          console.log("CHECK THUMNAIL FILE02 RES === VAL === ::"+res[key]);
         };
         var html;
         html ="\""+filePath+"\"";

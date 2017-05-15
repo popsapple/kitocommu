@@ -80,12 +80,12 @@
           <label for="BoardContents">썸네일</label>
           <%if(locals.thumnail){%>
             <form id="BoardThumnailForm" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-              <input id="BoardThumnail" name="file" type="file" value="" />
+              <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
               <input type="submit" value="Submit" />
             </form>
           <%}else {%>
             <form id="BoardThumnailForm" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-              <input id="BoardThumnail" type="file" value="" />
+              <input id="BoardThumnail" type="thumnailfile" value="" />
               <input type="submit" value="Submit" />
             </form>
           <%}%>
