@@ -113,6 +113,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             //config[0][key] = board_type[key];
             console.log("BOARD TYPE CHECK :: "+key+" :: "+b_type[0][key]);
           }
+          for (var key in b_type){
+            //config[0][key] = board_type[key];
+            console.log("BOARD TYPE CHECK022222222 :: "+key+" :: "+b_type[key]);
+          }
           response.render('board/write',config[0]);
         });
       }else {
