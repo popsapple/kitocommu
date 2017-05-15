@@ -38,7 +38,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       });
     });
 
-    var thumnail_upload_callback = upload.single('upload');
+    var thumnail_upload_callback = upload.single('file');
     app.post('/upload_thumnail', function(req, res, next) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
