@@ -108,12 +108,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
-      board_info = board;
+      board_info_ = board;
       if(type == 'modify'){
-        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board_info,function(config,board_info){
-          for (var key in board_info){
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board_info,function(config){
+          for (var key in board_info_){
             //config[0][key] = board_type[key];
-            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_info[key]);
+            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_info_[key]);
           }
           response.render('board/write',config[0]);
         });
