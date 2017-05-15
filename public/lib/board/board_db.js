@@ -103,14 +103,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request_list.post_index);
-    BOARD_DB_MODEL.find({post_index: page_num}, function(err,board){
+    BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config,board_type){
-          for (var key in board_type){
-            config[0][key] = board_type[0][key];
+          for (var key in board_type[0]){
+            //config[0][key] = board_type[key];
             console.log("BOARD TYPE CHECK :: "+key+" :: "+board_type[0][key]);
           }
           response.render('board/write',config[0]);
