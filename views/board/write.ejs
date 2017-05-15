@@ -81,12 +81,12 @@
           <%if(locals.thumnail){%>
             <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
               <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
-              <input type="submit" value="Submit" />
+              <input id="BoardThumnailButton" type="button" value="Submit" />
             </form>
           <%}else {%>
             <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
               <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
-              <input type="submit" value="Submit" />
+              <input id="BoardThumnailButton" type="button" value="Submit" />
             </form>
           <%}%>
         </div>
