@@ -109,10 +109,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
-      for (var key in board){
-        if(BOARD_DB_MODEL_SCHEMA[key]){
+      for (var key in BOARD_DB_MODEL_SCHEMA){
+        console.log("=========BOARD TYPE KEY CHECK :: "+key);
           console.log("=====BOARD TYPE VALUE CHECK :: "+board[key]);
-        }
       }
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
