@@ -108,7 +108,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.post_index = request_list.post_index;
       var board_info = {};
       for(var key in board){
-        board_info[key] = board[key];
+        board_info[key] = board[0][key];
       }
       var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
