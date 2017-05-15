@@ -36,6 +36,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
       config.list_type = board_config.list_type;
       config.css_file = board_config.css_file;
+      console.log("WHAT\'S STEP05 ::::"+config.list_type);
       callback(config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
