@@ -111,6 +111,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config,board){
           for (var key in config){
             board[key] = config[key];
+            console.log("BOARD TYPE CHECK :: "+board[key]+" :: "+config[key]);
           }
           response.render('board/write',board);
         });
