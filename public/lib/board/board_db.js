@@ -109,9 +109,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config,board_type){
-          for (var key in board_type[0]){
+          for (var key in board_type){
             //config[0][key] = board_type[key];
-            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_type[0][key]);
+            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_type[key]);
           }
           response.render('board/write',config[0]);
         });
