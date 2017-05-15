@@ -85,7 +85,7 @@
             </form>
           <%}else {%>
             <form id="BoardThumnailForm" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-              <input id="BoardThumnail" type="thumnailfile" value="" />
+              <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
               <input type="submit" value="Submit" />
             </form>
           <%}%>
