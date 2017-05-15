@@ -106,9 +106,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
+      var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(board){
-          console.log("SETP022222222 :::::::::::");
           response.render('board/write',board);
         });
       }else {
