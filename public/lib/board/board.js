@@ -114,7 +114,7 @@ module.exports.board_con = function(app,mongoose){
     }else{
       console.log("SETP02222222");
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-        for(for key in request.query){
+        for(var key in request.query){
           data[key] = request.query[key];
         }
         response.render('board/write',data);
