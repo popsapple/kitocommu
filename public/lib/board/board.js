@@ -112,7 +112,7 @@ module.exports.board_con = function(app,mongoose){
       console.log("SETP02222222");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
-      console.log("SETP02222222");
+
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
         var data_ = {};
         for(var key in request.query){
@@ -120,6 +120,9 @@ module.exports.board_con = function(app,mongoose){
         }
         for (var key in data){
           data_[key] = data[key];
+        }
+        for (var key in data_){
+          console.log("SETP055555555 :: "+key+" :: "+data_[key]);
         }
         response.render('board/write',data_);
       });
