@@ -31,13 +31,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     mongoose.models = {};
     mongoose.modelSchemas = {};
-    var config = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
-      config.list_type = board_config.list_type;
-      config.css_file = board_config.css_file;
-      console.log("WHAT\'S STEP05 ::::"+config.list_type);
-      callback(config);
+      console.log("WHAT\'S STEP05 ::::"+board_config.list_type);
+      callback(board_config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
