@@ -96,7 +96,6 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   console.log("SETP00 :::::::::::");
   app.get('/board/list', function(request, response) {
-    console.log("SETP01 :::::::::::");
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
@@ -106,13 +105,13 @@ module.exports.board_con = function(app,mongoose){
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
-  /*
-  app.post('/board/write', function(request, response) {
-    var board_id = 'Board_'+(request.body.board_table_id);
-    console.log("SETP01 :::::::::::");
-    if(request.body.post_index){
+
+  app.get('/board/write', function(request, response) {
+    var board_id = 'Board_'+(request.query.board_table_id);
+    console.log("SETP01111111 :::::::::::");
+    if(request.query.post_index){
       console.log("SETP02111111 :::::::::::");
-      //Board.view(request.body,request,response,mongoose,board_id,'modify');
+      Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
       console.log("SETP02 :::::::::::");
    global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,data,function(data){
@@ -121,7 +120,7 @@ module.exports.board_con = function(app,mongoose){
       })
     }
   });
-;*/
+
   app.get('/board/view', function(request, response) {
     console.log("SETP03 :::::::::::");
     var board_id = 'Board_'+(request.query.board_table_id);
