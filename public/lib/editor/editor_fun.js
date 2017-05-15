@@ -12,8 +12,8 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     var upload = multer({
       storage: multerS3({
         s3: s3,
-        bucket: 'kitocommu',
-        key:''
+        bucket: 'kitocommu'
+        //key:''
       })
     })
     var upload_callback = upload.single('upload');
