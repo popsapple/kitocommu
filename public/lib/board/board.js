@@ -110,13 +110,13 @@ module.exports.board_con = function(app,mongoose){
     console.log("SETP01 :::::::::::");
     if(request.body.post_index){
       console.log("SETP02111111 :::::::::::");
-      Board.view(request.body,request,response,mongoose,board_id,'modify');
+      //Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
       console.log("SETP02 :::::::::::");
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,data,function(data){
+    /*  global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,data,function(data){
         console.log("SETP03 :::::::::::"+data.list_type);
         response.render('board/write',data);
-      });
+      });*/
     }
   });
 
