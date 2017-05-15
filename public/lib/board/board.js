@@ -112,18 +112,9 @@ module.exports.board_con = function(app,mongoose){
     }else{
 
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-        var temp_array = {};
-      //  var data_ = temp_array.concat(data[0],request_array);
-        for (var key in data[0]){
-          temp_array[key] = data[0][key];
-          for (var key2 in request.query){
-            temp_array[0][key2] = request.query[key2];
-            temp_array = temp_array.slice(0);
-          }
-        }
-
-        for (var key in temp_array){
-          console.log("SETP0666666666666 :: "+key+" :: "+temp_array[key]);
+        var data_ = temp_array.concat(data.slice(0),request.query.slice(0));
+        for (var key in data_){
+          console.log("SETP066666666666 :: "+key+" :: "+data_[key]);
         }
         response.render('board/write',data_);
       });
