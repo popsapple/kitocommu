@@ -110,9 +110,9 @@ module.exports.board_con = function(app,mongoose){
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
 
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-        for (var key in request.query){
-          data[0][key] = request.query[key];
+      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
+        for (var key in req_data){
+          data[0][key] = req_data[key];
         }
         response.render('board/write',data[0]);
       });

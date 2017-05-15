@@ -32,8 +32,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.models = {};
     mongoose.modelSchemas = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
-    BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
-      callback(board_config);
+    BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config,config){
+      callback(board_config,config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
@@ -108,7 +108,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.post_index = request_list.post_index;
       var board_id = 'Board_'+(request_list.board_table_id);
       if(type == 'modify'){
-        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config,board){
           for (var key in config){
             board[0][key] = config[key];
           }
