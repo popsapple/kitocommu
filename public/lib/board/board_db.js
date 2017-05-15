@@ -33,7 +33,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
     var config = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
-    BOARD_STYLE_MODEL.find({board: 'Board_MemberIntroduce'}, function(err,board_config){
+    BOARD_STYLE_MODEL.find({list_type: 'thumnail'}, function(err,board_config){
       console.log("SETP05555555555");
       for (var key in board_config){
         console.log("????????????? :: "+key+" :: ?????????"+board_config[key]);
