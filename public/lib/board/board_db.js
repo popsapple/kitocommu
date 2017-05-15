@@ -31,12 +31,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     mongoose.models = {};
     mongoose.modelSchemas = {};
-
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.findOne({board: board_id}, function(err,board_config){
       config.list_type = board_config.list_type;
       config.css_file = board_config.css_file;
-      callback();
+      callback(config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 

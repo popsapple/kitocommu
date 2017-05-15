@@ -113,7 +113,7 @@ module.exports.board_con = function(app,mongoose){
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
       console.log("SETP02222222");
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,data,function(data){
+      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
         console.log("SETP0333333"+data.list_type);
         response.render('board/write',data);
       });
