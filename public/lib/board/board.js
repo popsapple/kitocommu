@@ -114,13 +114,7 @@ module.exports.board_con = function(app,mongoose){
     }else{
 
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-        var data_ = {};
-        for(var key in request.query){
-          data_[key] = request.query[key];
-        }
-        for (var key in data){
-          data_[key] = data[key];
-        }
+        var data_ = data.concat(request.query);
         for (var key in data_){
           console.log("SETP055555555 :: "+key+" :: "+data_[key]);
         }
