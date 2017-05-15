@@ -107,17 +107,12 @@ module.exports.board_con = function(app,mongoose){
   app.get('/board/write', function(request, response) {
     var board_id = 'Board_'+(request.query.board_table_id);
     if(request.query.post_index){
-      console.log("SETP02222222");
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
 
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-      //  data_ = temp_array.slice(0);
         for (var key in request.query){
           data[0][key] = request.query[key];
-        }
-        for (var key in data){
-          console.log("SETP066666666666 :: "+key+" :: "+data[key]);
         }
         response.render('board/write',data[0]);
       });
