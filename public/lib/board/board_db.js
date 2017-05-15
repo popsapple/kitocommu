@@ -38,7 +38,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
       config.list_type = board_config.list_type;
       config.css_file = board_config.css_file;
-      callback(config);
+      //callback(config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
