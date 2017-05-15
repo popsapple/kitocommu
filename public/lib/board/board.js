@@ -109,6 +109,7 @@ module.exports.board_con = function(app,mongoose){
     var board_id = 'Board_'+(request.body.board_table_id);
     console.log("SETP01 :::::::::::");
     if(request.body.post_index){
+      console.log("SETP02111111 :::::::::::");
       Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
       console.log("SETP02 :::::::::::");

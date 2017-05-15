@@ -110,6 +110,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       board.post_index = request_list.post_index;
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(board){
+          console.log("SETP022222222 :::::::::::");
           response.render('board/write',board);
         });
       }else {
