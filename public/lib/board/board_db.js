@@ -31,7 +31,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     mongoose.models = {};
     mongoose.modelSchemas = {};
-    var config = request.query;
+    var config = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.findOne({board: board_id}, function(err,board_config){
       for (var key in board_config){

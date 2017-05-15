@@ -114,7 +114,7 @@ module.exports.board_con = function(app,mongoose){
     }else{
       console.log("SETP02222222");
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
-        console.log("SETP0333333"+data.list_type);
+        var data = $.merge($.merge([],data), request.query);
         response.render('board/write',data);
       });
     }
