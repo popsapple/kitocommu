@@ -33,7 +33,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
-      console.log("WHAT\'S STEP05 ::::"+board_config.list_type);
       callback(board_config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){

@@ -114,13 +114,14 @@ module.exports.board_con = function(app,mongoose){
     }else{
       console.log("SETP02222222");
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
+        var data_ = {};
         for(var key in request.query){
-          data[key] = request.query[key];
+          data_[key] = request.query[key];
         }
         for (var key in data){
-          console.log("STEP 05 key :: "+key+" :: data"+data[key]);
+          data_[key] = data[key];
         }
-        response.render('board/write',data);
+        response.render('board/write',data_);
       });
     }
   });
