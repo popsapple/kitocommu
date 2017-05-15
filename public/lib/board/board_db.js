@@ -20,7 +20,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     exports.model = mongoose.model('board', Memberschema);
   },getBoardConfig : function (mongoose,request,response,board_id,config,callback){
-    console.log("SETP0444444444 :: "+board_id);
     var Schema = mongoose.Schema;
 
     var BoardConfigSchema = new Schema({
@@ -114,14 +113,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           board_info_.post_index = request_list.post_index;
         }
         board_info_[key] = board[key];
-        console.log("=====BOARD TYPE VALUE CHECK :: "+board[key]);
         count++;
       }
       if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
           for (var key in config[0]){
             board_info_[key] = config[0][key];
-            console.log("BOARD TYPE CHECK :: "+key+" :: "+board_info_[key]);
           }
           response.render('board/write',board_info_);
         });

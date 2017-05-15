@@ -12,7 +12,8 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     var upload = multer({
       storage: multerS3({
         s3: s3,
-        bucket: 'kitocommu'
+        bucket: 'kitocommu',
+        key:''
       })
     })
     var upload_callback = upload.single('upload');
@@ -33,6 +34,21 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         html += " var message = \"업로드 완료\";";
         html += " window.parent.CKEDITOR.tools.callFunction(funcNum, url);";
         html += "</script>";
+        res.send(html);
+      });
+    });
+
+    var thumnail_upload_callback = upload.single('upload');
+    app.post('/upload_thumnail', function(req, res, next) {
+      thumnail_upload_callback(req, res, function (err) {
+        if (err) {
+          return;
+        }
+        var filePath = req.file.location;
+        for(var key in req.file){
+        };
+        var html;
+        html ="\""+filePath+"\"";
         res.send(html);
       });
     });

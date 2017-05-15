@@ -64,9 +64,17 @@
               <li>
                 <label for="BoardContents">썸네일</label>
                 <%if(locals.thumnail){%>
-                  <input id="BoardThumnail" type="file" value="<%= thumnail %>" />
+                  <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+                    <input id="BoardThumnailValue" type="hidden" value="<%= thumnail %>" />
+                    <input id="BoardThumnail" type="file" value="" />
+                    <input type="submit" value="Submit" />
+                  </form>
                 <%}else {%>
-                  <input id="BoardThumnail" type="file" value="" />
+                  <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+                    <input id="BoardThumnailValue" type="hidden" value="" />
+                    <input id="BoardThumnail" type="file" value="" />
+                    <input type="submit" value="Submit" />
+                  </form>
                 <%}%>
               </li>
             <%}%>
