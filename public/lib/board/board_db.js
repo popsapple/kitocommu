@@ -20,6 +20,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     exports.model = mongoose.model('board', Memberschema);
   },getBoardConfig : function (mongoose,request,response,board_id,config,callback){
+    console.log("SETP0444444444");
     var Schema = mongoose.Schema;
 
     var BoardConfigSchema = new Schema({
