@@ -12,6 +12,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.contents = info.contents;
   save_data.tags = info.tags;
   save_data.writer = 'request.session.nickname'; //request.session.nickname;
+  info.thumnail ? save_data.thumnail = info.thumnail : '';
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
   function SaveFunction(save_data,type){
@@ -40,6 +41,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.title = request_list.title;
         data.contents = request_list.contents;
         data.tags = request_list.tags;
+        request_list.thumnail ? data.thumnail = request_list.thumnail : '';
 
         data.save(function(err){
           if(err){
@@ -105,10 +107,15 @@ module.exports.board_con = function(app,mongoose){
 
   app.post('/board/write', function(request, response) {
     var board_id = 'Board_'+(request.body.board_table_id);
+    console.log("SETP01 :::::::::::");
     if(request.body.post_index){
       Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
-      response.render('board/write',data);
+      console.log("SETP02 :::::::::::");
+      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,data,function(data){
+        console.log("SETP03 :::::::::::"+data.list_type);
+        response.render('board/write',data);
+      });
     }
   });
 

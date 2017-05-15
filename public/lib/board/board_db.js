@@ -19,6 +19,24 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
 
     exports.model = mongoose.model('board', Memberschema);
+  },getBoardConfig : function (mongoose,request,response,board_id,config,callback){
+    var Schema = mongoose.Schema;
+
+    var BoardConfigSchema = new Schema({
+      board: String,
+      list_type:  String,
+      css_skin:  String
+    }, { collection: 'Board_Typelist' });
+
+    mongoose.models = {};
+    mongoose.modelSchemas = {};
+
+    var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
+    BOARD_STYLE_MODEL.findOne({board: board_id}, function(err,board_config){
+      config.list_type = board_config.list_type;
+      config.css_file = board_config.css_file;
+      callback();
+    });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
@@ -87,13 +105,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request_list.post_index);
-    console.log("============ 0333==========="+page_num);
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
       board.board_table_id = request_list.board_table_id;
       board.post_index = request_list.post_index;
       if(type == 'modify'){
-        console.log("============ 04===========");
-        response.render('board/write',board);
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(board){
+          response.render('board/write',board);
+        });
       }else {
         response.render('board/view',board);
       }
@@ -103,7 +121,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = request.body.post_index;
     var page_num_ = parseInt(page_num);
     var board_id = request.body.board_table_id;
-    console.log("=========== remove ::"+board_id);
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
       BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
       function (error, obj) {
