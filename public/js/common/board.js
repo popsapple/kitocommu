@@ -2,9 +2,12 @@ $(document).ready(function(){
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
       url: "/upload_thumnail",
-      enctype: "multipart/form-data", // 여기에 url과 enctype은 꼭 지정해주어야 하는 부분이며 multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+      enctype: "multipart/form-data", // url과 enctype은 꼭 필요하다
       success: function(result){
-        alert(result);
+        alert("파일이 정상적으로 업로드 되었습니다.");
+        $("#BoardThumnailValue").val(result);
+      },error: function(err){
+        alert("파일이 업로드되지 않았습니다. 다시한번 업로드 부탁 드립니다.");
       }
      });
 
