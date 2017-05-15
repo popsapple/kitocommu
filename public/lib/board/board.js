@@ -104,16 +104,16 @@ module.exports.board_con = function(app,mongoose){
     Board.search_render(request.query,request,response,mongoose,board_id);
   });
 
-  app.get('/board/write', function(request, response) {
+  app.post('/board/write', function(request, response) {
     console.log("SETP01111111");
-    var board_id = 'Board_'+(request.query.board_table_id);
+    var board_id = 'Board_'+(request.body.board_table_id);
     console.log("SETP01111111");
-    if(request.query.post_index){
+    if(request.body.post_index){
       console.log("SETP02222222");
-      Board.view(request.query,request,response,mongoose,board_id,'modify');
+      Board.view(request.body,request,response,mongoose,board_id,'modify');
     }else{
       console.log("SETP02222222");
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,'Board_Typelist',request.query,function(data){
+      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.body,function(data){
         console.log("SETP0333333"+data.list_type);
         response.render('board/write',data);
       });
