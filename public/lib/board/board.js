@@ -113,7 +113,7 @@ module.exports.board_con = function(app,mongoose){
 
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data){
         var temp_array = {};
-        var data_ = temp_array.concat(data[0],request_array);
+      //  var data_ = temp_array.concat(data[0],request_array);
         for (var key in data[0]){
           temp_array[key] = data[0][key];
           for (var key2 in request.query){
