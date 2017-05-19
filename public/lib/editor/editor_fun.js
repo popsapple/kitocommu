@@ -1,7 +1,7 @@
 exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     var that = this;
 
-    that.file_listing = function(filePath) { // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+    that.file_listing = function(req,filePath) { // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
       if(!req.session.filelist){
         req.session.filelist = [];
       }
@@ -47,7 +47,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         }
 
         var filePath = req.file.location;
-        that.file_listing(filePath);  // 수정중인 첨부파일 리스트 편집.
+        that.file_listing(req,filePath);  // 수정중인 첨부파일 리스트 편집.
 
         for(var key in req.file){
         };
@@ -75,7 +75,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
           filePath = req.file.location;
         };
 
-        that.file_listing(filePath);  // 수정중인 첨부파일 리스트 편집.
+        that.file_listing(req,filePath);  // 수정중인 첨부파일 리스트 편집.
 
         var html;
         html ="\""+filePath+"\"";
