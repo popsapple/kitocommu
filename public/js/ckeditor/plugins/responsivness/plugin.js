@@ -11,7 +11,7 @@
 
       // Register the toolbar buttons.
       editor.ui.addButton('responsivness', {
-        label: Drupal.t('Insert a responsive area'),
+        label: 'Insert a responsive area',
         icon: this.path + 'images/responsivness.png',
         command: 'beResponsive'
       });
