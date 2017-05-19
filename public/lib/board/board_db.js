@@ -124,6 +124,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           response.render('board/write',board_info_);
         });
       }else {
+        board_info_.contents = (function(){
+          var input = board_info_.contents;
+          var pattern_amp = /(&amp;)/g;
+          var pattern_lt = /(&lt;)/g;
+          var pattern_gt = /(&gt;)/g;
+          input.replace(pattern_amp,"&").replace(pattern_lt,"<").replace(pattern_gt,">");
+          return input;
+        }());
         response.render('board/view',board_info_);
       }
     });

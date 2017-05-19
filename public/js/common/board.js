@@ -1,13 +1,3 @@
-function BoardViewHtmlDecode (input,callback) {
-  console.log("BoardViewHtmlDecode");
-  var input = input;
-  var pattern_amp = /(&amp;)/g;
-  var pattern_lt = /(&lt;)/g;
-  var pattern_gt = /(&gt;)/g;
-  input.replace(pattern_amp,"&").replace(pattern_lt,"<").replace(pattern_gt,">");
-  callback(input);
-}
-
 $(document).ready(function(){
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
@@ -27,14 +17,6 @@ $(document).ready(function(){
   $("#BoardSaveButton").on('click',function(){  // 글작성 버튼 누를시
     BoradWritePage['is_beforeunload'] = false;  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
     $("#BoardWriteForm").submit();
-  });
-
-  $("#BoardViewContents").on('load',function(){
-    console.log("BoardViewContents 로딩");
-    BoardViewHtmlDecode($(this).html(),function(html){
-      console.log("BoardViewContents 컨텐츠 변화");
-      $(this).html(html);
-    };
   });
 
 });
