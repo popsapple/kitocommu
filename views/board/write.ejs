@@ -99,6 +99,11 @@
           </form>
       <%}%>
       <script>
+      CKEDITOR.editorConfig = function( config )
+      {
+        config.extraPlugins = 'jsplus_foundation_templates';
+      }
+
       CKEDITOR.replace( 'BoardContents', {
         filebrowserUploadUrl: '/upload'
       } );
