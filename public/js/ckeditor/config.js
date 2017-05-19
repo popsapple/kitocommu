@@ -7,3 +7,18 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
   config.extraPlugins = 'responsivness';
 };
+
+CKEDITOR.on('dialogDefinition', function( ev ) {
+
+	  var diagName = ev.data.name;
+	  var diagDefn = ev.data.definition;
+
+	  if(diagName === 'table') {
+	    var infoTab = diagDefn.getContents('info');
+
+	    var width = infoTab.get('txtWidth');
+	    width['default'] = "100%";
+
+	    
+	  }
+});
