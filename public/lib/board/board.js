@@ -1,5 +1,6 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type){
+  console.log("타입 체크  01010101 :: "+type);
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
   if(type=='save'){
@@ -17,7 +18,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
   function SaveFunction(save_data,type){
-    console.log("타입 체크 :: "+type);
+    console.log("타입 체크 02020202 :: "+type);
     if(type=='save'){
       save_data.save(function(err){
         if(err){
