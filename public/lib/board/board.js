@@ -109,6 +109,8 @@ module.exports.board_con = function(app,mongoose){
 
   app.get('/board/write', function(request, response) {
     var board_id = 'Board_'+(request.query.board_table_id);
+    request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+
     if(request.query.post_index){
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
