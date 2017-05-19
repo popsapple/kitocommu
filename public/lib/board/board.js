@@ -43,7 +43,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.title = request_list.title;
         data.contents = request_list.contents;
         data.tags = request_list.tags;
-        request.session.filelist ? data.file_list = request.session.filelist : '';
+        request.session.filelist ? data.file_list += request.session.filelist : '';
         request_list.thumnail ? data.thumnail = request_list.thumnail : '';
 
         data.save(function(err){
