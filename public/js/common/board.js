@@ -1,16 +1,10 @@
 function BoardViewHtmlDecode (input,callback) {
   console.log("BoardViewHtmlDecode");
-  var entities= {
-    "&amp;": "&",
-    "&lt;": "<",
-    "&gt;": ">"
-  };
-
-  for (var prop in entities) {
-    if (entities.hasOwnProperty(prop)) {
-      input = input.replace(new RegExp(prop, "g"), entities[prop]);
-    }
-  }
+  var input = input;
+  var pattern_amp = /(&amp;)/g;
+  var pattern_lt = /(&lt;)/g;
+  var pattern_gt = /(&gt;)/g;
+  input.replace(pattern_amp,"&").replace(pattern_lt,"<").replace(pattern_gt,">");
   callback(input);
 }
 
