@@ -5,7 +5,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       if(!req.session.filelist){
         req.session.filelist = [];
       }
-      var that.filelist = req.session.filelist;
+      that.filelist = req.session.filelist;
 
       that.filelist.push(filePath);
       for(key in that.filelist){
