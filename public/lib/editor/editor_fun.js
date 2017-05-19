@@ -9,7 +9,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
 
       that.filelist.push(filePath);
       for(key in that.filelist){
-        if(filelist.hasOwnProperty(key)){
+        if(that.filelist.hasOwnProperty(key)){
           console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+that.filelist[key]);
         }
       }
