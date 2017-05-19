@@ -1,8 +1,9 @@
-function BoardViewHtmlDecode (input,callback) {
+function BoardViewHtmlDecode() {
   console.log("BoardViewHtmlDecode");
-  var txt = document.createElement("textarea");
-  txt.innerHTML = input;
-  callback(txt.value);
+  var txt = $("<textarea></textarea>");
+  txt.html($("#BoardViewContents").html());
+  var text_ = txt.html();
+  $("#BoardViewContents").html(text_);
 }
 
 $(document).ready(function(){
@@ -25,9 +26,10 @@ $(document).ready(function(){
     BoradWritePage['is_beforeunload'] = false;  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
     $("#BoardWriteForm").submit();
   });
-
-  
-
+  (function(){
+    console.log("BoardViewContents 로딩");
+    BoardViewHtmlDecode();
+  })();
 });
 
 BoradWritePage.onFileDelete = function(is_remove_post_con){
