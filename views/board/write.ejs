@@ -99,11 +99,6 @@
           </form>
       <%}%>
       <script>
-      CKEDITOR.editorConfig = function( config )
-      {
-        config.extraPlugins = 'responsivearea';
-      }
-
       CKEDITOR.replace( 'BoardContents', {
         filebrowserUploadUrl: '/upload'
       } );
