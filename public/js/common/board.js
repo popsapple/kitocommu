@@ -2,7 +2,7 @@ function BoardViewHtmlDecode() {
   console.log("BoardViewHtmlDecode");
   var txt = $("<textarea></textarea>");
   txt.html($("#BoardViewContents").html());
-  var text_ = txt.html();
+  var text_ = txt.val();
   $("#BoardViewContents").html(text_);
 }
 
