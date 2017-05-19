@@ -40,6 +40,11 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         };
 
         filelist.push(filePath);
+        for(key in filelist){
+          if(filelist.hasOwnProperty(key)){
+            console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+filelist[key]);
+          }
+        }
 
         var html;
         html = "";
