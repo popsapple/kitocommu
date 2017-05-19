@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 });
 
-BoradWritePage.onFileDelete = function(is_ok,is_remove_post_con){
+BoradWritePage.onFileDelete = function(is_remove_post_con){
   //파일삭제 관련
   $.ajax({
     type: "POST",
@@ -47,10 +47,11 @@ BoradWritePage.onFileDelete = function(is_ok,is_remove_post_con){
         }),
         contentType: "application/json",
         success: function(data) {
-          //
+          return true;
         },
         error: function(data) {
           console.log("Error!!!!!!!!!!!!");
+          return false;
         }
   });
 };
@@ -61,7 +62,7 @@ $(window).on('beforeunload', function(event) {
     var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
     if(is_ok){
       var is_ok_ = false;
-      is_ok_ = BoradWritePage.onFileDelete(is_ok,"writing"); // 파일삭제
+      is_ok_ = BoradWritePage.onFileDelete("writing"); // 파일삭제
       return is_ok_; //파일삭제 완료 후 페이지 넘어가게끔...
     }else{
     //  event.stopPropagation();
