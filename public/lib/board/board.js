@@ -61,7 +61,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   if(type=='save'){
     global.BOARD_DB.setBoardSortIndex(save_data,mongoose,request,response);
   }
-  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(save_data,type){
+  var save_data_ = new global.BOARD_DB.getBoardLastIndex(save_data,mongoose,request,response,function(){
     SaveFunction(save_data,type);
   });
 }
