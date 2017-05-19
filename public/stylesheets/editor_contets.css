@@ -71,6 +71,16 @@
   .ckeditor-col-container table td:last-child {
     border-bottom: 0;
   }
+
+  .ckeditor-col-container table {
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  .ckeditor-col-container table th,
+  .ckeditor-col-container table td {
+    padding: .625em;
+    text-align: center;
+  }
 }
 
   /* 4.85%;  } /* grid_1  */
