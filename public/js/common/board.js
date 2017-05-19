@@ -37,13 +37,13 @@ $(document).ready(function(){
 
 });
 
-BoradWritePage.onFileDelete = function(is_ok,is_remove_post){
+BoradWritePage.onFileDelete = function(is_ok,is_remove_post_con){
   //파일삭제 관련
   $.ajax({
     type: "POST",
         url: "/upload_file_delete",
         data: JSON.stringify({
-          "is_remove_post": is_remove_post
+          "is_remove_post": is_remove_post_con
         }),
         contentType: "application/json",
         success: function(data) {
