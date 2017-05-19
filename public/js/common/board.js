@@ -4,6 +4,7 @@ function BoardViewHtmlDecode() {
   txt.html($("#BoardViewContents").html());
   var text_ = txt.val();
   $("#BoardViewContents").html(text_);
+  $("#BoardViewContents").addClass("active");
 }
 
 $(document).ready(function(){
