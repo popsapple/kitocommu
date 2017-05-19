@@ -14,7 +14,8 @@
          expand: true,
          cwd: 'public/stylesheets/',
          src: ['editor_contets.css', 'main.css'],
-         dest: 'public/stylesheets/result.min.css'
+         dest: 'public/stylesheets',
+         ext: '.min.css'
      }
     },
     uglify: {
