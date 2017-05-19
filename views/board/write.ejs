@@ -80,7 +80,7 @@
           <label for="BoardContents">썸네일</label>
           <%if(locals.thumnail){%>
             <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-              <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
+              <input id="BoardThumnail" name="thumnailfile" type="file" value="<%= thumnail %>" />
               <input id="BoardThumnailButton" type="button" value="Submit" />
             </form>
           <%}else {%>
