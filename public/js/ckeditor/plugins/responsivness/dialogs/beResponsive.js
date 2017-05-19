@@ -5,7 +5,8 @@
 
 CKEDITOR.dialog.add('beResponsive', function (editor) {
   'use strict';
-  var path = Drupal.settings.ckeditor_responsive_plugin.basePath;
+  //var path = Drupal.settings.ckeditor_responsive_plugin.basePath;
+  var path = "/js/ckeditor/plugins/responsivness";
   return {
     title: 'Responsive Areas',
     minWidth: 400,
