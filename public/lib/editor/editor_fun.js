@@ -80,5 +80,58 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         res.send(html);
       });
     });
+
+    var thumnail_upload_callback = upload.single('thumnailfile'); // 실제 input에 있는 name이랑 이름이 같아야 함
+    app.post('/upload_thumnail', function(req, res, next) {
+      thumnail_upload_callback(req, res, function (err) {
+        if (err) {
+          return;
+        }
+        var filePath;
+        for(var key in req.file){
+          filePath = req.file.location;
+        };
+
+        that.file_listing(req,filePath);  // 수정중인 첨부파일 리스트 편집.
+
+        var html;
+        html ="\""+filePath+"\"";
+        res.send(html);
+      });
+    });
+
+    app.post('/upload_file_delete', function(req, res, next) {
+      console.log("타입이 제대로 들어오는지 체크 ::"+req.query.is_remove_post);
+      if(req.query.is_remove_post == "writing"){
+        var remove_item = req.session.filelist; // 작성중인걸 삭제할때
+      }
+      else{
+
+      }
+      var count = 0;
+      for(var key in remove_item){
+        if(remove_item.hasOwnProterty(key)){
+          continue;
+        }
+        (function(){
+          console.log("함수 실행여부 체크");
+          var params = {
+            Bucket: 'kitocommu',
+            Key: remove_item[key]
+          };
+          s3.deleteObject(params, function(err, data) {
+            if (err) {
+              console.log("삭제가 안 되었음"+err+" :: "+err.stack); // 에러시 표시
+            }
+            else {
+              console.log("삭제된 파일 이름(?) :: "+remove_item[key]);
+              console.log("도는 개수 체크 :: "+count);
+            }
+          });
+          count++;
+        })();
+      }
+    });
+
   }
 }
