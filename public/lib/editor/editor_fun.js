@@ -25,8 +25,8 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     var upload_callback = upload.single('upload');
     app.post('/upload', function(req, res, next) {
 
-      if(!request.session.filelist){
-        request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+      if(!req.session.filelist){
+        req.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
       }
       var filelist = req.session.filelist;
 
