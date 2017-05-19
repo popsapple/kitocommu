@@ -1,5 +1,5 @@
 exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
-  //var uploadSetting = multer({dest:"../upload"});
+
   aws.config.update({
       secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
       accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
@@ -13,19 +13,34 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       storage: multerS3({
         s3: s3,
         bucket: 'kitocommu'
-        //key:''
-      })
+      }),
+      onFileUploadStart: function (file) {
+        if (file.extension == 'exe' || file.extension == 'html' || file.extension == 'htm' || file.extension == 'php' || file.extension == 'php3' || file.extension == 'php4' || file.extension == 'phtml' || file.extension == 'phps' || file.extension == 'in' || file.extension == 'cgi' || file.extension == 'pi' || file.extension == 'shtml' || file.extension == 'jsp' || file.extension == 'asp' || file.extension == 'js') {
+          response.send("<script>alert('해당 확장자의 파일은 업로드하실 수 없습니다.');</script>");
+          return false;
+        };
+      }
     })
+
     var upload_callback = upload.single('upload');
     app.post('/upload', function(req, res, next) {
+
+      if(!request.session.filelist){
+        request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+      }
+      var filelist = request.session.filelist;
+
       upload_callback(req, res, function (err) {
         if (err) {
-          // An error occurred when uploading
+          // 업로드 에러시
           return;
         }
         var filePath = req.file.location;
         for(var key in req.file){
         };
+
+        filelist.push(filePath);
+
         var html;
         html = "";
         html += "<script type='text/javascript'>";
