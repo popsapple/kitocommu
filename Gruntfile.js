@@ -13,9 +13,8 @@
       minify:{
          expand: true,
          cwd: 'public/stylesheets/',
-         src: ['*.css', '!Nwagon.css'],
-         dest: 'public/stylesheets',
-         ext: '.min.css'
+         src: ['editor_contets.css', 'main.css'],
+         dest: 'public/stylesheets/result.min.css'
      }
     },
     uglify: {
