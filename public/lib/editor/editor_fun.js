@@ -26,10 +26,11 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     app.post('/upload', function(req, res, next) {
 
       if(!req.session.filelist){
+        console.log("파일세션 없음");
         req.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
       }
       var filelist = req.session.filelist;
-
+      console.log("파일세션 있음 :: "+filelist);
       upload_callback(req, res, function (err) {
         if (err) {
           // 업로드 에러시
@@ -41,6 +42,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
 
         filelist.push(filePath);
         for(key in filelist){
+          console.log("파일세션 도는중 :: KEY ::"+key+" :: VALUE :: "+filelist[key]);
           if(filelist.hasOwnProperty(key)){
             console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+filelist[key]);
           }
