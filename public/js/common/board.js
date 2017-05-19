@@ -28,7 +28,8 @@ $(document).ready(function(){
 
   $("#BoardViewContents").on('load',function(){
     console.log("BoardViewContents 로딩");
-    BoardViewHtmlDecode($(this).html(),function(html){
+    var info = $(this).html();
+    BoardViewHtmlDecode(info,function(html){
       console.log("BoardViewContents 컨텐츠 변화");
       $(this).html(html);
     };
