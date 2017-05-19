@@ -26,14 +26,7 @@ $(document).ready(function(){
     $("#BoardWriteForm").submit();
   });
 
-  $("#BoardViewContents").on('load',function(){
-    console.log("BoardViewContents 로딩");
-    var info = $(this).html();
-    BoardViewHtmlDecode(info,function(html){
-      console.log("BoardViewContents 컨텐츠 변화");
-      $(this).html(html);
-    };
-  });
+  
 
 });
 
