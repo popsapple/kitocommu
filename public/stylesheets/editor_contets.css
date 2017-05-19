@@ -54,7 +54,8 @@
   .ckeditor-col-container table tr {
     border-bottom: 3px solid #ddd;
     display: block;
-    margin-bottom: .625em;
+    margin:0px;
+    padding:0px;
   }
   .ckeditor-col-container table td {
     border-bottom: 1px solid #ddd;
