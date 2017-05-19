@@ -1,3 +1,19 @@
+function BoardViewHtmlDecode (input,callback) {
+  console.log("BoardViewHtmlDecode");
+  var entities= {
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">"
+  };
+
+  for (var prop in entities) {
+    if (entities.hasOwnProperty(prop)) {
+      input = input.replace(new RegExp(prop, "g"), entities[prop]);
+    }
+  }
+  callback(input);
+}
+
 $(document).ready(function(){
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
@@ -18,6 +34,15 @@ $(document).ready(function(){
     BoradWritePage['is_beforeunload'] = false;  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
     $("#BoardWriteForm").submit();
   });
+
+  $("#BoardViewContents").on('load',function(){
+    console.log("BoardViewContents 로딩");
+    BoardViewHtmlDecode($(this).html(),function(html){
+      console.log("BoardViewContents 컨텐츠 변화");
+      $(this).html(html);
+    };
+  });
+
 });
 
 BoradWritePage.onFileDelete = function(is_ok,is_remove_post){
