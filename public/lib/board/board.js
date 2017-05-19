@@ -1,6 +1,6 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type){
-  console.log("타입 체크  01010101 :: "+type);
+  var type = type;
   var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   save_data = global.BOARD_DB.model;
   if(type=='save'){
