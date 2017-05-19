@@ -41,6 +41,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.title = request_list.title;
         data.contents = request_list.contents;
         data.tags = request_list.tags;
+        request.session.filelist ? data.file_list = request.session.filelist : '';
         request_list.thumnail ? data.thumnail = request_list.thumnail : '';
 
         data.save(function(err){
@@ -130,13 +131,11 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_modify_submit', function(request, response) {
-    console.log("SETP05 :::::::::::");
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.write(request.body,request,response,mongoose,board_id,'modify');
   });
 
   app.post('/board_remove_submit', function(request, response) {
-    console.log("SETP06 :::::::::::");
     var board_id = 'Board_'+(request.body.board_table_id);
     Board.remove(request.body,request,response,mongoose,board_id);
   });

@@ -1,14 +1,29 @@
 exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
+    var that = this;
 
-  aws.config.update({
-      secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
-      accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
-      region: 'ap-northeast-2',
-      endpoint: 's3.ap-northeast-2.amazonaws.com',
-      signatureVersion: 'v4'
-  });
+    that.file_listing = function(filePath) { // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+      if(!req.session.filelist){
+        req.session.filelist = [];
+      }
+      var that.filelist = req.session.filelist;
 
-  var s3 = new aws.S3();
+      that.filelist.push(filePath);
+      for(key in that.filelist){
+        if(filelist.hasOwnProperty(key)){
+          console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+that.filelist[key]);
+        }
+      }
+    };
+
+    aws.config.update({
+        secretAccessKey: 'gO/NS90rJJ/ZQSQsurEn2U9Tiqn3Af029PEFMMbl',
+        accessKeyId: 'AKIAI3NXS4PH4Y3ZWJ6A',
+        region: 'ap-northeast-2',
+        endpoint: 's3.ap-northeast-2.amazonaws.com',
+        signatureVersion: 'v4'
+    });
+
+    var s3 = new aws.S3();
     var upload = multer({
       storage: multerS3({
         s3: s3,
@@ -25,28 +40,17 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     var upload_callback = upload.single('upload');
     app.post('/upload', function(req, res, next) {
 
-      if(!req.session.filelist){
-        console.log("파일세션 없음");
-        req.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
-      }
-      var filelist = req.session.filelist;
-      console.log("파일세션 있음 :: "+filelist);
       upload_callback(req, res, function (err) {
         if (err) {
           // 업로드 에러시
           return;
         }
+
         var filePath = req.file.location;
+        that.file_listing(filePath);  // 수정중인 첨부파일 리스트 편집.
+
         for(var key in req.file){
         };
-
-        filelist.push(filePath);
-        for(key in filelist){
-          console.log("파일세션 도는중 :: KEY ::"+key+" :: VALUE :: "+filelist[key]);
-          if(filelist.hasOwnProperty(key)){
-            console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+filelist[key]);
-          }
-        }
 
         var html;
         html = "";
@@ -70,6 +74,9 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         for(var key in req.file){
           filePath = req.file.location;
         };
+
+        that.file_listing(filePath);  // 수정중인 첨부파일 리스트 편집.
+
         var html;
         html ="\""+filePath+"\"";
         res.send(html);

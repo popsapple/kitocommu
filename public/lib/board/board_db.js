@@ -12,7 +12,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       title:  String,
       contents:  String,
       tags:  String,
-      thumnail:  String
+      thumnail:  String,
+      file_list:  String
     }, { collection: collection });
 
     mongoose.models = {};
