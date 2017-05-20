@@ -1,5 +1,3 @@
-var BoradWritePageUnload;
-
 function BoardViewHtmlDecode() {
   console.log("BoardViewHtmlDecode");
   var txt = $("<textarea></textarea>");
@@ -10,7 +8,6 @@ function BoardViewHtmlDecode() {
 }
 
 $(document).ready(function(){
-  BoradWritePageUnload = "yes"; // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
       url: "/upload_thumnail",
@@ -27,9 +24,11 @@ $(document).ready(function(){
   });
 
   $("#BoardSaveButton").on('click',function(){  // 글작성 버튼 누를시
-    BoradWritePageUnload = "no";  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
-    $("#BoardWriteForm").submit();
+    $(window).bind('beforeunload', function(){
+      $("#BoardWriteForm").submit();
+    });
   });
+  
   (function(){
     console.log("BoardViewContents 로딩");
     BoardViewHtmlDecode();
@@ -37,6 +36,7 @@ $(document).ready(function(){
 });
 
 var BoradWriteFileDelete = function(is_remove_post_con){
+  console.log("페이지이동여부03");
   //파일삭제 관련
   $.ajax({
     type: "POST",
@@ -55,12 +55,12 @@ var BoradWriteFileDelete = function(is_remove_post_con){
   });
 };
 
-window.onbeforeunload = function(){
-  console.log("페이지이동여부 :: "+BoradWritePageUnload);
-  if(BoradWritePageUnload == "yes"){
+window.onbeforeunload = function (e) {
+  console.log("페이지이동여부01");
   var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
   if(is_ok){
     var is_ok_ = false;
+    console.log("페이지이동여부02");
     is_ok_ = BoradWriteFileDelete("writing"); // 파일삭제
     return is_ok_; //파일삭제 완료 후 페이지 넘어가게끔...
   }else{
@@ -68,4 +68,4 @@ window.onbeforeunload = function(){
   //  event.preventDefault();
     return is_ok;
   }
-}
+};
