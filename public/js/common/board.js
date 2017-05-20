@@ -26,9 +26,8 @@ $(document).ready(function(){
   });
 
   $("#BoardSaveButton").on('click',function(){  // 글작성 버튼 누를시
-    $(window).unbind('beforeunload', function(){
-      $("#BoardWriteForm").submit();
-    });
+    $(window).unbind('beforeunload');
+    $("#BoardWriteForm").submit();
   });
 
   (function(){
