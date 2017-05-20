@@ -55,19 +55,19 @@ window.BoradWritePageUnload.onFileDelete = function(is_remove_post_con){
   });
 };
 
-
-$(window).on('beforeunload', function(event) {
-  console.log("페이지이동여부 :: "+window.BoradWritePage.is_beforeunload);
+var onBoradWritePageUnload = function() {
+  console.log("페이지이동여부 :: "+window.BoradWritePageUnload.is_beforeunload);
   if(window.BoradWritePageUnload.is_beforeunload){
-    var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
-    if(is_ok){
-      var is_ok_ = false;
-      is_ok_ = window.BoradWritePageUnload.onFileDelete("writing"); // 파일삭제
-      return is_ok_; //파일삭제 완료 후 페이지 넘어가게끔...
-    }else{
-    //  event.stopPropagation();
-    //  event.preventDefault();
-      return is_ok;
-    }
+  var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
+  if(is_ok){
+    var is_ok_ = false;
+    is_ok_ = window.BoradWritePageUnload.onFileDelete("writing"); // 파일삭제
+    return is_ok_; //파일삭제 완료 후 페이지 넘어가게끔...
+  }else{
+  //  event.stopPropagation();
+  //  event.preventDefault();
+    return is_ok;
   }
-});
+}
+
+window.onbeforeunload =  onBoradWritePageUnload;
