@@ -72,7 +72,7 @@ var BoradWriteUnloadEvent = function(){
 
 window.onbeforeunload = function (e) {
   var url = window.location;
-  alert("AAAA ::"+url.indexOf('/board/write'));
+  alert("AAAA ::"+url);
   if(url.indexOf('/board/write') != -1){
     BoradWriteUnloadEvent();
   }
