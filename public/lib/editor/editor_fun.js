@@ -110,6 +110,10 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       }
       var count = 0;
       for(var key in remove_item){
+        var pattern = new RegExp("(\/{1}(\w+))", "g");
+        var remove_item_key = pattern.exec(remove_item[key]);
+        remove_item_key = remove_item_key[remove_item_key.lastIndex];
+        console.log("어떠한 파일이 삭제되는가 :: "+remove_item_key);
         if(remove_item.hasOwnProterty(key)){
           continue;
         }
@@ -117,14 +121,15 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
           console.log("함수 실행여부 체크");
           var params = {
             Bucket: 'kitocommu',
-            Key: remove_item[key]
+            Key: remove_item_key
           };
           s3.deleteObject(params, function(err, data) {
             if (err) {
               console.log("삭제가 안 되었음"+err+" :: "+err.stack); // 에러시 표시
+              return false;
             }
             else {
-              console.log("삭제된 파일 이름(?) :: "+remove_item[key]);
+              console.log("삭제된 파일 이름(?) :: "+remove_item_key);
               console.log("도는 개수 체크 :: "+count);
             }
           });
