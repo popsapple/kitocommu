@@ -55,7 +55,7 @@ window.BoradWritePageUnload.onFileDelete = function(is_remove_post_con){
   });
 };
 
-var onBoradWritePageUnload = function() {
+window.onbeforeunload = function(){
   console.log("페이지이동여부 :: "+BoradWritePageUnload.is_beforeunload);
   if(BoradWritePageUnload.is_beforeunload){
   var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
@@ -69,5 +69,3 @@ var onBoradWritePageUnload = function() {
     return is_ok;
   }
 }
-
-window.onbeforeunload =  onBoradWritePageUnload;
