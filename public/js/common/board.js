@@ -10,7 +10,7 @@ function BoardViewHtmlDecode() {
 }
 
 $(document).ready(function(){
-  BoradWritePageUnload = true; // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
+  BoradWritePageUnload = "yes"; // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
       url: "/upload_thumnail",
@@ -27,7 +27,7 @@ $(document).ready(function(){
   });
 
   $("#BoardSaveButton").on('click',function(){  // 글작성 버튼 누를시
-    BoradWritePageUnload = false;  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
+    BoradWritePageUnload = "no";  // 글작성 버튼 누를시 페이지가 안 넘어게가끔 이걸로 조정
     $("#BoardWriteForm").submit();
   });
   (function(){
@@ -57,7 +57,7 @@ var BoradWriteFileDelete = function(is_remove_post_con){
 
 window.onbeforeunload = function(){
   console.log("페이지이동여부 :: "+BoradWritePageUnload);
-  if(BoradWritePageUnload){
+  if(BoradWritePageUnload == "yes"){
   var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
   if(is_ok){
     var is_ok_ = false;
