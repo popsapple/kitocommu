@@ -103,9 +103,9 @@
         filebrowserUploadUrl: '/upload'
       } );
 
-      window.onbeforeunload = function (e) {
+      $(window).bind('beforeunload', function(){
         BoradWriteUnloadEvent();
-      };
+      });
       </script>
     </section>
   </div>
