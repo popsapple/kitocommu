@@ -102,6 +102,10 @@
       CKEDITOR.replace( 'BoardContents', {
         filebrowserUploadUrl: '/upload'
       } );
+
+      window.onbeforeunload = function (e) {
+        BoradWriteUnloadEvent();
+      };
       </script>
     </section>
   </div>

@@ -71,7 +71,3 @@ var BoradWriteUnloadEvent = function(){
     return is_ok;
   }
 };
-
-window.onbeforeunload = function (e) {
-  BoradWriteUnloadEvent();
-};
