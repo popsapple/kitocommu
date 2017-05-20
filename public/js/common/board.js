@@ -1,4 +1,6 @@
-var BoradWritePageUnload = {};
+var BoradWritePageUnload = {
+  "is_beforeunload" : ""
+};
 
 function BoardViewHtmlDecode() {
   console.log("BoardViewHtmlDecode");
