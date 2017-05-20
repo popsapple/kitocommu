@@ -10,7 +10,7 @@ function BoardViewHtmlDecode() {
 }
 
 $(document).ready(function(){
-  BoradWriteUnloadUrl = window.location;
+  BoradWriteUnloadUrl = "123131231231";
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
       url: "/upload_thumnail",
