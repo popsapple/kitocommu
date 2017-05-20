@@ -28,7 +28,7 @@ $(document).ready(function(){
       $("#BoardWriteForm").submit();
     });
   });
-  
+
   (function(){
     console.log("BoardViewContents 로딩");
     BoardViewHtmlDecode();
@@ -55,7 +55,11 @@ var BoradWriteFileDelete = function(is_remove_post_con){
   });
 };
 
-window.onbeforeunload = function (e) {
+var BoradWriteUnloadEvent = function(){
+  var url = window.location;
+  if(url.indexOf('/board/write') == -1){
+    return false;
+  }
   console.log("페이지이동여부01");
   var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
   if(is_ok){
@@ -68,4 +72,8 @@ window.onbeforeunload = function (e) {
   //  event.preventDefault();
     return is_ok;
   }
+};
+
+window.onbeforeunload = function (e) {
+  BoradWriteUnloadEvent();
 };
