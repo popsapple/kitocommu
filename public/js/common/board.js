@@ -1,3 +1,5 @@
+var BoradWriteUnloadUrl;
+
 function BoardViewHtmlDecode() {
   console.log("BoardViewHtmlDecode");
   var txt = $("<textarea></textarea>");
@@ -8,6 +10,7 @@ function BoardViewHtmlDecode() {
 }
 
 $(document).ready(function(){
+  BoradWriteUnloadUrl = window.location;
   $('#BoardThumnailButton').on('click',function(){
     $('#ajaxform').ajaxForm({
       url: "/upload_thumnail",
@@ -71,9 +74,8 @@ var BoradWriteUnloadEvent = function(){
 };
 
 window.onbeforeunload = function (e) {
-  //var url = window.location;
-  alert("AAAA ::");
-  if(url.indexOf('/board/write') != -1){
+  alert("sssssss :: "+BoradWriteUnloadUrl);
+  if(BoradWriteUnloadUrl.indexOf('board/write')){
     BoradWriteUnloadEvent();
   }
 };
