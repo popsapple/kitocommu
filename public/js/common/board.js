@@ -42,7 +42,7 @@ var BoradWriteFileDelete = function(){
   $.ajax({
     type: "POST",
     url: "/upload_file_delete",
-    async: false,
+    async: true,
     data: JSON.stringify({
       "is_remove_post": "writing"
     }),
