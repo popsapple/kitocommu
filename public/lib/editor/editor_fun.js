@@ -113,10 +113,12 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       var count = 0;
       var removing = setTimeout(function(){
         for(var key in remove_item){
+          console.log("어떠한 파일이 삭제되는가0000 :: "+remove_item[key]);
           var pattern = new RegExp("(\/{1}(\w+))", "g");
           var remove_item_key = pattern.exec(remove_item[key]);
-          remove_item_key = remove_item_key[1];
           console.log("어떠한 파일이 삭제되는가0101 :: "+remove_item_key);
+          remove_item_key = remove_item_key[1];
+
           remove_item_key = remove_item_key.substring(1,remove_item_key.length);
           console.log("어떠한 파일이 삭제되는가0202 :: "+remove_item_key);
           if(remove_item.hasOwnProterty(key)){
