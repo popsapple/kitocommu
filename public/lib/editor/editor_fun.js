@@ -137,6 +137,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
         RemovingFile();
       }
       else{ // 이미 작성되어있는걸 삭제할때
+        console.log("REMOVE ITEM IS REMOVING FUNCTUIN");
         var BOARD_DB_MODEL = global.BOARD_DB.model;
         var BOARD_DB_MODEL_SCHEMA = global.BOARD_DB.model.schema.paths;
         post_idx = req.body.post_index;
