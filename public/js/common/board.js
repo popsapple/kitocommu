@@ -30,6 +30,11 @@ $(document).ready(function(){
     $("#BoardWriteForm").submit();
   });
 
+  $("#BoardModifyButton").on('click',function(){  // 글수정 버튼 누를시
+    $(window).unbind('beforeunload');
+    $("#BoardWriteForm").submit();
+  });
+
   (function(){
     BoardViewHtmlDecode();
   })();
