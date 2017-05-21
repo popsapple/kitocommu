@@ -113,7 +113,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       var count = 0;
       var removing = setTimeout(function(){
         for(var key in remove_item){
-          if(!key.hasOwnProterty(remove_item)){
+          if(!remove_item.hasOwnProterty(key)){
             continue;
           }
           console.log("어떠한 파일이 삭제되는가0000 :: "+remove_item[key]);
