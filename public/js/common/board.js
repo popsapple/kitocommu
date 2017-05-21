@@ -36,7 +36,7 @@ $(document).ready(function(){
   })();
 });
 
-var BoradWriteFileDelete = function(is_remove_post_con){
+var BoradWriteFileDelete = function(){
   console.log("페이지이동여부03");
   //파일삭제 관련
   $.ajax({
@@ -44,7 +44,7 @@ var BoradWriteFileDelete = function(is_remove_post_con){
     url: "/upload_file_delete",
     async: false,
     data: JSON.stringify({
-      "is_remove_post": is_remove_post_con
+      "is_remove_post": "writing"
     }),
     contentType: "application/json",
     success: function(data) {
@@ -59,5 +59,5 @@ var BoradWriteFileDelete = function(is_remove_post_con){
 
 var BoradWriteUnloadEvent = function(){
   window.confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
-  BoradWriteFileDelete("writing"); // 파일삭제
+  BoradWriteFileDelete(); // 파일삭제
 };
