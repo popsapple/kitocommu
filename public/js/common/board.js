@@ -42,13 +42,17 @@ $(document).ready(function(){
 
 var BoradWriteFileDelete = function(is_remove_post_){
   //파일삭제 관련
+  var post_idx;
+  $("#BoardPostIdx") ? post_idx = $("#BoardPostIdx").val() : '';
+  $("#RemovePostIdx") ? post_idx = $("#RemovePostIdx").val() : '';
+
   $.ajax({
     type: "POST",
     url: "/upload_file_delete",
     async: true,
     data: JSON.stringify({
       "is_remove_post": is_remove_post_,
-      "post_index": $("#BoardPostIdx") ? $("#BoardPostIdx").val() : ''
+      "post_index": post_idx
     }),
     contentType: "application/json",
     success: function(data) {
