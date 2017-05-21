@@ -44,7 +44,8 @@ var BoradWriteFileDelete = function(){
     url: "/upload_file_delete",
     async: true,
     data: JSON.stringify({
-      "is_remove_post": "writing"
+      "typeone" : "write",
+      "typetwo" : "modify"
     }),
     contentType: "application/json",
     success: function(data) {
