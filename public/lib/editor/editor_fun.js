@@ -102,10 +102,6 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
 
     app.post('/upload_file_delete', function(req, res, next) {
       var remove_item;
-      for(var key in req.body){
-        console.log("잘 찍힘 :: "+key);
-        console.log("잘 찍힘 :::::::::: "+req.body[key]);
-      }
       console.log("타입이 제대로 들어오는지 체크 ::"+req.body.is_remove_post);
       if(req.body.is_remove_post == "writing"){
         remove_item = req.session.filelist; // 작성중인걸 삭제할때
@@ -115,36 +111,37 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       }
       console.log("REMOVE ITEM IS TRUE :: "+remove_item);
       var count = 0;
-      for(var key in remove_item){
-        var pattern = new RegExp("(\/{1}(\w+))", "g");
-        var remove_item_key = pattern.exec(remove_item[key]);
-        remove_item_key = remove_item_key[1];
-        console.log("어떠한 파일이 삭제되는가0101 :: "+remove_item_key);
-        remove_item_key = remove_item_key.substring(1,remove_item_key.length);
-        console.log("어떠한 파일이 삭제되는가0202 :: "+remove_item_key);
-        if(remove_item.hasOwnProterty(key)){
-          continue;
+      var removing = setTimeOut(function(){
+        for(var key in remove_item){
+          var pattern = new RegExp("(\/{1}(\w+))", "g");
+          var remove_item_key = pattern.exec(remove_item[key]);
+          remove_item_key = remove_item_key[1];
+          console.log("어떠한 파일이 삭제되는가0101 :: "+remove_item_key);
+          remove_item_key = remove_item_key.substring(1,remove_item_key.length);
+          console.log("어떠한 파일이 삭제되는가0202 :: "+remove_item_key);
+          if(remove_item.hasOwnProterty(key)){
+            continue;
+          }
+          (function(){
+            console.log("함수 실행여부 체크");
+            var params = {
+              Bucket: 'kitocommu',
+              Key: remove_item_key
+            };
+            s3.deleteObject(params, function(err, data) {
+              if (err) {
+                console.log("삭제가 안 되었음"+err+" :: "+err.stack); // 에러시 표시
+                return false;
+              }
+              else {
+                console.log("삭제된 파일 이름(?) :: "+remove_item_key);
+                console.log("도는 개수 체크 :: "+count);
+              }
+            });
+            count++;
+          })();
         }
-        (function(){
-          console.log("함수 실행여부 체크");
-          var params = {
-            Bucket: 'kitocommu',
-            Key: remove_item_key
-          };
-          s3.deleteObject(params, function(err, data) {
-            if (err) {
-              console.log("삭제가 안 되었음"+err+" :: "+err.stack); // 에러시 표시
-              return false;
-            }
-            else {
-              console.log("삭제된 파일 이름(?) :: "+remove_item_key);
-              console.log("도는 개수 체크 :: "+count);
-            }
-          });
-          count++;
-        })();
-      }
+      },500);
     });
-
   }
 }
