@@ -111,7 +111,7 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
       }
       console.log("REMOVE ITEM IS TRUE :: "+remove_item);
       var count = 0;
-      var removing = setTimeOut(function(){
+      var removing = setTimeout(function(){
         for(var key in remove_item){
           var pattern = new RegExp("(\/{1}(\w+))", "g");
           var remove_item_key = pattern.exec(remove_item[key]);
