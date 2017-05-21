@@ -101,17 +101,19 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
     });
 
     app.post('/upload_file_delete', function(req, res, next) {
+      var remove_item;
       for(var key in req.body){
         console.log("잘 찍힘 :: "+key);
         console.log("잘 찍힘 :::::::::: "+req.body[key]);
       }
       console.log("타입이 제대로 들어오는지 체크 ::"+req.body.is_remove_post);
       if(req.body.is_remove_post == "writing"){
-        var remove_item = req.session.filelist; // 작성중인걸 삭제할때
+        remove_item = req.session.filelist; // 작성중인걸 삭제할때
       }
       else{
 
       }
+      console.log("REMOVE ITEM IS TRUE :: "+remove_item);
       var count = 0;
       for(var key in remove_item){
         var pattern = new RegExp("(\/{1}(\w+))", "g");
