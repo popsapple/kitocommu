@@ -41,25 +41,23 @@ var BoradWriteFileDelete = function(is_remove_post_con){
   //파일삭제 관련
   $.ajax({
     type: "POST",
-        url: "/upload_file_delete",
-        data: JSON.stringify({
-          "is_remove_post": is_remove_post_con
-        }),
-        contentType: "application/json",
-        success: function(data) {
-          return true;
-        },
-        error: function(data) {
-          console.log("Error!!!!!!!!!!!!");
-          return false;
-        }
+    url: "/upload_file_delete",
+    async: false,
+    data: JSON.stringify({
+      "is_remove_post": is_remove_post_con
+    }),
+    contentType: "application/json",
+    success: function(data) {
+      return true;
+    },
+    error: function(data) {
+      console.log("Error!!!!!!!!!!!!");
+      return false;
+    }
   });
 };
 
 var BoradWriteUnloadEvent = function(){
-  console.log("페이지이동여부01");
-  if (window.confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.")) {
-    alert("페이지이동여부02");
-    BoradWriteFileDelete("writing"); // 파일삭제
-  }
+  window.confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
+  BoradWriteFileDelete("writing"); // 파일삭제
 };
