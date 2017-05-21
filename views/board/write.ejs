@@ -92,7 +92,7 @@
         </div>
       <%}%>
       <%if(locals.title){%>
-          <form method="post" action="/board_remove_submit">
+          <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
             <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
             <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
             <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">

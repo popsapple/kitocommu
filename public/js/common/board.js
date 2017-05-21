@@ -31,20 +31,19 @@ $(document).ready(function(){
   });
 
   (function(){
-    console.log("BoardViewContents 로딩");
     BoardViewHtmlDecode();
   })();
 });
 
 var BoradWriteFileDelete = function(is_remove_post_){
-  console.log("페이지이동여부03");
   //파일삭제 관련
   $.ajax({
     type: "POST",
     url: "/upload_file_delete",
     async: true,
     data: JSON.stringify({
-      "is_remove_post": is_remove_post_
+      "is_remove_post": is_remove_post_,
+      "post_index": $("#BoardPostIdx") ? $("#BoardPostIdx").val() : ''
     }),
     contentType: "application/json",
     success: function(data) {
@@ -59,5 +58,5 @@ var BoradWriteFileDelete = function(is_remove_post_){
 
 var BoradWriteUnloadEvent = function(){
   window.confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
-  BoradWriteFileDelete("writing"); // 파일삭제
+  BoradWriteFileDelete("writing"); // 작성중일 때 파일삭제
 };

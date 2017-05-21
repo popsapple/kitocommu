@@ -102,28 +102,17 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
 
     app.post('/upload_file_delete', function(req, res, next) {
       var remove_item;
-      console.log("타입이 제대로 들어오는지 체크 ::"+req.body.is_remove_post);
-      if(req.body.is_remove_post == "writing"){
-        remove_item = req.session.filelist; // 작성중인걸 삭제할때
-      }
-      else{
-
-      }
-      console.log("REMOVE ITEM IS TRUE :: "+remove_item);
+      var post_idx;
       var count = 0;
-      var removing = setTimeout(function(){
-        for(var key in remove_item){
+      var RemovingFile = function() {
+          for(var key in remove_item){
           (function(){
-            console.log("어떠한 파일이 삭제되는가0000 :: "+remove_item[key]);
-            //var pattern = new RegExp("(\/{1}(\w+))", "g");
             var pattern = /(\/(\w+))/g;
             var remove_item_key = remove_item[key].match(pattern);
-            console.log("어떠한 파일이 삭제되는가0101 :: "+remove_item_key);
             remove_item_key = remove_item_key[1];
 
             remove_item_key = remove_item_key.substring(1,remove_item_key.length);
-            console.log("어떠한 파일이 삭제되는가0202 :: "+remove_item_key);
-            console.log("함수 실행여부 체크");
+
             var params = {
               Bucket: 'kitocommu',
               Key: remove_item_key
@@ -134,14 +123,30 @@ exports = module.exports = { UploadFile : function (app,aws,multer,multerS3,fs){
                 return false;
               }
               else {
-                console.log("삭제된 파일 이름(?) :: "+remove_item_key);
-                console.log("도는 개수 체크 :: "+count);
+
               }
             });
             count++;
           })();
         }
-      },500);
+      };
+
+      if(req.body.is_remove_post == "writing"){
+        remove_item = req.session.filelist; // 작성중인걸 삭제할때
+        console.log("REMOVE ITEM IS TRUE :: "+remove_item);
+        RemovingFile();
+      }
+      else{ // 이미 작성되어있는걸 삭제할때
+        var BOARD_DB_MODEL = global.BOARD_DB.model;
+        var BOARD_DB_MODEL_SCHEMA = global.BOARD_DB.model.schema.paths;
+        post_idx = req.body.post_index;
+
+        BOARD_DB_MODEL.findOne({post_index: post_idx}, function(err,board){
+          remove_item = board.file_list.split(',');
+          console.log("REMOVE ITEM IS TRUE :: "+remove_item);
+          RemovingFile();
+        });
+      }
     });
   }
 }
