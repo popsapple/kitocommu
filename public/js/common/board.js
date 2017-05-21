@@ -60,13 +60,8 @@ var BoradWriteUnloadEvent = function(){
   console.log("페이지이동여부01");
   var is_ok = confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
   if(is_ok){
-    var is_ok_ = false;
-    console.log("페이지이동여부02");
-    is_ok_ = BoradWriteFileDelete("writing"); // 파일삭제
-    return is_ok_; //파일삭제 완료 후 페이지 넘어가게끔...
+    alert("페이지이동여부02");
+    BoradWriteFileDelete("writing"); // 파일삭제
   }else{
-  //  event.stopPropagation();
-  //  event.preventDefault();
-    return is_ok;
   }
 };
