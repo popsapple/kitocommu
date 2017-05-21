@@ -45,8 +45,14 @@ Board.write = function(info,request,response,mongoose,collection,type){
         data.tags = request_list.tags;
         data.file_list = (function(){ // 기존에 있던 내용과 새로운 filelist랑 합침
           var list = data.file_list;
-          list = list.split(',');
-          var i = list.length;
+          var i;
+          if(list){
+            list = list.split(',');
+            i = list.length;
+          }else {
+            list = [];
+            i = 0;
+          }
           for (var key in request.session.filelist){
             if(request.session.filelist[key] == ''){
               continue;
