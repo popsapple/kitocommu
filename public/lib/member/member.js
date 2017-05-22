@@ -163,15 +163,21 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 exports = module.exports = {member  : function (app,mongoose) {
 
     this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
-      console.log("GET SESSION NICKNAME ::"+request.session.nickname);
       response.locals.nickname = request.session.nickname;
       response.locals.userid = request.session.userid;
-      console.log("GET LOCAL NICKNAME ::"+response.locals.nickname);
     };
 
     this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
       account1 == account2 ? value_ = true : value_ = false;
+
+      var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+      member_data = global.MEMBER_DB.model;
+      member_data.findOne({nickname: account2}, function(err, member){
+        if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
+          value_ = true;
+        }
+      });
       return value_;
     };
 
