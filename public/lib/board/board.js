@@ -14,6 +14,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.tags = info.tags;
   save_data.board_table_id = info.board_table_id;
   save_data.writer = request.session.userid;
+  save_data.writer_nickname = request.session.nickname;
   info.thumnail ? save_data.thumnail = info.thumnail : '';
   request.session.filelist ? save_data.file_list = request.session.filelist : '';
   save_data.writed = new Date();

@@ -9,6 +9,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       category:  String,
       is_notice:  String,
       writer:  String,
+      writer_nickname:  String,
       title:  String,
       contents:  String,
       tags:  String,
@@ -76,8 +77,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       search_hint = {title: search_value};
     }else if(search_option == "tags"){
       search_hint = {tag: search_value};
-    }else if(search_option == "writer"){
-      search_hint = {writer: search_value};
+    }else if(search_option == "writer_nickname"){
+      search_hint = {writer_nickname: search_value};
     }else if(search_option == "category"){
       search_hint = {category: search_value};
     }
