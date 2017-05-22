@@ -41,16 +41,16 @@ db.once('open', function(){
 mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.mlab.com:23361/heroku_jzh3ndmz");
 
 // 식품정보찾기
-global.FOODINFOLIB = require('./public/lib/food/food_search.js').food_search(app);
+require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
-global.MEMBERLIB = require('./public/lib/member/member.js');
+global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
 // 에디터관련
-global.EDITORLIB = require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
+require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 
 // 게시판관련
-global.BOARDLIB = require('./public/lib/board/board.js').board_con(app,mongoose);
+require('./public/lib/board/board.js').board_con(app,mongoose);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
@@ -65,8 +65,8 @@ app.get('/', function(request, response, next) {
 // 로그인 세션
 app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
-  global.MEMBERLIB.member(app,mongoose);
-  //SettingSessionItem(app, request, response);
+
+  global.MEMBERLIB.SettingSessionItem(app, request, response);
   next();
 });
 
