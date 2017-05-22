@@ -127,9 +127,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
           console.log("카테고리 리스트 ::"+board_info_.category_list);
           board_info_.category_list = board_info_.category_list.split(",");
-          console.log("카테고리 리스트01 ::"+board_info_.category_list[0]);
+
           global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
             board_info_.is_writer = value_;
+            console.log("권한테스트 ::"+board_info_.is_writer);
             RenderViewpage(board_info_);
           });
         });
