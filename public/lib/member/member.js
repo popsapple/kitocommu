@@ -163,19 +163,16 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 module.exports.member = function (app,mongoose) {
 
   this.SettingSessionItem = function(app,request,response) { // 로그인 세션구현
-    app.get('/', function(request, response,next) {
-      if(request.session.nickname) {
-        response.locals.nickname = request.session.nickname;
-      } else {
-        response.locals.nickname = undefined;
-      }
-      if(request.session.userid) {
-        response.locals.userid = request.session.userid;
-      }else {
-        response.locals.userid = undefined;
-      }
-      next();
-    });
+    if(request.session.nickname) {
+      response.locals.nickname = request.session.nickname;
+    } else {
+      response.locals.nickname = undefined;
+    }
+    if(request.session.userid) {
+      response.locals.userid = request.session.userid;
+    }else {
+      response.locals.userid = undefined;
+    }
   }
 
   this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
