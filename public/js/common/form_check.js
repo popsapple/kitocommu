@@ -1,6 +1,8 @@
 function CheckFormInput(){
   $(".dobule_check").each(function(){
-    $(this).trigger('click', ['check']);
+    if($(this).attr('data-hascheck') != ''){
+      $(this).trigger('click', ['check']);
+    };
   });
 
   var input_list = ["joinId","joinNickname","joinPassword","joinEmail","joinTel","joinHeight","joinWeight","joinCheckId","joinCheckNickname","BoardTitle","BoardCategory","BoardNotice","BoardContents"];
