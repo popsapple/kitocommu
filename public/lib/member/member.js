@@ -160,7 +160,7 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   });
 }
 
-exports = module.exports.member = function (app,mongoose) {
+module.exports.member = function (app,mongoose) {
 
   this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
     console.log("GET SESSION NICKNAME ::"+request.session.nickname);

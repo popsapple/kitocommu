@@ -65,7 +65,7 @@ app.get('/', function(request, response, next) {
 // 로그인 세션
 app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
-  global.MEMBERLIB.SettingSessionItem(app, request, response);
+  global.MEMBERLIB.member(app,mongoose).SettingSessionItem(app, request, response);
   next();
 });
 
