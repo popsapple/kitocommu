@@ -186,9 +186,6 @@ module.exports.member = function (app,mongoose) {
 
   global.MEMBER_DB = require('./member_db.js');
 
-  //처음에 세션변수(?) 정의
-  SettingSessionItem(app);
-
   app.get('/join_member_step1', function(request, response) {
     response.render('member/join_member_step1');
   });
