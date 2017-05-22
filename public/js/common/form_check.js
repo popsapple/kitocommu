@@ -50,6 +50,7 @@ function CheckFormInput(){
 };
 //정규표현식
 $(".dobule_check").on('click', function(click_type){
+  console.log("클릭했습니다.");
   var obj = $(this);
   $.ajax({
     type: "POST",

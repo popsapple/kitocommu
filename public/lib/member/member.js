@@ -52,11 +52,13 @@ Member.login = function(request,response,mongoose){
 }
 
 Member.double_check = function(info,request,response,mongoose){
+
   var id_info;
   var member_ = '';
   var is_double = {
     isdouble: "yes"
   };
+  console.log("중복? :: "+info['item_key']);
   if(info['item_key'] == 'nickname') {
     id_info = {nickname: info['item_val']}
   };
@@ -69,6 +71,7 @@ Member.double_check = function(info,request,response,mongoose){
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
   save_data.findOne(id_info, function(err, member){
+    console.log("??????????????");
     member_ = member;
     if(err){  // 아무것도 못 찾았을 때
       is_double = {
@@ -173,7 +176,7 @@ exports = module.exports = {member  : function (app,mongoose) {
 
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
       var member_data = global.MEMBER_DB.model;
-      member_data.findOne({nickname: account2}, function(err, member){
+      member_data.findOne({id: account2}, function(err, member){
         if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
           value_ = true;
         }

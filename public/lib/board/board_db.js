@@ -142,7 +142,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
           board_info_.category_list = board_info_.category_list.split(",");
 
-          global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
+          global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
             board_info_.is_writer = value_;
             RenderViewpage(board_info_);
           });
