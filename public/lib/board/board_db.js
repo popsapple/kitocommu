@@ -78,6 +78,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       search_hint = {tag: search_value};
     }else if(search_option == "writer"){
       search_hint = {writer: search_value};
+    }else if(search_option == "category"){
+      search_hint = {category: search_value};
     }
     page_num = page_num*page_length;
     page_length = page_num+page_length-1;
