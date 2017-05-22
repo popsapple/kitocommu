@@ -117,6 +117,7 @@ Board.search_render = function(info,request,response,mongoose,collection){
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
+    console.log("실행순서 체크 ::");
     if(!request.session || !request.session.nickname){
       response.redirect('/member/plz_login');
     }
