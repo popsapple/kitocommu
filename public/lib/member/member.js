@@ -167,7 +167,6 @@ exports = module.exports = {member  : function (app,mongoose) {
       response.locals.nickname = request.session.nickname;
       response.locals.userid = request.session.userid;
       console.log("GET LOCAL NICKNAME ::"+response.locals.nickname);
-      response.send(response.locals);
     };
 
     this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
