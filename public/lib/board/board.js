@@ -118,7 +118,7 @@ module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
     if(!request.session || !request.session.nickname){
-      response.redirect('member/login_form');
+      response.redirect('/member/plz_login');
     }
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
