@@ -107,7 +107,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.find(search_hint, function(err, board){
       obj.notice_list = board;
       obj.notice_list.sort(sortList);
-      obj.notice_list = data.notice_list.slice(0,page_length);
+      obj.notice_list = obj.notice_list.slice(0,page_length);
       callback(obj,mongoose,request,response);
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback,type){
