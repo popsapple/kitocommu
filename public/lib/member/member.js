@@ -164,9 +164,9 @@ exports = module.exports = {member  : function (app,mongoose) {
 
     this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
       console.log("GET SESSION NICKNAME ::"+request.session.nickname);
-      console.log("GET LOCAL NICKNAME ::"+response.locals.nickname);
       response.locals.nickname = request.session.nickname;
       response.locals.userid = request.session.userid;
+      console.log("GET LOCAL NICKNAME ::"+response.locals.nickname);
     }
 
     this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
