@@ -116,13 +116,14 @@ Board.search_render = function(info,request,response,mongoose,collection){
 
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
-  app.get('/board/list', function(request, response) {
+  app.get('/board/list', function(request, response, next) {
     console.log("실행순서 체크 ::");
     if(!request.session || !request.session.nickname){
       response.redirect('/member/plz_login');
     }
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
+    next();
   });
 
   app.get('/board/search_post', function(request, response) {

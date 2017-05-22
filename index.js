@@ -40,11 +40,19 @@ db.once('open', function(){
 
 mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.mlab.com:23361/heroku_jzh3ndmz");
 
-// 식품정보찾기
-require('./public/lib/food/food_search.js').food_search(app);
-
 // 회원관련
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
+
+// 로그인 세션
+app.all('*', function(request, response, next) {
+  console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
+
+  global.MEMBERLIB.SettingSessionItem(app, request, response);
+  next();
+});
+
+// 식품정보찾기
+require('./public/lib/food/food_search.js').food_search(app);
 
 // 에디터관련
 require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
@@ -55,14 +63,6 @@ require('./public/lib/board/board.js').board_con(app,mongoose);
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
-});
-
-// 로그인 세션
-app.all('*', function(request, response, next) {
-  console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
-
-  global.MEMBERLIB.SettingSessionItem(app, request, response);
-  next();
 });
 
 app.get('/', function(request, response, next) {
