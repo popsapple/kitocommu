@@ -1,7 +1,7 @@
 function CheckFormInput(){
   $(".dobule_check").each(function(){
     if($(this).attr('data-hascheck') != ''){
-      $(this).trigger('click', ['check']);
+      $(this).trigger('click', ['trigger_check']);
     };
   });
 
@@ -51,7 +51,7 @@ function CheckFormInput(){
   return is_true;
 };
 //정규표현식
-$(".dobule_check").on('click', function(){
+$(".dobule_check").on('click', function(check_type){
   var obj = $(this);
   $.ajax({
     type: "POST",
@@ -67,8 +67,10 @@ $(".dobule_check").on('click', function(){
         alert("중복입니다 사용하실 수 없습니다.");
         obj.val('no');
       }else{
-        alert("사용하실 수 있습니다.");
-        obj.val('yes');
+        if(check_type != 'trigger_check'){
+          alert("사용하실 수 있습니다.");
+          obj.val('yes');
+        }
       }
     },
     error: function(data) {
