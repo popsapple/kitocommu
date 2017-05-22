@@ -26,7 +26,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BoardConfigSchema = new Schema({
       board: String,
       list_type:  String,
-      css_skin:  String
+      css_skin:  String,
+      category_list:  String
     }, { collection: 'Board_Typelist' });
 
     mongoose.models = {};
