@@ -61,6 +61,12 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+// 로그인 세션
+app.get('*', function(request, response, next) {
+  global.MEMBERLIB.SettingSessionItem(app, request, response);
+  next();
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
