@@ -1,4 +1,4 @@
-exports = module.exports = { UploadFile : function (upload,s3,req,res,obj){
+exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,obj){
       upload_callback(req, res, function (err) {
         if (err) {
           // 업로드 에러시

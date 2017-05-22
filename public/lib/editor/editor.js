@@ -39,7 +39,7 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
 
   var upload_callback = upload.single('upload');
   app.post('/upload', function(req, res, next) {
-    var UploadFile = new global.EDITOR_FUNCTION.UploadFile(upload,s3,req,res,obj);
+    var UploadFile = new global.EDITOR_FUNCTION.UploadFile(upload_callback,s3,req,res,obj);
   });
 
   var thumnail_upload_callback = upload.single('thumnailfile'); // 실제 input에 있는 name이랑 이름이 같아야 함
