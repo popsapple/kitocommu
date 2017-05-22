@@ -51,7 +51,7 @@ function CheckFormInput(){
   return is_true;
 };
 //정규표현식
-$(".dobule_check").on('click', function(check_type){
+$(".dobule_check").on('click', function(event, check_type){
   var obj = $(this);
   $.ajax({
     type: "POST",
@@ -62,7 +62,7 @@ $(".dobule_check").on('click', function(check_type){
     }),
     contentType: "application/json",
     success: function(data) {
-      console.log("받았습니다."+data.isdouble);
+      console.log("받았습니다."+check_type);
       if(data.isdouble != 'no'){
         alert("중복입니다 사용하실 수 없습니다.");
         obj.val('no');
