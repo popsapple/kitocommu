@@ -100,7 +100,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     });
   },getBoardListByNotice : function (obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
-    var page_length = 4;
+    var page_length = 5;
     var search_hint = {is_notice: "on"};
     function sortList(a, b) {
       if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
