@@ -29,7 +29,6 @@ Member.join = function(info,request,response,mongoose,type){
         request.json({result: 0});
         return;
     }
-    save_data.ispage = "join_result";
     response.render('member/join_member_step3',save_data);
   });
 }
