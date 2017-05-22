@@ -32,11 +32,15 @@
               <label for="BoardCategory">카테고리</label>
               <%if(locals.category){%>
                 <select id="BoardCategory" name="category" type="text" data-value="<%= category %>">
-                  <option value="<%= category_list[0] %>"><%= category_list[0] %></option>
+                  <% for(var i=0; i < category_list.length; i++) { %>
+                    <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                  <%}%>
                 </select>
               <%}else {%>
                 <select id="BoardCategory" name="category" type="text">
-                  <option></option>
+                  <% for(var i=0; i < category_list.length; i++) { %>
+                    <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                  <%}%>
                 </select>
               <%}%>
             </li>

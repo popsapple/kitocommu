@@ -36,8 +36,11 @@ $(document).ready(function(){
   });
 
   (function(){
-    BoardViewHtmlDecode();
+    BoardViewHtmlDecode(); //DB에서 끌고온 내용 html 화
   })();
+
+  $("#BoardCategory") ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : '';
+
 });
 
 var BoradWriteFileDelete = function(is_remove_post_){
