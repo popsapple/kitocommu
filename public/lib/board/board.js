@@ -12,6 +12,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.title = info.title;
   save_data.contents = info.contents;
   save_data.tags = info.tags;
+  save_data.board_table_id = info.board_table_id;
   save_data.writer = request.session.nickname;
   info.thumnail ? save_data.thumnail = info.thumnail : '';
   request.session.filelist ? save_data.file_list = request.session.filelist : '';
@@ -37,6 +38,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
         var post_index_ = request_list.post_index;
 
         save_data.findOne({post_index: post_index_}, function(err, data){
+        data.board_table_id = info.board_table_id;
         data.post_index = request_list.post_index;
         data.category = request_list.category;
         data.is_notice = request_list.is_notice;
