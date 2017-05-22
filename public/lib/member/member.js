@@ -160,70 +160,70 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   });
 }
 
-module.exports.member = function (app,mongoose) {
+exports = module.exports = {member  : function (app,mongoose) {
+    this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
+      console.log("GET SESSION NICKNAME ::"+request.session.nickname);
+      response.locals.nickname = request.session.nickname;
+      response.locals.userid = request.session.userid;
+    }
 
-  this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
-    console.log("GET SESSION NICKNAME ::"+request.session.nickname);
-    response.locals.nickname = request.session.nickname;
-    response.locals.userid = request.session.userid;
+    this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
+      var value_;
+      account1 == account2 ? value_ = true : value_ = false;
+      return value_;
+    };
+
+    global.MEMBER_DB = require('./member_db.js');
+
+    app.get('/join_member_step1', function(request, response) {
+      response.render('member/join_member_step1');
+    });
+    app.get('/join_member_step2', function(request, response) {
+      response.render('member/join_member_step2');
+    });
+    app.get('/join_member_step3', function(request, response) {
+      Member.join(request.query,request,response,mongoose);
+    });
+
+    app.get('/login_form', function(request, response) {
+      response.render('member/login'); // 그냥 로그인 폼 출력
+    });
+
+    app.post('/login', function(request, response) {
+       Member.login(request,response,mongoose);
+    });
+
+    app.get('/search_login_info', function(request, response) {
+      response.render('member/search_info'); // 팝업창 출력
+    });
+
+    app.post('/member_double_check', function(request, response) {
+    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
+      Member.double_check(request.body,request,response,mongoose);
+    });
+
+    app.post('/search_login_info_submit', function(request, response) {
+    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
+    Member.search_login_info(request.body,request,response,mongoose);
+    });
+
+    app.get('/mypage/list', function(request, response) {
+    //  Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
+    Member.modfiy_list(request.query,request,response,mongoose);
+    });
+
+    app.post('/mypage/submit', function(request, response) {
+    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
+    Member.modfiy_submit(request.body,request,response,mongoose);
+    });
+
+    app.get('/logout', function(request, response) {
+      request.session.destroy();
+      return response.redirect('/');
+    });
+
+    app.get('/member/plz_login', function(request, response) {
+      response.render('member/plz_login');
+    });
   }
-
-  this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
-    var value_;
-    account1 == account2 ? value_ = true : value_ = false;
-    return value_;
-  };
-
-  global.MEMBER_DB = require('./member_db.js');
-
-  app.get('/join_member_step1', function(request, response) {
-    response.render('member/join_member_step1');
-  });
-  app.get('/join_member_step2', function(request, response) {
-    response.render('member/join_member_step2');
-  });
-  app.get('/join_member_step3', function(request, response) {
-    Member.join(request.query,request,response,mongoose);
-  });
-
-  app.get('/login_form', function(request, response) {
-    response.render('member/login'); // 그냥 로그인 폼 출력
-  });
-
-  app.post('/login', function(request, response) {
-     Member.login(request,response,mongoose);
-  });
-
-  app.get('/search_login_info', function(request, response) {
-    response.render('member/search_info'); // 팝업창 출력
-  });
-
-  app.post('/member_double_check', function(request, response) {
-  //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
-    Member.double_check(request.body,request,response,mongoose);
-  });
-
-  app.post('/search_login_info_submit', function(request, response) {
-  //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
-  Member.search_login_info(request.body,request,response,mongoose);
-  });
-
-  app.get('/mypage/list', function(request, response) {
-  //  Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
-  Member.modfiy_list(request.query,request,response,mongoose);
-  });
-
-  app.post('/mypage/submit', function(request, response) {
-  //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-  Member.modfiy_submit(request.body,request,response,mongoose);
-  });
-
-  app.get('/logout', function(request, response) {
-    request.session.destroy();
-    return response.redirect('/');
-  });
-
-  app.get('/member/plz_login', function(request, response) {
-    response.render('member/plz_login');
-  });
 };
