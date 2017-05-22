@@ -125,12 +125,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           for (var key in config[0]){
             board_info_[key] = config[0][key];
           }
-          console.log("카테고리 리스트 ::"+board_info_.category_list);
           board_info_.category_list = board_info_.category_list.split(",");
 
           global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
             board_info_.is_writer = value_;
-            console.log("권한테스트 ::"+board_info_.is_writer);
             RenderViewpage(board_info_);
           });
         });
@@ -139,9 +137,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           for (var key in config[0]){
             board_info_[key] = config[0][key];
           }
-          console.log("글수정 카테고리 리스트 ::"+board_info_.category_list);
           board_info_.category_list = board_info_.category_list.split(",");
-          console.log("글수정 카테고리 리스트01 ::"+board_info_.category_list[0]);
           response.render('board/write',board_info_);
         });
       }

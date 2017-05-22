@@ -40,6 +40,7 @@ $(document).ready(function(){
   })();
 
   $("#BoardCategory") ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : '';
+  $("#BoardNotice").val() == "on" ? $("#BoardNotice").is(":checked") : '';
 
 });
 
