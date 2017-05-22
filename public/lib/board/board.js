@@ -12,7 +12,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.title = info.title;
   save_data.contents = info.contents;
   save_data.tags = info.tags;
-  save_data.writer = '임시작업자'; //request.session.nickname;
+  save_data.writer = request.session.nickname;
   info.thumnail ? save_data.thumnail = info.thumnail : '';
   request.session.filelist ? save_data.file_list = request.session.filelist : '';
   save_data.writed = new Date();
@@ -117,6 +117,9 @@ Board.search_render = function(info,request,response,mongoose,collection){
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
+    if(!request.session || !request.session.nickname){
+      response.render('member/plz_login');
+    }
     var board_id = 'Board_'+(request.query.board_table_id);
     Board.list_render(request.query,request,response,mongoose,board_id);
   });
