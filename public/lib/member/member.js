@@ -173,6 +173,12 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 
 module.exports.member = function (app,mongoose) {
 
+  this.CheckAuthenfication = function(account1,account2){ // 알맞는 권한을 가진 계정인지 체크
+    var value_;
+    account1 == account2 ? value_ = true : value_ = false;
+    return value_;
+  };
+
   global.MEMBER_DB = require('./member_db.js');
 
   //처음에 세션변수(?) 정의

@@ -41,16 +41,16 @@ db.once('open', function(){
 mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.mlab.com:23361/heroku_jzh3ndmz");
 
 // 식품정보찾기
-require('./public/lib/food/food_search.js').food_search(app);
+global.FOODINFOLIB = require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
-require('./public/lib/member/member.js').member(app,mongoose);
+global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
 // 에디터관련
-require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
+global.EDITORLIB = require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 
 // 게시판관련
-require('./public/lib/board/board.js').board_con(app,mongoose);
+global.BOARDLIB = require('./public/lib/board/board.js').board_con(app,mongoose);
 
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');

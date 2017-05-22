@@ -112,11 +112,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(count == 0){
           board_info_.board_table_id = request_list.board_table_id;
           board_info_.post_index = request_list.post_index;
-          board_info_.is_writer = function(){
-            var value_;
-            board.writer == request.session.nickname ? value_ = true : value_ = false;
-            return value_;
-          }();
+          board_info_.is_writer = global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname);
         }
         board_info_[key] = board[key];
         count++;
