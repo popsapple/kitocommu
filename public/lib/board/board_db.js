@@ -112,6 +112,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(count == 0){
           board_info_.board_table_id = request_list.board_table_id;
           board_info_.post_index = request_list.post_index;
+          board_info_.is_writer = function(){
+            board.writer == request.session.nickname ? return true : return false;
+          }();
         }
         board_info_[key] = board[key];
         count++;
