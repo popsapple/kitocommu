@@ -61,6 +61,7 @@ $(".dobule_check").on('click', function(click_type){
     }),
     contentType: "application/json",
     success: function(data) {
+      console.log("받았습니다.");
       if(data.isdouble != 'no'){
         alert("중복입니다 사용하실 수 없습니다.");
         obj.val('no');
@@ -72,6 +73,7 @@ $(".dobule_check").on('click', function(click_type){
       }
     },
     error: function(data) {
+      console.log("못 받았습니다 ㅜㅜ.");
       if(!click_type == 'check') {
         alert("사용하실 수 있습니다.");
         obj.val('yes');

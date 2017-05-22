@@ -85,19 +85,21 @@ Member.double_check = function(info,request,response,mongoose){
         is_double = {
           isdouble: "no"
         };
+        response.send(is_double);
       }else {
         is_double = {
           isdouble: "yes"
         };
+        response.send(is_double);
       }
     }
     else{
-      console.log("STEP04");
       is_double = {
         isdouble: "no"
       };
+      console.log("최종 ::"+is_double);
+      response.send(is_double);
     }
-    response.send(is_double);
   });
 }
 
