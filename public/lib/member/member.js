@@ -162,7 +162,7 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 
 exports = module.exports.member = function (app,mongoose) {
 
-  exports.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
+  this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
     console.log("GET SESSION NICKNAME ::"+request.session.nickname);
     response.locals.nickname = request.session.nickname;
     response.locals.userid = request.session.userid;
