@@ -57,11 +57,6 @@ app.get('/robots.txt', function (req, res) {
     res.send("User-agent: *\nDisallow:");
 });
 
-app.get('/', function(request, response, next) {
-  response.render('pages/index');
-  next();
-});
-
 // 로그인 세션
 app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
@@ -69,6 +64,12 @@ app.all('*', function(request, response, next) {
   global.MEMBERLIB.SettingSessionItem(app, request, response);
   next();
 });
+
+app.get('/', function(request, response, next) {
+  response.render('pages/index');
+  next();
+});
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
