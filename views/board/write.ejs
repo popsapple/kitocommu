@@ -31,17 +31,21 @@
             <li>
               <label for="BoardCategory">카테고리</label>
               <%if(locals.category){%>
-                <input id="BoardCategory" name="category" type="text" value="<%= category %>" />
+                <select id="BoardCategory" name="category" type="text" data-value="<%= category %>">
+                  <option value="<%= category_list[0] %>"><%= category_list[0] %></option>
+                </select>
               <%}else {%>
-                <input id="BoardCategory" name="category" type="text" />
+                <select id="BoardCategory" name="category" type="text">
+                  <option></option>
+                </select>
               <%}%>
             </li>
             <li>
               <label for="BoardNotice">공지사항</label>
               <%if(locals.is_notice){%>
-                <input id="BoardNotice" name="is_notice" type="text" value="<%= is_notice %>" />
+                <input id="BoardNotice" name="is_notice" type="checkbox" value="<%= is_notice %>" />
               <%}else {%>
-                <input id="BoardNotice" name="is_notice" type="text" />
+                <input id="BoardNotice" name="is_notice" type="checkbox" />
               <%}%>
             </li>
             <li>

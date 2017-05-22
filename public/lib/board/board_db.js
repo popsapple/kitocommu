@@ -117,21 +117,29 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         count++;
       }
       function RenderViewpage(board_info_){
-        console.log("콜백02 ::"+board_info_.is_writer);
         response.render('board/view',board_info_);
       }
       if(type != 'modify'){
-        console.log("실행");
-        global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
-          console.log("콜백01");
-          board_info_.is_writer = value_;
-          RenderViewpage(board_info_);
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
+          for (var key in config[0]){
+            board_info_[key] = config[0][key];
+          }
+          console.log("카테고리 리스트 ::"+board_info_.category_list);
+          board_info_.category_list = board_info_.category_list.split(",");
+          console.log("카테고리 리스트01 ::"+board_info_.category_list[0]);
+          global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
+            board_info_.is_writer = value_;
+            RenderViewpage(board_info_);
+          });
         });
       }else if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
           for (var key in config[0]){
             board_info_[key] = config[0][key];
           }
+          console.log("글수정 카테고리 리스트 ::"+board_info_.category_list);
+          board_info_.category_list = board_info_.category_list.split(",");
+          console.log("글수정 카테고리 리스트01 ::"+board_info_.category_list[0]);
           response.render('board/write',board_info_);
         });
       }

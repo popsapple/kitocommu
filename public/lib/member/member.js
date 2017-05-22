@@ -174,7 +174,6 @@ exports = module.exports = {member  : function (app,mongoose) {
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
       var member_data = global.MEMBER_DB.model;
       member_data.findOne({nickname: account2}, function(err, member){
-        console.log("검색");
         if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
           value_ = true;
         }
