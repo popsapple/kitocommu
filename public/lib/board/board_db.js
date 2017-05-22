@@ -112,20 +112,28 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(count == 0){
           board_info_.board_table_id = request_list.board_table_id;
           board_info_.post_index = request_list.post_index;
-          board_info_.is_writer = global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response);
         }
         board_info_[key] = board[key];
         count++;
       }
-      if(type == 'modify'){
+      function RenderViewpage(board_info_){
+        console.log("콜백02");
+        response.render('board/view',board_info_);
+      }
+      if(type != 'modify'){
+        console.log("실행");
+        global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
+          console.log("콜백01");
+          board_info_.is_write = value_;
+          RenderViewpage(board_info_);
+        });
+      }else if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
           for (var key in config[0]){
             board_info_[key] = config[0][key];
           }
           response.render('board/write',board_info_);
         });
-      }else {
-        response.render('board/view',board_info_);
       }
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
