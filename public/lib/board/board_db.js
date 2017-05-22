@@ -97,6 +97,19 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.searchvalue = search_value;
       callback(data,mongoose,request,response);
     });
+  },getBoardListByNotice : function (obj,mongoose,request,response,callback){
+    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var page_length = 4;
+    var search_hint = {is_notice: "on"};
+    function sortList(a, b) {
+      if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+    }
+    BOARD_DB_MODEL.find(search_hint, function(err, board){
+      obj.notice_list = board;
+      obj.notice_list.sort(sortList);
+      obj.notice_list = data.notice_list.slice(0,page_length);
+      callback(obj,mongoose,request,response);
+    });
   },getBoardPostByIndex : function (mongoose,request,response,callback,type){
     var request_list;
     if (request.query.post_index){

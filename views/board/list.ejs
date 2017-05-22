@@ -6,6 +6,27 @@
 <body itemscope = "" itemtype = "http://schema.org/WebPage">
 <% include ../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <section id="boardNoticeList">
+      <ul>
+        <% for(var i=0; i < notice_list.length; i++) { %>
+        <li>
+          <hgroup>
+            <h2>
+              <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= notice_list[i].post_index %>">
+                <%= notice_list[i].title %>
+              </a>
+            </h2>
+            <h3>
+              <%= notice_list[i].writer %>
+            </h3>
+            <time>
+              <%= notice_list[i].writed %>
+            </time>
+          </hgroup>
+        </li>
+        <%}%>
+      </ul>
+    </section>
     <section id="boardList">
       <ul>
         <% for(var i=0; i < board_list.length; i++) { %>

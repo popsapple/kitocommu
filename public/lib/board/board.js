@@ -88,7 +88,9 @@ Board.write = function(info,request,response,mongoose,collection,type){
 
 Board.list_render = function(info,request,response,mongoose,collection){
   function PagingFunction(obj,mongoose,request,response){
-    var read_data_ = new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
+    var read_data_ = new global.BOARD_DB.getBoardListByNotice(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+      new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
+    });
   }
   var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
