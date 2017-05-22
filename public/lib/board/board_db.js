@@ -117,14 +117,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         count++;
       }
       function RenderViewpage(board_info_){
-        console.log("콜백02");
+        console.log("콜백02 ::"+board_info_.is_writer);
         response.render('board/view',board_info_);
       }
       if(type != 'modify'){
         console.log("실행");
         global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.nickname,request,response,function(value_){
           console.log("콜백01");
-          board_info_.is_write = value_;
+          board_info_.is_writer = value_;
           RenderViewpage(board_info_);
         });
       }else if(type == 'modify'){
