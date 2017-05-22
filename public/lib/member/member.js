@@ -232,6 +232,6 @@ module.exports.member = function (app,mongoose) {
   });
 
   app.get('/member/plz_login', function(request, response) {
-    response.render('/member/plz_login');
+    response.render('member/plz_login');
   });
 };
