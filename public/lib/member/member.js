@@ -71,7 +71,6 @@ Member.double_check = function(info,request,response,mongoose){
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
   save_data.findOne(id_info, function(err, member){
-    console.log("??????????????");
     member_ = member;
     if(err){  // 아무것도 못 찾았을 때
       is_double = {
@@ -81,7 +80,12 @@ Member.double_check = function(info,request,response,mongoose){
       return false;
     }
     if(member_){
-      if(request.session.nickname == info['item_val']){
+      if(info['item_key'] == 'nickname' && request.session.nickname == info['item_val']) {
+        is_double = {
+          isdouble: "no"
+        };
+        response.send(is_double);
+      }else if(info['item_key'] == 'id' && request.session.userid == info['item_val']) {
         is_double = {
           isdouble: "no"
         };

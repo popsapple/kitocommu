@@ -49,8 +49,7 @@ function CheckFormInput(){
   return is_true;
 };
 //정규표현식
-$(".dobule_check").on('click', function(click_type){
-  console.log("클릭했습니다.");
+$(".dobule_check").on('click', function(){
   var obj = $(this);
   $.ajax({
     type: "POST",
@@ -66,18 +65,13 @@ $(".dobule_check").on('click', function(click_type){
         alert("중복입니다 사용하실 수 없습니다.");
         obj.val('no');
       }else{
-        if(!click_type == 'check') {
-          alert("사용하실 수 있습니다.");
-          obj.val('yes');
-        }
-      }
-    },
-    error: function(data) {
-      console.log("못 받았습니다 ㅜㅜ.");
-      if(!click_type == 'check') {
         alert("사용하실 수 있습니다.");
         obj.val('yes');
       }
+    },
+    error: function(data) {
+      alert("사용하실 수 있습니다.");
+      obj.val('yes');
     }
   });
 });
