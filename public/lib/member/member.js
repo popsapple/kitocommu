@@ -1,9 +1,15 @@
 function SettingSessionItem(app) { // 로그인 세션구현
   app.get('/', function(request, response,next) {
-    if(request.session.nickname) response.locals.nickname = request.session.nickname;
-    else response.locals.nickname = undefined;
-    if(request.session.userid) response.locals.userid = request.session.userid;
-    else response.locals.userid = undefined;
+    if(request.session.nickname) {
+      response.locals.nickname = request.session.nickname;
+    } else {
+      response.locals.nickname = undefined;
+    }
+    if(request.session.userid) {
+      response.locals.userid = request.session.userid;
+    }else {
+      response.locals.userid = undefined;
+    }
     next();
   });
 }
