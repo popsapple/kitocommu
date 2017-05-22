@@ -32,6 +32,11 @@
     <%}%>
     <section id="boardList">
       <ul>
+        <% if(locals.board_list) { %>
+        <li>
+          작성된 글이 없습니다.
+        </li>
+        <% } %>
         <% for(var i=0; i < board_list.length; i++) { %>
         <li>
           <hgroup>
