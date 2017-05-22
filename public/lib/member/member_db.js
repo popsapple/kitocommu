@@ -60,6 +60,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       sex:  String,
       height:  Number,
       weight:  Number,
+      member_level:  Number,
       writed: { type: Date, default: Date.now },
       updated: { type: Date, default: Date.now }
     }, { collection: 'Memberschema' });
