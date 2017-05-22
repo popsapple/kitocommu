@@ -44,7 +44,7 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 global.FOODINFOLIB = require('./public/lib/food/food_search.js').food_search(app);
 
 // 회원관련
-global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
+global.MEMBERLIB = require('./public/lib/member/member.js');
 
 // 에디터관련
 global.EDITORLIB = require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
@@ -65,7 +65,8 @@ app.get('/', function(request, response, next) {
 // 로그인 세션
 app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
-  global.MEMBERLIB.member(app,mongoose).SettingSessionItem(app, request, response);
+  global.MEMBERLIB.member(app,mongoose);
+  //SettingSessionItem(app, request, response);
   next();
 });
 
