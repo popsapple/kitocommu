@@ -153,6 +153,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               finded_count = numOfDocs;
               console.log("카운트 맞는지 확인 :: "+finded_count);
               board_info_.comments_list = comment;
+              board_info_.is_comment_writer = [];
               for(var i=0; i < finded_count; i++){
                 var value_ = true;
                 global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
