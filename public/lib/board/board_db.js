@@ -280,8 +280,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     global.BOARD_COMMENT_MODEL = mongoose.model('board_comment', Memberschema);
   },BoardCommentSave : function(mongoose,request,response) {
-
-    var db_object = new global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+    global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+    var db_object = global.BOARD_COMMENT_MODEL.model;
     var comment_index_;
     var save_data = {};
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
