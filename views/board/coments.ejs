@@ -4,7 +4,7 @@
     <ul>
       <% for(var i=0; i < comments_list.length; i++) { %>
       <li>
-        <% if(comments_list[i].is_writer == true) { %>
+        <% if(is_comment_writer == true) { %>
           <form method="post" action="/board_comment_submit">
             <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
             <label for="CommentContents">댓글내용</label>

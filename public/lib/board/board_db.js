@@ -150,8 +150,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           db_object.find({post_index: post_index_}, function(err, comment){
             global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
               board_info_.comments_list = comment;
-              board_info_.is_writer = value_;
-              console.log("작성자가 맞는지 확인 :: "+board_info_.is_writer +" :: ");
+              board_info_.is_comment_writer = value_;
+              console.log("작성자가 맞는지 확인 :: "+board_info_.is_comment_writer +" :: ");
               response.render('board/view',board_info_);
             });
           });
@@ -301,7 +301,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     !request.body.is_modify ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
     db_object.count({}, function(error, numOfDocs){
       db_object.findOne({comment_index: comment_index_}, function(err, data){
-        request.body.is_modify ? save_data = data : '';        
+        request.body.is_modify ? save_data = data : '';
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
         request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
