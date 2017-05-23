@@ -286,8 +286,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var save_data = {};
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
     !request.body.comment_index ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
-    console.log("코멘트 DB 저장 02");
-    db_object = db_object.model;
+    console.log("코멘트 DB 저장 02 :: "+db_object);
+    for(var key in db_object){
+    }
     db_object.count({}, function(error, numOfDocs){ //
       db_object.findOne({comment_index: comment_index_}, function(err, data){
         if(!request.body.comment_index){
