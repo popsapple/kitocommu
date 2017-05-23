@@ -149,12 +149,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var post_index_ = board_info_.post_index;
           db_object.find({post_index: post_index_}, function(err, comment){
             var finded_count;
+            if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
+              console.log("댓글없음 :: "+comment);
+              response.render('board/view',board_info_);
+              return;
+            }
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
-              if(finded_count == undefined) { // 댓글 없을 때
-                response.render('board/view',board_info_);
-                return;
-              }
+
               board_info_.comments_list = comment;
               board_info_.is_comment_writer = [];
               for(var i=0; i < finded_count; i++){
