@@ -292,19 +292,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     db_object.count({}, function(error, numOfDocs){ //
       db_object.findOne({comment_index: comment_index_}, function(err, data){
-        if(!request.body.comment_index){
-          save_data.comment_date = new Date();
-          save_data.comment_index = numOfDocs;
-        }
         console.log("코멘트 DB 저장 03");
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
-        request.body.comment_index ? save_data.comment_index = data.comment_index : '';
+        request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
         save_data.comment_post_writer = request.body.is_notice;
         save_data.comment_contents = request.body.title;
         save_data.comment_writer = request.body.contents;
-        save_data.comment_date = data.comment_date;
-        save_data.is_secret = request.body.board_table_id;
+        request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
+        save_data.is_secret = request.body.is_secret;
         save_data.save(function(err){
           console.log("코멘트 DB 저장 04");
           if(err){
