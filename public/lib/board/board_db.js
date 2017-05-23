@@ -148,7 +148,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           db_object.find({post_index: post_index_}, function(err, comment){
-<<<<<<< HEAD
             var finded_count = db_object.find({post_index: post_index_}).count();
             board_info_.comments_list = comment;
             for(var i=0; i < finded_count; i++){
@@ -162,14 +161,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 }
               });
             }
-=======
-            global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
-              board_info_.comments_list = comment;
-              board_info_.is_writer = value_;
-              console.log("코멘트 작성자가 맞는지 확인 :: "+board_info_.is_comments_writer +" :: ");
-              response.render('board/view',board_info_);
-            });
->>>>>>> refs/remotes/origin/master
           });
         }else{
           response.render('board/view',board_info_);
