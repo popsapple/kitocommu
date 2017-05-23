@@ -150,7 +150,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           db_object.find({post_index: post_index_}, function(err, comment){
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
-              console.log("댓글없음 :: "+comment);
               response.render('board/view',board_info_);
               return;
             }
@@ -166,7 +165,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
                   is_admin = true;
                 }
-                console.log("작성자체크준비 :: ");
                 var i = 0;
                 this.CheckFunction = function(i,that){
                   global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
@@ -218,6 +216,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num_ = parseInt(page_num);
     var board_id = request.body.board_table_id;
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
+      global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+      var db_object = global.BOARD_COMMENT_MODEL;
+      db_object.remove({post_index: page_num}, function(err, comment){});
       BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
       function (error, obj) {
         response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
