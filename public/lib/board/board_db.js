@@ -149,6 +149,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var post_index_ = board_info_.post_index;
           db_object.find({post_index: post_index_}, function(err, comment){
             var finded_count = db_object.find({post_index: post_index_}).count();
+            console.log("카운트 맞는지 확인 :: "+finded_count);
             board_info_.comments_list = comment;
             for(var i=0; i < finded_count; i++){
               var value_ = true;
