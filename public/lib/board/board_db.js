@@ -219,6 +219,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
       var db_object = global.BOARD_COMMENT_MODEL;
       db_object.remove({post_index: page_num}, function(err, comment){});
+      db_object.update({post_index: page_num},{$inc:{post_index: -1 }},{ multi: true },function (error, obj) {});
       BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
       function (error, obj) {
         response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
