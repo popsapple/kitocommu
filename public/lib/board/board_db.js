@@ -286,7 +286,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     save_data = new save_data(save_data.schema);
   }
   request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
-  global.BOARD_COMMENTMODEL.count({}, function(error, numOfDocs){
+  global.BOARD_COMMENTMODEL.count({}, function(error, numOfDocs){ //
     save_data.findOne({comment_index: comment_index_}, function(err, data){
       if(data.length == 0){
         save_data = new save_data(save_data.schema);
