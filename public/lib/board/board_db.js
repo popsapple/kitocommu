@@ -155,7 +155,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               board_info_.comments_list = comment;
               board_info_.is_comment_writer = [];
               for(var i=0; i < finded_count; i++){
-                var value_ = true;
                 (function(i){
                   global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
                     board_info_.is_comment_writer[i] = value_;
