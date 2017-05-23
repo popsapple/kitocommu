@@ -15,7 +15,7 @@
             <input id="CommentPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
             <input id="CommentCommentIdx" name="comment_index" type="hidden" value="<%= comments_list[i].comment_index %>" />
             <label for="CommentSecret">비밀글</label>
-            <input id="CommentSecret" name="is_secret" data-value="<%= comments_list[i].is_secret %>" type="checkbox" />
+            <input id="CommentSecret" class="CommentSecret" name="is_secret" data-value="<%= comments_list[i].is_secret %>" type="checkbox" />
             <button type="submit" class="btn btn-default">작성하기</button>
           </form>
         <%} else {%>
