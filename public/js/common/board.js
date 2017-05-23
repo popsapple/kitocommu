@@ -41,7 +41,9 @@ $(document).ready(function(){
 
   $("#BoardCategory") ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : '';
   $("#BoardNotice").val() == "on" ? $("#BoardNotice").is(":checked") : '';
-
+  $("#CommentSecret").each(function(){
+    $(this).attr('data-value') == "on" ? $(this).is(":checked") : '';    
+  });
 });
 
 var BoradWriteFileDelete = function(is_remove_post_){
