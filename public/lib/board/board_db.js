@@ -148,6 +148,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           db_object.find({post_index: post_index_}, function(err, comment){
+            global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
+              board_info_.comments_list = comment;
+              board_info_.is_comment_writer = value_;
+              console.log("작성자가 맞는지 확인 :: "+board_info_.is_comment_writer +" :: ");
+              response.render('board/view',board_info_);
+            });
             var finded_count = db_object.find({post_index: post_index_}).count();
             board_info_.comments_list = comment;
             for(var i=0; i < finded_count; i++){
