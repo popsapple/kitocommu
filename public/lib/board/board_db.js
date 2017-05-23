@@ -167,7 +167,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       response.render('board/view',board_info_);
                     }
                   });
-                })();
+                })(i);
               }
             });
           });
