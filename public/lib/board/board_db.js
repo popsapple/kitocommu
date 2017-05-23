@@ -175,7 +175,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     if(i == (finded_count-1)){
                       response.render('board/view',board_info_);
                     }else{
-                      that.CheckFunction(i+1);
+                      that.CheckFunction(i+1,that);
                     }
                   },is_admin);
                 }
