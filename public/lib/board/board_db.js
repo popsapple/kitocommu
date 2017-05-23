@@ -288,6 +288,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     !request.body.comment_index ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
     console.log("코멘트 DB 저장 02 :: "+db_object);
     for(var key in db_object){
+      console.log("뭘 안가져 오는거지 ? :: "+key+" :: "+db_object[key]);
     }
     db_object.count({}, function(error, numOfDocs){ //
       db_object.findOne({comment_index: comment_index_}, function(err, data){
@@ -297,8 +298,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
         console.log("코멘트 DB 저장 03");
         save_data.board_id = request.body.board_id;
-        save_data.post_index = request.body.category;
-        save_data.comment_index = data.comment_index;
+        save_data.post_index = request.body.post_index;
+        request.body.comment_index ? save_data.comment_index = data.comment_index : '';
         save_data.comment_post_writer = request.body.is_notice;
         save_data.comment_contents = request.body.title;
         save_data.comment_writer = request.body.contents;
