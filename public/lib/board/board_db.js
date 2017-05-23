@@ -151,6 +151,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
               board_info_.comments_list = comment;
               board_info_.is_writer = value_;
+              console.log("작성자가 맞는지 확인 :: "+board_info_.is_writer +" :: ");
               response.render('board/view',board_info_);
             });
           });
