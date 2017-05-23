@@ -159,6 +159,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
                   board_info_.is_comment_writer[i] = value_;
                   console.log("작성자가 맞는지 확22    인 :: "+board_info_.is_comment_writer[i]+" :: ");
+                  console.log("현재번호 :: "+i);
+                  console.log("마지막번호 :: "+(finded_count-1));
                   if(i == (finded_count-1)){
                     console.log("작성자가 맞는지 확인 마지막 :: "+board_info_.is_comment_writer[i]+" :: ");
                     response.render('board/view',board_info_);
