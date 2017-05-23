@@ -119,10 +119,15 @@ Board.search_render = function(info,request,response,mongoose,collection){
   });
 }
 
+Board.write_coments = function(request,response,mongoose){
+  console.log("쓰기메소드");
+  global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+  global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+};
+
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
-    console.log("실행순서 체크 ::");
     if(!request.session || !request.session.nickname){
       response.redirect('/member/plz_login');
     }
@@ -173,8 +178,8 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_comment_submit', function(request, response) {
-    var board_id = 'Board_'+(request.body.board_table_id);
-    Board.write_coments(request.body,request,response,mongoose,board_id);
+    console.log("쓰기 포스트");
+    Board.write_coments(request,response,mongoose);
   });
 
 }

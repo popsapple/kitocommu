@@ -260,6 +260,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
     });
   },BoardCommentDbSetting  : function (mongoose,request,response){
+    console.log("코멘트 DB 세팅");
     var obj = this;
     var Schema = mongoose.Schema;
 
@@ -279,20 +280,20 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     global.BOARD_COMMENT_MODEL = mongoose.model('board_comment', Memberschema);
   },BoardCommentSave : function(mongoose,request,response) {
+    console.log("코멘트 DB 저장 01");
   var comment_index_;
   var save_data = new global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
   save_data = global.BOARD_COMMENT_MODEL.model;
-  if(type=='save'){
-    save_data = new save_data(save_data.schema);
-  }
   request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
+  !request.body.comment_index ? save_data = new save_data(save_data.schema) : '';
+console.log("코멘트 DB 저장 02");
   global.BOARD_COMMENTMODEL.count({}, function(error, numOfDocs){ //
     save_data.findOne({comment_index: comment_index_}, function(err, data){
-      if(data.length == 0){
-        save_data = new save_data(save_data.schema);
+      if(!request.body.comment_index){
         save_data.comment_date = new Date();
         save_data.comment_index = numOfDocs;
       }
+      console.log("코멘트 DB 저장 03");
       save_data.board_id = request.body.board_id;
       save_data.post_index = request.body.category;
       save_data.comment_index = data.comment_index;
@@ -302,8 +303,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       save_data.comment_date = data.comment_date;
       save_data.is_secret = request.body.board_table_id;
       save_data.save(function(err){
+        console.log("코멘트 DB 저장 04");
         if(err){
-            console.error(err);
+            console.error("코멘트저장에러 :: "+err);
             request.json({result: 0});
             return;
         }
