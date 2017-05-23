@@ -151,7 +151,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             var finded_count;
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
-              if(finded_count == 0 || finded_count == undefined) { // 댓글 없을 때
+              if(finded_count == undefined) { // 댓글 없을 때
                 response.render('board/view',board_info_);
                 return;
               }
@@ -161,6 +161,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 (function(i){
                   global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
                     board_info_.is_comment_writer[i] = value_;
+                    console.log("작성자체크 :: "+i+" :: "+value_);
                     if(i == (finded_count-1)){
                       response.render('board/view',board_info_);
                     }
@@ -323,7 +324,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         save_data.comment_contents = request.body.comment_contents;
         save_data.comment_writer = request.session.userid;
         request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
-        save_data.is_secret = request.body.is_secret;
+        request.body.is_secret ? save_data.is_secret = "on" : save_data.is_secret = "no";
         save_data.save(function(err){
           if(err){
               console.error("코멘트저장에러 :: "+err);

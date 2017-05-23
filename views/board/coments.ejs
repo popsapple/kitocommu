@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-default">작성하기</button>
           </form>
         <%} else {%>
-          <% if(comments_list[i].is_secret != "yes") { %>
+          <% if(comments_list[i].is_secret != "on") { %>
             <div>
               <%= comments_list[i].comment_contents %>
             </div>
