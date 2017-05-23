@@ -40,10 +40,13 @@ $(document).ready(function(){
   })();
 
   $("#BoardCategory") ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : '';
-  $("#BoardNotice").val() == "on" ? $("#BoardNotice").is(":checked") : '';
+  $("#BoardNotice").val() == "on" ? $("#BoardNotice").attr("checked", true) : '';
   $(".CommentSecret").each(function(){
     console.log("도는중");
-    $(this).attr('data-value') == "on" ? $(this).is(":checked") : '';
+    if($(this).attr('data-value') == "on"){
+      console.log("체크");
+      $(this).attr("checked", true);
+    }
   });
 });
 
