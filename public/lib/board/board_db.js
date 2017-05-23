@@ -143,7 +143,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           response.render('board/secret',data);
           return false;
         }
-        if(locals.is_comment == 'yes'){
+        if(board_info_.is_comment == 'yes'){
           global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
