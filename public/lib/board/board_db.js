@@ -166,17 +166,19 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
                   is_admin = true;
                 }
-                for(var i=0; i < finded_count; i++){
-                  (function(i){
-                    global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
-                      board_info_.is_comment_writer[i] = value_;
-                      console.log("작성자체크 :: "+i+" :: "+value_);
-                      if(i == (finded_count-1)){
-                        response.render('board/view',board_info_);
-                      }
-                    },is_admin);
-                  })(i);
-                }
+                console.log("작성자체크준비 :: ");
+                var i = 0;
+                var CheckFunction = function(i){
+                  global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
+                    board_info_.is_comment_writer[i] = value_;
+                    console.log("작성자체크 :: "+i+" :: "+value_);
+                    if(i == (finded_count-1)){
+                      response.render('board/view',board_info_);
+                    }else{
+                      CheckFunction(i+1);
+                    }
+                  },is_admin);
+                }();
               });
             });
           });
