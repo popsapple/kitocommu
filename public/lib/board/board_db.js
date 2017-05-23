@@ -148,8 +148,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           db_object.find({post_index: post_index_}, function(err, comment){
-            board_info_.comments_list = comment;
-            response.render('board/view',board_info_);
+            global.MEMBERLIB.CheckAuthenfication(board_info_.comment_writer,request.session.userid,request,response,function(value_){
+              board_info_.comments_list = comment;
+              board_info_.is_writer = value_;
+              response.render('board/view',board_info_);
+            });
           });
         }else{
           response.render('board/view',board_info_);
@@ -300,9 +303,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
         request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
-        save_data.comment_post_writer = request.body.is_notice;
-        save_data.comment_contents = request.body.title;
-        save_data.comment_writer = request.body.contents;
+        save_data.comment_post_writer = request.body.comment_post_writer;
+        save_data.comment_contents = request.body.comment_contents;
+        save_data.comment_writer = request.session.userid;
         request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
         save_data.is_secret = request.body.is_secret;
         save_data.save(function(err){
