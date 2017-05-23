@@ -156,20 +156,28 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
-
               board_info_.comments_list = comment;
               board_info_.is_comment_writer = [];
-              for(var i=0; i < finded_count; i++){
-                (function(i){
-                  global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
-                    board_info_.is_comment_writer[i] = value_;
-                    console.log("작성자체크 :: "+i+" :: "+value_);
-                    if(i == (finded_count-1)){
-                      response.render('board/view',board_info_);
-                    }
-                  });
-                })(i);
-              }
+              var is_admin = false;
+              var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+              var member_data = global.MEMBER_DB.model;
+
+              member_data.findOne({id: account2}, function(err, member){
+                if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
+                  is_admin = true;
+                }
+                for(var i=0; i < finded_count; i++){
+                  (function(i){
+                    global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
+                      board_info_.is_comment_writer[i] = value_;
+                      console.log("작성자체크 :: "+i+" :: "+value_);
+                      if(i == (finded_count-1)){
+                        response.render('board/view',board_info_);
+                      }
+                    },is_admin);
+                  })(i);
+                }
+              });
             });
           });
         }else{
