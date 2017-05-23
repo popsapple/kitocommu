@@ -178,7 +178,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       CheckFunction(i+1);
                     }
                   },is_admin);
-                }();
+                }(i);
               });
             });
           });
