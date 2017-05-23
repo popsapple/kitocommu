@@ -28,6 +28,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BoardConfigSchema = new Schema({
       board: String,
       list_type:  String,
+      is_comment:  String,
+      is_reply:  String,
       css_skin:  String,
       category_list:  String
     }, { collection: 'Board_Typelist' });
@@ -141,9 +143,17 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           response.render('board/secret',data);
           return false;
         }
-        response.render('board/view',board_info_);
-        // 댓글기능 필요
-        // response.render('board/coments',board_info_);
+        if(locals.is_comment == 'yes'){
+          global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
+          var db_object = global.BOARD_COMMENT_MODEL;
+          var post_index_ = board_info_.post_index;
+          db_object.find({post_index: post_index_}, function(err, comment){
+            board_info_.comments_list = comment;
+            response.render('board/view',board_info_);
+          });
+        }else{
+          response.render('board/view',board_info_);
+        }
       }
       if(type != 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
@@ -260,7 +270,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
     });
   },BoardCommentDbSetting  : function (mongoose,request,response){
-    console.log("코멘트 DB 세팅");
     var obj = this;
     var Schema = mongoose.Schema;
 
@@ -286,13 +295,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var save_data = {};
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
     !request.body.comment_index ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
-    console.log("코멘트 DB 저장 02 :: "+db_object);
-    for(var key in db_object){
-      console.log("뭘 안가져 오는거지 ? :: "+key+" :: "+db_object[key]);
-    }
-    db_object.count({}, function(error, numOfDocs){ //
+    db_object.count({}, function(error, numOfDocs){
       db_object.findOne({comment_index: comment_index_}, function(err, data){
-        console.log("코멘트 DB 저장 03");
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
         request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
@@ -302,7 +306,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
         save_data.is_secret = request.body.is_secret;
         save_data.save(function(err){
-          console.log("코멘트 DB 저장 04");
           if(err){
               console.error("코멘트저장에러 :: "+err);
               request.json({result: 0});

@@ -47,7 +47,9 @@
       </form>
     <%}%>
   </div>
-  <% include ./coments.ejs %>
+  <%if(locals.is_comment == 'yes'){%>
+    <% include ./coments.ejs %>
+  <%}%>
 <% include ../partials/footer.ejs %>
 </body>
 </html>

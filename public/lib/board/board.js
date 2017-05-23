@@ -120,7 +120,6 @@ Board.search_render = function(info,request,response,mongoose,collection){
 }
 
 Board.write_coments = function(request,response,mongoose){
-  console.log("쓰기메소드");
   global.BOARD_DB.BoardCommentSave(mongoose,request,response);
 };
 
@@ -177,7 +176,6 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_comment_submit', function(request, response) {
-    console.log("쓰기 포스트");
     Board.write_coments(request,response,mongoose);
   });
 

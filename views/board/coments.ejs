@@ -4,6 +4,7 @@
     <ul>
       <% for(var i=0; i < comments_list.length; i++) { %>
       <li>
+        <% if(comments_list[i].is_secret == "") { %>
           <div>
             <%= comments_list[i].comment_contents %>
           </div>
@@ -11,6 +12,9 @@
             <%= comments_list[i].comment_writer %>
           </strong>
         </hgroup>
+        <%} else {%>
+          <strong>해당 댓글은 작성자와 운영자만 보실 수 있습니다</strong>
+        <%}%>
       </li>
       <%}%>
     </ul>
