@@ -172,4 +172,9 @@ module.exports.board_con = function(app,mongoose){
     Board.remove(request.body,request,response,mongoose,board_id);
   });
 
+  app.post('/board_comment_submit', function(request, response) {
+    var board_id = 'Board_'+(request.body.board_table_id);
+    Board.write_coments(request.body,request,response,mongoose,board_id);
+  });
+
 }

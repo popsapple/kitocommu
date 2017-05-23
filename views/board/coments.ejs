@@ -1,0 +1,29 @@
+<div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+  <section id="CommentContents">
+    <ul>
+      <% for(var i=0; i < comments_list.length; i++) { %>
+      <li>
+          <div>
+            <%= comments_list[i].comment_contents %>
+          </div>
+          <strong>
+            <%= comments_list[i].comment_writer %>
+          </strong>
+        </hgroup>
+      </li>
+      <%}%>
+    </ul>
+  </section>
+  <section>
+    <form method="post" action="/board_comment_submit">
+      <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
+      <textarea id="CommentContents" rows="5" name="comment_contents"></textarea>
+      <input id="CommentPostWriter" name="comment_writer" type="hidden" value="<%= writer %>" />
+      <input id="CommentTableId" name="board_id" type="hidden" value="<%= board_table_id %>" />
+      <!--input id="CommentIdx" name="comment_contents" type="hidden" value="" /-->
+      <input id="CommentPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+      <input id="CommentSecret" name="is_secret" value="" type="checkbox" />
+      <button type="submit" class="btn btn-default">작성하기</button>
+    </form>
+  </section>
+</div>
