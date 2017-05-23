@@ -151,6 +151,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             var finded_count;
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
+              if(finded_count == 0 || finded_count == undefined) { // 댓글 없을 때
+                response.render('board/view',board_info_);
+                return;
+              }
               board_info_.comments_list = comment;
               board_info_.is_comment_writer = [];
               for(var i=0; i < finded_count; i++){
