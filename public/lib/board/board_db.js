@@ -280,10 +280,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     global.BOARD_COMMENT_MODEL = mongoose.model('board_comment', Memberschema);
   },BoardCommentSave : function(mongoose,request,response) {
-    console.log("코멘트 DB 저장 01");
+    console.log("코멘트 DB 저장 01 ::"+global.BOARD_COMMENT_MODEL);
     var comment_index_;
     var save_data = new global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
-    save_data = global.BOARD_COMMENT_MODEL.model;
+    save_data = global.BOARD_COMMENT_MODEL;
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
     !request.body.comment_index ? save_data = new save_data(save_data.schema) : '';
     console.log("코멘트 DB 저장 02");
