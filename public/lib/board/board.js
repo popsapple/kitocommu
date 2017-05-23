@@ -121,7 +121,6 @@ Board.search_render = function(info,request,response,mongoose,collection){
 
 Board.write_coments = function(request,response,mongoose){
   console.log("쓰기메소드");
-  global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
   global.BOARD_DB.BoardCommentSave(mongoose,request,response);
 };
 
