@@ -171,7 +171,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 this.CheckFunction = function(i,that){
                   global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
                     board_info_.is_comment_writer[i] = value_;
-                    console.log("작성자체크 :: "+i+" :: "+value_);
+                    if(is_admin == true){
+                      board_info_.is_comment_writer[i] = true;
+                    }
                     if(i == (finded_count-1)){
                       response.render('board/view',board_info_);
                     }else{
