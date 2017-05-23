@@ -298,9 +298,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var comment_index_;
     var save_data = {};
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
-    !request.body.comment_index ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
+    !request.body.is_modify ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
     db_object.count({}, function(error, numOfDocs){
       db_object.findOne({comment_index: comment_index_}, function(err, data){
+        request.body.is_modify ? save_data = data : '';        
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
         request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
