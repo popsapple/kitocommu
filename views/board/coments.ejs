@@ -1,4 +1,5 @@
 <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+  <% if(locals.comments_list) { %>
   <section id="CommentContents">
     <ul>
       <% for(var i=0; i < comments_list.length; i++) { %>
@@ -14,6 +15,7 @@
       <%}%>
     </ul>
   </section>
+  <%}%>
   <section>
     <form method="post" action="/board_comment_submit">
       <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
