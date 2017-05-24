@@ -1,6 +1,5 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
-Board.write = function(info,request,response,mongoose,collection,type){
-  var type = type;
+Board.write = function(info,request,response,mongoose,collection,type,type_reply){
   var that = this;
   this.save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.save_data = global.BOARD_DB.model
@@ -96,7 +95,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
     });
   };
 
-  if(type != "reply"){
+  if(type_reply != "reply"){
     that.Save(info,request,response,mongoose,collection,type);
   }
 }
@@ -180,7 +179,7 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_reply_submit', function(request, response) {
-    Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','reply');
+    Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
     Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
     Board.reply_write.save_item = function(info){
