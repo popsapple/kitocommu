@@ -355,54 +355,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       });
     });
-  },BoardReplyDbSetting  : function (mongoose,request,response){
-    var obj = this;
-    var Schema = mongoose.Schema;
-
-    var Memberschema = new Schema({
-      board_id :String,
-      post_index: Number,
-      comment_index: Number,
-      comment_post_writer: String,
-      comment_contents: String,
-      comment_writer: String,
-      comment_date: { type: Date, default: Date.now },
-      is_secret: String
-    }, { collection: 'Board_ComentsList' });
-
-    mongoose.models = {};
-    mongoose.modelSchemas = {};
-
-    global.BOARD_COMMENT_MODEL = mongoose.model('comment', Memberschema);
-  },BoardReplySave : function(mongoose,request,response) {
-    global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
-    var db_object = global.BOARD_COMMENT_MODEL;
-    var comment_index_;
-    var board_table_id = request.body.board_id;
-    var save_data = {};
-    request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
-    !request.body.is_modify ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
-    db_object.count({}, function(error, numOfDocs){
-      db_object.findOne({comment_index: comment_index_, board_id: board_table_id}, function(err, data){
-        request.body.is_modify ? save_data = data : '';
-        save_data.board_id = request.body.board_id;
-        save_data.post_index = request.body.post_index;
-        request.body.comment_index ? save_data.comment_index = data.comment_index : save_data.comment_index = numOfDocs;
-        save_data.comment_post_writer = request.body.comment_post_writer;
-        save_data.comment_contents = request.body.comment_contents;
-        save_data.comment_writer = request.session.userid;
-        request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
-        request.body.is_secret ? save_data.is_secret = "on" : save_data.is_secret = "no";
-        save_data.save(function(err){
-          if(err){
-              console.error("코멘트저장에러 :: "+err);
-              request.json({result: 0});
-              return;
-          }
-          response.redirect('/');
-        });
-      });
-    });
   },BoardReplyDbSetting  : function (mongoose,request,response,collection){
       var obj = this;
       var Schema = mongoose.Schema;
