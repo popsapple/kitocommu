@@ -408,6 +408,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       var Schema = mongoose.Schema;
 
       var Memberschema = new Schema({
+        reply_table : String,
         post_index: Number,
         reply_index: Number,
         writed:  { type: Date, default: Date.now },

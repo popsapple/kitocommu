@@ -4,23 +4,56 @@ Board.write = function(info,request,response,mongoose,collection,type){
   var that = this;
   this.save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.save_data = global.BOARD_DB.model
+  this.save_item = function(that.save_data,info){
+    that.save_data.reply = "";
+    that.save_data.category = info.category;
+    that.save_data.is_notice = info.is_notice;
+    that.save_data.title = info.title;
+    that.save_data.contents = info.contents;
+    that.save_data.tags = info.tags;
+    that.save_data.board_table_id = info.board_table_id;
+    that.save_data.writer = request.session.userid;
+    that.save_data.writer_nickname = request.session.nickname;
+    info.thumnail ? this.save_data.thumnail = info.thumnail : '';
+    info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
+    request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
+    that.save_data.writed = new Date();
+  }
+  this.modify_item = function(data,info,request_list){
+    data.board_table_id = info.board_table_id;
+    data.post_index = request_list.post_index;
+    data.category = request_list.category;
+    data.is_notice = request_list.is_notice;
+    data.title = request_list.title;
+    data.contents = request_list.contents;
+    data.tags = request_list.tags;
+    data.file_list = (function(){ // 기존에 있던 내용과 새로운 filelist랑 합침
+      var list = data.file_list;
+      var i;
+      if(list){
+        list = list.split(',');
+        i = list.length;
+      }else {
+        list = [];
+        i = 0;
+      }
+      for (var key in request.session.filelist){
+        if(request.session.filelist[key] == ''){
+          continue;
+        }
+        list[i] = request.session.filelist[key];
+        i++;
+      }
+      return list;
+    })();
+    // += (","+request.session.filelist) : '';
+    request_list.thumnail ? data.thumnail = request_list.thumnail : '';
+  }
   this.Save = function(info,request,response,mongoose,collection,type){
       if(type=='save'){
         that.save_data = new that.save_data(that.save_data.schema);
       }
-      that.save_data.reply = "";
-      that.save_data.category = info.category;
-      that.save_data.is_notice = info.is_notice;
-      that.save_data.title = info.title;
-      that.save_data.contents = info.contents;
-      that.save_data.tags = info.tags;
-      that.save_data.board_table_id = info.board_table_id;
-      that.save_data.writer = request.session.userid;
-      that.save_data.writer_nickname = request.session.nickname;
-      info.thumnail ? this.save_data.thumnail = info.thumnail : '';
-      info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
-      request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
-      that.save_data.writed = new Date();
+      that.save_item(that.save_data,info);
       // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
       function SaveFunction(save_data,type){
         if(type=='save'){
@@ -42,35 +75,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
           var post_index_ = request_list.post_index;
 
           that.save_data.findOne({post_index: post_index_}, function(err, data){
-          data.board_table_id = info.board_table_id;
-          data.post_index = request_list.post_index;
-          data.category = request_list.category;
-          data.is_notice = request_list.is_notice;
-          data.title = request_list.title;
-          data.contents = request_list.contents;
-          data.tags = request_list.tags;
-          data.file_list = (function(){ // 기존에 있던 내용과 새로운 filelist랑 합침
-            var list = data.file_list;
-            var i;
-            if(list){
-              list = list.split(',');
-              i = list.length;
-            }else {
-              list = [];
-              i = 0;
-            }
-            for (var key in request.session.filelist){
-              if(request.session.filelist[key] == ''){
-                continue;
-              }
-              list[i] = request.session.filelist[key];
-              i++;
-            }
-            return list;
-          })();
-          // += (","+request.session.filelist) : '';
-          request_list.thumnail ? data.thumnail = request_list.thumnail : '';
-
+          that.modify_item(data,info,request_list);
           data.save(function(err){
             if(err){
                 request.json({result: 0});
@@ -179,6 +184,23 @@ module.exports.board_con = function(app,mongoose){
     Board.reply_write = new Board.write(request.body,request,response,mongoose,board_id,'save');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,collection);
     Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
+    Board.reply_write.save_item = function(that.save_data,info){
+      that.save_data.reply = "";
+      that.save_data.reply_index = info.reply_index;
+      that.save_data.category = info.category;
+      that.save_data.is_notice = info.is_notice;
+      that.save_data.title = info.title;
+      that.save_data.contents = info.contents;
+      that.save_data.tags = info.tags;
+      that.save_data.board_table_id = info.board_table_id;
+      that.save_data.writer = request.session.userid;
+      that.save_data.writer_nickname = request.session.nickname;
+      info.thumnail ? this.save_data.thumnail = info.thumnail : '';
+      info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
+      request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
+      that.save_data.writed = new Date();
+    }
+
     Board.reply_write.Save();
   });
 
