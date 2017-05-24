@@ -64,7 +64,11 @@
             </li>
             <li>
               <label for="BoardSecret">비밀글</label>
-              <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="<%= is_secret %>" type="checkbox" />
+              <%if(locals.is_secret){%>
+                <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="<%= is_secret %>" type="checkbox" />
+              <%}else {%>
+                <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="" type="checkbox" />
+              <%}%>
             </li>
             <%if(locals.is_admin == true){%>
               <li>
