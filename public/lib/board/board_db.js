@@ -409,10 +409,16 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       var Memberschema = new Schema({
         post_index: Number,
+        reply_index: Number,
         writed:  { type: Date, default: Date.now },
+        category:  String,
+        is_notice:  String,
         writer:  String,
+        writer_nickname:  String,
         title:  String,
         contents:  String,
+        tags:  String,
+        thumnail:  String,
         is_secret : String,
         file_list:  String
       }, { collection: collection });
@@ -420,6 +426,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       mongoose.models = {};
       mongoose.modelSchemas = {};
 
-      exports.model = mongoose.model('reply', Memberschema);
+      global.BOARD_REPLY_DB = mongoose.model('reply', Memberschema);
     }
 }
