@@ -194,7 +194,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
             board_info_.is_writer = value_;
             RenderViewpage(board_info_);
-          },true);
+          },'both_check');
         });
       }else if(type == 'modify'){
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){

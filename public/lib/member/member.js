@@ -180,16 +180,13 @@ exports = module.exports = {member  : function (app,mongoose) {
       var value_;
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
       var member_data = global.MEMBER_DB.model;
-      if(type = 'check_admin'){
+      if(type == 'check_admin'){
         member_data.findOne({id: account2}, function(err, member){
           if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
             value_ = true;
           }
           callback(value_);
         });
-      }else if(type == true){
-        account1 == account2 ? value_ = true : value_ = false;
-        callback(value_);
       }else if(type == 'both_check'){
         member_data.findOne({id: account2}, function(err, member){
           account1 == account2 ? value_ = true : value_ = false;
