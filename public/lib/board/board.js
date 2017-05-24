@@ -4,7 +4,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   var that = this;
   this.save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.save_data = global.BOARD_DB.model
-  this.save_item = function(that.save_data,info){
+  this.save_item = function(info){
     that.save_data.reply = "";
     that.save_data.category = info.category;
     that.save_data.is_notice = info.is_notice;
@@ -53,7 +53,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
       if(type=='save'){
         that.save_data = new that.save_data(that.save_data.schema);
       }
-      that.save_item(that.save_data,info);
+      that.save_item(info);
       // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
       function SaveFunction(save_data,type){
         if(type=='save'){
@@ -184,7 +184,7 @@ module.exports.board_con = function(app,mongoose){
     Board.reply_write = new Board.write(request.body,request,response,mongoose,board_id,'save');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,collection);
     Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
-    Board.reply_write.save_item = function(that.save_data,info){
+    Board.reply_write.save_item = function(info){
       that.save_data.reply = "";
       that.save_data.reply_index = info.reply_index;
       that.save_data.category = info.category;
