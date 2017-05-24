@@ -44,6 +44,10 @@
                 </select>
               <%}%>
             </li>
+            <li>
+              <label for="BoardSecret">비밀글</label>
+              <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="<%= is_secret %>" type="checkbox" />
+            </li>
             <%if(locals.is_admin == true){%>
               <li>
                 <label for="BoardNotice">공지사항</label>

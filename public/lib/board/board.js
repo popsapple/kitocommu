@@ -16,6 +16,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   save_data.writer = request.session.userid;
   save_data.writer_nickname = request.session.nickname;
   info.thumnail ? save_data.thumnail = info.thumnail : '';
+  info.is_secret ? save_data.is_secret = "on" : save_data.is_secret = "no";
   request.session.filelist ? save_data.file_list = request.session.filelist : '';
   save_data.writed = new Date();
   // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
