@@ -175,6 +175,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     }
                     if(i == (finded_count-1)){
                       response.render('board/view',board_info_);
+                      return;
                     }else{
                       that.CheckFunction(i+1,that);
                     }
@@ -187,6 +188,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           });
         }else{
           response.render('board/view',board_info_);
+          return;
         }
       }
       if(type != 'modify'){
