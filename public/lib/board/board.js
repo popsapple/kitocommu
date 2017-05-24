@@ -180,9 +180,8 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_reply_submit', function(request, response) {
-    var board_id = 'Board_ReplyList';
-    Board.reply_write = new Board.write(request.body,request,response,mongoose,board_id,'save');
-    Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,collection);
+    Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','reply');
+    Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
     Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
     Board.reply_write.save_item = function(info){
       that.save_data.reply = "";
