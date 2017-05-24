@@ -98,6 +98,8 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
   if(type_reply != "reply"){
     that.Save(info,request,response,mongoose,collection,type);
   }
+
+  return this;
 }
 
 Board.list_render = function(info,request,response,mongoose,collection){
