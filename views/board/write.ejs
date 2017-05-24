@@ -44,14 +44,16 @@
                 </select>
               <%}%>
             </li>
-            <li>
-              <label for="BoardNotice">공지사항</label>
-              <%if(locals.is_notice == "on"){%>
-                <input id="BoardNotice" name="is_notice" type="checkbox" data-value="<%= is_notice %>" />
-              <%}else {%>
-                <input id="BoardNotice" name="is_notice" type="checkbox" value="false"/>
-              <%}%>
-            </li>
+            <%if(locals.is_admin == true){%>
+              <li>
+                <label for="BoardNotice">공지사항</label>
+                <%if(locals.is_notice == "on"){%>
+                  <input id="BoardNotice" name="is_notice" type="checkbox" data-value="<%= is_notice %>" />
+                <%}else {%>
+                  <input id="BoardNotice" name="is_notice" type="checkbox" value="false"/>
+                <%}%>
+              </li>
+            <%}%>
             <li>
               <label for="BoardTags">태그 #으로 분리해서 적어주세요</label>
               <%if(locals.tags){%>

@@ -176,9 +176,17 @@ exports = module.exports = {member  : function (app,mongoose) {
       response.locals.userid = request.session.userid;
     };
 
-    this.CheckAuthenfication = function(account1,account2,request,response,callback,is_admin){ // 알맞는 권한을 가진 계정인지 체크
+    this.CheckAuthenfication = function(account1,account2,request,response,callback,type){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
-      if(is_admin == true){
+      if(type = 'check_admin'){
+        member_data.findOne({id: account2}, function(err, member){
+          if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
+            value_ = true;
+          }
+          callback(value_);
+        });
+      }
+      if(type == true){
         account1 == account2 ? value_ = true : value_ = false;
         callback(value_);
       }else{

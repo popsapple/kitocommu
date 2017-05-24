@@ -207,7 +207,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             board_info_[key] = config[0][key];
           }
           board_info_.category_list = board_info_.category_list.split(",");
-          response.render('board/write',board_info_);
+          global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
+            board_info_.is_admin = value_;
+            response.render('board/write',board_info_);
+          },'check_admin');
         });
       }
     });
