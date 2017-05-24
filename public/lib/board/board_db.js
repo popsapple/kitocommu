@@ -152,7 +152,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
               response.render('board/view',board_info_);
-              return;
+              return false;
             }
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
@@ -175,7 +175,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     }
                     if(i == (finded_count-1)){
                       response.render('board/view',board_info_);
-                      return;
+                      return false;
                     }else{
                       that.CheckFunction(i+1,that);
                     }
@@ -188,7 +188,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           });
         }else{
           response.render('board/view',board_info_);
-          return;
+          return false;
         }
       }
       if(type != 'modify'){
@@ -212,6 +212,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
             board_info_.is_admin = value_;
             response.render('board/write',board_info_);
+            return false;
           },'check_admin');
         });
       }
@@ -271,10 +272,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           response.render('board/list',obj);
+          return false;
         });
       }else{
         this.getCountArray(obj,'',function(obj){
           response.render('board/list',obj);
+          return false;
         });
       }
       return;
@@ -306,10 +309,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           response.render('board/list',obj);
+          return false;
         });
       }else{
         this.getCountArray(obj,'',function(obj){
           response.render('board/list',obj);
+          return false;
         });
       }
     });
