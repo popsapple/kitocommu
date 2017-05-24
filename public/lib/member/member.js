@@ -187,11 +187,10 @@ exports = module.exports = {member  : function (app,mongoose) {
           }
           callback(value_);
         });
-      }
-      if(type == true){
+      }else if(type == true){
         account1 == account2 ? value_ = true : value_ = false;
         callback(value_);
-      }else{
+      }else if(type == 'both_check'){
         member_data.findOne({id: account2}, function(err, member){
           account1 == account2 ? value_ = true : value_ = false;
           if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
