@@ -378,7 +378,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       mongoose.models = {};
       mongoose.modelSchemas = {};
-
       global.BOARD_REPLY_DB = mongoose.model('reply', Memberschema);
     }
 }

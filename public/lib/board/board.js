@@ -2,7 +2,7 @@ Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type,type_reply){
   var that = this;
   this.save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  this.save_data = global.BOARD_DB.model
+  this.save_data = global.BOARD_DB.model;
   this.save_item = function(info){
     that.save_data.reply = "";
     that.save_data.category = info.category;
@@ -49,6 +49,7 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
     request_list.thumnail ? data.thumnail = request_list.thumnail : '';
   }
   this.Save = function(info,request,response,mongoose,collection,type){
+      console.log("변경된데이타를 갖고오는가 :: "+that.save_data);
       if(type=='save'){
         that.save_data = new that.save_data(that.save_data.schema);
       }
