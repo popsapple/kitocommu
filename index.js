@@ -48,7 +48,9 @@ app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
 
   global.MEMBERLIB.SettingSessionItem(app, request, response);
-  next();
+  if(typeof next === "function"){
+    next();
+  }
 });
 
 // 식품정보찾기
