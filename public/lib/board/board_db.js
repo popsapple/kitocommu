@@ -140,8 +140,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
           data.board_table_id = board_info_.board_table_id;
-          response.render('board/secret',data);
-          return false;
+          return response.render('board/secret',data);
         }
         if(board_info_.is_comment == 'yes'){
           global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
@@ -151,8 +150,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
-              response.render('board/view',board_info_);
-              return false;
+              return response.render('board/view',board_info_);
             }
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
@@ -174,8 +172,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       board_info_.is_comment_writer[i] = true;
                     }
                     if(i == (finded_count-1)){
-                      response.render('board/view',board_info_);
-                      return false;
+                      return response.render('board/view',board_info_);
                     }else{
                       that.CheckFunction(i+1,that);
                     }
@@ -187,8 +184,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             });
           });
         }else{
-          response.render('board/view',board_info_);
-          return false;
+          return response.render('board/view',board_info_);
         }
       }
       if(type != 'modify'){
@@ -211,8 +207,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           board_info_.category_list = board_info_.category_list.split(",");
           global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
             board_info_.is_admin = value_;
-            response.render('board/write',board_info_);
-            return false;
+            return response.render('board/write',board_info_);
           },'check_admin');
         });
       }
@@ -271,13 +266,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          response.render('board/list',obj);
-          return false;
+          return response.render('board/list',obj);
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          response.render('board/list',obj);
-          return false;
+          return response.render('board/list',obj);
         });
       }
       return;
@@ -308,13 +301,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          response.render('board/list',obj);
-          return false;
+          return response.render('board/list',obj);
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          response.render('board/list',obj);
-          return false;
+          return response.render('board/list',obj);
         });
       }
     });

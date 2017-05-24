@@ -19,8 +19,7 @@ Member.join = function(info,request,response,mongoose,type){
         request.json({result: 0});
         return;
     }
-    response.render('member/join_member_step3',save_data);
-    return false;
+    return response.render('member/join_member_step3',save_data);
   });
 }
 
@@ -114,8 +113,7 @@ Member.modfiy_list = function(info,request,response,mongoose){
   //save_data = new save_data(save_data.schema);
   // 디비를 갖고 온 후에 사용할 메서드
   save_data.findOne({id: request.session.userid}, function(err, member){
-    response.render('member/modify_member', member);
-    return false;
+    return response.render('member/modify_member', member);
   });
 }
 
@@ -207,20 +205,17 @@ exports = module.exports = {member  : function (app,mongoose) {
     global.MEMBER_DB = require('./member_db.js');
 
     app.get('/join_member_step1', function(request, response) {
-      response.render('member/join_member_step1');
-      return false;
+      return response.render('member/join_member_step1');
     });
     app.get('/join_member_step2', function(request, response) {
-      response.render('member/join_member_step2');
-      return false;
+      return response.render('member/join_member_step2');
     });
     app.get('/join_member_step3', function(request, response) {
       Member.join(request.query,request,response,mongoose);
     });
 
     app.get('/login_form', function(request, response) {
-      response.render('member/login'); // 그냥 로그인 폼 출력
-      return false;
+      return response.render('member/login'); // 그냥 로그인 폼 출력
     });
 
     app.post('/login', function(request, response) {
@@ -228,8 +223,7 @@ exports = module.exports = {member  : function (app,mongoose) {
     });
 
     app.get('/search_login_info', function(request, response) {
-      response.render('member/search_info'); // 팝업창 출력
-      return false;
+      return response.render('member/search_info'); // 팝업창 출력
     });
 
     app.post('/member_double_check', function(request, response) {
@@ -258,8 +252,7 @@ exports = module.exports = {member  : function (app,mongoose) {
     });
 
     app.get('/member/plz_login', function(request, response) {
-      response.render('member/plz_login');
-      return false;
+      return response.render('member/plz_login');
     });
 
     return this;

@@ -27,8 +27,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
             request.json({result: 0});
             return;
         }
-        response.render('board/write_ok',save_data);
-        return false;
+        return response.render('board/write_ok',save_data);
       });
     } else {
         var request_list;
@@ -74,8 +73,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
               request.json({result: 0});
               return;
           }
-          response.render('board/write_ok',data);
-          return false;
+          return response.render('board/write_ok',data);
         });
       });
     }
@@ -152,8 +150,7 @@ module.exports.board_con = function(app,mongoose){
         for (var key in req_data){
           data[0][key] = req_data[key];
         }
-        response.render('board/write',data[0]);
-        return false;
+        return response.render('board/write',data[0]);
       });
     }
   });
