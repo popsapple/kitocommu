@@ -48,7 +48,7 @@ app.all('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+typeof(next));
 
   global.MEMBERLIB.SettingSessionItem(app, request, response);
-  if(typeof request.next === "function" || typeof req.next === "function"){
+  if(next && typeof(next) == "function"){
     next();
   }
 });
