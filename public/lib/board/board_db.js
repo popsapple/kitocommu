@@ -196,7 +196,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
           board_info_.category_list = board_info_.category_list.split(",");
 
-          global.MEMBERLIB.CheckAuthenfication(board_info_.writer,request.session.userid,request,response,function(value_){
+          global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
             board_info_.is_writer = value_;
             RenderViewpage(board_info_);
           });
@@ -212,7 +212,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             response.render('board/write',board_info_);
           },'check_admin');
         });
-      }
+      }/*else if(type == 'modify'){
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
+          for (var key in config[0]){
+            board_info_[key] = config[0][key];
+          }
+          board_info_.category_list = board_info_.category_list.split(",");
+          response.render('board/write',board_info_);
+        });
+      }*/
     });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
