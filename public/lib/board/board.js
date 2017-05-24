@@ -6,7 +6,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
   this.save_data = global.BOARD_DB.model
   this.Save = function(info,request,response,mongoose,collection,type){
       if(type=='save'){
-        that.save_data = new save_data(that.save_data.schema);
+        that.save_data = new that.save_data(that.save_data.schema);
       }
       that.save_data.reply = "";
       that.save_data.category = info.category;
