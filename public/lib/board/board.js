@@ -28,6 +28,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
             return;
         }
         response.render('board/write_ok',save_data);
+        return false;
       });
     } else {
         var request_list;
@@ -74,6 +75,7 @@ Board.write = function(info,request,response,mongoose,collection,type){
               return;
           }
           response.render('board/write_ok',data);
+          return false;
         });
       });
     }
@@ -151,6 +153,7 @@ module.exports.board_con = function(app,mongoose){
           data[0][key] = req_data[key];
         }
         response.render('board/write',data[0]);
+        return false;
       });
     }
   });

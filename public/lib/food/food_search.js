@@ -30,9 +30,11 @@ function SearchFoodInfo(request,response,queryParams,type,user_food_keyword){
       if(type == 'render') {
         if(data.food_list == undefined) {
           response.render('food/food_search_error',{'food_keyword':user_food_keyword});
+          return false;
         }
         else {
           response.render('food/food_search', data);
+          return false;
         }
       }
       else {
@@ -41,6 +43,7 @@ function SearchFoodInfo(request,response,queryParams,type,user_food_keyword){
     });
     res.on('error', function(e) {
       response.render('food/food_search_error',{'food_keyword':user_food_keyword});
+      return false;
     });
   }
 
@@ -48,6 +51,7 @@ function SearchFoodInfo(request,response,queryParams,type,user_food_keyword){
 
   req.on('error', function(e) {
     response.render('food/food_search_error',{'food_keyword':user_food_keyword});
+    return false;
   });
 
   req.end();
