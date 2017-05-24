@@ -199,7 +199,7 @@ module.exports.board_con = function(app,mongoose){
       request.session.filelist ? Board.reply_write.save_data.file_list = request.session.filelist : '';
       Board.reply_write.save_data.writed = new Date();
     }
-    Board.reply_write.Save(info,request,response,mongoose,collection,'save');
+    Board.reply_write.Save(info,request,response,mongoose,'Board_ReplyList','save');
   });
 
   app.post('/board_modify_submit', function(request, response) {
