@@ -182,21 +182,22 @@ module.exports.board_con = function(app,mongoose){
     Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
     Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
+    var info = request.query;
     Board.reply_write.save_item = function(info){
-      that.save_data.reply = "";
-      that.save_data.reply_index = info.reply_index;
-      that.save_data.category = info.category;
-      that.save_data.is_notice = info.is_notice;
-      that.save_data.title = info.title;
-      that.save_data.contents = info.contents;
-      that.save_data.tags = info.tags;
-      that.save_data.board_table_id = info.board_table_id;
-      that.save_data.writer = request.session.userid;
-      that.save_data.writer_nickname = request.session.nickname;
-      info.thumnail ? this.save_data.thumnail = info.thumnail : '';
-      info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
-      request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
-      that.save_data.writed = new Date();
+      Board.reply_write.save_data.reply = "";
+      Board.reply_write.save_data.reply_index = info.reply_index;
+      Board.reply_write.save_data.category = info.category;
+      Board.reply_write.save_data.is_notice = info.is_notice;
+      Board.reply_write.save_data.title = info.title;
+      Board.reply_write.save_data.contents = info.contents;
+      Board.reply_write.save_data.tags = info.tags;
+      Board.reply_write.save_data.board_table_id = info.board_table_id;
+      Board.reply_write.save_data.writer = request.session.userid;
+      Board.reply_write.save_data.writer_nickname = request.session.nickname;
+      info.thumnail ? Board.reply_write.save_data.thumnail = info.thumnail : '';
+      info.is_secret ? Board.reply_write.save_data.is_secret = "on" : Board.reply_write.save_data.is_secret = "no";
+      request.session.filelist ? Board.reply_write.save_data.file_list = request.session.filelist : '';
+      Board.reply_write.save_data.writed = new Date();
     }
 
     Board.reply_write.Save();
