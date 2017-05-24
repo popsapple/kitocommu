@@ -147,7 +147,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
-          db_object.find({post_index: post_index_}, function(err, comment){
+          var board_table_id = request_list.board_table_id;
+          db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
               response.render('board/view',board_info_);
@@ -218,8 +219,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.remove({post_index: page_num}, function(err,board){
       global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
       var db_object = global.BOARD_COMMENT_MODEL;
-      db_object.remove({post_index: page_num}, function(err, comment){});
-      db_object.update({post_index: page_num},{$inc:{post_index: -1 }},{ multi: true },function (error, obj) {});
+      var board_table_id = request.body.board_table_id;
+      db_object.remove({post_index: page_num, board_id: board_table_id}, function(err, comment){});
+      db_object.update({post_index: page_num, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
       BOARD_DB_MODEL.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
       function (error, obj) {
         response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
@@ -333,7 +335,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
     !request.body.is_modify ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
     db_object.count({}, function(error, numOfDocs){
-      db_object.findOne({comment_index: comment_index_}, function(err, data){
+      db_object.findOne({comment_index: comment_index_, board_id: board_table_id}, function(err, data){
         request.body.is_modify ? save_data = data : '';
         save_data.board_id = request.body.board_id;
         save_data.post_index = request.body.post_index;
