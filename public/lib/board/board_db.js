@@ -331,6 +331,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
     var db_object = global.BOARD_COMMENT_MODEL;
     var comment_index_;
+    var board_table_id = request.body.board_id;
     var save_data = {};
     request.body.comment_index ? comment_index_ = request.body.comment_index : comment_index_ = -1;
     !request.body.is_modify ? save_data = new db_object(global.BOARD_COMMENT_MODEL.schema) : '';
