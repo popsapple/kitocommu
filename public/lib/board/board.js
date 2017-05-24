@@ -184,7 +184,7 @@ module.exports.board_con = function(app,mongoose){
   app.post('/board_reply_submit', function(request, response) {
     Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
-    Board.reply_write.save_data = global.BOARD_REPLY_DB.model;
+    Board.reply_write.save_data = global.BOARD_REPLY_DB;
     console.log("????????????????? ::"+Board.reply_write.save_data);
     var info = request.body;
     Board.reply_write.save_item = function(info){
