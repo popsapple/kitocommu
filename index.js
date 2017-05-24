@@ -45,7 +45,7 @@ global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose)
 
 // 로그인 세션
 app.all('*', function(request, response, next) {
-  console.log("GET SESSION NICKNAME1110101 ::"+request.session.nickname);
+  console.log("GET SESSION NICKNAME1110101 ::"+typeof(next));
 
   global.MEMBERLIB.SettingSessionItem(app, request, response);
   if(typeof request.next === "function" || typeof req.next === "function"){
