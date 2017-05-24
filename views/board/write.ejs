@@ -46,7 +46,7 @@
             </li>
             <li>
               <label for="BoardNotice">공지사항</label>
-              <%if(locals.is_notice){%>
+              <%if(locals.is_notice == "on"){%>
                 <input id="BoardNotice" name="is_notice" type="checkbox" value="<%= is_notice %>" />
               <%}else {%>
                 <input id="BoardNotice" name="is_notice" type="checkbox" />
