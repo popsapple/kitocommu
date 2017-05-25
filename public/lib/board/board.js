@@ -196,6 +196,7 @@ module.exports.board_con = function(app,mongoose){
       Board.reply_write.save_data.contents = info.contents;
       Board.reply_write.save_data.tags = info.tags;
       Board.reply_write.save_data.reply_table = info.board_table_id;
+      Board.reply_write.save_data.board_table_id = info.board_table_id;
       Board.reply_write.save_data.writer = request.session.userid;
       Board.reply_write.save_data.writer_nickname = request.session.nickname;
       info.thumnail ? Board.reply_write.save_data.thumnail = info.thumnail : '';
