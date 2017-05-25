@@ -77,14 +77,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               var reply_count = 0;
               var post_count = 0;
               var max_reply_length = numOfDocReplys-1;
-              var max_post_length = page_num-page_length-1;
+              var max_post_length = page_num-page_length;
               console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
                 console.log("리플을 잘 찾아 오는지 :: max_post_length :: "+max_post_length);
               reply.forEach(function(reply, index) {
                 console.log(index + " key: " + reply.reply_index);
                 reply_doc[index] = reply;
                 console.log(index + " key: " + reply_doc[index].reply_index);
-                if((index+1) == max_reply_length) {
+                if(index == max_reply_length) {
                   that_reply.ReplyPostListing = function(reply_count,post_count) {
 
                     if(post_count <= max_post_length) {
