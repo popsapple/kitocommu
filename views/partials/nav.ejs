@@ -39,10 +39,10 @@
             <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
           </form>
         </li>
-        <%if(locals.nickname){%>
+        <%if(JSON.stringify(nickname) != undefined){%>
           <li>
             <strong>
-              <%= locals.nickname %> 님 환영합니다
+              <%= JSON.stringify(nickname) %> 님 환영합니다
               <a href="/mypage/list" role="button">개인정보수정</a>
               <a href="/logout" role="button">로그아웃</a>
             </strong>
