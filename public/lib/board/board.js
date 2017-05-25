@@ -166,6 +166,7 @@ module.exports.board_con = function(app,mongoose){
         for (var key in req_data){
           data[0][key] = req_data[key];
         }
+        data[0].is_reply = "no";
         return response.render('board/write',data[0]);
       });
     }
