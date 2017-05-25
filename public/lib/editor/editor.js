@@ -10,7 +10,6 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
     obj.filelist.push(filePath);
     for(key in obj.filelist){
       if(obj.filelist.hasOwnProperty(key)){
-        console.log("SESSION FILES LIST :: KEY ::"+key+" :: VALUE :: "+obj.filelist[key]);
       }
     }
   };

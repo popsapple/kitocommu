@@ -172,11 +172,6 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 exports = module.exports = {member  : function (app,mongoose) {
 
     this.SettingSessionItem = function(request,response,callback){ // 로그인 세션구현
-      console.log("로그인세션 :: "+request.session.nickname);
-      console.log("로그인로컬(?) :: "+response.locals.userid);
-      response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
-      response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
-
       if(typeof callback == "function"){
         callback();
       }
