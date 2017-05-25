@@ -174,7 +174,7 @@ exports = module.exports = {member  : function (app,mongoose) {
     this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
       console.log("로그인세션 :: "+request.session.nickname);
       console.log("로그인로컬(?) :: "+response.locals.userid);
-      rresponse.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
+      response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
       response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
     };
 
