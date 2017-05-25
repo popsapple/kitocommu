@@ -360,10 +360,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
+          console.log("전체ddddddd 출력 개수 ::"+obj.board_list.reply_list.length);
           return response.render('board/list',obj);
         });
       }else{
         this.getCountArray(obj,'',function(obj){
+          console.log("전체dddddd 출력 개수 ::"+obj.board_list.reply_list.length);
           return response.render('board/list',obj);
         });
       }
