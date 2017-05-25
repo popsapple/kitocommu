@@ -74,7 +74,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
       post_idx = req.body.post_index;
 
       BOARD_DB_MODEL.findOne({post_index: post_idx}, function(err,board){
-        if(board.file_list){
+        if(board){
           remove_item = board.file_list.split(',');
         }
         RemovingFile();
