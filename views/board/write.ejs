@@ -34,9 +34,7 @@
           <%if(!locals.is_reply){%>
             <input id="BoardPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
           <%} else {%>
-            <%if(!locals.reply_index){%>
-              <input id="BoardReplyPostIdx" name="reply_index" type="hidden" value="<%= post_index %>" />
-            <%}%>
+            <input id="BoardReplyPostIdx" name="reply_index" type="hidden" value="<%= reply_index %>" />
             <input id="BoardPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
           <%}%>
         <%}%>
