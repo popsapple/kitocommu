@@ -74,9 +74,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             console.log("리플을 잘 찾아 오는지");
             var that_reply = {};
             var count = 0;
-            var max_post_length = page_num-page_length;
+            var max_post_length = page_num-page_length-1;
             that_reply.ReplyListing = function(count) {
-              console.log("ReplyListing 실행 :: "+count);
+              console.log("ReplyListing 실행 :: "+count+" :: "+max_post_length);
               if(count == max_post_length) {
                 return false;
               }else {
