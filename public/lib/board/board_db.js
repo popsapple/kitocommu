@@ -70,6 +70,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
           that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }}, function(error, numOfDocReplys){
+            if(numOfDocReplys == 0){
+              callback(data,mongoose,request,response);
+              return false;
+            }
             that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
               data.board_list.reply_list = [];
               var reply_doc = [];
