@@ -360,7 +360,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
           }
         }
-        if(typeof callback == "undefined"){
+        if(typeof callback == "function"){
           callback(obj);
         }
       };
