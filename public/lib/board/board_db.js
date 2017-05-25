@@ -93,7 +93,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   data.board_list[count].reply_list.push(reply[count].reply_index);
                 }
               };
-            }();
+            }(count);
           });
         });
       });
