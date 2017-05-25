@@ -285,7 +285,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         db_object.update({post_index: {$gte: page_num_}, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
         that.db_model.update({post_index: {$gte: page_num_}},{$inc:{post_index: -1 }},{ multi: true },
         function (error, obj) {
-          response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+          return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
         });
       });
     };
@@ -420,7 +420,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               request.json({result: 0});
               return;
           }
-          response.redirect('/');
+          return response.redirect('/');
         });
       });
     });
