@@ -26,6 +26,13 @@ app.use(session({
   }
 }));
 
+app.use(function (request, response, next) {
+  console.log("설정실행");
+  response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
+  response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
+  next();
+});
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -42,15 +49,6 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 
 // 회원관련
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
-
-app.get('*', function(request, response, next) {
-  response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
-  response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
-
-  if(typeof next == "function"){
-    next();
-  }
-});
 
 // 로그인 세션
 app.get('/', function(request, response, next) {
