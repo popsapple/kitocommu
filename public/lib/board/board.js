@@ -185,7 +185,6 @@ module.exports.board_con = function(app,mongoose){
     Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
     Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
     Board.reply_write.save_data = global.BOARD_REPLY_DB;
-    console.log("????????????????? ::"+Board.reply_write.save_data);
     var info = request.body;
     Board.reply_write.save_item = function(info){
       Board.reply_write.save_data.reply = "";
@@ -220,18 +219,18 @@ module.exports.board_con = function(app,mongoose){
     Board.write_coments(request,response,mongoose);
   });
 
-  app.get('/board/reply', function(request, response) {
+  app.get('/board/reply_write', function(request, response) {
     var board_id = 'Board_'+(request.query.board_table_id);
     request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
 
-    if(request.query.post_index){
+    if(request.query.post_index && (!request.query.is_reply)){
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
         for (var key in req_data){
           data[0][key] = req_data[key];
         }
-        data[0].is_reply = "yes";
+        data[0].is_reply = request.query.is_reply;
       //  data[0].post_index = '';
         data[0].reply_index = request.query.post_index;
         return response.render('board/write',data[0]);
