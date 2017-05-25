@@ -100,7 +100,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       if(post_count == max_post_length){
                         reply_count+=1;
                         post_count=0;
-                        that_reply.ReplyListing(reply_count,post_count);
+                        if(reply_count <= max_reply_length) {
+                          that_reply.ReplyListing(reply_count,post_count);
+                        }
                       }
                       if(post_count == max_post_length && reply_count == max_reply_length){
                         console.log("마지막");
@@ -113,9 +115,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   };
                   that_reply.ReplyListing = function(reply_count) {
                     console.log("ReplyListing ::"+reply_count);
-                    if(reply_count <= max_reply_length) {
-                      that_reply.ReplyPostListing(reply_count,post_count);
-                    }
+                    that_reply.ReplyPostListing(reply_count,post_count);                    
                   };
                   that_reply.ReplyListing(reply_count);
                 }
