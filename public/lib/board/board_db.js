@@ -54,6 +54,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },getBoardListByIndex : function (mongoose,request,response,callback){
     var that = this;
     that.db_model = global.BOARD_DB.model;
+    that.db_reply_model = global.BOARD_REPLY_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
     that.getListing = function(){
@@ -69,6 +70,26 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
           callback(data,mongoose,request,response);
+          that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
+            console.log("리플을 잘 찾아 오는지");
+            var that = this;
+            var count = 0;
+            var max_post_length = page_num-page_length+1;
+            that.ReplyListing = function(count){
+              console.log("ReplyListing 실행 :: "+count);
+              var plus_count = count+1;
+              count == max_post_length ? return false : that.ReplyListing(plus_count);
+              if(data.board_list[count].post_index == reply[count].reply_index){
+                data.board_list[count].reply_list ? '' : data.board_list[count].reply_list = [];
+                console.log("정보는 잘 가져 오는지 ::"+reply[count].reply_index.title);
+                if(data.board_list[count].reply_list[0] == ''){
+                  data.board_list[count].reply_list[0] = reply[count].reply_index;
+                }else{
+                  data.board_list[count].reply_list.push(reply[count].reply_index);
+                }
+              };
+            }();
+          });
         });
       });
     }();
