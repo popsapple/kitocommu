@@ -100,9 +100,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         }
                       }
                       if(post_count == max_post_length){
-                        reply_count+=1;
                         post_count=0;
                         if(reply_count <= max_reply_length) {
+                          reply_count+=1;
                           that_reply.ReplyListing(reply_count,post_count);
                         }
                       }
