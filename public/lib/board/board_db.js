@@ -77,7 +77,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               var reply_count = 0;
               var post_count = 0;
               var max_reply_length = numOfDocReplys-1;
-              var max_post_length = page_num-page_length;
+              var max_post_length = data.board_list.length-1;
               console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
                 console.log("리플을 잘 찾아 오는지 :: max_post_length :: "+max_post_length);
               reply.forEach(function(reply, index) {
