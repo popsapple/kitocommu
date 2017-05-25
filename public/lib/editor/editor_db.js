@@ -43,6 +43,9 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         (function(){
           var pattern = /(\/(\w+))/g;
           var remove_item_key = remove_item[key].match(pattern);
+          if(!remove_item_key){
+            return;
+          }
           remove_item_key = remove_item_key[1];
 
           remove_item_key = remove_item_key.substring(1,remove_item_key.length);
