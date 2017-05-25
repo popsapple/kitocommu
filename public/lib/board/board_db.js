@@ -286,7 +286,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         db_object.update({post_index: {$gte: page_num}, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
 
         db_reply_object.remove({reply_index: page_num, reply_table: board_table_id}, function(err, comment){});
-        db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
+        db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{reply_index: -1 }},{ multi: true },function (error, obj){});
 
         that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
         function (error, obj) {
