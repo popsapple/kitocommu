@@ -100,16 +100,16 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         }
                       }
                       if(post_count == max_post_length){
-                        post_count=0;
-                        if(reply_count <= max_reply_length) {
-                          (reply_count+1) > max_reply_length ? reply_count = max_reply_length : reply_count+=1;
+                        if(reply_count < max_reply_length-1) {
+                          reply_count+=1;
+                          post_count=0;
                           that_reply.ReplyListing(reply_count,post_count);
                         }
-                      }
-                      if(post_count == max_post_length && reply_count == max_reply_length){
-                        console.log("마지막");
-                        callback(data,mongoose,request,response);
-                      } else {
+                        if(reply_count == max_reply_length){
+                          console.log("마지막");
+                          callback(data,mongoose,request,response);
+                        }
+                      }else {
                         post_count+=1;
                         that_reply.ReplyPostListing(reply_count,post_count);
                       }
@@ -117,6 +117,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   };
                   that_reply.ReplyListing = function(reply_count) {
                     console.log("ReplyListing ::"+reply_count);
+
                     that_reply.ReplyPostListing(reply_count,post_count);
                   };
                   that_reply.ReplyListing(reply_count);
