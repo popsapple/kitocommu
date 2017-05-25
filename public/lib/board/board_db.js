@@ -78,7 +78,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             that.ReplyListing = function(count){
               console.log("ReplyListing 실행 :: "+count);
               var plus_count = count+1;
-              count == max_post_length ? return false : that.ReplyListing(plus_count);
+              if(count == max_post_length) {
+                return false;
+              }else {
+                that.ReplyListing(plus_count);
+              };
+
               if(data.board_list[count].post_index == reply[count].reply_index){
                 data.board_list[count].reply_list ? '' : data.board_list[count].reply_list = [];
                 console.log("정보는 잘 가져 오는지 ::"+reply[count].reply_index.title);
