@@ -34,19 +34,19 @@ Member.login = function(request,response,mongoose){
     }
     if(!member){
       response.send("<script>alert('입력하신 정보에 맞는 회원을 찾지 못했습니다.'); location.href='/login_form';</script>");
-    }
+    }else{
+      var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
+      var passord_true = member.checkloginPassword(request.body.pw,member.password);
+      // 로그인 되면 세션 생성
+      if(passord_true) {
 
-    var save_data_ = new global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
-    var passord_true = member.checkloginPassword(request.body.pw,member.password);
-    // 로그인 되면 세션 생성
-    if(passord_true) {
-
-      request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
-      request.session.nickname = member.nickname;
-      response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
-    }
-    else {
-      response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.'); location.href='/login_form';</script>");
+        request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
+        request.session.nickname = member.nickname;
+        response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
+      }
+      else {
+        response.send("<script>alert('정보가 맞지 않습니다. 다시 시도 부탁드립니다.'); location.href='/login_form';</script>");
+      }
     }
   });
 }
