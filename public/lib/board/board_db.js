@@ -88,6 +88,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     } else {
                       data.board_list.reply_list.push(reply[reply_count]);
                     }
+                    if(post_count == max_post_length){
+                      reply_count+=1;
+                      post_count=0;
+                      that_reply.ReplyListing(reply_count,post_count);
+                    }
                     if(post_count == max_post_length && reply_count == max_reply_length){
                       console.log("마지막");
                       callback(data,mongoose,request,response);
@@ -101,8 +106,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 console.log("ReplyListing ::"+reply_count);
                 if(reply_count <= max_reply_length) {
                   that_reply.ReplyPostListing(reply_count,post_count);
-                  reply_count+=1;
-                  post_count=0;
                 }
               };
 
