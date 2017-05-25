@@ -205,6 +205,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
             board_info_.is_admin = value_;
             board_info_.is_writer = value_;
+            board_info_.is_reply = request.query.is_reply;
             return response.render('board/write',board_info_);
           },'check_admin');
         });
