@@ -49,7 +49,6 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
     request_list.thumnail ? data.thumnail = request_list.thumnail : '';
   }
   this.Save = function(info,request,response,mongoose,collection,type){
-      console.log("변경된데이타를 갖고오는가 :: "+that.save_data);
       if(type=='save'){
         that.save_data = new that.save_data(that.save_data.schema);
       }
@@ -109,6 +108,7 @@ Board.list_render = function(info,request,response,mongoose,collection){
       global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
     });
   }
+  global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
   this.DbSetting = global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.getBoardList = global.BOARD_DB.getBoardListByIndex(mongoose,request,response,function(obj,mongoose,request,response){
     PagingFunction(obj,mongoose,request,response);
