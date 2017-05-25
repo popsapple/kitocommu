@@ -80,6 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               if(count == max_post_length) {
                 return false;
               }else {
+                count += 1;
                 that_reply.ReplyListing(count);
               };
 
@@ -92,8 +93,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   data.board_list[count].reply_list.push(reply[count].reply_index);
                 }
               };
-
-              count++;
             };
 
             that_reply.ReplyListing(count);
