@@ -69,7 +69,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           data.board_list = board;
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
-          callback(data,mongoose,request,response);
           that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }}, function(error, numOfDocReplys){
             that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
               console.log("리플을 잘 찾아 오는지");
@@ -89,7 +88,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     } else {
                       data.board_list.reply_list.push(reply[reply_count]);
                     }
-                    post_count+=1;
+                    if(post_count == max_post_length && reply_count == max_reply_length){
+                      console.log("마지막");
+                      callback(data,mongoose,request,response);
+                    } else {
+                      post_count+=1;
+                    }
                   }
                 }
               };
