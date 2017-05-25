@@ -46,8 +46,8 @@ global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose)
 // 로그인 세션
 app.get('/', function(request, response, next) {
   global.MEMBERLIB.SettingSessionItem(request, response,function(){
-    response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
-    response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
+    request.session.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
+    request.session.userid == undefined ? response.locals.userid = request.session.userid : '';
     response.render('pages/index');
   });
 
