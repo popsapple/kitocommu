@@ -231,7 +231,6 @@ module.exports.board_con = function(app,mongoose){
           data[0][key] = req_data[key];
         }
         data[0].is_reply = request.query.is_reply;
-      //  data[0].post_index = '';
         data[0].reply_index = request.query.post_index;
         return response.render('board/write',data[0]);
       });
