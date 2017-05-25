@@ -54,7 +54,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
   },getBoardListByIndex : function (mongoose,request,response,callback){
     var that = this;
     that.db_model = global.BOARD_DB.model;
-    that.db_reply_model = global.BOARD_REPLY_DB.model;
+    that.db_reply_model = global.BOARD_REPLY_DB;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
     that.getListing = function(){
