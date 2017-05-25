@@ -73,56 +73,57 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             if(numOfDocReplys == 0){
               callback(data,mongoose,request,response);
               return false;
-            }
-            that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
-              data.board_list.reply_list = [];
-              var reply_doc = [];
-              var that_reply = {};
-              var reply_count = 0;
-              var post_count = 0;
-              var max_reply_length = numOfDocReplys-1;
-              var max_post_length = data.board_list.length-1;
-              console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
-                console.log("리플을 잘 찾아 오는지 :: max_post_length :: "+max_post_length);
-              reply.forEach(function(reply, index) {
-                console.log(index + " key: " + reply.reply_index);
-                reply_doc[index] = reply;
-                console.log(index + " key: " + reply_doc[index].reply_index);
-                if(index == max_reply_length) {
-                  that_reply.ReplyPostListing = function(reply_count,post_count) {
+            } else{
+              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
+                data.board_list.reply_list = [];
+                var reply_doc = [];
+                var that_reply = {};
+                var reply_count = 0;
+                var post_count = 0;
+                var max_reply_length = numOfDocReplys-1;
+                var max_post_length = data.board_list.length-1;
+                console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
+                  console.log("리플을 잘 찾아 오는지 :: max_post_length :: "+max_post_length);
+                reply.forEach(function(reply, index) {
+                  console.log(index + " key: " + reply.reply_index);
+                  reply_doc[index] = reply;
+                  console.log(index + " key: " + reply_doc[index].reply_index);
+                  if(index == max_reply_length) {
+                    that_reply.ReplyPostListing = function(reply_count,post_count) {
 
-                    if(post_count <= max_post_length) {
-                      console.log("ReplyPostListing  reply_count ::"+reply_count);
-                      console.log("ReplyPostListing ::"+post_count);
-                      if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
-                        data.board_list.reply_list.push(reply_doc[reply_count]);
-                      }
-                      if(post_count == max_post_length){
-                        if(reply_count < max_reply_length) {
-                          reply_count+=1;
-                          post_count=0;
-                          that_reply.ReplyListing(reply_count,post_count);
+                      if(post_count <= max_post_length) {
+                        console.log("ReplyPostListing  reply_count ::"+reply_count);
+                        console.log("ReplyPostListing ::"+post_count);
+                        if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
+                          data.board_list.reply_list.push(reply_doc[reply_count]);
                         }
-                        if(reply_count == max_reply_length){
-                          console.log("마지막");
-                          console.log("전체 출력 개수 ::"+data.board_list.reply_list.length);
-                          callback(data,mongoose,request,response);
+                        if(post_count == max_post_length){
+                          if(reply_count < max_reply_length) {
+                            reply_count+=1;
+                            post_count=0;
+                            that_reply.ReplyListing(reply_count,post_count);
+                          }
+                          if(reply_count == max_reply_length){
+                            console.log("마지막");
+                            console.log("전체 출력 개수 ::"+data.board_list.reply_list.length);
+                            callback(data,mongoose,request,response);
+                          }
+                        }else {
+                          post_count+=1;
+                          that_reply.ReplyPostListing(reply_count,post_count);
                         }
-                      }else {
-                        post_count+=1;
-                        that_reply.ReplyPostListing(reply_count,post_count);
                       }
-                    }
-                  };
-                  that_reply.ReplyListing = function(reply_count) {
-                    console.log("ReplyListing ::"+reply_count);
+                    };
+                    that_reply.ReplyListing = function(reply_count) {
+                      console.log("ReplyListing ::"+reply_count);
 
-                    that_reply.ReplyPostListing(reply_count,post_count);
-                  };
-                  that_reply.ReplyListing(reply_count);
-                }
-              });
-            });///////////
+                      that_reply.ReplyPostListing(reply_count,post_count);
+                    };
+                    that_reply.ReplyListing(reply_count);
+                  }
+                });
+              });///////////
+            };
           });
         });
       });
