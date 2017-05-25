@@ -8,20 +8,20 @@
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
       <%if(!locals.title){%>
-        <%if(!locals.is_reply){%>
+        <%if(locals.is_reply != "yes"){%>
           <form id="BoardWriteForm" method="post" action="/board_reply_submit">
         <%} else {%>
           <form id="BoardWriteForm" method="post" action="/board_write_submit">
         <%}%>
       <%} else {%>
-        <%if(!locals.is_reply){%>
+        <%if(locals.is_reply != "yes"){%>
           <form id="BoardWriteForm" method="post" action="/board_modify_submit">
         <%} else {%>
           <form id="BoardWriteForm" method="post" action="/board_reply_modify_submit">
         <%}%>
       <%}%>
         <%if(locals.board_table_id){%>
-          <%if(!locals.is_reply){%>
+          <%if(locals.is_reply != "yes"){%>
             <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
           <%} else {%>
             <%if(locals.reply_table_id){%>
@@ -31,7 +31,7 @@
           <%}%>
         <%}%>
         <%if(locals.post_index){%>
-          <%if(!locals.is_reply){%>
+          <%if(locals.is_reply != "yes"){%>
             <input id="BoardPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
           <%} else {%>
             <input id="BoardReplyPostIdx" name="reply_index" type="hidden" value="<%= reply_index %>" />
