@@ -121,8 +121,8 @@ Board.view = function(info,request,response,mongoose,collection,type){
 }
 
 Board.remove = function(info,request,response,mongoose,collection){
-  var save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  var save_data_ = new global.BOARD_DB.onRemoveBoardPost(mongoose,request,response,collection);
+  this.DbSetting = global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  this.Remove = global.BOARD_DB.onRemoveBoardPost(mongoose,request,response,collection);
 }
 
 Board.search_render = function(info,request,response,mongoose,collection){
@@ -213,7 +213,8 @@ module.exports.board_con = function(app,mongoose){
 
   app.post('/board_remove_submit', function(request, response) {
     var board_id = 'Board_'+(request.body.board_table_id);
-    Board.remove(request.body,request,response,mongoose,board_id);
+    var BoardRemove = new Board.remove(request.body,request,response,mongoose,board_id);
+    BoardRemove.Remove.Removing();
   });
 
   app.post('/board_comment_submit', function(request, response) {
