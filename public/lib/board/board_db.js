@@ -82,7 +82,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               reply.forEach(function(reply, index) {
                 console.log(index + " key: " + reply.reply_index);
                 reply_doc[index] = reply;
-                if(index == max_reply_length) {
+                if((index+1) == max_reply_length) {
                   that_reply.ReplyPostListing = function(reply_count,post_count) {
                     console.log("ReplyPostListing ::"+post_count);
 
