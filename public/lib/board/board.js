@@ -110,7 +110,7 @@ Board.list_render = function(info,request,response,mongoose,collection){
     });
   }
   this.DbSetting = global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  this.getBoardList = global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+  this.getBoardList = global.BOARD_DB.getBoardListByIndex(mongoose,request,response,function(obj,mongoose,request,response){
     PagingFunction(obj,mongoose,request,response);
   });
 }
