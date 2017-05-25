@@ -77,7 +77,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               var reply_count = 0;
               var post_count = 0;
               var max_reply_length = numOfDocReplys;
-              var max_post_length = page_num-page_length-1;
+              var max_post_length = page_num-page_length;
               console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
               reply.forEach(function(reply, index) {
                 console.log(index + " key: " + reply.reply_index);
@@ -112,7 +112,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   };
                   that_reply.ReplyListing = function(reply_count) {
                     console.log("ReplyListing ::"+reply_count);
-                    if(reply_count <= max_reply_length) {
+                    if(reply_count <= (max_reply_length-1)) {
                       that_reply.ReplyPostListing(reply_count,post_count);
                     }
                   };
