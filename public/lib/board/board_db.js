@@ -280,9 +280,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       that.db_model.remove({post_index: page_num}, function(err,board){
         that.db.BoardCommentDbSetting(mongoose,request,response);
         var db_object = global.BOARD_COMMENT_MODEL;
+        var db_reply_object = global.BOARD_REPLY_DB;
         var board_table_id = request.body.board_table_id;
         db_object.remove({post_index: page_num, board_id: board_table_id}, function(err, comment){});
         db_object.update({post_index: {$gte: page_num}, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
+
+        db_reply_object.remove({reply_index: page_num, reply_table: board_table_id}, function(err, comment){});
+        db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
+
         that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
         function (error, obj) {
           return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
