@@ -334,11 +334,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          return response.render('board/list',obj);
+          response.render('board/list',obj);
+          response.end();
+          return;
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          return response.render('board/list',obj);
+          response.render('board/list',obj);
+          response.end();
+          return;
         });
       }
       return;
