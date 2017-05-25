@@ -91,13 +91,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       console.log("ReplyPostListing  reply_count ::"+reply_count);
                       console.log("ReplyPostListing ::"+post_count);
                       if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
-
-                        if(data.board_list.reply_list[0] == ''){
-                          console.log("첫번째");
-                          data.board_list.reply_list[0] = reply_doc[reply_count];
-                        } else {
-                          data.board_list.reply_list.push(reply_doc[reply_count]);
-                        }
+                        console.log("도는지 체크 ::"+data.board_list[post_count].post_index);
+                        data.board_list.reply_list.push(reply_doc[reply_count]);
                       }
                       if(post_count == max_post_length){
                         if(reply_count < max_reply_length) {
