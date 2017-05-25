@@ -80,11 +80,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               var max_reply_length = numOfDocReplys;
               var max_post_length = page_num-page_length-1;
               that_reply.ReplyPostListing = function(reply_count,post_count) {
-                console.("ReplyPostListing ::"+post_count);
+                console.log("ReplyPostListing ::"+post_count);
                 if(post_count <= max_post_length) {
                   if(data.board_list[post_count].post_index == reply[reply_count].reply_index){
                     if(data.board_list.reply_list[0] == ''){
-                      console.("첫번째");
+                      console.log("첫번째");
                       data.board_list.reply_list[0] = reply[reply_count];
                     } else {
                       data.board_list.reply_list.push(reply[reply_count]);
@@ -94,7 +94,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 }
               };
               that_reply.ReplyListing = function(reply_count) {
-                console.("ReplyListing ::"+reply_count);
+                console.log("ReplyListing ::"+reply_count);
                 if(reply_count <= max_reply_length) {
                   that_reply.ReplyPostListing(reply_count,post_count);
                   reply_count+=1;
