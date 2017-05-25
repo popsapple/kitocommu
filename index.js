@@ -51,10 +51,15 @@ app.get('/', function(request, response, next) {
   }
 });
 
-app.use(render({
-  nickname: request.session.nickname,
-  userid: request.session.userid
-}));
+app.get('*', function(request, response, next) {
+  response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
+  response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
+
+  if(typeof next == "function"){
+    next();
+  }
+});
+
 
 // 식품정보찾기
 require('./public/lib/food/food_search.js').food_search(app);

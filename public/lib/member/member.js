@@ -170,7 +170,7 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 }
 
 exports = module.exports = {member  : function (app,mongoose) {
-
+  
     this.CheckAuthenfication = function(account1,account2,request,response,callback,type){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
