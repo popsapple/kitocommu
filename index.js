@@ -44,7 +44,7 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
 // 로그인 세션
-app.all('*', function(request, response, next) {
+app.get('*', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+typeof(next));
 
   global.MEMBERLIB.SettingSessionItem(app, request, response);
