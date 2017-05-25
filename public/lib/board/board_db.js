@@ -52,23 +52,26 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var save_data = BOARD_DB_MODEL.find().update({$sort: { post_index: -1 }});
   },getBoardListByIndex : function (obj,mongoose,request,response,callback){
-    var BOARD_DB_MODEL = global.BOARD_DB.model;
+    var that = this;
+    that.db_model = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
-    BOARD_DB_MODEL.count({}, function(error, numOfDocs){
-      page_num = numOfDocs-(page_num*page_length);
-      page_length = page_num-page_length+1;
-      var data = {};
-      function sortList(a, b) {
-        if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
-      }
-      BOARD_DB_MODEL.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
-        data.board_list = board;
-        data.board_list.sort(sortList);
-        data.page_ = request.query.page;
-        callback(data,mongoose,request,response);
+    that.getListing = function(){
+      that.db_model.count({}, function(error, numOfDocs){
+        page_num = numOfDocs-(page_num*page_length);
+        page_length = page_num-page_length+1;
+        var data = {};
+        function sortList(a, b) {
+          if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+        }
+        that.db_model .find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
+          data.board_list = board;
+          data.board_list.sort(sortList);
+          data.page_ = request.query.page;
+          callback(data,mongoose,request,response);
+        });
       });
-    });
+    }();
   },getBoardListBySearch : function (obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);

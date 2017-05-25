@@ -105,12 +105,12 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
 
 Board.list_render = function(info,request,response,mongoose,collection){
   function PagingFunction(obj,mongoose,request,response){
-    var read_data_ = new global.BOARD_DB.getBoardListByNotice(obj,mongoose,request,response,function(obj,mongoose,request,response){
-      new global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
+    global.BOARD_DB.getBoardListByNotice(obj,mongoose,request,response,function(obj,mongoose,request,response){
+      global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
     });
   }
-  var read_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
-  var read_data_ = new global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
+  this.DbSetting = global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+  this.getBoardList = global.BOARD_DB.getBoardListByIndex(read_data,mongoose,request,response,function(obj,mongoose,request,response){
     PagingFunction(obj,mongoose,request,response);
   });
 }
@@ -146,7 +146,7 @@ module.exports.board_con = function(app,mongoose){
       response.redirect('/member/plz_login');
     }
     var board_id = 'Board_'+(request.query.board_table_id);
-    Board.list_render(request.query,request,response,mongoose,board_id);
+    var BoardList = new Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/search_post', function(request, response) {
