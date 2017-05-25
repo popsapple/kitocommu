@@ -88,8 +88,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   that_reply.ReplyPostListing = function(reply_count,post_count) {
 
                     if(post_count <= max_post_length) {
+                      console.log("ReplyPostListing  reply_count ::"+reply_count);
+                      console.log("ReplyPostListing ::"+post_count);
                       if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
-                        console.log("ReplyPostListing ::"+post_count);
+
                         if(data.board_list.reply_list[0] == ''){
                           console.log("첫번째");
                           data.board_list.reply_list[0] = reply_doc[reply_count];
@@ -115,7 +117,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   };
                   that_reply.ReplyListing = function(reply_count) {
                     console.log("ReplyListing ::"+reply_count);
-                    that_reply.ReplyPostListing(reply_count,post_count);                    
+                    that_reply.ReplyPostListing(reply_count,post_count);
                   };
                   that_reply.ReplyListing(reply_count);
                 }
