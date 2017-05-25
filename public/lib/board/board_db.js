@@ -99,6 +99,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     callback(data,mongoose,request,response);
                   } else {
                     post_count+=1;
+                    that_reply.ReplyPostListing(reply_count,post_count);
                   }
                 }
               };
