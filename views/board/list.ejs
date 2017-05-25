@@ -32,7 +32,7 @@
     <%}%>
     <section id="boardList">
       <ul>
-        <% if(locals.board_list) { %>
+        <% if(locals.board_list.length == 0) { %>
         <li>
           작성된 글이 없습니다.
         </li>
