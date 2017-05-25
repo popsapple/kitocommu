@@ -91,8 +91,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       console.log("ReplyPostListing  reply_count ::"+reply_count);
                       console.log("ReplyPostListing ::"+post_count);
                       if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
-                        console.log("도는지 체크 ::"+data.board_list[post_count].post_index);
-                        console.log("들어가는지 체크 ::"+reply_doc[reply_count]);
                         data.board_list.reply_list.push(reply_doc[reply_count]);
                       }
                       if(post_count == max_post_length){
@@ -103,6 +101,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         }
                         if(reply_count == max_reply_length){
                           console.log("마지막");
+                          console.log("전체 출력 개수 ::"+data.board_list.reply_list.length);
                           callback(data,mongoose,request,response);
                         }
                       }else {
