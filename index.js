@@ -45,12 +45,13 @@ global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose)
 
 // 로그인 세션
 app.get('/', function(request, response, next) {
-  console.log("GET SESSION NICKNAME1110101 ::"+typeof(next));
-  global.MEMBERLIB.SettingSessionItem(app, request, response);
+  global.MEMBERLIB.SettingSessionItem(request, response,function(){
+    response.render('pages/index');
+  });
+
   if(typeof next == "function"){
     next();
   }
-  response.render('pages/index');
 });
 
 // 식품정보찾기

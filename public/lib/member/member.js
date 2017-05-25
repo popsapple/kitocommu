@@ -171,11 +171,15 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 
 exports = module.exports = {member  : function (app,mongoose) {
 
-    this.SettingSessionItem = function(app,request,response){ // 로그인 세션구현
+    this.SettingSessionItem = function(request,response,callback){ // 로그인 세션구현
       console.log("로그인세션 :: "+request.session.nickname);
       console.log("로그인로컬(?) :: "+response.locals.userid);
       response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
       response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
+
+      if(typeof callback == "function"){
+        callback();
+      }
     };
 
     this.CheckAuthenfication = function(account1,account2,request,response,callback,type){ // 알맞는 권한을 가진 계정인지 체크
