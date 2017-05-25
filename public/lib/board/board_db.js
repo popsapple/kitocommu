@@ -80,7 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               if(count == max_post_length) {
                 return false;
               }else {
-                that_reply.ReplyListing(plus_count);
+                that_reply.ReplyListing(count);
               };
 
               if(data.board_list[count].post_index == reply[count].reply_index){
