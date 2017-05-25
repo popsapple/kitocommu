@@ -89,6 +89,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   console.log(index + " key: " + reply_doc[index].reply_index);
                   if(index == max_reply_length) {
                     that_reply.ReplyPostListing = function(reply_count,post_count) {
+                      if(!data.board_list[post_count].reply_list){
+                        data.board_list[post_count].reply_list = [];
+                      }
                       if(post_count <= max_post_length) {
                         console.log("ReplyPostListing  reply_count ::"+reply_count);
                         console.log("ReplyPostListing ::"+post_count);
@@ -113,7 +116,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     };
                     that_reply.ReplyListing = function(reply_count) {
                       console.log("ReplyListing ::"+reply_count);
-                      data.board_list[post_count].reply_list = [];
                       that_reply.ReplyPostListing(reply_count,post_count);
                     };
                     that_reply.ReplyListing(reply_count);
