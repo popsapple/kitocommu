@@ -44,13 +44,13 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
 // 로그인 세션
-app.get('/', function(request, response) {
+app.get('/', function(request, response, next) {
   console.log("GET SESSION NICKNAME1110101 ::"+typeof(next));
-
   global.MEMBERLIB.SettingSessionItem(app, request, response);
   if(typeof next == "function"){
     next();
   }
+  response.render('pages/index');
 });
 
 // 식품정보찾기
@@ -65,11 +65,6 @@ require('./public/lib/board/board.js').board_con(app,mongoose);
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
-});
-
-app.get('/', function(request, response, next) {
-  response.render('pages/index');
-  next();
 });
 
 
