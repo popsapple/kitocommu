@@ -244,6 +244,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
       }
       if(type != 'modify'){
+        if(request_list.reply_table_id != undefined){ //답글 부분이 자기의 부모(?) 게시물의 설정을 가져오게끔.
+          board_id = 'Board_'+(request_list.reply_table_id);
+        }
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
           for (var key in config[0]){
             board_info_[key] = config[0][key];
