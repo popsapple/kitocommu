@@ -38,6 +38,7 @@
       <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
         <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
         <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+        <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
         <%if(locals.is_reply == "yes"){%>
           <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
         <%}%>
