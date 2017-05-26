@@ -58,7 +58,9 @@
             <li>
               <hgroup>
                 <h2>
-                  답글) <%= board_list[i].reply_list[j].title %>
+                  <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>">
+                    답글) <%= board_list[i].reply_list[j].title %>
+                  </a>
                 </h2>
               </hgroup>
             </li>
