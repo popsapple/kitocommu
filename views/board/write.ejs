@@ -14,11 +14,7 @@
           <form id="BoardWriteForm" method="post" action="/board_reply_submit">
         <%}%>
       <%} else {%>
-        <%if(locals.is_reply != "yes"){%>
-          <form id="BoardWriteForm" method="post" action="/board_modify_submit">
-        <%} else {%>
-          <form id="BoardWriteForm" method="post" action="/board_reply_modify_submit">
-        <%}%>
+        <form id="BoardWriteForm" method="post" action="/board_modify_submit">
       <%}%>
         <%if(locals.board_table_id){%>
           <%if(locals.is_reply != "yes"){%>
