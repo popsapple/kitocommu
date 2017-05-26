@@ -18,12 +18,12 @@
       <%}%>
         <%if(locals.board_table_id){%>
           <input id="CheckReply" name="is_reply" type="hidden" value="<%= is_reply %>" />
+          <%if(locals.reply_table_id){%>
+            <input id="ReplyTableId" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+          <%}%>
           <%if(locals.is_reply != "yes"){%>
             <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
           <%} else {%>
-            <%if(locals.reply_table_id){%>
-              <input id="ReplyTableId" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
-            <%}%>
             <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
           <%}%>
         <%}%>
