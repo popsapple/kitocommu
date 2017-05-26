@@ -83,8 +83,9 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
                 request.json({result: 0});
                 return;
             }
-            request_list.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
-            request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
+            request.query.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
+            request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
+            console.log("DDDDDDDDDDDDDDDDDD");
             return response.render('board/write_ok',data);
           });
         });
