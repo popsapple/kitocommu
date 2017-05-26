@@ -173,6 +173,7 @@ module.exports.board_con = function(app,mongoose){
         }
         data[0].is_reply = "no";
         request.query.reply_table_id ? data[0].reply_table_id = request.query.reply_table_id : "";
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
         return response.render('board/write',data[0]);
       });
     }
@@ -242,6 +243,7 @@ module.exports.board_con = function(app,mongoose){
         data[0].is_reply = request.query.is_reply;
         data[0].reply_index = request.query.post_index;
         request.query.reply_table_id ? data[0].reply_table_id = request.query.reply_table_id : "";
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB");
         return response.render('board/write',data[0]);
       });
     }
