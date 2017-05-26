@@ -211,7 +211,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
           data.board_table_id = board_info_.board_table_id;
-          request.body.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
+          request.query.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
           request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
           return response.render('board/secret',data);
         }
