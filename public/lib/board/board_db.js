@@ -96,6 +96,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         console.log("ReplyPostListing  reply_count ::"+reply_count);
                         console.log("ReplyPostListing ::"+post_count);
                         if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
+                          reply_doc[reply_count].board_table_id = "ReplyList";
                           data.board_list[post_count].reply_list.push(reply_doc[reply_count]);
                         }
                         if(post_count == max_post_length){
