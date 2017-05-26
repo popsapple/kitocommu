@@ -103,10 +103,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             reply_count+=1;
                             post_count=0;
                             that_reply.ReplyListing(reply_count,post_count);
-                          }
-                          if(reply_count == max_reply_length){
+                          }else if(reply_count == max_reply_length){
                             console.log("마지막");
                             callback(data,mongoose,request,response);
+                            return false;
                           }
                         }else {
                           post_count+=1;
