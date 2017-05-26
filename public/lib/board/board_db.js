@@ -98,6 +98,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
                           reply_doc[reply_count].board_table_id = "ReplyList";
                           data.board_list[post_count].reply_list.push(reply_doc[reply_count]);
+                          function sortList(a, b) {
+                            if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+                          }
+                          data.board_list[post_count].reply_list.sort(sortList);
                         }
                         if(post_count == max_post_length){
                           if(reply_count < max_reply_length) {
@@ -106,10 +110,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             that_reply.ReplyListing(reply_count,post_count);
                           }else if(reply_count == max_reply_length){
                             console.log("마지막");
-                            function sortList(a, b) {
-                              if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
-                            }
-                            data.board_list.reply_list.sort(sortList);
                             callback(data,mongoose,request,response);
                             return false;
                           }
