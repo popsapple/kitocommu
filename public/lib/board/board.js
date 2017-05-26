@@ -90,6 +90,7 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
       global.BOARD_DB.setBoardSortIndex(that.save_data,mongoose,request,response);
     }
 
+    // post_index가 등록시 중복되지 않도록 지정
     global.BOARD_DB.getBoardLastIndex(that.save_data,mongoose,request,response,function(){
       SaveFunction(that.save_data,type);
     });
