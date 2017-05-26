@@ -195,12 +195,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(count == 0){
           board_info_.board_table_id = request_list.board_table_id;
           board_info_.post_index = request_list.post_index;
-          request_list.is_reply ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
         }
         board_info_[key] = board[key];
         count++;
       }
       function RenderViewpage(board_info_){
+        
+        request_list.is_reply ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
+
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
           data.board_table_id = board_info_.board_table_id;
@@ -211,6 +213,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           var board_table_id = request_list.board_table_id;
+
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
