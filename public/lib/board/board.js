@@ -168,7 +168,6 @@ module.exports.board_con = function(app,mongoose){
     if(request.query.post_index){
       Board.view(request.query,request,response,mongoose,board_id,'modify');
     }else{
-
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
         for (var key in req_data){
           data[0][key] = req_data[key];
@@ -179,8 +178,6 @@ module.exports.board_con = function(app,mongoose){
         }else if(request.body.reply_table_id){
           request.body.reply_table_id ? data[0].reply_table_id = request.body.reply_table_id : "";
         }
-
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
         return response.render('board/write',data[0]);
       });
     }
@@ -254,7 +251,6 @@ module.exports.board_con = function(app,mongoose){
         }else if(request.body.reply_table_id){
           request.body.reply_table_id ? data[0].reply_table_id = request.body.reply_table_id : "";
         }
-        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB");
         return response.render('board/write',data[0]);
       });
     }

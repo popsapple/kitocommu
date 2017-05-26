@@ -289,6 +289,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             board_info_.is_admin = value_;
             board_info_.is_writer = value_;
             board_info_.is_reply = request.query.is_reply;
+            if(request.query.reply_table_id){
+              console.log("EEEEEEEEEEEE");
+              request.query.reply_table_id ? board_info_.reply_table_id = request.query.reply_table_id : "";
+            }else if(request.body.reply_table_id){
+              console.log("FFFFFFFFFFFFFFF");
+              request.body.reply_table_id ? board_info_.reply_table_id = request.body.reply_table_id : "";
+            }
             return response.render('board/write',board_info_);
           },'check_admin');
         });
