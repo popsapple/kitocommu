@@ -42,8 +42,11 @@
       </form>
       <form method="get" action="/board/write">
         <input id="ModifyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-        <input id="ModifyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
         <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
+        <input id="ModifyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+        <%if(locals.is_reply == "yes"){%>
+          <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+        <%}%>
         <button type="submit" class="btn btn-default">수정하기</button accesskey="d">
       </form>
     <%}%>
