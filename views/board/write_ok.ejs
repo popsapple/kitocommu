@@ -8,7 +8,11 @@
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
       게시물 작성을 완료했습니다.
-      <a class="btn btn-default" href="/board/list?board_table_id=<%= board_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
+      <% if(locals.is_reply == "no") { %>
+        <a class="btn btn-default" href="/board/list?board_table_id=<%= board_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
+      <%} else if(locals.is_reply == "yes") { %>
+        <a class="btn btn-default" href="/board/list?board_table_id=<%= reply_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
+      <% } %>
       <%if(locals.title){%>
         <%= title %>
       <%}%>

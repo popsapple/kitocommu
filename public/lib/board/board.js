@@ -62,6 +62,8 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
                 request.json({result: 0});
                 return;
             }
+            info.is_reply == "yes" ? save_data.is_reply = "yes" : save_data.is_reply = "no";
+            info.reply_table_id ? save_data.reply_table_id = info.reply_table_id : "";
             return response.render('board/write_ok',save_data);
           });
         } else {
@@ -80,6 +82,8 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
                 request.json({result: 0});
                 return;
             }
+            info.is_reply == "yes" ? save_data.is_reply = "yes" : save_data.is_reply = "no";
+            info.reply_table_id ? save_data.reply_table_id = info.reply_table_id : "";
             return response.render('board/write_ok',data);
           });
         });
