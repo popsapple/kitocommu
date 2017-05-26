@@ -80,7 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               callback(data,mongoose,request,response);
               return false;
             } else{
-              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }, board_id: board_table_id}, function(err, reply){
+              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, function(err, reply){
                 var reply_doc = [];
                 var that_reply = {};
                 var reply_count = 0;
