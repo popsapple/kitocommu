@@ -61,6 +61,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     that.db_model = global.BOARD_DB.model;
     that.db_reply_model = global.BOARD_REPLY_DB;
     var page_num = parseInt(request.query.page);
+    var board_table_id = request.query.board_table_id;
     var page_length = parseInt(request.query.page_length);
     that.getListing = function(){
       that.db_model.count({}, function(error, numOfDocs){
@@ -79,7 +80,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               callback(data,mongoose,request,response);
               return false;
             } else{
-              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }}, function(err, reply){
+              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }, board_id: board_table_id}, function(err, reply){
                 var reply_doc = [];
                 var that_reply = {};
                 var reply_count = 0;
