@@ -191,6 +191,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(count == 0){
           board_info_.board_table_id = request_list.board_table_id;
           board_info_.post_index = request_list.post_index;
+          request_list.is_reply ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
         }
         board_info_[key] = board[key];
         count++;
@@ -260,6 +261,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           },'both_check');
         });
       }else if(type == 'modify'){
+        if(request_list.reply_table_id != undefined){ //답글 부분이 자기의 부모(?) 게시물의 설정을 가져오게끔.
+          board_id = 'Board_'+(request_list.reply_table_id);
+        }
         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,board,function(config){
           for (var key in config[0]){
             board_info_[key] = config[0][key];
