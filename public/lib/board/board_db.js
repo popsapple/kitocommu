@@ -107,7 +107,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                           }else if(reply_count == max_reply_length){
                             console.log("마지막");
                             function sortList(a, b) {
-                              if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+                              if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? 1 : -1;
                             }
                             data.board_list[post_count].reply_list.sort(sortList);
                             callback(data,mongoose,request,response);
@@ -200,7 +200,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         count++;
       }
       function RenderViewpage(board_info_){
-        
+
         request_list.is_reply ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
 
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
