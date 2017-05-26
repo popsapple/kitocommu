@@ -62,8 +62,10 @@
                 </select>
               <%}else {%>
                 <select id="BoardCategory" name="category" type="text">
-                  <% for(var i=0; i < category_list.length; i++) { %>
-                    <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                  <%if(locals.category_list){%>
+                    <% for(var i=0; i < category_list.length; i++) { %>
+                      <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                    <%}%>
                   <%}%>
                 </select>
               <%}%>
