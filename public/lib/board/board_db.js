@@ -320,7 +320,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
         that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
         function (error, obj) {
-          return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+          if(request.body.is_reply == 'yes'){
+            board_id = request.body.reply_table_id;
+            return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+          }else {
+            return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+          }
         });
       });
     };
