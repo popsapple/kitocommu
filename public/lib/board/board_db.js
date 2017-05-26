@@ -109,7 +109,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             function sortList(a, b) {
                               if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? 1 : -1;
                             }
-                            data.board_list[post_count].reply_list.sort(sortList);
+                            data.board_list.reply_list.sort(sortList);
                             callback(data,mongoose,request,response);
                             return false;
                           }
