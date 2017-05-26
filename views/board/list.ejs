@@ -58,7 +58,7 @@
             <li>
               <hgroup>
                 <h2>
-                  <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply='yes'">
+                  <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply='yes'&reply_table_id=<%= board_table_id %>">
                     답글) <%= board_list[i].reply_list[j].title %>
                   </a>
                 </h2>

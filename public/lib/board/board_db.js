@@ -207,6 +207,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       function RenderViewpage(board_info_){
 
         request_list.is_reply ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
+        request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
 
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
