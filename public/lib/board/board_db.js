@@ -75,8 +75,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           data.board_list = board;
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
-          that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }}, function(error, numOfDocReplys){
-            if(numOfDocReplys == 0 || (!numOfDocReplys)){
+          that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, function(error, numOfDocReplys){
+           if(!numOfDocReplys){
+             callback(data,mongoose,request,response);
+             return false;
+           }
+           if(numOfDocReplys == 0 ){
               callback(data,mongoose,request,response);
               return false;
             } else{
