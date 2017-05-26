@@ -84,7 +84,13 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
                 return;
             }
             request.query.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
-            request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
+            if(request.query.reply_table_id){
+              console.log("EEEEEEEEEEEE");
+              request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
+            }else if(request.body.reply_table_id){
+              console.log("FFFFFFFFFFFFFFF");
+              request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
+            }
             console.log("DDDDDDDDDDDDDDDDDD");
             return response.render('board/write_ok',data);
           });
