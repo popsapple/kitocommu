@@ -455,7 +455,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          var board_id = 'Board_'+(request_list.reply_table_id);
+          var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
               obj[key] = config[key];
@@ -465,7 +465,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          var board_id = 'Board_'+(request_list.reply_table_id);
+          var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
               obj[key] = config[key];
@@ -504,7 +504,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          var board_id = 'Board_'+(request_list.reply_table_id);
+          var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
               obj[key] = config[key];
@@ -515,7 +515,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          var board_id = 'Board_'+(request_list.reply_table_id);
+          var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
               obj[key] = config[key];
