@@ -431,23 +431,37 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            var count = 0;
+            var max = req_data.length;
             for (var key in req_data){
+              if(count == max){
+                console.log("CCCC :: "+obj.template);
+                response.render('board'+obj.template+'/list',obj);
+                response.end();
+                break;
+              }
+              console.log("반복중 ::"+count+" :: "+key+" :: "+req_data[key]);
               obj[key] = req_data[key];
+              count++;
             }
-            console.log("CCCC :: "+obj.template);
-            response.render('board'+obj.template+'/list',obj);
-            response.end();
           });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            var count = 0;
+            var max = req_data.length;
             for (var key in req_data){
+              if(count == max){
+                console.log("DDDD :: "+obj.template);
+                response.render('board'+obj.template+'/list',obj);
+                response.end();
+                break;
+              }
+              console.log("반복중 ::"+count+" :: "+key+" :: "+req_data[key]);
               obj[key] = req_data[key];
+              count++;
             }
-            console.log("DDDD :: "+obj.template);
-            response.render('board'+obj.template+'/list',obj);
-            response.end();
           });
         });
       }
