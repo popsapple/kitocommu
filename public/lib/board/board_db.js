@@ -273,6 +273,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         var board_id = 'Board_'+(request_list.board_table_id);
                         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                           for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+                            if(key == 'is_reply'){
+                              continue;
+                            }
                             board_info_[key] = config[key];
                           }
                           console.log("0444 ::"+board_info_.is_reply);
