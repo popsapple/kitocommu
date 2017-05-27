@@ -448,20 +448,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            for (var key in config){
-              obj[key] = config[key];
-            }
-            console.log("AAAAAA :: "+obj.template);
+            console.log("AAAAAA :: "+config.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            for (var key in config){
-              obj[key] = config[key];
-            }
-            console.log("BBBBBB :: "+obj.template);
+            console.log("BBBBBB :: "+config.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -499,17 +493,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           console.log("STEP 00-1");
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             console.log("STEP 01");
-            var count = 0;
-            var max = config.length;
-            for (var key in config){
-              if(count == max){
-                console.log("CCCC :: "+obj.template);
-                return response.render('board'+obj.template+'/list',obj);
-              }
-              console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
-              obj[key] = config[key];
-              count++;
-            }
+            console.log("CCCC :: "+obj.template);
+            return response.render('board'+obj.template+'/list',obj);
           });
         });
       }else{
@@ -517,17 +502,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           console.log("STEP 00-2");
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             console.log("STEP 02");
-            var count = 0;
-            var max = config.length;
-            for (var key in config){
-              if(count == max){
-                console.log("DDDD :: "+obj.template);
-                return response.render('board'+obj.template+'/list',obj);
-              }
-              console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
-              obj[key] = config[key];
-              count++;
-            }
+            console.log("DDD :: "+obj.template);
+            return response.render('board'+obj.template+'/list',obj);
           });
         });
       }
