@@ -441,8 +441,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 response.end();
                 break;
               }
-              console.log("반복중 ::"+count+" :: "+key+" :: "+req_data[key]);
-              obj[key] = req_data[key];
+              console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
               count++;
             }
           });
@@ -459,8 +459,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 response.end();
                 break;
               }
-              console.log("반복중 ::"+count+" :: "+key+" :: "+req_data[key]);
-              obj[key] = req_data[key];
+              console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
               count++;
             }
           });
