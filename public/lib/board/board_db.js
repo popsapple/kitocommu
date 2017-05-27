@@ -241,7 +241,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_table_id = request_list.board_table_id;
 
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
-            var finded_count;
             if(!comment) { // 댓글 없을 때
               var board_id = 'Board_'+(request_list.board_table_id);
               global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
@@ -253,6 +252,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               });
               return false;
             }else {
+              var finded_count;
               db_object.count({post_index: post_index_}, function(error, numOfDocs){
                 finded_count = numOfDocs;
                 board_info_.comments_list = comment;
@@ -278,7 +278,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             }
                             board_info_[key] = config[key];
                           }
-                          console.log("0444 ::"+board_info_.is_reply);
                           return response.render('board/view',board_info_);
                         });
                         //return response.render('board/view',board_info_);
@@ -288,7 +287,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     },'both_check');
                   }
                   var that = this;
-                  this.CheckFunction(i,that);
+                  if(finded_count){
+                    this.CheckFunction(i,that);
+                  }else{
+                    return response.render('board/view',board_info_);
+                  }
                 });
               });
             };
