@@ -40,10 +40,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     global.BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
       var config_list = {};
-      for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-        console.log("키 값 ::"+key+" :: "+board_config[key]);
-        config_list[key] = board_config[key];
-      }
+      board_config.forEach(function(item,index){
+        for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+          console.log("키 값 ::"+key+" :: "+item[key]);
+          config_list[key] = item[key];
+        }
+      });
+
       if(err){
         console.log("찾기 에러");
       }
