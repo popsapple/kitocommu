@@ -455,15 +455,21 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            console.log("AAAAAA :: "+config.template);
+          var board_id = 'Board_'+(request_list.reply_table_id);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+            for (var key in config){
+              obj[key] = config[key];
+            }
             return response.render('board'+obj.template+'/list',obj);
           });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            console.log("BBBBBB :: "+config.template);
+          var board_id = 'Board_'+(request_list.reply_table_id);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+            for (var key in config){
+              obj[key] = config[key];
+            }
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -498,21 +504,22 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          console.log("STEP 00-1 ::"+obj.board_table_id);
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
+          var board_id = 'Board_'+(request_list.reply_table_id);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
               obj[key] = config[key];
             }
             console.log("CCCC :: "+obj.template);
-            console.log("DDDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          console.log("STEP 00-2");
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            console.log("STEP 02");
+          var board_id = 'Board_'+(request_list.reply_table_id);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+            for (var key in config){
+              obj[key] = config[key];
+            }
             console.log("DDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
           });
