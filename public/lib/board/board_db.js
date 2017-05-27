@@ -221,10 +221,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         count++;
       }
       function RenderViewpage(board_info_){
-        console.log("답글있는지 체크 ::"+request_list.is_reply);
+
         (request_list.is_reply && request_list.is_reply == "yes") ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
         request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
-
+        console.log("01 ::"+board_info_.is_reply);
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
           data.board_table_id = board_info_.board_table_id;
@@ -246,6 +246,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                   board_info_[key] = config[key];
                 }
+                console.log("02 ::"+board_info_.is_reply);
                 return response.render('board/view',board_info_);
               });
               return false;
@@ -272,6 +273,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                           for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                             board_info_[key] = config[key];
                           }
+                          console.log("03 ::"+board_info_.is_reply);
                           return response.render('board/view',board_info_);
                         });
                         //return response.render('board/view',board_info_);
@@ -292,6 +294,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               board_info_[key] = config[key];
             }
+            console.log("03 ::"+board_info_.is_reply);
             return response.render('board/view',board_info_);
           });
         }
