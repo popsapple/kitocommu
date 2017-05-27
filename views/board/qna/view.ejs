@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
+  <% include ../../partials/header.ejs %>
 </head>
 <body itemscope = "" itemtype = "http://schema.org/WebPage">
-<% include ../partials/nav.ejs %>
+<% include ../../partials/nav.ejs %>
   <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <section>
         <ul>
@@ -66,6 +66,6 @@
   <%if(locals.is_comment == 'yes'){%>
     <% include ./coments.ejs %>
   <%}%>
-<% include ../partials/footer.ejs %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>
