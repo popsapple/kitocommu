@@ -121,15 +121,15 @@ module.exports.board_con = function(app,mongoose){
     }else{
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
         for (var key in req_data){
-          data[0][key] = req_data[key];
+          data[key] = req_data[key];
         }
-        data[0].is_reply = "no";
+        data.is_reply = "no";
         if(request.query.reply_table_id){
-          request.query.reply_table_id ? data[0].reply_table_id = request.query.reply_table_id : "";
+          request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
         }else if(request.body.reply_table_id){
-          request.body.reply_table_id ? data[0].reply_table_id = request.body.reply_table_id : "";
+          request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
         }
-        return response.render('board/write',data[0]);
+        return response.render('board/write',data);
       });
     }
   });
@@ -193,16 +193,16 @@ module.exports.board_con = function(app,mongoose){
     }else{
       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
         for (var key in req_data){
-          data[0][key] = req_data[key];
+          data[key] = req_data[key];
         }
-        data[0].is_reply = request.query.is_reply;
-        data[0].reply_index = request.query.post_index;
+        data.is_reply = request.query.is_reply;
+        data.reply_index = request.query.post_index;
         if(request.query.reply_table_id){
-          request.query.reply_table_id ? data[0].reply_table_id = request.query.reply_table_id : "";
+          request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
         }else if(request.body.reply_table_id){
-          request.body.reply_table_id ? data[0].reply_table_id = request.body.reply_table_id : "";
+          request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
         }
-        return response.render('board/write',data[0]);
+        return response.render('board/write',data);
       });
     }
   });

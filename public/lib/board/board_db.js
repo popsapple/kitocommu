@@ -39,13 +39,17 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
     global.BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
+      var config_list = {};
+      for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+        config_list[key] = key;
+      }
       if(err){
         console.log("찾기 에러");
       }
       if(!board_config){
         console.log("결과값 없음");
       }else {
-        callback(board_config,config);
+        callback(config_list,config);
       }
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
@@ -458,8 +462,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[0][key]);
-              obj[key] = config[0][key];
+              console.log("KEY :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
             }
             return response.render('board'+obj.template+'/list',obj);
           });
@@ -469,8 +473,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[0][key]);
-              obj[key] = config[0][key];
+              console.log("KEY :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
             }
             return response.render('board'+obj.template+'/list',obj);
           });
@@ -509,8 +513,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[0][key]);
-              obj[key] = config[0][key];
+              console.log("KEY :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
             }
             console.log("CCCC :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
@@ -521,8 +525,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[0][key]);
-              obj[key] = config[0][key];
+              console.log("KEY :: "+key+" :: "+config[key]);
+              obj[key] = config[key];
             }
             console.log("DDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
