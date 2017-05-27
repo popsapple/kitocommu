@@ -226,6 +226,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
         console.log("01 ::"+board_info_.is_reply);
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
+          console.log("02 ::"+board_info_.is_reply);
           var data = {};
           data.board_table_id = board_info_.board_table_id;
           (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
@@ -233,6 +234,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           return response.render('board/secret',data);
         }
         if(board_info_.is_comment == 'yes'){
+          console.log("03 ::"+board_info_.is_reply);
           global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
@@ -246,7 +248,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                   board_info_[key] = config[key];
                 }
-                console.log("02 ::"+board_info_.is_reply);
+                console.log("04 ::"+board_info_.is_reply);
                 return response.render('board/view',board_info_);
               });
               return false;
@@ -273,7 +275,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                           for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                             board_info_[key] = config[key];
                           }
-                          console.log("03 ::"+board_info_.is_reply);
+                          console.log("0444 ::"+board_info_.is_reply);
                           return response.render('board/view',board_info_);
                         });
                         //return response.render('board/view',board_info_);
@@ -289,12 +291,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             };
           });
         }else{
+          console.log("05 ::"+board_info_.is_reply);
           var board_id = 'Board_'+(request_list.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               board_info_[key] = config[key];
             }
-            console.log("03 ::"+board_info_.is_reply);
+            console.log("06 ::"+board_info_.is_reply);
             return response.render('board/view',board_info_);
           });
         }
