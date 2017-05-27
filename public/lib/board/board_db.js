@@ -287,7 +287,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     },'both_check');
                   }
                   var that = this;
-                  if(finded_count){
+                  if(finded_count > 0){
                     this.CheckFunction(i,that);
                   }else{
                     return response.render('board/view',board_info_);
