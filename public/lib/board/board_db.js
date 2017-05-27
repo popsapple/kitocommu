@@ -499,6 +499,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
+            console.log("STEP 01");
             var count = 0;
             var max = config[0].length;
             for (var key in config[0]){
@@ -517,6 +518,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }else{
         this.getCountArray(obj,'',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
+            console.log("STEP 02");
             var count = 0;
             var max = config[0].length;
             for (var key in config[0]){
