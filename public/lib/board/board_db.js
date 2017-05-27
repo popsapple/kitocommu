@@ -229,8 +229,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           console.log("02 ::"+board_info_.is_reply);
           var data = {};
           data.board_table_id = board_info_.board_table_id;
-          (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
-          request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
           return response.render('board/secret',data);
         }
         if(board_info_.is_comment == 'yes'){
@@ -277,11 +275,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         var board_id = 'Board_'+(request_list.board_table_id);
                         global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                           for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-                            /*if(key == 'is_reply'){
+                            if(key == 'is_reply'){
                               continue;
-                            }*/
+                            }
                             board_info_[key] = config[key];
                           }
+                          (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
+                          request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
                           return response.render('board/view',board_info_);
                         });
                         //return response.render('board/view',board_info_);
@@ -294,6 +294,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   if(finded_count > 0){
                     this.CheckFunction(i,that);
                   }else{
+                    (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
+                    request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
                     return response.render('board/view',board_info_);
                   }
                 });
