@@ -331,11 +331,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
         function (error, obj) {
           if(request.body.is_reply == 'yes'){
-            console.log("AAA");
             board_id = request.body.reply_table_id;
             return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
           }else {
-            console.log("BBB");
             return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
           }
         });
@@ -381,15 +379,23 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          response.render('board/list',obj);
-          response.end();
-          return;
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            for (var key in req_data){
+              obj[key] = req_data[key];
+            }
+            response.render('board'+req_data.template+'/list',obj);
+            response.end();
+          });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          response.render('board/list',obj);
-          response.end();
-          return;
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            for (var key in req_data){
+              obj[key] = req_data[key];
+            }
+            response.render('board'+req_data.template+'/list',obj);
+            response.end();
+          });
         });
       }
       return;
