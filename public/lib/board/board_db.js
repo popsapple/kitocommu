@@ -41,7 +41,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
       var config_list = {};
       for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-        config_list[key] = key;
+        config_list[key] = board_config[key];
       }
       if(err){
         console.log("찾기 에러");
