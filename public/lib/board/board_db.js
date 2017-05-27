@@ -507,6 +507,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in config){
+              console.log("KEY :: "+key+" :: "+board_id);
               obj[key] = config[key];
             }
             console.log("CCCC :: "+obj.template);
