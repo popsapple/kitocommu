@@ -42,7 +42,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(err){
         console.log("찾기 에러");
       }
-      callback(board_config,config);
+      if(!board_config){
+        console.log("결과값 없음");
+      }else {
+        callback(board_config,config);        
+      }
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
 
