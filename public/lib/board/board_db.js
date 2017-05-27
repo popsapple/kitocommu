@@ -42,11 +42,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       var config_list = {};
       board_config.forEach(function(item,index){
         for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-          console.log("키 값 ::"+key+" :: "+item[key]);
           config_list[key] = item[key];
         }
       });
-
       if(err){
         console.log("찾기 에러");
       }
@@ -73,7 +71,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var save_data = BOARD_DB_MODEL.find().update({$sort: { post_index: -1 }});
   },getBoardListByIndex : function (mongoose,request,response,callback){
-    console.log("getBoardListByIndex");
     var that = this;
     that.db_model = global.BOARD_DB.model;
     that.db_reply_model = global.BOARD_REPLY_DB;
@@ -113,20 +110,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 var post_count = 0;
                 var max_reply_length = numOfDocReplys-1;
                 var max_post_length = data.board_list.length-1;
-                console.log("리플을 잘 찾아 오는지 :: max_reply_length :: "+max_reply_length);
-                  console.log("리플을 잘 찾아 오는지 :: max_post_length :: "+max_post_length);
                 reply.forEach(function(reply, index) {
-                  console.log(index + " key: " + reply.reply_index);
                   reply_doc[index] = reply;
-                  console.log(index + " key: " + reply_doc[index].reply_index);
                   if(index == max_reply_length) {
                     that_reply.ReplyPostListing = function(reply_count,post_count) {
                       if(!data.board_list[post_count].reply_list){
                         data.board_list[post_count].reply_list = [];
                       }
                       if(post_count <= max_post_length) {
-                        console.log("ReplyPostListing  reply_count ::"+reply_count);
-                        console.log("ReplyPostListing ::"+post_count);
                         if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
                           reply_doc[reply_count].board_table_id = "ReplyList";
                           data.board_list[post_count].reply_list.push(reply_doc[reply_count]);
@@ -141,7 +132,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             post_count=0;
                             that_reply.ReplyListing(reply_count,post_count);
                           }else if(reply_count == max_reply_length){
-                            console.log("마지막");
                             callback(data,mongoose,request,response);
                             return false;
                           }
@@ -152,7 +142,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                       }
                     };
                     that_reply.ReplyListing = function(reply_count) {
-                      console.log("ReplyListing ::"+reply_count);
                       that_reply.ReplyPostListing(reply_count,post_count);
                     };
                     that_reply.ReplyListing(reply_count);
@@ -342,7 +331,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
           request.query.is_reply == "yes" ? save_data.is_reply = "yes" : save_data.is_reply = "no";
           request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
-          console.log("CCCCCCCCCCCCCCCCC");
           return response.render('board/write_ok',save_data);
         });
       } else {
@@ -363,22 +351,17 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }
 
           if(request.query.is_reply){
-            console.log("STEP01");
             request.query.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
           }else if(request.body.is_reply){
-            console.log("STEP02");
             request.body.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
           }
 
           if(request.query.reply_table_id){
-            console.log("STEP03");
             request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
           }else if(request.body.reply_table_id){
-            console.log("STEP04");
             request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
           }
 
-            console.log("STEP00");
           return response.render('board/write_ok',data);
         });
       });
@@ -466,7 +449,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[key]);
               obj[key] = config[key];
             }
             return response.render('board'+obj.template+'/list',obj);
@@ -477,7 +459,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[key]);
               obj[key] = config[key];
             }
             return response.render('board'+obj.template+'/list',obj);
@@ -517,10 +498,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[key]);
               obj[key] = config[key];
             }
-            console.log("CCCC :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -529,10 +508,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
-              console.log("KEY :: "+key+" :: "+config[key]);
               obj[key] = config[key];
             }
-            console.log("DDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
