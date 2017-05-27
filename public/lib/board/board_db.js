@@ -280,8 +280,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             }
                             board_info_[key] = config[key];
                           }
-                          (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
-                          request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
+                          (request_list.is_reply && request_list.is_reply == "yes") ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
+                          request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
                           return response.render('board/view',board_info_);
                         });
                         //return response.render('board/view',board_info_);
@@ -294,8 +294,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   if(finded_count > 0){
                     this.CheckFunction(i,that);
                   }else{
-                    (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
-                    request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
+                    (request_list.is_reply && request_list.is_reply == "yes") ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
+                    request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
                     return response.render('board/view',board_info_);
                   }
                 });
