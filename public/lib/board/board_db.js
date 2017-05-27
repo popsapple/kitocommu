@@ -310,6 +310,73 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }
     });
+  },onSaveBoardPost : function(that,info,request,response,mongoose,collection,type){
+    if(type=='save'){
+      that.save_data = new that.save_data(that.save_data.schema);
+    }
+    that.save_item(info);
+    // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
+    function SaveFunction(save_data,type){
+      if(type=='save'){
+        that.save_data.save(function(err){
+          if(err){
+              console.error(err);
+              request.json({result: 0});
+              return;
+          }
+          request.query.is_reply == "yes" ? save_data.is_reply = "yes" : save_data.is_reply = "no";
+          request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
+          console.log("CCCCCCCCCCCCCCCCC");
+          return response.render('board/write_ok',save_data);
+        });
+      } else {
+        var request_list;
+        if (request.query.post_index){
+          request_list = request.query;
+        }else {
+          request_list = request.body;
+        }
+        var post_index_ = request_list.post_index;
+
+        that.save_data.findOne({post_index: post_index_}, function(err, data){
+        that.modify_item(data,info,request_list);
+        data.save(function(err){
+          if(err){
+              request.json({result: 0});
+              return;
+          }
+
+          if(request.query.is_reply){
+            console.log("STEP01");
+            request.query.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
+          }else if(request.body.is_reply){
+            console.log("STEP02");
+            request.body.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
+          }
+
+          if(request.query.reply_table_id){
+            console.log("STEP03");
+            request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
+          }else if(request.body.reply_table_id){
+            console.log("STEP04");
+            request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
+          }
+
+            console.log("STEP00");
+          return response.render('board/write_ok',data);
+        });
+      });
+    }
+  }
+
+  if(type=='save'){
+    global.BOARD_DB.setBoardSortIndex(that.save_data,mongoose,request,response);
+  }
+
+  // post_index가 등록시 중복되지 않도록 지정
+  global.BOARD_DB.getBoardLastIndex(that.save_data,mongoose,request,response,function(){
+    SaveFunction(that.save_data,type);
+  });
   },onRemoveBoardPost : function (mongoose,request,response,callback){
     var that = this;
     this.db_model = global.BOARD_DB.model;
