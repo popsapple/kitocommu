@@ -243,7 +243,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var comment = comment;
             console.log("comment ::"+comment);
-            if(!comment || comment == '' || comment.length != 0) { // 댓글 없을 때
+            if(!comment || comment == '' || comment.length == 0) { // 댓글 없을 때
               console.log("aAAAAAAAAAAAAAA");
               var board_id = 'Board_'+(request_list.board_table_id);
               global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
