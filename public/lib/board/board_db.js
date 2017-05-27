@@ -222,13 +222,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
       function RenderViewpage(board_info_){
         console.log("답글있는지 체크 ::"+request_list.is_reply);
-        request_list.is_reply == "yes" ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
+        (request_list.is_reply && request_list.is_reply == "yes") ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
         request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
 
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
           var data = {};
           data.board_table_id = board_info_.board_table_id;
-          request_list.is_reply == "yes" ? data.is_reply = "yes" : data.is_reply = "no";
+          (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
           request_list.reply_table_id ? data.reply_table_id = request_list.reply_table_id : "";
           return response.render('board/secret',data);
         }
@@ -350,7 +350,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               request.json({result: 0});
               return;
           }
-          request.query.is_reply == "yes" ? save_data.is_reply = "yes" : save_data.is_reply = "no";
+          (request.query.is_reply && request.query.is_reply == "yes") ? save_data.is_reply = "yes" : save_data.is_reply = "no";
           request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
           return response.render('board/write_ok',save_data);
         });
