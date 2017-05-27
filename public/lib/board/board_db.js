@@ -39,6 +39,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
     var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
+      if(err){
+        console.log("찾기 에러");
+      }
       callback(board_config,config);
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
