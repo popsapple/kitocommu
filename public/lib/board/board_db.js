@@ -247,7 +247,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                   board_info_[key] = config[key];
                 }
-                console.log("04 ::"+board_info_.is_reply);
                 return response.render('board/view',board_info_);
               });
               return false;
@@ -256,9 +255,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               db_object.count({post_index: post_index_}, function(error, numOfDocs){
                 finded_count = numOfDocs;
                 board_info_.comments_list = comment;
-                comment.forEach(function(item,index){
-                  board_info_.comments_list[index] = item;
-                });
+                console.log("comments_list ::"+board_info_.comments_list);
                 board_info_.is_comment_writer = [];
                 var is_admin = false;
                 var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
