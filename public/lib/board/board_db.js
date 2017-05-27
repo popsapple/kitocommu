@@ -433,7 +433,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         this.getCountArray(obj,'all',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             var count = 0;
-            var max = req_data.length;
+            var max = config.length;
             for (var key in config){
               if(count == max){
                 console.log("CCCC :: "+obj.template);
@@ -451,7 +451,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         this.getCountArray(obj,'',function(obj){
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             var count = 0;
-            var max = req_data.length;
+            var max = config.length;
             for (var key in config){
               if(count == max){
                 console.log("DDDD :: "+obj.template);
