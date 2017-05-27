@@ -500,8 +500,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         this.getCountArray(obj,'all',function(obj){
           console.log("STEP 00-1");
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
-            console.log("STEP 01");
+            for (var key in req_data){
+              obj[0][key] = req_data[key];
+            }
             console.log("CCCC :: "+obj.template);
+            console.log("DDDD :: "+obj[0].template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
