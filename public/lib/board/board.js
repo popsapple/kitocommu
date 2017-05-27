@@ -59,6 +59,7 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
 
 Board.list_render = function(info,request,response,mongoose,collection){
   function PagingFunction(obj,mongoose,request,response){
+    console.log("PagingFunction");
     global.BOARD_DB.getBoardListByNotice(obj,mongoose,request,response,function(obj,mongoose,request,response){
       global.BOARD_DB.getBoardPagingByIndex(obj,mongoose,request,response);
     });
@@ -66,6 +67,7 @@ Board.list_render = function(info,request,response,mongoose,collection){
   global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
   this.DbSetting = global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.getBoardList = global.BOARD_DB.getBoardListByIndex(mongoose,request,response,function(obj,mongoose,request,response){
+    console.log("getBoardListByIndex===========");
     PagingFunction(obj,mongoose,request,response);
   });
 }
@@ -97,6 +99,7 @@ Board.write_coments = function(request,response,mongoose){
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
+    console.log("리스트 로딩");
     if(!request.session.userid || !request.session.nickname){
       return response.redirect('/member/plz_login'); //
     }

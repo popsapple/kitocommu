@@ -45,7 +45,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(!board_config){
         console.log("결과값 없음");
       }else {
-        callback(board_config,config);        
+        callback(board_config,config);
       }
     });
   },getBoardLastIndex : function (obj,mongoose,request,response,callback){
@@ -65,6 +65,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var save_data = BOARD_DB_MODEL.find().update({$sort: { post_index: -1 }});
   },getBoardListByIndex : function (mongoose,request,response,callback){
+    console.log("getBoardListByIndex");
     var that = this;
     that.db_model = global.BOARD_DB.model;
     that.db_reply_model = global.BOARD_REPLY_DB;
