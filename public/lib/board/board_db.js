@@ -383,7 +383,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in req_data){
               obj[key] = req_data[key];
             }
-            response.render('board'+req_data.template+'/list',obj);
+            console.log("AAAAAA :: "+obj.template);
+            response.render('board'+obj.template+'/list',obj);
             response.end();
           });
         });
@@ -393,7 +394,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in req_data){
               obj[key] = req_data[key];
             }
-            response.render('board'+req_data.template+'/list',obj);
+            console.log("BBBBBB :: "+obj.template);
+            response.render('board'+obj.template+'/list',obj);
             response.end();
           });
         });
@@ -428,11 +430,25 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          return response.render('board/list',obj);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            for (var key in req_data){
+              obj[key] = req_data[key];
+            }
+            console.log("CCCC :: "+obj.template);
+            response.render('board'+obj.template+'/list',obj);
+            response.end();
+          });
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          return response.render('board/list',obj);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+            for (var key in req_data){
+              obj[key] = req_data[key];
+            }
+            console.log("DDDD :: "+obj.template);
+            response.render('board'+obj.template+'/list',obj);
+            response.end();
+          });
         });
       }
     });
