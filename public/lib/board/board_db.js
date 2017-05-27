@@ -256,6 +256,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               db_object.count({post_index: post_index_}, function(error, numOfDocs){
                 finded_count = numOfDocs;
                 board_info_.comments_list = comment;
+                comment.forEach(function(item,index){
+                  board_info_.comments_list[index] = item;
+                });
                 board_info_.is_comment_writer = [];
                 var is_admin = false;
                 var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
