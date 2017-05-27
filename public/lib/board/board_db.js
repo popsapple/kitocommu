@@ -452,8 +452,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             console.log("AAAAAA :: "+obj.template);
-            response.render('board'+obj.template+'/list',obj);
-            response.end();
+            return response.render('board'+obj.template+'/list',obj);
           });
         });
       }else{
@@ -463,8 +462,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             console.log("BBBBBB :: "+obj.template);
-            response.render('board'+obj.template+'/list',obj);
-            response.end();
+            return response.render('board'+obj.template+'/list',obj);
           });
         });
       }
@@ -506,9 +504,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in config){
               if(count == max){
                 console.log("CCCC :: "+obj.template);
-                response.render('board'+obj.template+'/list',obj);
-                response.end();
-                break;
+                return response.render('board'+obj.template+'/list',obj);
               }
               console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
               obj[key] = config[key];
@@ -526,9 +522,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in config){
               if(count == max){
                 console.log("DDDD :: "+obj.template);
-                response.render('board'+obj.template+'/list',obj);
-                response.end();
-                break;
+                return response.render('board'+obj.template+'/list',obj);
               }
               console.log("반복중 ::"+count+" :: "+key+" :: "+config[key]);
               obj[key] = config[key];
