@@ -241,7 +241,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var board_table_id = request_list.board_table_id;
 
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
-            if(!comment) { // 댓글 없을 때
+            var comment = comment;
+            console.log("comment ::"+comment);
+            if(!comment || comment == '' || comment.length != 0) { // 댓글 없을 때
+              console.log("aAAAAAAAAAAAAAA");
               var board_id = 'Board_'+(request_list.board_table_id);
               global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
@@ -251,11 +254,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               });
               return false;
             }else {
+              console.log("BBBBBBBBBB");
               var finded_count;
               db_object.count({post_index: post_index_}, function(error, numOfDocs){
                 finded_count = numOfDocs;
                 board_info_.comments_list = comment;
-                console.log("comments_list ::"+board_info_.comments_list);
+                console.log("comments_list ::"+comment);
                 board_info_.is_comment_writer = [];
                 var is_admin = false;
                 var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
