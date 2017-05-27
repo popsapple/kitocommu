@@ -498,6 +498,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
+          console.log("STEP 00-1");
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             console.log("STEP 01");
             var count = 0;
@@ -517,6 +518,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }else{
         this.getCountArray(obj,'',function(obj){
+          console.log("STEP 00-2");
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             console.log("STEP 02");
             var count = 0;
