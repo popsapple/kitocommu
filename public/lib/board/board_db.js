@@ -241,7 +241,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
-              return response.render('board/view',board_info_);
+              var board_id = 'Board_'+(request_list.board_table_id);
+              global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+                for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+                  board_info_[key] = config[key];
+                }
+                return response.render('board/view',board_info_);
+              });
             }
             db_object.count({post_index: post_index_}, function(error, numOfDocs){
               finded_count = numOfDocs;
@@ -260,7 +266,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   global.MEMBERLIB.CheckAuthenfication(board_info_.comments_list[i].comment_writer,request.session.userid,request,response,function(value_){
                     board_info_.is_comment_writer[i] = value_;
                     if(i == (finded_count-1)){
-                      return response.render('board/view',board_info_);
+                      var board_id = 'Board_'+(request_list.board_table_id);
+                      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+                        for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+                          board_info_[key] = config[key];
+                        }
+                        return response.render('board/view',board_info_);
+                      });
+                      //return response.render('board/view',board_info_);
                     }else{
                       that.CheckFunction(i+1,that);
                     }
@@ -272,7 +285,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             });
           });
         }else{
-          return response.render('board/view',board_info_);
+          var board_id = 'Board_'+(request_list.board_table_id);
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
+            for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+              board_info_[key] = config[key];
+            }
+            return response.render('board/view',board_info_);
+          });
         }
       }
       if(type != 'modify'){
