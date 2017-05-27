@@ -498,13 +498,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          console.log("STEP 00-1");
+          console.log("STEP 00-1 ::"+obj.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             for (var key in config){
-              obj[0][key] = config[key];
+              obj[key] = config[key];
             }
             console.log("CCCC :: "+obj.template);
-            console.log("DDDD :: "+obj[0].template);
+            console.log("DDDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
