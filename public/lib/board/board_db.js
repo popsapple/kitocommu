@@ -31,6 +31,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       is_comment:  String,
       is_reply:  String,
       css_skin:  String,
+      template:  String,
       category_list:  String
     }, { collection: 'Board_Typelist' });
 
@@ -379,9 +380,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
-            for (var key in req_data){
-              obj[key] = req_data[key];
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
+            for (var key in config){
+              obj[key] = config[key];
             }
             console.log("AAAAAA :: "+obj.template);
             response.render('board'+obj.template+'/list',obj);
@@ -390,9 +391,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
-            for (var key in req_data){
-              obj[key] = req_data[key];
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
+            for (var key in config){
+              obj[key] = config[key];
             }
             console.log("BBBBBB :: "+obj.template);
             response.render('board'+obj.template+'/list',obj);
@@ -430,10 +431,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(obj,'all',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             var count = 0;
             var max = req_data.length;
-            for (var key in req_data){
+            for (var key in config){
               if(count == max){
                 console.log("CCCC :: "+obj.template);
                 response.render('board'+obj.template+'/list',obj);
@@ -448,10 +449,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         });
       }else{
         this.getCountArray(obj,'',function(obj){
-          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(obj,req_data){
+          global.BOARD_DB.getBoardConfig(mongoose,request,response,obj.board_table_id,request.query,function(config){
             var count = 0;
             var max = req_data.length;
-            for (var key in req_data){
+            for (var key in config){
               if(count == max){
                 console.log("DDDD :: "+obj.template);
                 response.render('board'+obj.template+'/list',obj);
