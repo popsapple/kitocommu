@@ -242,6 +242,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             var finded_count;
             if(comment == undefined || comment.length == 0 || err) { // 댓글 없을 때
               var board_id = 'Board_'+(request_list.board_table_id);
+              if(request_list.reply_table_id != undefined){ //답글 부분이 자기의 부모(?) 게시물의 설정을 가져오게끔.
+                board_id = 'Board_'+(request_list.reply_table_id);
+              }
               global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                   board_info_[key] = config[key];
@@ -267,6 +270,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     board_info_.is_comment_writer[i] = value_;
                     if(i == (finded_count-1)){
                       var board_id = 'Board_'+(request_list.board_table_id);
+                      if(request_list.reply_table_id != undefined){ //답글 부분이 자기의 부모(?) 게시물의 설정을 가져오게끔.
+                        board_id = 'Board_'+(request_list.reply_table_id);
+                      }
                       global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                         for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                           board_info_[key] = config[key];
@@ -286,6 +292,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           });
         }else{
           var board_id = 'Board_'+(request_list.board_table_id);
+          if(request_list.reply_table_id != undefined){ //답글 부분이 자기의 부모(?) 게시물의 설정을 가져오게끔.
+            board_id = 'Board_'+(request_list.reply_table_id);
+          }
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               board_info_[key] = config[key];
