@@ -37,7 +37,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     mongoose.models = {};
     mongoose.modelSchemas = {};
-    var BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
+    global.BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
       if(err){
         console.log("찾기 에러");
@@ -506,11 +506,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         this.getCountArray(obj,'all',function(obj){
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
-            for (var key in config[0]){
-              if(!config[0].hasOwnProperty(key)){
-                console.log("KEY :: "+key+" :: "+config[0][key]);
-                obj[key] = config[0][key];
-              }
+            for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+              console.log("KEY :: "+key+" :: "+config[0][key]);
+              obj[key] = config[0][key];
             }
             console.log("CCCC :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
@@ -520,8 +518,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         this.getCountArray(obj,'',function(obj){
           var board_id = 'Board_'+(request.query.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
-            for (var key in config){
-              obj[key] = config[key];
+            for (var key in global.BOARD_STYLE_MODEL.schema.paths){
+              console.log("KEY :: "+key+" :: "+config[0][key]);
+              obj[key] = config[0][key];
             }
             console.log("DDD :: "+obj.template);
             return response.render('board'+obj.template+'/list',obj);
