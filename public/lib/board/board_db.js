@@ -225,9 +225,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
         (request_list.is_reply && request_list.is_reply == "yes") ? board_info_.is_reply = "yes" : board_info_.is_reply = "no";
         request_list.reply_table_id ? board_info_.reply_table_id = request_list.reply_table_id : "";
-        console.log("01 ::"+board_info_.is_reply);
         if(board_info_.is_secret == "on" && !board_info_.is_writer){
-          console.log("02 ::"+board_info_.is_reply);
           var data = {};
           data.board_table_id = board_info_.board_table_id;
           (request_list.is_reply && request_list.is_reply == "yes") ? data.is_reply = "yes" : data.is_reply = "no";
@@ -235,7 +233,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           return response.render('board/secret',data);
         }
         if(board_info_.is_comment == 'yes'){
-          console.log("03 ::"+board_info_.is_reply);
           global.BOARD_DB.BoardCommentDbSetting(mongoose,request,response);
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
@@ -243,9 +240,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var comment = comment;
-            console.log("comment ::"+comment);
             if(!comment || comment == '' || comment.length == 0) { // 댓글 없을 때
-              console.log("aAAAAAAAAAAAAAA");
               var board_id = 'Board_'+(request_list.board_table_id);
               global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
                 for (var key in global.BOARD_STYLE_MODEL.schema.paths){
@@ -255,12 +250,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               });
               return false;
             }else {
-              console.log("BBBBBBBBBB");
               var finded_count;
               db_object.count({post_index: post_index_}, function(error, numOfDocs){
                 finded_count = numOfDocs;
                 board_info_.comments_list = comment;
-                console.log("comments_list ::"+comment);
                 board_info_.is_comment_writer = [];
                 var is_admin = false;
                 var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
@@ -299,13 +292,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             };
           });
         }else{
-          console.log("05 ::"+board_info_.is_reply);
           var board_id = 'Board_'+(request_list.board_table_id);
           global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(config){
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               board_info_[key] = config[key];
-            }
-            console.log("06 ::"+board_info_.is_reply);
+            };
             return response.render('board/view',board_info_);
           });
         }
@@ -488,7 +479,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
-              console.log("STEP 01 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -507,7 +497,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
-              console.log("STEP 02 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -555,7 +544,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
-              console.log("STEP 03 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -574,7 +562,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
-              console.log("STEP 04 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
