@@ -487,7 +487,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             var level = obj.writing_level;
-            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+            global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -506,7 +506,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             var level = obj.writing_level;
-            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+            global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -553,7 +553,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             var level = obj.writing_level;
-            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+            global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -571,7 +571,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               obj[key] = config[key];
             }
             var level = obj.writing_level;
-            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+            global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
               if(value_){
                 obj.writing_level = "yes";
               }else{
