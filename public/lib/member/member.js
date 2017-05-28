@@ -8,6 +8,8 @@ Member.join = function(info,request,response,mongoose,type){
     save_data[key] = info[key];
   }
 
+  save_data.writing_level = 0; //처음 가입시 일반화원.
+
   // 디비를 갖고 온 후에 사용할 메서드
   var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
   save_data.settingPassword();
@@ -170,7 +172,7 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 }
 
 exports = module.exports = {member  : function (app,mongoose) {
-  
+
     this.CheckAuthenfication = function(account1,account2,request,response,callback,type){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);

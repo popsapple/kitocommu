@@ -30,6 +30,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       list_type:  String,
       is_comment:  String,
       is_reply_type:  String,
+      writing_level:  Number,
       css_skin:  String,
       template:  String,
       category_list:  String
