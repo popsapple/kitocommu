@@ -494,7 +494,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              return response.render('board'+obj.template+'/list',obj);
+              response.render('board'+obj.template+'/list',obj);
             },'check_admin',level);
           });
         });
@@ -513,7 +513,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              return response.render('board'+obj.template+'/list',obj);
+              response.render('board'+obj.template+'/list',obj);
             },'check_admin',level);
           });
         });
@@ -561,7 +561,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              return response.render('board'+obj.template+'/list',obj);
+              response.render('board'+obj.template+'/list',obj);
             },'check_admin',level);
           });
         });
@@ -580,7 +580,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              return response.render('board'+obj.template+'/list',obj);
+              response.render('board'+obj.template+'/list',obj);
             },'check_admin',level);
           });
         });
