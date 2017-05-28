@@ -488,6 +488,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+              console.log("STEP 01 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -507,6 +508,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+              console.log("STEP 02 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -554,6 +556,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+              console.log("STEP 03 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
@@ -572,6 +575,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             var level = obj.writing_level;
             global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+              console.log("STEP 04 :: "+value_);
               if(value_){
                 obj.writing_level = "yes";
               }else{
