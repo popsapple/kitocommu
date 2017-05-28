@@ -179,7 +179,7 @@ exports = module.exports = {member  : function (app,mongoose) {
       var member_data = global.MEMBER_DB.model;
       if(type == 'check_admin'){
         member_data.findOne({id: account2}, function(err, member){
-          (!level) ? level = 3 : '';
+          (level == undefined) ? level = 3 : '';
           console.log("접속중인 멤버 레벨 :: "+member.member_level);
           console.log("쓰기 가능 레벨 :: "+level);
           if(parseInt(member.member_level) >= parseInt(level)){ // 4등급 이상이 관리자등급.
