@@ -182,7 +182,7 @@ exports = module.exports = {member  : function (app,mongoose) {
           (!level) ? level = 3 : '';
           console.log("접속중인 멤버 레벨 :: "+member.member_level);
           console.log("쓰기 가능 레벨 :: "+level);
-          if(parseInt(member.member_level) >= level){ // 4등급 이상이 관리자등급.
+          if(parseInt(member.member_level) >= parseInt(level)){ // 4등급 이상이 관리자등급.
             console.log("???????????");
             value_ = true;
           }
