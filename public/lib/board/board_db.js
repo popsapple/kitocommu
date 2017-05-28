@@ -486,6 +486,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               obj[key] = config[key];
             }
+            var level = obj.writing_level;
+            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+              if(value_){
+                obj.writing_level = "yes";
+              }else{
+                obj.writing_level = "no";
+              }
+            },'check_admin',level);
+
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -496,6 +505,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               obj[key] = config[key];
             }
+            var level = obj.writing_level;
+            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+              if(value_){
+                obj.writing_level = "yes";
+              }else{
+                obj.writing_level = "no";
+              }
+            },'check_admin',level);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -535,6 +552,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               obj[key] = config[key];
             }
+            var level = obj.writing_level;
+            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+              if(value_){
+                obj.writing_level = "yes";
+              }else{
+                obj.writing_level = "no";
+              }
+            },'check_admin',level);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
@@ -545,6 +570,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
               obj[key] = config[key];
             }
+            var level = obj.writing_level;
+            global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
+              if(value_){
+                obj.writing_level = "yes";
+              }else{
+                obj.writing_level = "no";
+              }
+            },'check_admin',level);
             return response.render('board'+obj.template+'/list',obj);
           });
         });
