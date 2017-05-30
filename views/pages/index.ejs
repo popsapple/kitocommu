@@ -4,84 +4,182 @@
   <% include ../partials/header.ejs %>
 </head>
 
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
+<body itemscope itemtype = "http://schema.org/WebPage">
 
 <% include ../partials/nav.ejs %>
-<div class="container" itemprop = "mainContentOfPage">
-  <article itemscope = "" itemtype = "http://schema.org/Thing">
-    <hgroup itemprop = "about">
-      <h2>저탄고지 다이어 란..?</h2>
-      <h3>저탄고지는 최근 수년간 전 세계 각국에서 많은 비평과 인기를 받으며 발전해온 다이어트 입니다.</h3>
-    </hgroup>
-    <section itemprop = "description">
-         유럽에서는 LCHF (Low Carb, High Fat) 이라고 불리고 있으며,
-         목적에 따라 저탄고지라고도 부르지요. 의미를 서로 나누자면, LCHF(저탄수화물 고지방)가 좀 더 넓은 범위를 뜻하며,
-         그 중 저탄고지는 LCHF에서도 탄수화물 제한을 가장 낮게 제한하는(20g 미만) 성격의 다이어트입니다.
-         키토제닉 다이어트는 의학용어로 "키토(Ketosis)"라는 상태에 머무르는 다이어트이며
-         탄수화물 섭취를 낮추고 많은 양의 지방과 적당한 양의 단백질을 섭취하는, 저탄수화물 고지방의 다이어트입니다.
-    </section>
+<div class="main_container container designcustom">
+  <section itemscope itemtype="http://schema.org/mainContentOfPage">
+    <ul id="MainVisualSlider" aria-live="polite" aria-label="메인 슬라이더">
+      <li id="SliderItem01" aria-hidden="false">
+        <h1>
+          <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
+          <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+        </h1>
+      </li>
+      <li id="SliderItem02" aria-hidden="true">
+        <h1>
+          <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
+          <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+        </h1>
+      </li>
+      <li id="SliderItem03" aria-hidden="true">
+        <h1>
+          <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
+          <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+        </h1>
+      </li>
+    </ul>
+    <fieldset id="MainSliderButtons" class="carousel_buttons" aria-controls="MainVisualSlider">
+      <span class="blind" aria-label="MainSliderButtons">메인 슬라이더 순서 조절하기</span>
+      <button class="button01 blind" aria-selected="true" aria-controls="SliderItem01">첫번째</button>
+      <button class="button02 blind" aria-selected="false" aria-controls="SliderItem02">두번째</button>
+      <button class="button03 blind" aria-selected="false" aria-controls="SliderItem03">세번째</button>
+    </fieldset>
+  </section>
+  <article itemscope itemtype="http://schema.org/Recipe">
+    <h1 itemprop="alternativeHeadline">
+      <strong>키토제닉 레시피</strong>
+      <span>키토 다이어트에 맞는 레시피를 확인해보세요</span>
+    </h1>
+    <ul>
+      <li>
+        <a herf="#" itemprop="url">
+          <strong itemprop="name">키토제닉 빵</strong>
+          <figure>
+              <img src="" alt="" />
+              <figcaption>따끈따끈하고 풍성해 아주 맛있어 보이는 키토제닉 빵입니다.</figcaption>
+          </figure>
+        </a>
+      </li>
+      <li>
+        <a herf="#" itemprop="url">
+          <strong itemprop="name">키토제닉 피자</strong>
+          <figure>
+              <img src="" alt="" />
+              <figcaption>치즈가 아주 맛있어 보이는 키토제닉 피자입니다.</figcaption>
+          </figure>
+        </a>
+      </li>
+      <li>
+        <a herf="#" itemprop="url">
+          <strong itemprop="name">연어 샐러드</strong>
+          <figure>
+              <img src="" alt="" />
+              <figcaption>살코기가 부드럽고 기름진 맛이 느껴지고, 싱싱한 채소들과 같이 만들어진 연어 샐러드입니다.</figcaption>
+          </figure>
+        </a>
+      </li>
+    </ul>
+    <a class="linebutton" herf="#">더 많은 레시피 보러가기</a>
   </article>
-  <article itemscope = "" itemtype = "http://schema.org/CreativeWork">
-    <hgroup itemprop = "alternativeHeadline">
-      <h2>저탄고지 다이어트 대표 FAQ</h2>
-      <h3>저탄고지 다이어트에 대한 대표적인 질문과 답변을 보실 수 있습니다.</h3>
-    </hgroup>
-    <section class="panel-group">
-      <ul>
-        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
-          <div class="panel-heading">
-            <h4 class="panel-title" itemprop = "name" >
-              <a data-toggle="collapse" href="#collapse1">키토제닉 다이어트는 어떤 다이어트인가요?</a>
-            </h4>
+  <article itemscope itemtype="http://schema.org/Intangible">
+    <h1>
+      <strong itemprop="alternateName">키토제닉 다이어트란?</strong>
+      <span itemprop="description">
+        우리 몸은, 혈당이 떨어졌을 경우 <em>지방</em>을 이용해 케토(키토)
+성분을  간에서 만들어 이를 몸의 <em>에너지원</em>으로 사용합니다.
+이 원리로 식단을 저 탄수화물 및 고 지방으로 구성합니다.
+      </span>
+    </h1>
+    <figure>
+        <img src="" alt="고기" />
+        <img src="" alt="치즈" />
+        <img src="" alt="아보카도" />
+        <img src="" alt="인체" />
+        <img src="" alt="간" />
+        <span class="blind circle">
+          <span class="circle01"></span>
+          <span class="circle02"></span>
+          <span class="circle03"></span>
+          인체 내부에서 케톤체 생성 및 퍼짐
+        </span>
+        <figcaption>
+          저단백 고지방 식품군인 아보카도,치즈,고기 등을 섭취하므로써 인체 속 간에서 케톤체를 생성할 수 있도록 합니다.
+        </figcaption>
+    </figure>
+  </article>
+  <section itemscope itemtype="http://schema.org/QAPage">
+    <h1 itemprop="alternativeHeadline">
+      <strong>자주하는 질문</strong>
+      <span>키토제닉 다이어트에 대한 자주 하는 질문들입니다.</span>
+    </h1>
+    <ul>
+      <li>
+        <a href="" itemprop="url">
+          <h2 itemtype="http://schema.org/Question">
+            <span itemprop="name">키토제닉 다이어트의 어떻게 시작한건가요?</span>
+          </h2>
+          <div itemtype="http://schema.org/Answer">
+            <p itemprop="text">
+              키토제닉 다이어트는 1920년대에 소아 뇌전증 환자 원래는 간질을 위한 치료로써 시작되었지만, 항 경련제를 사용한 치료법이
+              주로 사용됨에 따라, 기존에 쓰이던 치료법이 아닌 혈당조절 효과 를 이용해 이를 다이어트에 응용하게 된 것이 시작입니다.
+            </p>
           </div>
-          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body" itemprop = "text">
-              유럽에서는 LCHF (Low Carb, High Fat) 이라고 불리고 있으며,
-              목적에 따라 저탄고지라고도 부르지요. 의미를 서로 나누자면, LCHF(저탄수화물 고지방)가 좀 더 넓은 범위를 뜻하며,
-              그 중 저탄고지는 LCHF에서도 탄수화물 제한을 가장 낮게 제한하는(20g 미만) 성격의 다이어트입니다.
-            </div>
+        </a>
+      </li>
+      <li>
+        <a href="" itemprop="url">
+          <h2 itemtype="http://schema.org/Question">
+            <span itemprop="name">부작용이 아예 없을 순 없을텐데 주요 부작용은 어떻게 되나요?</span>
+          </h2>
+          <div itemtype="http://schema.org/Answer">
+            <p itemprop="text">
+              의사에 따라 다른 의견들이 많습니다 참고로만 읽어 주세요.
+              주로 키토플루라고 하는 몸의 적응기가 있으며, 피곤함과 무기력함 변비 및 피부 발진 등이 있을 수 있습니다.
+              정상인의 경우 탄수화물을 다시 섭취하시면 정상으로 돌아오나, 당뇨병, 코혈압, 모유수유 중이신 분들은 의사와의 상담 후 진행하셔야 합니다.
+            </p>
           </div>
-        </li>
-        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
-          <div class="panel-heading">
-            <h4 class="panel-title" itemprop = "name" >
-              <a data-toggle="collapse" href="#collapse2">키토시스라고 하는 용어가 있던데 무슨 뜻인가요?</a>
-            </h4>
+        </a>
+      </li>
+      <li>
+        <a href="" itemprop="url">
+          <h2 itemtype="http://schema.org/Question">
+            <span itemprop="name">다른 다이어트에 비해 좋은 점은 뭐가 있을까요?</span>
+          </h2>
+          <div itemtype="http://schema.org/Answer">
+            <p itemprop="text">
+              의사에 따라 다른 의견들이 많습니다 참고로만 읽어 주세요.
+              집중력이 향샹되며 설탕의존도가 떨어집니다. 월경 불규칙도 개선되며, 여드름 및 편두통도 줄어듭니다. 신체적인 지구력이 강화됩니다.
+            </p>
           </div>
-          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body" itemprop = "text">
-              간단히 말해, 탄수화물이 아닌 지방을 에너지원으로 소비하는 몸 상태를 얘기하는 것입니다. 우리몸은 진화를 하면서 여러가지 영양소를 에너지원으로 활용하게 되
-              었는데, 그 중 탄수화물은 가장 1차적인 주 에너지원으로 빠르고 급격하게 소비되나, 지방과 단백질의 경우는 2,3차 에너지원으로 느리게 소비됩니다. 1차 에너지원인
-              탄수화물 섭취를 조정해, 2-3차 에너지원인 지방을 에너지원으로 쓰는 상태가 키토시스 상태입니다.
-            </div>
-          </div>
-        </li>
-        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
-          <div class="panel-heading">
-            <h4 class="panel-title" itemprop = "name" >
-              <a data-toggle="collapse" href="#collapse3">키토시스 상태는 언제쯤 진입되나요? 어떻게 확인할 수 있죠?</a>
-            </h4>
-          </div>
-          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body" itemprop = "text">보통 3~4주차 부터 시작되는게 일반적입니다만 개인별로 2~3주 정도의 차이는 있습니다. 시중에 나와 있는 소변검사
-            키트를 이용하시면 매일 매일 변화되는 몸을 확인해 보실 수 있으니 추천 드립니다. 그 외 입이 마른 상태, 소변 냄새, 땀 향기 등으로 알 수 있습니다만 정확성은
-             키트에 비해 다소 떨어집니다.</div>
-          </div>
-        </li>
-        <li class="panel panel-default" itemscope = "" itemtype = "http://schema.org/Question">
-          <div class="panel-heading">
-            <h4 class="panel-title" itemprop = "name" >
-              <a data-toggle="collapse" href="#collapse3">칼로리 및 영양소는 어떻게 계산하나요?</a>
-            </h4>
-          </div>
-          <div itemprop = "suggestedAnswer acceptedAnswer" itemscope itemtype = "http://schema.org/Answer" id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body" itemprop = "text">보통 1300~1500kcal정도 섭취합니다. 이 중 하루 섭취하는 탄수화물을 20g 정도이며(식이섬유를 섭취해야
-              하기 때문에 생야채 위주로 섭취합니다) 단백질은 제한을 두지 않는 편이며, 지방은 200g 정도 섭취하고 부족한 비타민 등등은 영양제 등으로 섭취합니다. 칼로리 제한식
-            이란 점에서 다른 다이어트와 다를 부분은 없지만, 건강상의 불이익이 덜한 편입니다. (생리불순, 빈혈, 탈모 등...)</div>
-          </div>
-        </li>
-      </ul>
-    </section>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 itemprop="alternativeHeadline">
+      <strong>키토제닉 일상톡톡</strong>
+      <span>다이어트 동지들과 분투기를 나눠보아요!</span>
+    </h1>
+    <ul>
+      <li>
+        <a herf="" itemprop="url">
+          <h2>
+            <strong itemprop="about">오늘은 너무너무 즐거운 하루였어요! 꽃송이도 너무 예쁘고 사랑스러워서 너무 좋았어요!</strong>
+          </h2>
+          <time itemprop="dateCreated">2017.05.31</time>
+          <span itemprop="author">현주니맘</span>
+        </a>
+      </li>
+      <li>
+        <a herf="" itemprop="url">
+          <h2>
+            <strong itemprop="about">친구랑 함께 바다를 보러 다녀왔어요~</strong>
+          </h2>
+          <time itemprop="dateCreated">2017.05.28</time>
+          <span itemprop="author">뚱뚱이아기돼지</span>
+        </a>
+      </li>
+      <li>
+        <a herf="" itemprop="url">
+          <h2>
+            <strong itemprop="about">등산을 다녀왔는데 몸이 너무 피곤하네요 역시 무릎이 너무 아파요.</strong>
+          </h2>
+          <time itemprop="dateCreated">2017.05.22</time>
+          <span itemprop="author">맛있게먹었드래용</span>
+        </a>
+      </li>
+    </ul>
   </article>
 </div>
   <% include ../partials/footer.ejs %>

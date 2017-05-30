@@ -1,60 +1,72 @@
-<nav class="navbar navbar-default" itemscope = "" itemtype = "http://schema.org/WebPage">
-  <div class="container" itemprop = "breadcrumb">
+<nav class="navbar navbar-default" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+  <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <h1>
+        <a class="navbar-brand" href="/" itemprop="logo">
+          <span class="blind">CHEESE</span>
+        </a>
+      </h1>
+      <button class="navbar-toggle collapsed" itemprop="potentialAction" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <figure>
+            <img src="" alt="메뉴" role="button" />
+            <figcaption>클릭시 메뉴가 펼쳐집니다.</figcaption>
+        </figure>
       </button>
-      <h1><a class="navbar-brand" href="/">키토제닉 다이어트</a></h1>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다이어트 체크<span class="caret"></span></a>
+    <div id="navbar" class="navbar-collapse collapse" itemprop="potentialAction">
+      <ul class="nav navbar-nav" role="tablist">
+        <li class="dropdown" role="tab">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다이어트 체크</a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">출석체크</a></li>
-            <li><a href="/board/list?board_table_id=MemberIntroduce&page=0&page_length=10">자기소개</a></li>          </ul>
+            <li><a href="#">식품정보 확인하기</a></li>
+            <li><a href="#">매일매일 확인하기</a></li>
+          </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티<span class="caret"></span></a>
+        <li class="dropdown" role="tab">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티</a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="/board/list?board_table_id=MemberIntroduce&page=0&page_length=10">자기소개</a></li>
+            <li><a href="/board/list?board_table_id=MemberLevel&page=0&page_length=10">등업신청</a></li>
             <li><a href="/board/list?board_table_id=MemberDiary&page=0&page_length=10">일상톡톡</a></li>
-            <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">FAQ</a></li>
+            <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">자주하는 질문</a></li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단 짜주세요<span class="caret"></span></a>
+        <li class="dropdown" role="tab">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단소개</a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">오늘 뭐 먹지?</a></li>
-            <li><a href="#">추천 레시피</a></li>
+            <li><a href="#">식단짜기 원칙</a></li>
+            <li><a href="#">키토제닉 레시피</a></li>
+            <li><a href="#">키토시스 다이어트 소개</a></li>
           </ul>
         </li>
-        <li>
+        <li class="member_side" role="tab">
+          <ul role="menu">
+            <%if(locals.nickname){%>
+              <li role="tab" itemscope itemtype="http://schema.org/Person">
+                <strong itemprop="name"><%= locals.nickname %>님</strong>
+                <a id="ModifyMemberInfo" href="/mypage/list" itemprop="url">INFO</a>
+                <span class="blind" aria-label="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
+                <a href="/logout" role="button">LOGOUT</a>
+              </li>
+            <%}else {%>
+              <li role="tab">
+                <a id="JoinMember" class="btn btn-default" href="/join_member_step2">JOIN</a>
+                <span class="blind" aria-label="JoinMember">회원가입을 진행하실 수 있습니다.</span>
+              </li>
+              <li role="tab">
+                <a class="btn btn-default" href="/login_form">LOGIN</a>
+              </li>
+            <%}%>
+          </ul>
+        </li>
+        <!--li>
           <form class="navbar-form navbar-left submit_item" method="post" action="/food_search/search_list" role="search">
             <div class="form-group">
               <input type="text" name="food_keyword" class="form-control submit_text" placeholder="검색어를 입력하세요 예) 바나나">
             </div>
             <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
           </form>
-        </li>
-        <%if(locals.nickname){%>
-          <li>
-            <strong>
-              <%= locals.nickname %> 님 환영합니다
-              <a href="/mypage/list" role="button">개인정보수정</a>
-              <a href="/logout" role="button">로그아웃</a>
-            </strong>
-          </li>
-        <%}else {%>
-          <li>
-            <a class="btn btn-default" href="/join_member_step2" role="button">회원가입하기</a>
-          </li>
-          <li>
-            <a class="btn btn-default" href="/login_form" role="button">로그인하기</a>
-          </li>
-        <%}%>
+        </li-->
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
