@@ -1,0 +1,10 @@
+.designcustom .blind {
+  display:inline-block;
+  width:1px;
+  height:auto;
+  padding-left:1px;
+  text-align:left;
+  max-height:0px;
+  overflow:hidden;
+  font-size:1rem;
+}
