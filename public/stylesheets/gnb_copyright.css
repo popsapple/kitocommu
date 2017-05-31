@@ -131,18 +131,31 @@
   transition:opacity 1s 0s,height 0s 0s;
 }
 
+@keyframes closemenu {
+  0% {
+    margin-top: -0vh;
+    animation-timing-function:ease-out;
+  }
+  100% {
+    margin-top: -75vh;
+    animation-timing-function:ease-out;
+  }
+}
+
 .designcustom .navbar-collapse > ul {
   display:block;
   width:100vw;
   height:75vh;
   background:#ffce00;
   z-index:2;
-  margin-top:-75vh;
-  -webkit-transition:margin-top 0.5s 0.5s ease-out;
-  -moz-transition:margin-top 0.5s 0.5s ease-out;
-  -ms-transition:margin-top 0.5s 0.5s ease-out;
-  -o-transition:margin-top 0.5s 0.5s ease-out;
-  transition:margin-top 0.5s 0.5s ease-out;
+  margin-top:-75vh \0/IE8+9;
+  animation-name: closemenu;
+  animation-name: menu_none \0/IE8+9;
+  -ms-transition: none;
+  -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
+  animation-duration: 2.5s;
+  animation-delay: 2s;
+  -webkit-animation-fill-mode:both;
 }
 
 @keyframes openmenu {
@@ -158,7 +171,7 @@
       margin-top: -6vh;
       animation-timing-function:ease-in;
   }
-  43% {
+  73% {
       margin-top: -0vh;
       animation-timing-function:ease-out;
   }
@@ -183,10 +196,10 @@
 .designcustom .navbar-collapse.in > ul {
   margin-top:0vh \0/IE8+9;
   animation-name: openmenu;
-  animation-name: openmenu_none \0/IE8+9;
+  animation-name: menu_none \0/IE8+9;
   -ms-transition: none;
   -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
-  animation-duration: 1.5s;
+  animation-duration: 2.5s;
   animation-delay: 2s;
   -webkit-animation-fill-mode:both;
 }
