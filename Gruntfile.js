@@ -5,7 +5,7 @@
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       basic: {
-        src: ['public/js/common/form_check.js','public/js/common/jquery_form.js','public/js/common/board.js','public/js/flexslider.js','public/js/custom.js'],
+        src: ['public/js/common/form_check.js','public/js/common/jquery_form.js','public/js/common/board.js','public/js/common/flexslider.js','public/js/common/custom.js'],
         dest: 'public/js/result.js'
       }
     },

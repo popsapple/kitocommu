@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log("!!!!!!!!!!!!!!!!");
   if($('.main_visual.flexslider')){
     $('.main_visual.flexslider').flexslider({
       animation: "slide",
@@ -9,7 +8,6 @@ $(document).ready(function() {
 
   if($(".designcustom .navbar-collapse.in")){
     $(".designcustom .navbar-collapse.in").on('click',function(){
-      console.log("????????");
       $(this).removeClass('in');
     });
   }
