@@ -22,6 +22,7 @@
 /******** gnb **********/
 
 .designcustom .navbar {
+  position:relative;
   background:none;
   display:table;
   border:0px;
@@ -46,4 +47,45 @@
   vertical-align:inherit;
   line-height:inherit;
   text-align:right;
+}
+.designcustom .navbar-collapse {
+  position:absolute;
+  display:block;
+  width:100vw;
+  height:100vh;
+  background:#000000;
+  opacity:0;
+  z-index:1;
+}
+.designcustom .navbar-collapse  > ul {
+  display:block;
+  width:100vw;
+  height:60vh;
+  background:#ffce00;
+  z-index:2;
+}
+.designcustom .navbar-collapse  > ul > li {
+  display:block;
+  width:100vw;
+  height:auto;
+  max-height:10vh;
+  overflow-y: hidden;
+  text-align:center;
+}
+.designcustom .navbar-collapse  > ul > li > a {
+  display:block;
+  width:100vw;
+  height:10vh;
+  line-height:10vh;
+  font-size:2rem;
+}
+.designcustom .navbar-collapse  > ul > li > a+ul {
+  display:block;
+  width:100vw;
+  height:auto;
+  line-height:10vh;
+}
+.designcustom .navbar-collapse  > ul > li > a+ul li {
+  display:block;
+  font-size:1rem;
 }
