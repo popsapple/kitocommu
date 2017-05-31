@@ -9,7 +9,8 @@
 <% include ../partials/nav.ejs %>
 <div class="container no_padding no_margin" role="application">
   <section class="main_visual flexslider" itemscope itemtype="http://schema.org/mainContentOfPage">
-    <ul id="MainVisualSlider" class="slides" aria-live="polite" aria-label="메인 슬라이더">
+    <ul aria-labelledby="MainVisualSlider" class="slides" aria-live="polite">
+      <span id="MainVisualSlider" class="blind">내용이 순차적으로 보여지는 공간입니다.</span>
       <li id="SliderItem01" aria-hidden="false">
         <h1>
           <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
@@ -29,8 +30,8 @@
         </h1>
       </li>
     </ul>
-    <fieldset id="MainSliderButtons" class="carousel_buttons" aria-controls="MainVisualSlider">
-      <span class="blind" aria-label="MainSliderButtons">메인 슬라이더 순서 조절하기</span>
+    <fieldset aria-labelledby="MainSliderButtons" class="carousel_buttons" aria-controls="MainVisualSlider">
+      <span class="blind" id="MainSliderButtons">보여지는 내용의 순서를 조절합니다.</span>
       <button class="button01 blind" aria-selected="true" aria-controls="SliderItem01">첫번째</button>
       <button class="button02 blind" aria-selected="false" aria-controls="SliderItem02">두번째</button>
       <button class="button03 blind" aria-selected="false" aria-controls="SliderItem03">세번째</button>

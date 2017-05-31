@@ -1,4 +1,5 @@
 .designcustom .blind {
+  position:absolute;
   display:inline-block;
   width:1px;
   height:auto;
@@ -139,7 +140,7 @@
     animation-timing-function:ease-out;
   }
   100% {
-    margin-top: -60rem;
+    margin-top: -50rem;
     animation-timing-function:ease-out;
   }
 }
@@ -148,10 +149,11 @@
   display:block;
   width:100vw;
   height:auto;
-  min-height:30rem;
+  padding: 5rem 0rem;
+  min-height: 10rem;
   background:#ffce00;
   z-index:2;
-  margin-top:-60rem \0/IE8+9;
+  margin-top:-50rem \0/IE8+9;
   animation-name: closemenu;
   animation-name: menu_none \0/IE8+9;
   -ms-transition: none;
@@ -163,7 +165,7 @@
 
 @keyframes openmenu {
   0% {
-      margin-top: -60rem;
+      margin-top: -50rem;
       animation-timing-function:ease-in;
   }
   37% {
@@ -226,6 +228,8 @@
   font-weight: 900;
   color:#000000;
   text-decoration: none;
+  background: none;
+  box-shadow: none;
 }
 .designcustom .navbar-collapse.in > ul > li > a+ul {
   display:block;
@@ -235,13 +239,23 @@
   display:block;
   height:1rem;
   line-height:1rem;
-  margin-bottom:1.5rem;
+  margin-bottom:2rem;
 }
-.designcustom .navbar-collapse.in > ul > li > a+ul li a {
-  font-size:1rem;
+
+.designcustom .navbar-collapse.in > ul > li.open > a+ul li a {
+  height:auto;
+  max-height:0rem;
+  overflow:hidden;
+  font-size:1.3rem;
   font-weight:500;
   color:#000000;
   text-decoration: none;
+  transition:max-height 1s 0s ease-out;
+}
+
+.designcustom .navbar-collapse.in > ul > li.open > a+ul li a {
+  max-height:10rem;
+  transition:max-height 1s 0s ease-in;
 }
 
 .designcustom .navbar-collapse > ul+button {
@@ -269,8 +283,8 @@
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
-  -webkit-transition: opacity 0.2s 0s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
-  transition: opacity 0.2s 0s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
+  -webkit-transition: opacity 0.2s 5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
+  transition: opacity 0.2s 5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,

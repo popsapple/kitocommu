@@ -57,14 +57,14 @@
             <%if(locals.nickname){%>
               <li role="tab" itemscope itemtype="http://schema.org/Person">
                 <strong itemprop="name"><%= locals.nickname %>님</strong>
-                <a id="ModifyMemberInfo" href="/mypage/list" itemprop="url">INFO</a>
-                <span class="blind" aria-label="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
+                <a aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">INFO</a>
+                <span class="blind" id="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
                 <a href="/logout" role="button">LOGOUT</a>
               </li>
             <%}else {%>
               <li role="tab">
-                <a id="JoinMember" class="btn btn-default" href="/join_member_step2">JOIN</a>
-                <span class="blind" aria-label="JoinMember">회원가입을 진행하실 수 있습니다.</span>
+                <a aria-labelledby="JoinMember" class="btn btn-default" href="/join_member_step2">JOIN</a>
+                <span class="blind" id="JoinMember">회원가입을 진행하실 수 있습니다.</span>
               </li>
               <li role="tab">
                 <a class="btn btn-default" href="/login_form">LOGIN</a>
@@ -81,9 +81,9 @@
           </form>
         </li-->
       </ul>
-      <button class="close_btn">
-        닫기버튼 입니다.
+      <button aria-labelledby="CloseBtn" class="close_btn">
       </button>
+      <span id="CloseBtn" class="close_btn blind">닫기버튼 입니다.</span>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
