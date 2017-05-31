@@ -3,10 +3,11 @@ $(document).ready(function() {
     $('.main_visual').flexslider({
       animation: "slide",
       start: function(slider){
-        var slider = $('.main_visual').data('flexslider');   
+        var slider = $('.main_visual').data('flexslider');
             slider.resize();
       },
       manualControls: ".carousel_buttons button",
+      directionNav: false,
       direction:'horizontal'
     });
   }
