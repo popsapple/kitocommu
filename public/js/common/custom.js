@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  console.log("AAAAAAA");
+  alert("AAAAAAA");
   if($('.main_visual.flexslider')){
     $('.main_visual.flexslider').flexslider({
       animation: "slide",
