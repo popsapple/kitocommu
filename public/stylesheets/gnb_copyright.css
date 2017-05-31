@@ -43,8 +43,10 @@ ul, li, ol {
   display:block;
   border:0px;
   width:100%;
+  max-width: 1170px;
   height:12rem;
   line-height:12rem;
+  margin: auto;
   box-shadow: none;
 }
 

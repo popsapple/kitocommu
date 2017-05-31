@@ -37,19 +37,19 @@
   height:100%;
 }
 
-.main_visual.flexslider .slides > li h1 > * {
+.main_visual.flexslider .slides > li h1 div * {
   display:block;
   color:#ffffff;
 }
 
-.main_visual.flexslider .slides > li h1 > strong {
+.main_visual.flexslider .slides > li h1 div strong {
   font-size:3rem;
   line-height:3.5rem;
   font-weight:800;
   margin-bottom:2rem;
 }
 
-.main_visual.flexslider .slides > li h1 > span {
+.main_visual.flexslider .slides > li h1 div span {
   font-size:2rem;
   font-weight:400;
 }
