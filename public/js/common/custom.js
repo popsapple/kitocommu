@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   if($(".designcustom .navbar-collapse")){
     $(".designcustom .navbar-collapse").on('click',function(event){
-      if($(event.target).hasClass("navbar-collapse");){
+      if($(event.target).hasClass("navbar-collapse")){
         $(this).removeClass('in');
         return false;
       }
