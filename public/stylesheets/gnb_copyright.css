@@ -192,6 +192,15 @@
 @keyframes closebutton {
   0% {
     transform: rotate(0deg);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    animation-name: closebutton;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    transform: rotate(45deg); /* ie9에서 지원 안되는 animation-fill-mode 대신 사용 */
   }
   100% {
     transform: rotate(45deg);
@@ -210,13 +219,8 @@
   width:4rem;
   height:0.5rem;
   background:#ffffff;
-  -webkit-transform-origin: 100% 0;
-  -moz-transform-origin: 100% 0;
-  -ms-transform-origin: 100% 0;
-  -o-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-  animation-name: closebutton;
-  animation-duration: 2s;
-  animation-delay: 2s;
-  transform: rotate(45deg); /* ie9에서 지원 안되는 animation-fill-mode 대신 사용 */
+  transform: rotate(45deg);
+  -webkit-transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
+
 }
