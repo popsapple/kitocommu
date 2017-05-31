@@ -210,7 +210,7 @@
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
-.designcustom .navbar-collapse.in > ul * {
+.designcustom .navbar-collapse > ul * {
   margin:0rem;
   padding:0rem;
 }
