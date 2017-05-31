@@ -13,6 +13,10 @@
   font-size:15px;
 }
 
+.designcustom img {
+  vertical-align:top;
+}
+
 .designcustom .no_padding,
 .designcustom .no_margin {
   padding:0px;
@@ -30,7 +34,7 @@
   height:12rem;
   line-height:12rem;
 }
-.designcustom .container {
+.designcustom .navbar-header {
   display:table-row;
   width:50%;
   vertical-align:inherit;
@@ -47,6 +51,8 @@
   line-height:inherit;
   text-align:left;
 }
+.designcustom .navbar-header > button:hover,
+.designcustom .navbar-header > button:focus,
 .designcustom .navbar-header > button {
   display:table-cell;
   vertical-align:inherit;
@@ -57,7 +63,7 @@
 }
 .designcustom .navbar-header button img {
   display:inline-block;
-  width: 5.5rem;
+  width: 7.5rem;
   height: auto;
 }
 
