@@ -145,13 +145,35 @@
   transition:margin-top 0.5s 0.5s ease-out;
 }
 
+@keyframes openmenu {
+  0% {
+    margin-top:-75vh;
+  }
+  65% {
+    margin-top:-40vh;
+  }
+  70% {
+    margin-top:-67vh;
+  }
+  75% {
+    margin-top:-20vh;
+  }
+  90% {
+    margin-top:-10vh;
+  }
+  100% {
+    margin-top:-0vh;
+  }
+}
+
 .designcustom .navbar-collapse.in > ul {
-  margin-top:0vh;
-  -webkit-transition:margin-top 0.2s 0.5s ease-in;
+  /*-webkit-transition:margin-top 0.2s 0.5s ease-in;
   -moz-transition:margin-top 0.2s 0.5s ease-in;
   -ms-transition:margin-top 0.2s 0.5s ease-in;
   -o-transition:margin-top 0.2s 0.5s ease-in;
-  transition:margin-top 0.2s 0.5s ease-in;
+  transition:margin-top 0.2s 0.5s ease-in;*/
+  margin-top:0vh;
+  animation-name: openmenu;
 }
 .designcustom .navbar-collapse > ul > li {
   display:block;
@@ -187,24 +209,6 @@
   margin-top:5rem;
   background: none;
   border: 0px;
-}
-
-@keyframes closebutton {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform-origin: 100% 0;
-    -moz-transform-origin: 100% 0;
-    -ms-transform-origin: 100% 0;
-    -o-transform-origin: 100% 0;
-    transform-origin: 100% 0;
-    animation-name: closebutton;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    transform: rotate(45deg); /* ie9에서 지원 안되는 animation-fill-mode 대신 사용 */
-  }
-  100% {
-    transform: rotate(45deg);
-  }
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,
