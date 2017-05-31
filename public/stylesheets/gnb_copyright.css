@@ -106,28 +106,31 @@
 
 .designcustom .navbar-collapse {
   position:fixed;
-  display:none;
+  visibility: hidden;
   width:100vw;
   height:100vh;
   top:0rem;
   background:#000000;
   opacity:0;
   z-index:1;
-  -webkit-transition:opacity 2s,display 0s 1s;
-  -moz-transition:opacity 2s,display 0s 1s;
-  -ms-transition:opacity 2s,display 0s 1s;
-  -o-transition:opacity 2s,display 0s 1s;
-  transition:opacity 2s,display 0s 1s;
+  -webkit-transition:opacity 2s 1s;
+  -moz-transition:opacity 2s 1s;
+  -ms-transition:opacity 2s 1s;
+  -o-transition:opacity 2s 1s;
+  transition:opacity 2s 1s;
+}
+
+.designcustom .navbar-collapsing {
+  visibility: visible;
 }
 
 .designcustom .navbar-collapse.in {
   opacity:1;
-  display:block;
-  -webkit-transition:opacity 1s,display 0s 0s;
-  -moz-transition:opacity 1s,display 0s 0s;
-  -ms-transition:opacity 1s,display 0s 0s;
-  -o-transition:opacity 1s,display 0s 0s;
-  transition:opacity 1s,display 0s 0s;
+  -webkit-transition:opacity 1s 0s;
+  -moz-transition:opacity 1s 0s;
+  -ms-transition:opacity 1s 0s;
+  -o-transition:opacity 1s 0s;
+  transition:opacity 1s 0s;
 }
 
 .designcustom .navbar-collapse > ul {
