@@ -55,18 +55,20 @@
         <li class="member_side" role="tab">
           <ul role="menu">
             <%if(locals.nickname){%>
-              <li role="tab" itemscope itemtype="http://schema.org/Person">
+              <li itemscope itemtype="http://schema.org/Person">
                 <strong itemprop="name"><%= locals.nickname %>님</strong>
                 <a aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">INFO</a>
                 <span class="blind" id="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
+              </li>
+              <li>
                 <a href="/logout" role="button">LOGOUT</a>
               </li>
             <%}else {%>
-              <li role="tab">
+              <li>
                 <a aria-labelledby="JoinMember" class="btn btn-default" href="/join_member_step2">JOIN</a>
                 <span class="blind" id="JoinMember">회원가입을 진행하실 수 있습니다.</span>
               </li>
-              <li role="tab">
+              <li>
                 <a class="btn btn-default" href="/login_form">LOGIN</a>
               </li>
             <%}%>

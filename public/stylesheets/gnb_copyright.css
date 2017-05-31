@@ -215,7 +215,7 @@
 .designcustom .navbar-collapse.in > ul > li {
   display:block;
   height:auto;
-  margin-bottom:3rem;
+  margin-bottom:2.2rem;
   overflow-y: hidden;
   text-align:center;
 }
@@ -239,13 +239,13 @@
 }
 .designcustom .navbar-collapse.in > ul > li > a+ul li {
   display:block;
-  height:1rem;
-  line-height:1rem;
+  height:1.3rem;
+  text-align:center;
+  line-height:1.3rem;
   margin-bottom:2rem;
 }
 
 .designcustom .navbar-collapse.in > ul > li.open > a+ul li a {
-  height:auto;
   font-size:1.3rem;
   font-weight:500;
   color:#000000;
@@ -259,12 +259,38 @@
   overflow:hidden;
   transition:max-height 1s 0s ease-out;
 }
-
 .designcustom .navbar-collapse.in > ul > li.open > ul {
   display:block;
-  visibility:hidden;
+  visibility:visible;
   max-height:10rem;
   transition:max-height 1s 0s ease-in;
+}
+
+.designcustom .navbar-collapse.in > ul > li.member_side {
+  display:table;
+  width:60%;
+  height:auto;
+  margin:0rem auto;
+}
+
+.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu {
+  display:table-row;
+  width:100%;
+  overflow:visible;
+  max-height:20rem;
+}
+
+.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu > li {
+  display:table-cell;
+  width:50%;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu > li * {
+  font-size:1rem;
+  font-weight:900;
+  font-color:#000000;
 }
 
 .designcustom .navbar-collapse > ul+button {
