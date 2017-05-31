@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 .designcustom .blind {
   position:absolute;
   display:inline-block;
@@ -289,9 +291,9 @@
 }
 
 .designcustom .navbar-collapse.in > ul > li.member_side > ul.menu > li * {
-  font-size:1rem;
+  font-size:1.3rem;
   font-weight:900;
-  font-color:#000000;
+  color:#000000;
 }
 
 .designcustom .navbar-collapse > ul+button {
