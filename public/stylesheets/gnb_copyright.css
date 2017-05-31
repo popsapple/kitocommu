@@ -15,6 +15,7 @@
 
 .designcustom * {
   font-size:15px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .designcustom img {
@@ -207,6 +208,7 @@
   display:block;
   width:100vw;
   height:auto;
+  margin-bottom:3rem;
   max-height:10vh;
   overflow-y: hidden;
   text-align:center;
@@ -214,20 +216,33 @@
 .designcustom .navbar-collapse > ul > li > a {
   display:block;
   width:100vw;
-  height:10vh;
-  line-height:10vh;
-  font-size:2rem;
+  height:1.5rem;
+  line-height:1.5rem;
+  margin-bottom:2rem;
+  font-size:1.5rem;
+  font-weight:800;
+  color:#000000;
+  text-decoration: none;
 }
 .designcustom .navbar-collapse > ul > li > a+ul {
   display:block;
   width:100vw;
   height:auto;
-  line-height:10vh;
 }
 .designcustom .navbar-collapse > ul > li > a+ul li {
   display:block;
-  font-size:1rem;
+  width:100vw;
+  height:1rem;
+  line-height:1rem;
+  margin-bottom:1.5rem;
 }
+.designcustom .navbar-collapse > ul > li > a+ul li a {
+  font-size:1rem;
+  font-weight:500;
+  color:#000000;
+  text-decoration: none;
+}
+
 .designcustom .navbar-collapse > ul+button {
   position:relative;
   display:block;
@@ -249,7 +264,7 @@
   content:"";
   display:block;
   width:4rem;
-  height:0.5rem;
+  height:0.25rem;
   background:#ffffff;
   transform: rotate(0deg);
 }
@@ -257,8 +272,8 @@
 .designcustom .navbar-collapse.in > ul+button:before,
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(45deg);
-  -webkit-transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3.5s;
-  transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3.5s;
+  -webkit-transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s;
+  transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s;
 }
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(-45deg);
