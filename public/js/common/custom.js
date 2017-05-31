@@ -5,6 +5,7 @@ $(document).ready(function() {
       start: function(slider){
         var slider = $('.main_visual').data('flexslider');
             slider.resize();
+            slider.addClass('active');
       },
       manualControls: ".carousel_buttons button",
       directionNav: false,

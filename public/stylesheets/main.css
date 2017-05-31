@@ -3,6 +3,7 @@
   margin:0rem;
   padding:0rem;
   position:relative;
+  white-space:nowrap;
 }
 .main_visual.flexslider .slides > li {
   position:relative;
