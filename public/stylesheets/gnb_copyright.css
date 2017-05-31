@@ -36,18 +36,18 @@
   vertical-align:inherit;
   line-height:inherit;
 }
-.designcustom .container > h1 img{
+.designcustom .navbar-header > h1 img{
   display:inline-block;
   width: 5.5rem;
   height: auto;
 }
-.designcustom .container > h1  {
+.designcustom .navbar-header > h1  {
   display:table-cell;
   vertical-align:inherit;
   line-height:inherit;
   text-align:left;
 }
-.designcustom .container > button {
+.designcustom .navbar-header > button {
   display:table-cell;
   vertical-align:inherit;
   line-height:inherit;
@@ -55,7 +55,7 @@
   background:none;
   border:0px;
 }
-.designcustom .container > button img {
+.designcustom .navbar-header button img {
   display:inline-block;
   width: 5.5rem;
   height: auto;
