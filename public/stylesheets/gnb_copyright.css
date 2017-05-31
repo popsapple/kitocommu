@@ -184,16 +184,28 @@
   width:5rem;
   height:6rem;
   margin :auto;
-  margin-top:2rem;
+  margin-top:5rem;
+  background: none;
+  border: 0px;
 }
 
 @keyframes closebutton {
-  transform: rotate(0reg);
-  -webkit-transform-origin: 100% 0;
-  -moz-transform-origin: 100% 0;
-  -ms-transform-origin: 100% 0;
-  -o-transform-origin: 100% 0;
-  transform-origin: 100% 0;
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+  }
+  100% {
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+  }
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,
