@@ -92,15 +92,11 @@
   text-align:right;
   background:none;
 }
-.designcustom .navbar-header > * > * {
-  height:100%;
-  vertical-align:inherit;
-}
 .designcustom .navbar-header button img {
   display:inline-block;
   width: 5.5rem;
   height: auto;
-  vertical-align:inherit;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {
