@@ -10,10 +10,11 @@
 .main_visual.flexslider .slides > li  > h1 {
   position:absolute;
   display:block;
-  width:100%;
-  height:100%;
+  width:91%;
+  height:84%;
+  margin:0rem;
   top:0rem;
-  left:0rem;
+  left:4.5%;
 }
 
 .main_visual.flexslider .slides > li img {
@@ -43,13 +44,43 @@
 }
 
 .main_visual.flexslider .slides > li h1 div strong {
-  font-size:3rem;
-  line-height:3.5rem;
-  font-weight:800;
-  margin-bottom:2rem;
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  word-spacing: normal;
+  word-break: break-word;
+  word-wrap: break-word;
+  width: 100%;
 }
 
 .main_visual.flexslider .slides > li h1 div span {
-  font-size:2rem;
-  font-weight:400;
+  font-size:1.4rem;
+  line-height: 2.5rem;
+  font-weight:300;
+}
+
+.main_visual_control {
+  position:absolute;
+  display:block;
+  width:100%;
+  bottom:1rem;
+  font-size:0rem;
+  vertical-align:middle;
+}
+
+.main_visual_control > * {
+  display:inline-block;
+  font-size:1rem;
+}
+
+.main_visual_control > button {
+  width:3rem;
+  height:0.3rem;
+  background:#ffffff;
+  transform:skewX(-20deg);
+}
+
+.main_visual_control > button.flex-active {
+  background:#ffce00;
 }
