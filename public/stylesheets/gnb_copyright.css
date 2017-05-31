@@ -112,11 +112,11 @@
   opacity:0;
   z-index:1;
   font-size:0rem;
-  -webkit-transition:opacity 1s 0s,height 0s 2s;
-  -moz-transition:opacity 1s 0s,height 0s 2s;
-  -ms-transition:opacity 1s 0s,height 0s 2s;
-  -o-transition:opacity 1s 0s,height 0s 2s;
-  transition:opacity 1s 0s,height 0s 2s;
+  -webkit-transition:opacity 1s 1s,height 0s 2s;
+  -moz-transition:opacity 1s 1s,height 0s 2s;
+  -ms-transition:opacity 1s 1s,height 0s 2s;
+  -o-transition:opacity 1s 1s,height 0s 2s;
+  transition:opacity 1s 1s,height 0s 2s;
 }
 
 .designcustom .navbar-collapse.in {
@@ -153,7 +153,7 @@
   -o-transition:margin-top 0.2s 0.5s ease-in;
   transition:margin-top 0.2s 0.5s ease-in;
 }
-.designcustom .navbar-collapse  > ul > li {
+.designcustom .navbar-collapse > ul > li {
   display:block;
   width:100vw;
   height:auto;
@@ -161,20 +161,50 @@
   overflow-y: hidden;
   text-align:center;
 }
-.designcustom .navbar-collapse  > ul > li > a {
+.designcustom .navbar-collapse > ul > li > a {
   display:block;
   width:100vw;
   height:10vh;
   line-height:10vh;
   font-size:2rem;
 }
-.designcustom .navbar-collapse  > ul > li > a+ul {
+.designcustom .navbar-collapse > ul > li > a+ul {
   display:block;
   width:100vw;
   height:auto;
   line-height:10vh;
 }
-.designcustom .navbar-collapse  > ul > li > a+ul li {
+.designcustom .navbar-collapse > ul > li > a+ul li {
   display:block;
   font-size:1rem;
+}
+.designcustom .navbar-collapse > ul+button {
+  display:relative;
+  display:block;
+  width:5rem;
+  height:6rem;
+  margin :auto;
+  margin-top:2rem;
+}
+
+@keyframes closebutton {
+  transform: rotate(0reg);
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  -o-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+
+.designcustom .navbar-collapse.in > ul+button:before,
+.designcustom .navbar-collapse.in > ul+button:after {
+  position:absolute;
+  content:"";
+  display:block;
+  width:4rem;
+  height:0.5rem;
+  background:#ffffff;
+  animation-name: closebutton;
+  animation-duration: 2s;
+  animation-delay: 4s;
 }
