@@ -318,6 +318,8 @@ ul, li, ol {
   background: none;
   border: none;
   text-shadow: none;
+  box-shadow: none;
+  text-align: center;
 }
 
 .navbar-collapse > ul > li.member_side > ul.menu .join:before,
