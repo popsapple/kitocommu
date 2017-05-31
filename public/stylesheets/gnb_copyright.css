@@ -130,21 +130,21 @@
   height:60vh;
   background:#ffce00;
   z-index:2;
-  top:-60vh;
-  -webkit-transition:top 1s 0s ease-out;
-  -moz-transition:top 1s 0s ease-out;
-  -ms-transition:top 1s 0s ease-out;
-  -o-transition:top 1s 0s ease-out;
-  transition:top 1s 0s ease-out;
+  margin-top:-60vh;
+  -webkit-transition:margin-top 1s 0s ease-out;
+  -moz-transition:margin-top 1s 0s ease-out;
+  -ms-transition:margin-top 1s 0s ease-out;
+  -o-transition:margin-top 1s 0s ease-out;
+  transition:margin-top 1s 0s ease-out;
 }
 
 .designcustom .navbar-collapse.in > ul {
-  top:0vh;
-  -webkit-transition:top 1s 1s ease-in;
-  -moz-transition:top 1s 1s ease-in;
-  -ms-transition:top 1s 1s ease-in;
-  -o-transition:top 1s 1s ease-in;
-  transition:top 1s 1s ease-in; 
+  margin-top:0vh;
+  -webkit-transition:margin-top 1s 1s ease-in;
+  -moz-transition:margin-top 1s 1s ease-in;
+  -ms-transition:margin-top 1s 1s ease-in;
+  -o-transition:margin-top 1s 1s ease-in;
+  transition:margin-top 1s 1s ease-in;
 }
 .designcustom .navbar-collapse  > ul > li {
   display:block;
