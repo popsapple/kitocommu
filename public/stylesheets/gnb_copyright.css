@@ -179,10 +179,10 @@
   font-size:1rem;
 }
 .designcustom .navbar-collapse > ul+button {
-  display:relative;
+  position:relative;
   display:block;
   width:5rem;
-  height:6rem;
+  height:5rem;
   margin :auto;
   margin-top:5rem;
   background: none;
@@ -192,31 +192,30 @@
 @keyframes closebutton {
   0% {
     transform: rotate(0deg);
-    -webkit-transform-origin: 100% 0;
-    -moz-transform-origin: 100% 0;
-    -ms-transform-origin: 100% 0;
-    -o-transform-origin: 100% 0;
-    transform-origin: 100% 0;
   }
   100% {
     transform: rotate(45deg);
-    -webkit-transform-origin: 100% 0;
-    -moz-transform-origin: 100% 0;
-    -ms-transform-origin: 100% 0;
-    -o-transform-origin: 100% 0;
-    transform-origin: 100% 0;
   }
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,
 .designcustom .navbar-collapse.in > ul+button:after {
   position:absolute;
+  left:50%;
+  top:50%:
+  margin-left:-2.5rem;
+  mrgin-top:-2.5rem;
   content:"";
   display:block;
   width:4rem;
   height:0.5rem;
   background:#ffffff;
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  -o-transform-origin: 100% 0;
+  transform-origin: 100% 0;
   animation-name: closebutton;
   animation-duration: 2s;
-  animation-delay: 4s;
+  animation-delay: 2s;
 }
