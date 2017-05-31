@@ -51,6 +51,7 @@
   display:inline-block;
   width: 7.5rem;
   height: auto;
+  vertical-align:inherit;
 }
 .designcustom .navbar-header > h1  {
   display:table-cell;
@@ -81,6 +82,7 @@
   display:inline-block;
   width: 5.5rem;
   height: auto;
+  vertical-align:inherit;
 }
 
 @media (min-width: 768px) {
