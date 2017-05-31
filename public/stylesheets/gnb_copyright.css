@@ -269,8 +269,8 @@
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
-  -webkit-transition: opacity 1s 0.5s;
-  transition: opacity 1s 0.5s;
+  -webkit-transition: opacity 0.2s 0s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
+  transition: opacity 0.2s 0s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,
