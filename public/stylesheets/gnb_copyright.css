@@ -147,25 +147,36 @@
 
 @keyframes openmenu {
   0% {
-    margin-top:-75vh;
+      margin-top: -75vh;
+      animation-timing-function:ease-in;
   }
-  65% {
-    margin-top:-0vh;
+  37% {
+      margin-top: -0vh;
+      animation-timing-function:ease-out;
   }
-  70% {
-    margin-top:-14vh;
+  55% {
+      margin-top: -6vh;
+      animation-timing-function:ease-in;
   }
-  90% {
-    margin-top:-20vh;
+  43% {
+      margin-top: -0vh;
+      animation-timing-function:ease-out;
   }
-  95% {
-    margin-top:-5vh;
+  82% {
+      margin-top: -9vh;
+      animation-timing-function:ease-in;
   }
-  95% {
-    margin-top:-3vh;
+  91% {
+      margin-top: -0vh;
+      animation-timing-function:ease-out;
+  }
+  96% {
+      margin-top: -4vh;
+      animation-timing-function:ease-in;
   }
   100% {
-    margin-top:0vh;
+      margin-top: -0vh;
+      animation-timing-function:ease-out;
   }
 }
 
