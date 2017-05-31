@@ -276,6 +276,7 @@
 .designcustom .navbar-collapse.in > ul > li.member_side > ul.menu {
   display:table-row;
   width:100%;
+  visibility:visible;
   overflow:visible;
   max-height:20rem;
 }
