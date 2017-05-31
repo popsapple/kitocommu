@@ -7,8 +7,8 @@ $(document).ready(function() {
     });
   }
 
-  if($(".designcustom .navbar-collapse.in")){
-    $(".designcustom .navbar-collapse.in").on('click',function(){
+  if($(".designcustom .navbar-collapse")){
+    $(".designcustom .navbar-collapse").on('click',function(){
       $(this).removeClass('in');
     });
   }
