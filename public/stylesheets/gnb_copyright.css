@@ -174,6 +174,8 @@
   transition:margin-top 0.2s 0.5s ease-in;*/
   margin-top:0vh;
   animation-name: openmenu;
+  animation-duration: 1.5s;
+  animation-delay: 3s;
 }
 .designcustom .navbar-collapse > ul > li {
   display:block;
