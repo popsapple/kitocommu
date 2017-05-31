@@ -108,11 +108,11 @@
   background:#000000;
   opacity:0;
   z-index:1;
-  -webkit-transition:opacity 1s 0s;
-  -moz-transition:opacity 1s 0s;
-  -ms-transition:opacity 1s 0s;
-  -o-transition:opacity 1s 0s;
-  transition:opacity 1s 0s;
+  -webkit-transition:opacity 1s 1s;
+  -moz-transition:opacity 1s 1s;
+  -ms-transition:opacity 1s 1s;
+  -o-transition:opacity 1s 1s;
+  transition:opacity 1s 1s;
 }
 
 .designcustom .navbar-collapse.in {
@@ -131,11 +131,11 @@
   background:#ffce00;
   z-index:2;
   margin-top:-75vh;
-  -webkit-transition:margin-top 0.5s 0s ease-out;
-  -moz-transition:margin-top 0.5s 0s ease-out;
-  -ms-transition:margin-top 0.5s 0s ease-out;
-  -o-transition:margin-top 0.5s 0s ease-out;
-  transition:margin-top 0.5s 0s ease-out;
+  -webkit-transition:margin-top 0.5s 0.5s ease-out;
+  -moz-transition:margin-top 0.5s 0.5s ease-out;
+  -ms-transition:margin-top 0.5s 0.5s ease-out;
+  -o-transition:margin-top 0.5s 0.5s ease-out;
+  transition:margin-top 0.5s 0.5s ease-out;
 }
 
 .designcustom .navbar-collapse.in > ul {
