@@ -1,5 +1,5 @@
 .main_visual.flexslider,
-.main_visual.flexslider > * {
+.main_visual.flexslider .slides {
   margin:0rem;
   padding:0rem;
 }

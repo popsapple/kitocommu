@@ -65,6 +65,8 @@ ul, li, ol {
   line-height:inherit;
 }
 .designcustom .navbar-header > h1 img{
+  position:relative;
+  left:-0.3rem;
   display:inline-block;
   width: 8rem;
   height: auto;
