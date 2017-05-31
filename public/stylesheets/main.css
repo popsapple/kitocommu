@@ -79,7 +79,7 @@
 }
 
 .main_visual_control > button {
-  width: 5rem;
+  width: 4rem;
   height: 0.6rem;
   background: #fff;
   transform: skewY(15deg);
