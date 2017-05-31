@@ -126,6 +126,7 @@
 
 .designcustom .navbar-collapse.in {
   opacity:1;
+  visibility: visible;
   -webkit-transition:opacity 1s 0s;
   -moz-transition:opacity 1s 0s;
   -ms-transition:opacity 1s 0s;
