@@ -4,7 +4,7 @@
 }
 .main_visual.flexslider .slides > li  > h1 {
   position:absolute;
-  display:table;
+  display:block;
   width:100%;
   height:100%;
 }
@@ -17,6 +17,13 @@
 
 .main_visual.flexslider .slides > li h1 > div {
   position:relative;
+  display:table;
+  vertical-align:middle;
+  width:100%;
+  height:100%;
+}
+
+.main_visual.flexslider .slides > li h1 > div > div {
   display:table-cell;
   vertical-align:middle;
   width:100%;
