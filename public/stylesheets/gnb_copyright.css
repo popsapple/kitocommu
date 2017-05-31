@@ -152,7 +152,7 @@
   animation-name: closemenu;
   animation-name: menu_none \0/IE8+9;
   -ms-transition: none;
-  -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
+  -ms-transition: margin-top 0.2s 0.5s ease-out \0/IE8+9;
   animation-duration: 0.2s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
@@ -198,7 +198,7 @@
   animation-name: openmenu;
   animation-name: menu_none \0/IE8+9;
   -ms-transition: none;
-  -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
+  -ms-transition: margin-top 1s 0.5s ease-in \0/IE8+9;
   animation-duration: 2.5s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
@@ -239,8 +239,8 @@
   border: 0px;
 }
 
-.designcustom .navbar-collapse.in > ul+button:before,
-.designcustom .navbar-collapse.in > ul+button:after {
+.designcustom .navbar-collapse > ul+button:before,
+.designcustom .navbar-collapse > ul+button:after {
   position:absolute;
   left:50%;
   top:50%;
@@ -251,6 +251,11 @@
   width:4rem;
   height:0.5rem;
   background:#ffffff;
+  transform: rotate(0deg);
+}
+
+.designcustom .navbar-collapse.in > ul+button:before,
+.designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(45deg);
   -webkit-transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
   transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
