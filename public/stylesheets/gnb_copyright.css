@@ -204,9 +204,12 @@
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
+.designcustom .navbar-collapse.in > ul * {
+  margin:0rem;
+  padding:0rem;
+}
 .designcustom .navbar-collapse > ul > li {
   display:block;
-  width:100vw;
   height:auto;
   margin-bottom:3rem;
   max-height:10vh;
@@ -215,23 +218,20 @@
 }
 .designcustom .navbar-collapse > ul > li > a {
   display:block;
-  width:100vw;
   height:1.5rem;
-  line-height:1.5rem;
-  margin-bottom:2rem;
-  font-size:1.5rem;
-  font-weight:800;
+  line-height: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 900;
   color:#000000;
   text-decoration: none;
 }
 .designcustom .navbar-collapse > ul > li > a+ul {
   display:block;
-  width:100vw;
   height:auto;
 }
 .designcustom .navbar-collapse > ul > li > a+ul li {
   display:block;
-  width:100vw;
   height:1rem;
   line-height:1rem;
   margin-bottom:1.5rem;
