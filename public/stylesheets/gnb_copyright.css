@@ -268,6 +268,8 @@
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
+  -webkit-transition: opacity 1s 0.5s;
+  transition: opacity 1s 0.5s;
 }
 
 .designcustom .navbar-collapse.in > ul+button:before,
