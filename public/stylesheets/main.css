@@ -2,6 +2,7 @@
 .main_visual.flexslider .slides {
   margin:0rem;
   padding:0rem;
+  position:relative;
 }
 .main_visual.flexslider .slides > li {
   position:relative;
@@ -67,6 +68,7 @@
   bottom:1rem;
   font-size:0rem;
   vertical-align:middle;
+  text-align: center;
 }
 
 .main_visual_control > * {
@@ -75,10 +77,16 @@
 }
 
 .main_visual_control > button {
-  width:3rem;
-  height:0.3rem;
-  background:#ffffff;
-  transform:skewX(-20deg);
+  width: 5rem;
+  height: 1rem;
+  background: #fff;
+  transform: skewY(10deg);
+  margin-right: 3rem;
+  border: 0rem;
+}
+
+.main_visual_control > button+button+button {
+  margin-right:0rem;
 }
 
 .main_visual_control > button.flex-active {
