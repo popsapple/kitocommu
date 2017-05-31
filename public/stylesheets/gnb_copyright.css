@@ -108,11 +108,11 @@
   background:#000000;
   opacity:0;
   z-index:1;
-  -webkit-transition:opacity 1s 1s;
-  -moz-transition:opacity 1s 1s;
-  -ms-transition:opacity 1s 1s;
-  -o-transition:opacity 1s 1s;
-  transition:opacity 1s 1s;
+  -webkit-transition:opacity 2s 1s;
+  -moz-transition:opacity 2s 1s;
+  -ms-transition:opacity 2s 1s;
+  -o-transition:opacity 2s 1s;
+  transition:opacity 2s 1s;
 }
 
 .designcustom .navbar-collapse.in {
