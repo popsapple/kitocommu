@@ -67,8 +67,6 @@ ul, li, ol {
   line-height:inherit;
 }
 .designcustom .navbar-header > h1 img{
-  position:relative;
-  left:-0.3rem;
   display:inline-block;
   width: 8rem;
   height: auto;
@@ -76,7 +74,6 @@ ul, li, ol {
 }
 .designcustom .navbar-header > h1 > a{
   padding:0rem;
-  padding-left: 1rem;
   height:auto;
 }
 .designcustom .navbar-header > h1  {
@@ -280,13 +277,13 @@ ul, li, ol {
   visibility:hidden;
   max-height:0rem;
   overflow:hidden;
-  transition:max-height 1s 2.5s ease-out;
+  transition:max-height 1s ease-out 2.5s;
 }
 .designcustom .navbar-collapse > ul > li.open > ul {
   display:block;
   visibility:visible;
   max-height:10rem;
-  transition:max-height 1s 0s ease-in;
+  transition:max-height 1s ease-in 0s;
 }
 
 .designcustom .navbar-collapse > ul > li.member_side {
