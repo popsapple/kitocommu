@@ -6,8 +6,9 @@ $(document).ready(function() {
     });
   }
 
-  if($(".navbar > .container > .navbar-collapse.in")){
-    $(".navbar > .container > .navbar-collapse.in").on('click',function(){
+  if($(".designcustom .navbar-collapse.in")){
+    $(".designcustom .navbar-collapse.in").on('click',function(){
+      console.log("????????");
       $(this).removeClass('in');
     });
   }
