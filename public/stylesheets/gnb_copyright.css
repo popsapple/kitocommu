@@ -208,7 +208,7 @@
   margin:0rem;
   padding:0rem;
 }
-.designcustom .navbar-collapse > ul > li {
+.designcustom .navbar-collapse.in > ul > li {
   display:block;
   height:auto;
   margin-bottom:3rem;
@@ -216,7 +216,7 @@
   overflow-y: hidden;
   text-align:center;
 }
-.designcustom .navbar-collapse > ul > li > a {
+.designcustom .navbar-collapse.in > ul > li > a {
   display:block;
   height:1.5rem;
   line-height: 1.5rem;
@@ -226,17 +226,17 @@
   color:#000000;
   text-decoration: none;
 }
-.designcustom .navbar-collapse > ul > li > a+ul {
+.designcustom .navbar-collapse.in > ul > li > a+ul {
   display:block;
   height:auto;
 }
-.designcustom .navbar-collapse > ul > li > a+ul li {
+.designcustom .navbar-collapse.in > ul > li > a+ul li {
   display:block;
   height:1rem;
   line-height:1rem;
   margin-bottom:1.5rem;
 }
-.designcustom .navbar-collapse > ul > li > a+ul li a {
+.designcustom .navbar-collapse.in > ul > li > a+ul li a {
   font-size:1rem;
   font-weight:500;
   color:#000000;
