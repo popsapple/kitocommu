@@ -1,0 +1,36 @@
+.main_visual.flexslider .slides > li {
+  position:relative;
+  display:table;
+  vertical-align:middle;
+}
+
+.main_visual.flexslider .slides > li img {
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.main_visual.flexslider .slides > li h1 {
+  position:absolute;
+  display:table-cell;
+  vertical-align:middle;
+  width:100%;
+  height:100%;
+}
+
+.main_visual.flexslider .slides > li h1 > * {
+  display:block;
+  color:#ffffff;
+}
+
+.main_visual.flexslider .slides > li h1 > strong {
+  font-size:3rem;
+  line-height:3.5rem;
+  font-weight:800;
+  margin-bottom:2rem;
+}
+
+.main_visual.flexslider .slides > li h1 > span {
+  font-size:2rem;
+  font-weight:400;
+}
