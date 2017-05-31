@@ -41,17 +41,22 @@
   width:100%;
   height:12rem;
   line-height:12rem;
+  box-shadow: none;
 }
 
 .designcustom .navbar .container {
   display:block;
   width:100%;
+  margin:0rem;
+  padding:0rem;
 }
 
 .designcustom .navbar-header {
   display:table;
   width:100%;
   height:100%;
+  margin:0rem;
+  padding:0rem;
   vertical-align:middle;
   line-height:inherit;
 }
@@ -64,6 +69,7 @@
 .designcustom .navbar-header > h1 > a{
   padding:0rem;
   padding-left: 1rem;
+  height:auto;
 }
 .designcustom .navbar-header > h1  {
   display:table-cell;
@@ -352,8 +358,8 @@
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
-  -webkit-transition: opacity 0.2s 5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
-  transition: opacity 0.2s 5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 5s;
+  -webkit-transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+  transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
 .designcustom .navbar-collapse > ul+button:before,
