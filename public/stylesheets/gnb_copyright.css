@@ -153,8 +153,8 @@
   animation-name: menu_none \0/IE8+9;
   -ms-transition: none;
   -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
-  animation-duration: 2.5s;
-  animation-delay: 2s;
+  animation-duration: 0.2s;
+  animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
 
@@ -200,7 +200,7 @@
   -ms-transition: none;
   -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
   animation-duration: 2.5s;
-  animation-delay: 2s;
+  animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
 .designcustom .navbar-collapse > ul > li {
