@@ -150,32 +150,34 @@
     margin-top:-75vh;
   }
   65% {
-    margin-top:-40vh;
+    margin-top:-0vh;
   }
   70% {
-    margin-top:-67vh;
-  }
-  75% {
-    margin-top:-20vh;
+    margin-top:-14vh;
   }
   90% {
-    margin-top:-10vh;
+    margin-top:-20vh;
+  }
+  95% {
+    margin-top:-5vh;
+  }
+  95% {
+    margin-top:-3vh;
   }
   100% {
-    margin-top:-0vh;
+    margin-top:0vh;
   }
 }
 
 .designcustom .navbar-collapse.in > ul {
-  /*-webkit-transition:margin-top 0.2s 0.5s ease-in;
-  -moz-transition:margin-top 0.2s 0.5s ease-in;
-  -ms-transition:margin-top 0.2s 0.5s ease-in;
-  -o-transition:margin-top 0.2s 0.5s ease-in;
-  transition:margin-top 0.2s 0.5s ease-in;*/
-  margin-top:0vh;
+  margin-top:0vh \0/IE8+9;
   animation-name: openmenu;
+  animation-name: openmenu_none \0/IE8+9;
+  -ms-transition: none;
+  -ms-transition: margin-top 0.2s 0.5s ease-in \0/IE8+9;
   animation-duration: 1.5s;
-  animation-delay: 3s;
+  animation-delay: 2s;
+  -webkit-animation-fill-mode:both;
 }
 .designcustom .navbar-collapse > ul > li {
   display:block;
@@ -217,9 +219,9 @@
 .designcustom .navbar-collapse.in > ul+button:after {
   position:absolute;
   left:50%;
-  top:50%:
+  top:50%;
   margin-left:-2.5rem;
-  mrgin-top:-2.5rem;
+  margin-top:-2.5rem;
   content:"";
   display:block;
   width:4rem;
@@ -228,5 +230,7 @@
   transform: rotate(45deg);
   -webkit-transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
   transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s;
-
+}
+.designcustom .navbar-collapse.in > ul+button:after {
+  transform: rotate(-45deg);
 }
