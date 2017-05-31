@@ -257,7 +257,7 @@
   visibility:hidden;
   max-height:0rem;
   overflow:hidden;
-  transition:max-height 1s 0s ease-out;
+  transition:max-height 1s 2.5s ease-out;
 }
 .designcustom .navbar-collapse.in > ul > li.open > ul {
   display:block;
