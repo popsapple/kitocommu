@@ -71,6 +71,8 @@
 .designcustom .navbar-header > button:hover,
 .designcustom .navbar-header > button:focus,
 .designcustom .navbar-header > button {
+  position:relative;
+  z-index:2;
   display:table-cell;
   width:50%;
   height:inherit;
