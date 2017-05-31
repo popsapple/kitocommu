@@ -362,8 +362,8 @@
   transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
-.designcustom .navbar-collapse > ul+button:before,
-.designcustom .navbar-collapse > ul+button:after {
+.designcustom .navbar-collapse.in > ul+button:before,
+.designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(45deg);
   opacity:1;
   -webkit-transition: opacity 0.5s 2.5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s;
