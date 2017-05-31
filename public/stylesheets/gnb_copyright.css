@@ -227,7 +227,7 @@
   display:block;
   height:1.5rem;
   line-height: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.3rem;
   font-size: 1.8rem;
   font-weight: 900;
   color:#000000;
@@ -247,9 +247,15 @@
   margin-bottom:2rem;
 }
 
+.designcustom .navbar-collapse.in > ul > li > a+ul li.last,
+.designcustom .navbar-collapse.in > ul > li.last {
+  margin-bottom:0rem;
+}
+
 .designcustom .navbar-collapse.in > ul > li.open > a+ul li a {
-  font-size:1.3rem;
-  font-weight:500;
+  font-size:1.5rem;
+  font-weight:400;
+  padding:0rem;
   color:#000000;
   text-decoration: none;
 }
@@ -294,6 +300,29 @@
   font-size:1.3rem;
   font-weight:900;
   color:#000000;
+  background: none;
+  border: none;
+  text-shadow: none;
+}
+
+.navbar-collapse > ul > li.member_side > ul.menu .join:before,
+.navbar-collapse > ul > li.member_side > ul.menu .login:before,
+.navbar-collapse > ul > li.member_side > ul.menu .mypage:before,
+.navbar-collapse > ul > li.member_side > ul.menu .logout:before {
+  font-family: "FontAwesome", sans-serif;
+  content: "\f234";
+  display:block;
+  margin-bottom:0.5rem;
+}
+
+.navbar-collapse > ul > li.member_side > ul.menu .login:before {
+  content: "\f090";
+}
+.navbar-collapse > ul > li.member_side > ul.menu .logout:before {
+  content: "\f08b";
+}
+.navbar-collapse > ul > li.member_side > ul.menu .mypage:before {
+  content: "\f2bd";
 }
 
 .designcustom .navbar-collapse > ul+button {

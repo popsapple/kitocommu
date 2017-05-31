@@ -44,32 +44,33 @@
             <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">자주하는 질문</a></li>
           </ul>
         </li>
-        <li class="dropdown" role="tab">
+        <li class="dropdown last" role="tab">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단소개</a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">식단짜기 원칙</a></li>
             <li><a href="#">키토제닉 레시피</a></li>
-            <li><a href="#">키토시스 다이어트 소개</a></li>
+            <li class="last"><a href="#">키토시스 다이어트 소개</a></li>
           </ul>
         </li>
         <li class="member_side" role="tab">
           <ul class="menu">
             <%if(locals.nickname){%>
               <li itemscope itemtype="http://schema.org/Person">
-                <strong itemprop="name"><%= locals.nickname %>님</strong>
-                <a aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">INFO</a>
+                <a class="mypage" aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">
+                  <span itemprop="name"><%= locals.nickname %>님</span>
+                </a>
                 <span class="blind" id="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
               </li>
               <li>
-                <a href="/logout" role="button">LOGOUT</a>
+                <a class="btn logout btn-default" href="/logout" role="button">LOGOUT</a>
               </li>
             <%}else {%>
               <li>
-                <a aria-labelledby="JoinMember" class="btn btn-default" href="/join_member_step2">JOIN</a>
+                <a aria-labelledby="JoinMember" class="btn join btn-default" href="/join_member_step2">JOIN</a>
                 <span class="blind" id="JoinMember">회원가입을 진행하실 수 있습니다.</span>
               </li>
               <li>
-                <a class="btn btn-default" href="/login_form">LOGIN</a>
+                <a class="btn login btn-default" href="/login_form">LOGIN</a>
               </li>
             <%}%>
           </ul>
