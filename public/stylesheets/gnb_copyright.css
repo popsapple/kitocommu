@@ -127,10 +127,10 @@
 .designcustom .navbar-collapse > ul {
   display:block;
   width:100vw;
-  height:60vh;
+  height:75vh;
   background:#ffce00;
   z-index:2;
-  margin-top:-60vh;
+  margin-top:-75vh;
   -webkit-transition:margin-top 0.5s 0s ease-out;
   -moz-transition:margin-top 0.5s 0s ease-out;
   -ms-transition:margin-top 0.5s 0s ease-out;
@@ -140,11 +140,11 @@
 
 .designcustom .navbar-collapse.in > ul {
   margin-top:0vh;
-  -webkit-transition:margin-top 0.5s 0.5s ease-in;
-  -moz-transition:margin-top 0.5s 0.5s ease-in;
-  -ms-transition:margin-top 0.5s 0.5s ease-in;
-  -o-transition:margin-top 0.5s 0.5s ease-in;
-  transition:margin-top 0.5s 0.5s ease-in;
+  -webkit-transition:margin-top 0.2s 0.5s ease-in;
+  -moz-transition:margin-top 0.2s 0.5s ease-in;
+  -ms-transition:margin-top 0.2s 0.5s ease-in;
+  -o-transition:margin-top 0.2s 0.5s ease-in;
+  transition:margin-top 0.2s 0.5s ease-in;
 }
 .designcustom .navbar-collapse  > ul > li {
   display:block;

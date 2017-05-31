@@ -5,4 +5,10 @@ $(document).ready(function() {
       customDirectionNav : "#MainSliderButtons button"
     });
   }
+
+  if($(".navbar > .container > .navbar-collapse.in")){
+    $(".navbar > .container > .navbar-collapse.in").on('click',function(){
+      $(this).removeClass('in');
+    });
+  }
 });
