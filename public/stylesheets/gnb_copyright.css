@@ -323,6 +323,9 @@ ul, li, ol {
   font-family: "FontAwesome", sans-serif;
   content: "\f234";
   display:block;
+  height:2rem;
+  width:2rem;
+  line-height:2rem;
   font-size:2rem;
   margin-bottom:0.5rem;
 }
