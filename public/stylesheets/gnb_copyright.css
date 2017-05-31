@@ -330,7 +330,8 @@ ul, li, ol {
   width:2rem;
   line-height:2rem;
   font-size:2rem;
-  margin-bottom:0.5rem;
+  margin: auto;
+  margin-bottom:0.7rem;
 }
 
 .navbar-collapse > ul > li.member_side > ul.menu .login:before {

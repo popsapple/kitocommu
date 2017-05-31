@@ -28,9 +28,10 @@
 .main_visual.flexslider .slides > li h1 > div {
   position:relative;
   display:table;
-  vertical-align:middle;
   width:100%;
   height:100%;
+  vertical-align:middle;
+  white-space:normal;
 }
 
 .main_visual.flexslider .slides > li h1 > div > div {
