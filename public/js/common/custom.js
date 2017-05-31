@@ -1,11 +1,13 @@
 $(document).ready(function() {
-  if($('.main_visual.flexslider')){
-    $('.main_visual.flexslider').flexslider({
+  if($('.main_visual')){
+    $('.main_visual').flexslider({
       animation: "slide",
-      manualControls: ".carousel_buttons button",
       start: function(slider){
-          $('.main_visual.flexslider').resize();
-      }
+        var slider = $('.main_visual').data('flexslider');   
+            slider.resize();
+      },
+      manualControls: ".carousel_buttons button",
+      direction:'horizontal'
     });
   }
 
