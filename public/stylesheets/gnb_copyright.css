@@ -101,6 +101,7 @@
 
 .designcustom .navbar-collapse {
   position:fixed;
+  visibility: visible;
   display:block;
   width:100vw;
   height:100vh;
