@@ -1,5 +1,6 @@
 .main_visual.flexslider .slides > li {
   position:relative;
+  width:100%;
 }
 .main_visual.flexslider .slides > li  > h1 {
   position:absolute;

@@ -2,7 +2,10 @@ $(document).ready(function() {
   if($('.main_visual.flexslider')){
     $('.main_visual.flexslider').flexslider({
       animation: "slide",
-      manualControls: ".carousel_buttons button"
+      manualControls: ".carousel_buttons button",
+      start: function(slider){
+          $('.main_visual.flexslider').resize();
+      }
     });
   }
 
