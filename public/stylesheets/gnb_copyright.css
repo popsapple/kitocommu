@@ -34,10 +34,17 @@
   height:12rem;
   line-height:12rem;
 }
+
+.designcustom .navbar .container {
+  display:table;
+  width:100%;
+}
+
 .designcustom .navbar-header {
   display:table-row;
   width:100%;
-  vertical-align:inherit;
+  height:100%;
+  vertical-align:middle;
   line-height:inherit;
 }
 .designcustom .navbar-header > h1 img{
@@ -48,6 +55,7 @@
 .designcustom .navbar-header > h1  {
   display:table-cell;
   width:50%;
+  height:inherit;
   padding:0px;
   margin:0px;
   border:0px;
@@ -60,6 +68,7 @@
 .designcustom .navbar-header > button {
   display:table-cell;
   width:50%;
+  height:inherit;
   padding:0px;
   margin:0px;
   border:0px;
