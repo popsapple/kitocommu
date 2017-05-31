@@ -10,13 +10,6 @@ $(document).ready(function() {
   if($(".designcustom .navbar-collapse")){
     $(".designcustom .navbar-collapse").on('click',function(){
       $(this).removeClass('in');
-      $(this).toggleClass('active');
-    });
-  }
-
-  if($(".navbar-header > button")){
-    $(".navbar-header > button").on('click',function(){
-      $(this).toggleClass('active');
     });
   }
 });
