@@ -102,6 +102,7 @@
 
 .designcustom .navbar-collapse {
   position:fixed;
+  display:block;
   visibility: visible;
   overflow: hidden;
   width:100vw;
@@ -110,6 +111,7 @@
   background:#000000;
   opacity:0;
   z-index:1;
+  font-size:0rem;
   -webkit-transition:opacity 1s 0s,height 0s 2s;
   -moz-transition:opacity 1s 0s,height 0s 2s;
   -ms-transition:opacity 1s 0s,height 0s 2s;
@@ -120,6 +122,7 @@
 .designcustom .navbar-collapse.in {
   opacity:1;
   height:100vh;
+  font-size:1rem;
   visibility: visible;
   -webkit-transition:opacity 1s 0s,height 0s 0s;
   -moz-transition:opacity 1s 0s,height 0s 0s;
