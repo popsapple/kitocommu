@@ -218,4 +218,5 @@
   animation-name: closebutton;
   animation-duration: 2s;
   animation-delay: 2s;
+  transform: rotate(45deg); /* ie9에서 지원 안되는 animation-fill-mode 대신 사용 */
 }
