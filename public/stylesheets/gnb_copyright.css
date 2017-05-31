@@ -1,5 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+ul, li, ol {
+  list-style:none;
+}
+
 .designcustom .blind {
   position:absolute;
   display:inline-block;
