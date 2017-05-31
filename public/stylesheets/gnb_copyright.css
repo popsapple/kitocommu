@@ -214,16 +214,16 @@
   margin:0rem;
   padding:0rem;
 }
-.designcustom .navbar-collapse.in > ul > li {
+.designcustom .navbar-collapse > ul > li {
   display:block;
   height:auto;
   margin-bottom:2.2rem;
   overflow-y: hidden;
   text-align:center;
 }
-.designcustom .navbar-collapse.in > ul > li > a,
-.designcustom .navbar-collapse.in > ul > li > a:hover,
-.designcustom .navbar-collapse.in > ul > li > a:focus {
+.designcustom .navbar-collapse > ul > li > a,
+.designcustom .navbar-collapse > ul > li > a:hover,
+.designcustom .navbar-collapse > ul > li > a:focus {
   display:block;
   height:1.5rem;
   line-height: 1.5rem;
@@ -235,11 +235,11 @@
   background: none;
   box-shadow: none;
 }
-.designcustom .navbar-collapse.in > ul > li > a+ul {
+.designcustom .navbar-collapse > ul > li > a+ul {
   display:block;
   height:auto;
 }
-.designcustom .navbar-collapse.in > ul > li > a+ul li {
+.designcustom .navbar-collapse > ul > li > a+ul li {
   display:block;
   height:1.3rem;
   text-align:center;
@@ -247,12 +247,12 @@
   margin-bottom:2rem;
 }
 
-.designcustom .navbar-collapse.in > ul > li > a+ul li.last,
-.designcustom .navbar-collapse.in > ul > li.last {
+.designcustom .navbar-collapse > ul > li > a+ul li.last,
+.designcustom .navbar-collapse > ul > li.last {
   margin-bottom:0rem;
 }
 
-.designcustom .navbar-collapse.in > ul > li.open > a+ul li a {
+.designcustom .navbar-collapse > ul > li.open > a+ul li a {
   font-size:1.5rem;
   font-weight:400;
   padding:0rem;
@@ -260,28 +260,28 @@
   text-decoration: none;
 }
 
-.designcustom .navbar-collapse.in > ul > li > ul {
+.designcustom .navbar-collapse > ul > li > ul {
   display:block;
   visibility:hidden;
   max-height:0rem;
   overflow:hidden;
   transition:max-height 1s 2.5s ease-out;
 }
-.designcustom .navbar-collapse.in > ul > li.open > ul {
+.designcustom .navbar-collapse > ul > li.open > ul {
   display:block;
   visibility:visible;
   max-height:10rem;
   transition:max-height 1s 0s ease-in;
 }
 
-.designcustom .navbar-collapse.in > ul > li.member_side {
+.designcustom .navbar-collapse > ul > li.member_side {
   display:table;
   width:60%;
   height:auto;
   margin:0rem auto;
 }
 
-.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu {
+.designcustom .navbar-collapse > ul > li.member_side > ul.menu {
   display:table-row;
   width:100%;
   visibility:visible;
@@ -289,14 +289,14 @@
   max-height:20rem;
 }
 
-.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu > li {
+.designcustom .navbar-collapse > ul > li.member_side > ul.menu > li {
   display:table-cell;
   width:50%;
   text-align:center;
   vertical-align:middle;
 }
 
-.designcustom .navbar-collapse.in > ul > li.member_side > ul.menu > li * {
+.designcustom .navbar-collapse > ul > li.member_side > ul.menu > li * {
   font-size:1.3rem;
   font-weight:900;
   color:#000000;
@@ -312,6 +312,7 @@
   font-family: "FontAwesome", sans-serif;
   content: "\f234";
   display:block;
+  font-size:2rem;
   margin-bottom:0.5rem;
 }
 
