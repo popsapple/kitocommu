@@ -72,7 +72,6 @@
 .designcustom .navbar-header > button:focus,
 .designcustom .navbar-header > button {
   position:relative;
-  z-index:2;
   display:table-cell;
   width:50%;
   height:inherit;
@@ -103,7 +102,7 @@
 
 .designcustom .navbar-collapse {
   position:fixed;
-  visibility: block;
+  visibility: visible;
   overflow: hidden;
   width:100vw;
   height:0rem;
