@@ -53,7 +53,7 @@
 }
 .designcustom .navbar-header > h1 img{
   display:inline-block;
-  width: 7.5rem;
+  width: 8rem;
   height: auto;
   vertical-align:inherit;
 }
@@ -107,13 +107,43 @@
   background:#000000;
   opacity:0;
   z-index:1;
+  -webkit-transition:opacity 1s 0s;
+  -moz-transition:opacity 1s 0s;
+  -ms-transition:opacity 1s 0s;
+  -o-transition:opacity 1s 0s;
+  transition:opacity 1s 0s;
 }
-.designcustom .navbar-collapse  > ul {
+
+.designcustom .navbar-collapse.in {
+  opacity:1;
+  -webkit-transition:opacity 1s 0s;
+  -moz-transition:opacity 1s 0s;
+  -ms-transition:opacity 1s 0s;
+  -o-transition:opacity 1s 0s;
+  transition:opacity 1s 0s;
+}
+
+.designcustom .navbar-collapse > ul {
   display:block;
   width:100vw;
   height:60vh;
   background:#ffce00;
   z-index:2;
+  top:-60vh;
+  -webkit-transition:top 1s ease-out 0s;
+  -moz-transition:top 1s ease-out 0s;
+  -ms-transition:top 1s ease-out 0s;
+  -o-transition:top 1s ease-out 0s;
+  transition:top 1s ease-out 0s;
+}
+
+.designcustom .navbar-collapse.in > ul {
+  top:0vh;
+  -webkit-transition:top 1s ease-in 1s;
+  -moz-transition:top 1s ease-in 1s;
+  -ms-transition:top 1s ease-in 1s;
+  -o-transition:top 1s ease-in 1s;
+  transition:top 1s ease-in 1s; 
 }
 .designcustom .navbar-collapse  > ul > li {
   display:block;
