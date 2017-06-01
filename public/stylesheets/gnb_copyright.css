@@ -497,6 +497,11 @@ body > footer h1 {
 }
 body > footer h1 * {
   display:block;
+  padding:0rem;
+  margin:auto;
+  float:none;
+  clear:both;
+  text-align: center;
 }
 body > footer ul {
   margin:0rem 0rem 2rem 0rem;
