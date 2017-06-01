@@ -48,7 +48,7 @@ function LoadingPage(){
         $('.loading_div').show();
       },
       complete:function(){
-        var loading = setTimeOut(function(){
+        setTimeOut(function(){
           $('.loading_div').fadeOut(500);
         },2000);
       },
