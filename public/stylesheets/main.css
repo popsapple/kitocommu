@@ -287,7 +287,7 @@
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 1.5s;
-  animation-delay: 7.5s;
+  animation-delay: 4.5s;
   animation-iteration-count: infinite;
 }
 
@@ -296,7 +296,7 @@
   height:1rem;
   background:#ffa00a;
   animation-name:kitoliver2;
-  animation-duration: 2.5s;
+  animation-duration: 1.5s;
   animation-delay: 1.5s;
 }
 
@@ -305,8 +305,8 @@
   height:1rem;
   background:#ffbd0a;
   animation-name:kitoliver3;
-  animation-duration: 3.5s;
-  animation-delay: 4s;
+  animation-duration: 1.5s;
+  animation-delay: 3s;
 }
 
 .main_kito_desc figure .liver {
