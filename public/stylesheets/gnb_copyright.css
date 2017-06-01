@@ -82,6 +82,7 @@ ul, li, ol {
   color: #464646;
   display: block;
   margin-top: 1.5rem;
+}
 
 /******** gnb **********/
 
@@ -109,7 +110,7 @@ ul, li, ol {
   background:none;
   border:0rem;
   padding:0rem;
-  box-shadow:0rem;
+  box-shadow: none;
   border-radius: 0rem;
 }
 .designcustom .navbar-header {
