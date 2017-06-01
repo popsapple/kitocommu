@@ -29,10 +29,10 @@ ul, li, ol {
   text-align:center;
 }
 @keyframes loading_div {
-  0%{
+  0% {
     transform: scale(0,1),rotate(0deg);
   }
-  100%{
+  100% {
     transform: scale(1,1),rotate(360deg);
   }
 }
@@ -49,7 +49,8 @@ ul, li, ol {
   margin-top:-2.3rem;
   text-align:center;
 }
-.loading_div > div > div:before {
+.loading_div > div > div > i { display:block; }
+.loading_div > div > div > span {
   display:block;
   content:"";
   width:6rem;
