@@ -276,6 +276,48 @@
   }
 }
 
+.main_kito_desc {
+  text-align:center;
+}
+.main_kito_desc figure {
+  position:relative;
+}
+
+.main_kito_desc figure img {
+  position:absolute;
+  z-index:1;
+  width:100%;
+  height:auto;
+}
+
+.main_kito_desc figure img.human {
+  display:block;
+  margin-top:3rem;
+  max-width:32.1rem;
+}
+
+.main_kito_desc figure .meet {
+  top:10%;
+  left:25%;
+  max-width:6.2rem;
+}
+.main_kito_desc figure .cheese {
+  top:17%;
+  left:20%;
+  max-width:6.2rem;
+}
+.main_kito_desc figure .avocado {
+  top:21%;
+  left:15%;
+  max-width:6.2rem;
+}
+.main_kito_desc figure .liver {
+  bottom:30%;
+  left:50%;
+  margin-left:-5.2rem;
+  max-width:10.4rem;
+}
+
 .main_kito_desc figure .circle {
   position:absolute;
   z-index:1;
@@ -328,16 +370,22 @@
 body.ie9 .main_kito_desc figure .circle .circle01{
   width:15rem;
   height:15rem;
+  margin-left:-7.5rem;
+  margin-top:-7.5rem;
 }
 
 body.ie9 .main_kito_desc figure .circle .circle02{
   width:22rem;
   height:22rem;
+  margin-left:-11rem;
+  margin-top:-711rem;
 }
 
 body.ie9 .main_kito_desc figure .circle .circle03{
   width:29rem;
   height:29rem;
+  margin-left:-14.5rem;
+  margin-top:-14.5rem;
 }
 
 .main_kito_desc figure .liver {
