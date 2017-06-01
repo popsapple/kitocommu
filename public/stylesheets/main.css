@@ -150,10 +150,11 @@
 .main_recipe > ul > li > a h2 strong {
   position:relative;
   display:block;
-  padding-top:2rem;
+  padding-top:2.7rem;
   color:#ffffff;
   font-weight:700;
   font-size:1.8rem;
+  text-align: center;
 }
 
 .main_recipe > ul > li > a h2 strong:before {
@@ -167,5 +168,5 @@
   margin-right: 3rem;
   top:0rem;
   left: 50%;
-  margin-left: -1rem;
+  margin-left: -2rem;
 }
