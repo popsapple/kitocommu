@@ -1,3 +1,4 @@
+/*********  메인비주얼  *********/
 .main_visual.flexslider,
 .main_visual.flexslider .slides {
   margin:0rem;
@@ -95,4 +96,59 @@
 
 .main_visual_control > button.flex-active {
   background:#ffce00;
+}
+
+
+/*********  레시피  *********/
+.main_recipe > ul {
+  display:block;
+  white-space:nowrap;
+}
+
+.main_recipe > ul > li {
+  display:inline-block;
+  width:100%;
+}
+
+.main_recipe > ul > li > a {
+  position:relative;
+  display:table;
+  width:100%;
+  height:100%;
+}
+
+.main_recipe > ul > li > a > * {
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.main_recipe > ul > li > a > h2 {
+  position:absolute;
+  z-index:1;
+  display:table-cell;
+  vertical-align:middle;
+  width:100%;
+  height:100%;
+}
+
+.main_recipe > ul > li > a > h2 strong {
+  position:relative;
+  display:block;
+  padding-top:2rem;
+  color:#ffffff;
+  font-weight:700;
+  font-size:1.8rem;
+}
+
+.main_recipe > ul > li > a > h2 strong:before {
+  position:absolute;
+  content:"";
+  display:block;
+  width: 4rem;
+  height: 0.6rem;
+  background: #fff;
+  transform: skewY(15deg);
+  margin-right: 3rem;
+  top:0rem;
 }

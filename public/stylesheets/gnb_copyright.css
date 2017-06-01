@@ -377,8 +377,8 @@ ul, li, ol {
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(45deg);
   opacity:1;
-  -webkit-transition: opacity 0.5s 2.5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s;
-  transition: opacity 0.5s 2.5s, transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3s;
+  -webkit-transition: opacity 0.5s 2.5s, transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2.5s;
+  transition: opacity 0.5s 2.5s, transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2.5s;
 }
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(-45deg);
