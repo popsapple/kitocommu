@@ -273,6 +273,7 @@ ul, li, ol {
 }
 
 .designcustom .navbar-collapse > ul > li > ul {
+  position:relative;
   display:block;
   visibility:hidden;
   max-height:0rem;
