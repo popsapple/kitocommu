@@ -30,11 +30,11 @@ ul, li, ol {
 }
 @keyframes loading_div {
   0% {
-    clip: rect(0rem,0rem,0rem,0rem);
+    clip: rect(0rem,0rem,0rem,0rem) scale(1,1);
     transform: rotate(0deg);
   }
   100% {
-    clip: rect(0rem,6rem,6rem,0rem);
+    clip: rect(0rem,6rem,6rem,0rem) scale(0,0);
     transform: rotate(360deg);
   }
 }
@@ -62,7 +62,7 @@ ul, li, ol {
   border-radius: 50%;
   margin-bottom:1rem;
 }
-  .loading_div > div > div > span:after {
+  .loading_div > div > div > span b {
     position:absolute;
     display:block;
     content:"";
