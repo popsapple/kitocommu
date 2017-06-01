@@ -482,8 +482,8 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
 }
 .main_kito_faq > ul > li h2 span {
   width:80%;
-  font-size:1.8rem;
-  line-height:3rem;
+  font-size:1.6rem;
+  line-height:2.6rem;
   font-weight:700;
   color:#464646;
 }
@@ -507,4 +507,46 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   line-height:2.2rem;
   font-weight:300;
   color:#606060;
+}
+
+/****** 키토제닉 일상톡톡 ******/
+
+.main_post_section > ul {
+  display:block;
+}
+.main_post_section > ul > li {
+  position:relative;
+  display:block;
+  padding:1rem;
+  box-sizing:border-box;
+  border:1px solid #cbc8c2;
+  margin-bottom:0.7rem;
+}
+.main_post_section > ul > li:last-child{
+  margin-bottom:0rem;
+}
+.main_post_section > ul > li:hover {
+  border:3px solid #cbc8c2;
+}
+.main_post_section > ul > li a:hover {
+  text-decoration:none;
+}
+.main_post_section > ul > li h2 {
+  font-size:1.4rem;
+  font-weight:300;
+  color:#606060;
+  margin-bottom:1rem;
+}
+.main_post_section > ul > li time {
+  display:inline-block;
+  font-size:1.2rem;
+  font-weight:700;
+  color:#999999;
+  margin-right:1rem;
+}
+.main_post_section > ul > li span {
+  display:inline-block;
+  font-size:1.2rem;
+  font-weight:300;
+  color:#999999;
 }
