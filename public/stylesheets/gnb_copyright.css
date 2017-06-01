@@ -129,7 +129,8 @@ html,
   position:fixed;
   z-index:3;
   top:0;
-  border-bottom:1px solid #999999;
+  background:#ffffff;
+  border-bottom:1px solid #cbc8c2;
 }
 
 .designcustom .navbar-header > h1 img{
@@ -442,15 +443,15 @@ body.ie9 .designcustom .navbar-collapse.in > ul {
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
-  -webkit-transition: opacity 0.2s 3s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
-  transition: opacity 0.2s 3s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+  -webkit-transition: opacity 0.2s 2s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+  transition: opacity 0.2s 2s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
 @media all and (orientation:landscape) {
   .designcustom .navbar-collapse > ul+button {
     position:absolute;
-    right:0rem;
-    top:0rem;
+    right:2rem;
+    top:3rem;
   }
   .designcustom .navbar-collapse > ul+button:before,
   .designcustom .navbar-collapse > ul+button:after {
