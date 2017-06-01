@@ -431,6 +431,9 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   border:1px solid #cbc8c2;
   margin-bottom:0.7rem;
 }
+.main_kito_faq > ul > li:last-child{
+  margin-bottom:0rem;
+}
 .main_kito_faq > ul > li.open {
   border:3px solid #cbc8c2;
 }
