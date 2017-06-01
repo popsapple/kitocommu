@@ -236,45 +236,57 @@
 @keyframes kitoliver {
   0% {
     transform: scale(1,1);
+    border-radius:50%;
   }
   32% {
     transform: scale(7,7);
+    border-radius:50%;
   }
   100% {
     transform: scale(7,7);
+    border-radius:50%;
   }
 }
 
 @keyframes kitoliver2 {
   0% {
     transform: scale(1,1);
+    border-radius:50%;
   }
   32% {
     transform: scale(7,7);
+    border-radius:50%;
   }
   64% {
     transform: scale(11,11);
+    border-radius:50%;
   }
   100% {
     transform: scale(11,11);
+    border-radius:50%;
   }
 }
 
 @keyframes kitoliver3 {
   0% {
     transform: scale(1,1);
+    border-radius:50%;
   }
   32% {
     transform: scale(7,7);
+    border-radius:50%;
   }
   64% {
     transform: scale(11,11);
+    border-radius:50%;
   }
   81% {
     transform: scale(15,15);
+    border-radius:50%;
   }
   100% {
     transform: scale(15,15);
+    border-radius:50%;
   }
 }
 
@@ -360,7 +372,7 @@
   display:block;
   width:1rem;
   height:1rem;
-  background:#ff4f0a;
+  background-image:#ff4f0a;
   border-radius:50%;
   opacity:0.3;
   animation-name:kitoliver;
