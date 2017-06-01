@@ -355,11 +355,11 @@
   position:absolute;
   left:50%;
   height:50%;
-  margin-left:-9.5rem;
-  margin-top:-9.5rem;
+  margin-left:-9rem;
+  margin-top:-9rem;
   display:block;
-  width:19rem;
-  height:19rem;
+  width:18rem;
+  height:18rem;
   background:#ff4f0a;
   border-radius:50%;
   opacity:0.3;
@@ -396,10 +396,10 @@ body.ie9 .main_kito_desc figure .circle .circle02{
 }
 
 body.ie9 .main_kito_desc figure .circle .circle03{
-  width:19rem;
-  height:19rem;
-  margin-left:-9.5em;
-  margin-top:-9.5rem;
+  width:18rem;
+  height:18rem;
+  margin-left:-9em;
+  margin-top:-9rem;
 }
 
 .main_kito_desc figure .liver {
