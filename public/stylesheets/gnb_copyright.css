@@ -241,7 +241,11 @@ body.ie9 .designcustom .navbar-collapse > ul {
       margin-top: -50rem;
       animation-timing-function:ease-in;
   }
-  37% {
+  100% {
+      margin-top: -0rem;
+      animation-timing-function:ease-out;
+  }
+  /*37% {
       margin-top: -0rem;
       animation-timing-function:ease-out;
   }
@@ -268,12 +272,12 @@ body.ie9 .designcustom .navbar-collapse > ul {
   100% {
       margin-top: -0rem;
       animation-timing-function:ease-out;
-  }
+  }*/
 }
 
 .designcustom .navbar-collapse.in > ul {
   animation-name: openmenu;
-  animation-duration: 2.5s;
+  animation-duration: 1s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
@@ -313,9 +317,9 @@ body.ie9 .designcustom .navbar-collapse.in > ul {
 }
 .designcustom .navbar-collapse > ul > li > a+ul li {
   display:block;
-  height:1.3rem;
+  height:1.6rem;
   text-align:center;
-  line-height:1.3rem;
+  line-height:1.6rem;
   margin-bottom:2rem;
 }
 
@@ -430,8 +434,8 @@ body.ie9 .designcustom .navbar-collapse.in > ul {
   background:#ffffff;
   transform: rotate(0deg);
   opacity:0;
-  -webkit-transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
-  transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+  -webkit-transition: opacity 0.2s 3s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+  transition: opacity 0.2s 3s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
 body.ie9 .designcustom .navbar-collapse > ul+button:before {

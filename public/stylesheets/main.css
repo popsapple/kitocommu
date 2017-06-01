@@ -54,7 +54,7 @@
 }
 
 .main_visual.flexslider .slides > li h1 div strong {
-  font-size: 2.3rem;
+  font-size: 2rem;
   line-height: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -65,8 +65,8 @@
 }
 
 .main_visual.flexslider .slides > li h1 div span {
-  font-size:1.8rem;
-  line-height: 2.5rem;
+  font-size:1.4rem;
+  line-height: 2.2rem;
   font-weight:300;
 }
 
@@ -195,9 +195,11 @@
   padding-top : 5rem;
 }
 
+.main_kito_desc h1 {margin:0rem;}
+
 .main_kito_desc h1 strong {
   display:block;
-  font-size:3.5rem;
+  font-size:2.5rem;
   color:#464646;
   font-weight:800;
   margin-bottom:1.5rem;
@@ -206,7 +208,7 @@
 .main_kito_desc h1 span {
   display:block;
   font-size:1.4rem;
-  line-height:2.2rem;
+  line-height:2.3rem;
   color:#707070;
   font-weight:400;
 }
@@ -239,7 +241,7 @@
     transform: scale(7,7);
   }
   100% {
-    transform: scale(11,11);
+    transform: scale(7,7);
   }
 }
 
@@ -315,6 +317,15 @@
   left:0%;
   max-width:4.2rem;
 }
+
+@media (min-width: 480px) {
+  .main_kito_desc figure .meet,
+  .main_kito_desc figure .cheese,
+  .main_kito_desc figure .avocado {
+    max-width:5.4rem;
+  }
+}
+
 .main_kito_desc figure .liver {
   z-index:2;
   bottom:15%;
@@ -350,7 +361,7 @@
   width:1rem;
   height:1rem;
   background:#ff4f0a;
-  border-radius:300rem;
+  border-radius:10000%;
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 5s;
@@ -398,4 +409,75 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 .main_kito_desc figure .liver {
   position:absolute;
   z-index:2;
+}
+
+
+/***** 자주하는 질문  *****/
+
+.main_kito_faq > ul > li * {
+  display:block;
+  padding:0rem;
+  margin:0rem;
+  border:0rem;
+  background:none;
+  box-shadow:none;
+  text-shadow:none;
+}
+.main_kito_faq > ul > li {
+  position:relative;
+  display:block;
+  padding:1rem;
+  box-sizing:border-box;
+  border:1px solid #cbc8c2;
+}
+.main_kito_faq > ul > li.open {
+  border:3px solid #cbc8c2;
+}
+.main_kito_faq > ul > li .dropdown-toggle {
+  position:absolute;
+  z-index:1;
+  right:0rem;
+  top:0rem;
+  text-align:center;
+}
+.main_kito_faq > ul > li .dropdown-toggle:before,
+.main_kito_faq > ul > li .dropdown-toggle:after {
+  display:block;
+  content:"";
+  width:2.5rem;
+  height:0.3rem;
+  transform: rotate(0deg);
+  background:#cbc8c2;
+}
+.main_kito_faq > ul > li .dropdown-toggle:after {
+  transform: rotate(90deg);
+  transition: transform 1s 0s;
+}
+.main_kito_faq > ul > li.open .dropdown-toggle:after {
+  transform: rotate(0deg);
+  transition: transform 1s 0s;
+}
+
+body.ie9 .main_kito_faq > ul > li .dropdown-toggle:after {
+  margin-top:-1.25rem;
+  margin-left:1.1rem;
+  width:0.3rem;
+  height:2.5rem;
+}
+body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
+  width:2.5rem;
+  height:0.3rem;
+}
+.main_kito_faq > ul > li h2 {
+  font-size:1.8rem;
+  line-height:3rem;
+  font-weight:700;
+  margin-bottom:1rem;
+  color:#464646;
+}
+.main_kito_faq > ul > li h2+div p{
+  font-size:1.4rem;
+  line-height:2.2rem;
+  font-weight:300;
+  color:#606060;
 }
