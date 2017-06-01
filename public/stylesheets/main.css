@@ -429,6 +429,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   padding:1rem;
   box-sizing:border-box;
   border:1px solid #cbc8c2;
+  margin-bottom:0.7rem;
 }
 .main_kito_faq > ul > li.open {
   border:3px solid #cbc8c2;
@@ -455,6 +456,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 }
 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   transform: rotate(0deg);
+  margin-top: -0.2rem;
   transition: transform 1s 0s;
 }
 
@@ -468,12 +470,18 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   width:2.5rem;
   height:0.3rem;
 }
-.main_kito_faq > ul > li h2 {
+.main_kito_faq > ul > li h2 span {
   font-size:1.8rem;
   line-height:3rem;
   font-weight:700;
   margin-bottom:1rem;
   color:#464646;
+}
+.main_kito_faq > ul > li h2+div {
+  display:none;
+}
+.main_kito_faq > ul > li.open h2+div {
+  display:block;
 }
 .main_kito_faq > ul > li h2+div p{
   font-size:1.4rem;
