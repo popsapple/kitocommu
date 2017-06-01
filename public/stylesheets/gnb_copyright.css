@@ -137,7 +137,6 @@ html,
   .designcustom .navbar-default.scroll {
     position:static;
     z-index:1;
-    top:0;
     background:none;
     border-bottom:none;
   }
