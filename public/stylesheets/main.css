@@ -54,7 +54,7 @@
 }
 
 .main_visual.flexslider .slides > li h1 div strong {
-  font-size: 2rem;
+  font-size: 2.3rem;
   line-height: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -65,7 +65,7 @@
 }
 
 .main_visual.flexslider .slides > li h1 div span {
-  font-size:1.4rem;
+  font-size:1.8rem;
   line-height: 2.5rem;
   font-weight:300;
 }

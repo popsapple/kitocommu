@@ -35,6 +35,52 @@ ul, li, ol {
   margin:auto;
 }
 
+.designcustom .linebutton {
+  display:block;
+  color:#707070;
+  margin:auto;
+  padding:1rem 2rem;
+  border:1px solid #bfbfbf;
+  border-color:#bfbfbf;
+  background-color:#ffffff;
+  transition: background-color 0.5s, border-color 0.5s, color 0.5s;
+}
+
+.designcustom .linebutton:hover,
+.designcustom .linebutton:focus {
+  border-color:#ffce00;
+  background-color:#ffce00;
+  color:#000000;
+  transition: background-color 0.5s, border-color 0.5s, color 0.5s;
+}
+
+.designcustom .linebutton.small {
+  font-size:1.4rem;
+  font-weight:400;
+}
+
+.designcustom .linebutton.middle {
+  font-size:2rem;
+  font-weight:400;
+}
+
+.designcustom .section_title {
+  padding:6rem 0rem 4rem 0rem;
+  text-align:center;
+}
+
+.designcustom .section_title strong {
+  font-size:2.3rem;
+  font-weight:700;
+  color:#303030;
+}
+
+.designcustom .section_title span {
+  font-size:2rem;
+  font-weight:300;
+  color:#464646;
+}
+
 /******** gnb **********/
 
 .designcustom .navbar {
