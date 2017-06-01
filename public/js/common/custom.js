@@ -3,6 +3,7 @@ if (!window.console) {
     console.log = function(){};
 }
 $(document).ready(function() {
+  LoadingPage();
   if($('.main_visual')){
     $('.main_visual').flexslider({
       animation: "slide",
@@ -36,3 +37,23 @@ $(window).scroll(function(event) {
     }
   }
 });
+
+function LoadingPage(){
+  $.ajax({
+      type:"GET",
+      url:$(location).attr('href'),
+      success:function(res){
+      },
+      beforeSend:function(){
+        $('.loading_div').show();
+      },
+      complete:function(){
+        var loading = setTimeOut(function(){
+          $('.loading_div').fadeOut(500);
+        },2000);
+      },
+      error:function(e){
+        console.log("에러");
+      }
+  });
+}
