@@ -110,7 +110,7 @@ ul, li, ol {
   border:0rem;
   padding:0rem;
   box-shadow:0rem;
-  border-radius: 0rem;  
+  border-radius: 0rem;
 }
 .designcustom .navbar-header {
   display:table;
@@ -222,14 +222,15 @@ ul, li, ol {
   min-height: 10rem;
   background:#ffce00;
   z-index:10;
-  margin-top:-50rem \0/IE8+9;
   animation-name: closemenu;
-  animation-name: menu_none \0/IE8+9;
-  -ms-transition: none;
-  -ms-transition: margin-top 0.2s 0.5s ease-out \0/IE8+9;
   animation-duration: 0.2s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
+  animation-fill-mode:both;
+}
+
+body.ie9 .designcustom .navbar-collapse > ul {
+  margin-top:-50rem;
 }
 
 @keyframes openmenu {
@@ -268,15 +269,16 @@ ul, li, ol {
 }
 
 .designcustom .navbar-collapse.in > ul {
-  margin-top:0rem \0/IE8+9;
   animation-name: openmenu;
-  animation-name: menu_none \0/IE8+9;
-  -ms-transition: none;
-  -ms-transition: margin-top 1s 0.5s ease-in \0/IE8+9;
   animation-duration: 2.5s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
+
+body.ie9 .designcustom .navbar-collapse.in > ul {
+  margin-top:0rem;
+}
+
 .designcustom .navbar-collapse > ul * {
   margin:0rem;
   padding:0rem;
