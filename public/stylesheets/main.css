@@ -113,6 +113,7 @@
 }
 
 .main_recipe > ul > li > a {
+  position:relative;
   display:block;
   width:100%;
   height:100%;
@@ -126,7 +127,7 @@
 }
 
 .main_recipe > ul > li > a > div {
-  position:relative;
+  position:absolute;
   z-index:1;
   display:block;
   vertical-align:middle;
@@ -135,20 +136,19 @@
 }
 
 .main_recipe > ul > li > a > div > div {
-  position:absolute;
   display:table;
   vertical-align:middle;
   width:100%;
   height:100%;
 }
 .main_recipe > ul > li > a h2 {
-  position:relative;
   display:table-cell;
   vertical-align:middle;
   width:100%;
   height:100%;
 }
 .main_recipe > ul > li > a h2 strong {
+  position:relative;
   display:block;
   padding-top:2rem;
   color:#ffffff;
