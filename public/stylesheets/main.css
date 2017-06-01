@@ -127,13 +127,18 @@
 }
 
 .main_recipe > ul > li > a > div {
+  position:absolute;
+  z-index:1;
   display:table-cell;
   vertical-align:middle;
   width:100%;
   height:100%;
 }
 
-.main_recipe > ul > li > a > h2 strong {
+.main_recipe > ul > li > a h2 {
+  display:block;
+}
+.main_recipe > ul > li > a h2 strong {
   position:relative;
   display:block;
   padding-top:2rem;
@@ -142,7 +147,7 @@
   font-size:1.8rem;
 }
 
-.main_recipe > ul > li > a > h2 strong:before {
+.main_recipe > ul > li > a h2 strong:before {
   position:absolute;
   content:"";
   display:block;
