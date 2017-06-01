@@ -287,7 +287,8 @@
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 1.5s;
-  animation-delay: 5.5s;
+  animation-delay: -5.5s;
+  animation-fill-mode:both;
   animation-iteration-count: infinite;
 }
 
@@ -297,7 +298,7 @@
   background:#ffa00a;
   animation-name:kitoliver2;
   animation-duration: 1.5s;
-  animation-delay: 2s;
+  animation-delay: 0s;
 }
 
 .main_kito_desc figure .circle .circle03{
