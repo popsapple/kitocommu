@@ -291,9 +291,13 @@
 }
 
 .main_kito_desc figure img.human {
-  display:block;
-  margin-top:3rem;
-  max-width:32.1rem;
+  position: relative;
+  display: block;
+  margin-top: 3rem;
+  max-width: 32.1rem;
+  z-index: 0;
+  margin: auto;
+  margin-top: 3rem;
 }
 
 .main_kito_desc figure .meet {
@@ -313,9 +317,9 @@
 }
 .main_kito_desc figure .liver {
   z-index:2;
-  bottom:30%;
+  bottom:15%;
   left:50%;
-  margin-left:-5.2rem;
+  margin-left:-4.3rem;
   max-width:10.4rem;
 }
 
@@ -325,6 +329,8 @@
   display:block;
   width:1rem;
   height:1rem;
+  left: 50%;
+  bottom: 28.5%;
 }
 
 .main_kito_desc figure .circle > span {
@@ -341,10 +347,10 @@
   margin-left:-0.5rem;
   margin-top:-0.5rem;
   display:block;
-  width:1rem;
-  height:1rem;
+  width:0.6rem;
+  height:0.6rem;
   background:#ff4f0a;
-  border-radius:100rem;
+  border-radius:300rem;
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 5s;
@@ -353,16 +359,16 @@
 }
 
 .main_kito_desc figure .circle .circle02{
-  width:1rem;
-  height:1rem;
+  width:0.6rem;
+  height:0.6rem;
   background:#ffa00a;
   animation-name:kitoliver2;
   animation-duration: 5s;
 }
 
 .main_kito_desc figure .circle .circle03{
-  width:1rem;
-  height:1rem;
+  width:0.6rem;
+  height:0.6rem;
   background:#ffbd0a;
   animation-name:kitoliver3;
   animation-duration: 5s;
