@@ -10,10 +10,10 @@
   position:relative;
   width:100%;
 }
-.main_visual.flexslider .slides > li+li {
+.main_visual.flexslider .slides > li {
   display:none !important;
 }
-.main_visual.active.flexslider .slides > li+li {
+.main_visual.active.flexslider .slides > li {
   display:block !important;
 }
 .main_visual.flexslider .slides > li  > h1 {
