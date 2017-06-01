@@ -236,10 +236,10 @@
     transform: scale(1,1);
   }
   32% {
-    transform: scale(15,15);
+    transform: scale(7,7);
   }
   100% {
-    transform: scale(15,15);
+    transform: scale(11,11);
   }
 }
 
@@ -248,13 +248,13 @@
     transform: scale(1,1);
   }
   32% {
-    transform: scale(15,15);
+    transform: scale(7,7);
   }
   64% {
-    transform: scale(22,22);
+    transform: scale(11,11);
   }
   100% {
-    transform: scale(22,22);
+    transform: scale(11,11);
   }
 }
 
@@ -263,16 +263,16 @@
     transform: scale(1,1);
   }
   32% {
-    transform: scale(15,15);
+    transform: scale(7,7);
   }
   64% {
-    transform: scale(22,22);
+    transform: scale(11,11);
   }
   81% {
-    transform: scale(29,29);
+    transform: scale(15,15);
   }
   100% {
-    transform: scale(29,29);
+    transform: scale(15,15);
   }
 }
 
@@ -347,8 +347,8 @@
   margin-left:-0.5rem;
   margin-top:-0.5rem;
   display:block;
-  width:0.6rem;
-  height:0.6rem;
+  width:1rem;
+  height:1rem;
   background:#ff4f0a;
   border-radius:300rem;
   opacity:0.3;
@@ -359,16 +359,16 @@
 }
 
 .main_kito_desc figure .circle .circle02{
-  width:0.6rem;
-  height:0.6rem;
+  width:1rem;
+  height:1rem;
   background:#ffa00a;
   animation-name:kitoliver2;
   animation-duration: 5s;
 }
 
 .main_kito_desc figure .circle .circle03{
-  width:0.6rem;
-  height:0.6rem;
+  width:1rem;
+  height:1rem;
   background:#ffbd0a;
   animation-name:kitoliver3;
   animation-duration: 5s;
