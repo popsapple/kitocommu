@@ -30,11 +30,11 @@ ul, li, ol {
 }
 @keyframes loading_div {
   0% {
-    clip: rect(6rem,6rem,6rem,6rem);
+    clip: rect(0rem,0rem,0rem,0rem);
     transform: rotate(0deg);
   }
   100% {
-    clip: rect(0rem,0rem,0rem,0rem);
+    clip: rect(0rem,6rem,6rem,0rem);
     transform: rotate(360deg);
   }
 }
@@ -53,6 +53,7 @@ ul, li, ol {
 }
 .loading_div > div > div > i { display:block; }
 .loading_div > div > div > span {
+  position:absolute;
   display:block;
   content:"";
   width:6rem;
