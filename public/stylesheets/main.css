@@ -236,45 +236,105 @@
 @keyframes kitoliver {
   0% {
     transform: scale(1,1);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   32% {
     transform: scale(7,7);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   100% {
     transform: scale(7,7);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
 }
 
 @keyframes kitoliver2 {
   0% {
     transform: scale(1,1);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   32% {
     transform: scale(7,7);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   64% {
     transform: scale(11,11);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   100% {
     transform: scale(11,11);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
 }
 
 @keyframes kitoliver3 {
   0% {
     transform: scale(1,1);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   32% {
     transform: scale(7,7);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   64% {
     transform: scale(11,11);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   81% {
     transform: scale(15,15);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
   100% {
     transform: scale(15,15);
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
   }
 }
 
@@ -361,25 +421,18 @@
   width:1rem;
   height:1rem;
   background:#ff4f0a;
-  background:url(/images/main/circle01.svg);
   border-radius:50%;
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 5s;
   animation-fill-mode:both;
   animation-iteration-count: infinite;
-  filter: none;
-  -webkit-filter: blur(0px);
-  -moz-filter: blur(0px);
-  -ms-filter: blur(0px);
-  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');  
 }
 
 .main_kito_desc figure .circle .circle02{
   width:1rem;
   height:1rem;
   background:#ffa00a;
-  background:url(/images/main/circle02.svg);
   animation-name:kitoliver2;
   animation-duration: 5s;
 }
@@ -388,7 +441,6 @@
   width:1rem;
   height:1rem;
   background:#ffbd0a;
-  background:url(/images/main/circle03.svg);
   animation-name:kitoliver3;
   animation-duration: 5s;
 }
