@@ -28,16 +28,6 @@ ul, li, ol {
   margin-top:-4.5rem;
   text-align:center;
 }
-@keyframes loading_div {
-  0% {
-    clip: rect(0rem,0rem,0rem,0rem) scale(1,1);
-    transform: rotate(0deg);
-  }
-  100% {
-    clip: rect(0rem,6rem,6rem,0rem) scale(0,0);
-    transform: rotate(360deg);
-  }
-}
 .loading_div > div > div:after {
   position:absolute;
   z-index:21;
@@ -62,18 +52,27 @@ ul, li, ol {
   border-radius: 50%;
   margin-bottom:1rem;
 }
-  .loading_div > div > div > span b {
+  .loading_div > div > div > span > b {
     position:absolute;
     display:block;
     content:"";
     width:6rem;
+    border-radius: 50%;
     height:6rem;
-    background:red;
-  transform-origin: center;
-  animation-name:loading_div;
-  animation-duration: 2s;
-  animation-fill-mode:both;
-  animation-iteration-count: infinite;
+    transform: rotate(90deg);
+    background:#ffce00;
+    clip: rect(0rem,3rem,6rem,6rem);
+}
+.loading_div > div > div > span > b > b {
+  position:absolute;
+  display:block;
+  content:"";
+  width:6rem;
+  border-radius: 50%;
+  height:6rem;
+  transform: rotate(1deg);
+  background:red;
+  clip: rect(0rem,3rem,6rem,6rem);
 }
 
 .designcustom .blind {
