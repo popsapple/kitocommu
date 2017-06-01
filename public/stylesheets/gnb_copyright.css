@@ -432,6 +432,16 @@ body.ie9 .designcustom .navbar-collapse.in > ul {
   transition: opacity 0.2s 5s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
+body.ie9 .designcustom .navbar-collapse > ul+button:before {
+  display:none;
+}
+body.ie9 .designcustom .navbar-collapse > ul+button:after {
+  content:"\f00d";
+  font-family: "FontAwesome", sans-serif;
+  font-size:2rem;
+  margin-left:-1rem;
+}
+
 .designcustom .navbar-collapse.in > ul+button:before,
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(45deg);
