@@ -103,10 +103,12 @@
 .main_recipe > ul {
   display:block;
   white-space:nowrap;
+  margin:0rem;
+  padding:0rem;
 }
 
 .main_recipe > ul > li {
-  display:inline-block;
+  display:block;
   width:100%;
 }
 
@@ -117,7 +119,8 @@
   height:100%;
 }
 
-.main_recipe > ul > li > a > * {
+.main_recipe > ul > li > a > *,
+.main_recipe > ul > li > a > * img {
   display:block;
   width:100%;
   height:auto;
@@ -151,4 +154,6 @@
   transform: skewY(15deg);
   margin-right: 3rem;
   top:0rem;
+  left: 50%;
+  margin-left: -1rem;
 }
