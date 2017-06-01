@@ -10,6 +10,12 @@
   position:relative;
   width:100%;
 }
+.main_visual.flexslider .slides > li+li {
+  display:none !important;
+}
+.main_visual.active.flexslider .slides > li+li {
+  display:block !important;
+}
 .main_visual.flexslider .slides > li  > h1 {
   position:absolute;
   display:block;
