@@ -438,6 +438,18 @@ body.ie9 .designcustom .navbar-collapse.in > ul {
   transition: opacity 0.2s 3s, transform 0s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
 
+@media all and (orientation:landscape) {
+  .designcustom .navbar-collapse > ul+button {
+    position:absolute;
+    right:0rem;
+    top:0rem;
+  }
+  .designcustom .navbar-collapse > ul+button:before,
+  .designcustom .navbar-collapse > ul+button:after {
+    background:#000000;
+  }
+}
+
 body.ie9 .designcustom .navbar-collapse > ul+button:before {
   display:none;
 }
