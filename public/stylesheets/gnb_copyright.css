@@ -495,18 +495,24 @@ body > footer {
 body > footer h1 {
   margin:auto auto 2rem auto;
 }
-body > footer h1 * {
+html body > footer h1 *{
   display:block;
-  padding:0rem;
-  margin:auto;
-  float:none;
-  clear:both;
+  height: auto;
+  margin: auto;
+}
+html body > footer h1 .navbar-brand {
+  display:block;
+  height: auto;
+  margin: auto;
+  margin-bottom: 4rem;
+  float: none;
+  clear: both;
   text-align: center;
 }
 body > footer ul {
   margin:0rem 0rem 2rem 0rem;
 }
-body > footer ul li {
+body > footer.designcustom ul li {
   display:block;
   text-align:center;
   margin-bottom:2rem;
@@ -514,10 +520,10 @@ body > footer ul li {
   font-weight: 400;
   color: #999;
 }
-body > footer ul li+li {
-  margin-bottom:0.7rem;
+body > footer.designcustom ul li+li {
+  margin-bottom:0.8rem;
 }
-body > footer ul li+li.icon:before {
+body > footer.designcustom ul li+li.icon:before {
   display:inline-block;
   margin-right:0.5rem;
   font-size: 1.2rem;
