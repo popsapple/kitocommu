@@ -497,9 +497,10 @@ body.ie9 .designcustom .navbar-collapse > ul+button:after {
 
 /********** 카피라이트  ***********/
 
-body > footer {
+body > footer.designcustom {
   background:#f0ede6;
   padding:5rem 0rem;
+  margin-top:5rem;
 }
 body > footer h1 {
   margin:auto auto 2rem auto;
