@@ -236,7 +236,7 @@
     transform: scale(1,1);
   }
   100% {
-    transform: scale(5,5);
+    transform: scale(15,15);
   }
 }
 
@@ -245,7 +245,7 @@
     transform: scale(0,0);
   }
   100% {
-    transform: scale(7,7);
+    transform: scale(22,22);
   }
 }
 
@@ -254,7 +254,7 @@
     transform: scale(0,0);
   }
   100% {
-    transform: scale(9,9);
+    transform: scale(29,29);
   }
 }
 
@@ -287,7 +287,7 @@
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 1.5s;
-  animation-delay: 0s;
+  animation-delay: 4.5s;
   animation-iteration-count: infinite;
 }
 
@@ -296,7 +296,7 @@
   height:1rem;
   background:#ffa00a;
   animation-name:kitoliver2;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
 }
 
 .main_kito_desc figure .circle .circle03{
@@ -304,7 +304,7 @@
   height:1rem;
   background:#ffbd0a;
   animation-name:kitoliver3;
-  animation-delay: 2s;
+  animation-delay: 3s;
 }
 
 .main_kito_desc figure .liver {
