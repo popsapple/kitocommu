@@ -239,6 +239,24 @@
   }
 }
 
+@keyframes kitoliver2 {
+  0% {
+    transform: scale(0,0);
+  }
+  100% {
+    transform: scale(7,7);
+  }
+}
+
+@keyframes kitoliver3 {
+  0% {
+    transform: scale(0,0);
+  }
+  100% {
+    transform: scale(9,9);
+  }
+}
+
 .main_kito_desc figure .circle {
   position:absolute;
   z-index:1;
@@ -269,19 +287,22 @@
   animation-name:kitoliver;
   animation-duration: 1.5s;
   animation-delay: 0s;
+  animation-iteration-count: infinite;
 }
 
 .main_kito_desc figure .circle .circle02{
   width:1rem;
   height:1rem;
-  background:#ff4f0a;
+  background:#ffa00a;
+  animation-name:kitoliver2;
   animation-delay: 2s;
 }
 
 .main_kito_desc figure .circle .circle03{
   width:1rem;
   height:1rem;
-  background:#ff4f0a;
+  background:#ffbd0a;
+  animation-name:kitoliver3;
   animation-delay: 2s;
 }
 
