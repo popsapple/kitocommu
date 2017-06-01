@@ -193,20 +193,20 @@
   display:block;
   background:#f0ede6;
   padding-top : 5rem;
-  padding-bottom : 5rem;
 }
 
 .main_kito_desc h1 strong {
   display:block;
-  font-size:10rem;
+  font-size:3.5rem;
   color:#464646;
   font-weight:800;
+  margin-bottom:1.5rem;
 }
 
 .main_kito_desc h1 span {
   display:block;
-  font-size:2rem;
-  line-height:2.5rem;
+  font-size:1.8rem;
+  line-height:2.2rem;
   color:#707070;
   font-weight:400;
 }
@@ -215,7 +215,7 @@
   display:inline-block;
   color:#303030;
   background:#fac304;
-  padding:0.5rem;
+  font-style:normal;
   margin-bottom:2rem;
 }
 
