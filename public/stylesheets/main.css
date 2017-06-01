@@ -106,6 +106,11 @@
 
 
 /*********  레시피  *********/
+
+.main_recipe {
+  text-align:center;
+}
+
 .main_recipe > ul {
   display:block;
   white-space:nowrap;

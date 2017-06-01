@@ -36,10 +36,11 @@ ul, li, ol {
 }
 
 .designcustom .linebutton {
-  display:block;
+  display:inline-block;
   color:#707070;
   margin:auto;
   padding:1rem 2rem;
+  margin:6rem;
   border:1px solid #bfbfbf;
   border-color:#bfbfbf;
   background-color:#ffffff;
@@ -60,7 +61,7 @@ ul, li, ol {
 }
 
 .designcustom .linebutton.middle {
-  font-size:2rem;
+  font-size:1.8rem;
   font-weight:400;
 }
 
@@ -76,10 +77,11 @@ ul, li, ol {
 }
 
 .designcustom .section_title span {
-  font-size:2rem;
-  font-weight:300;
-  color:#464646;
-}
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #464646;
+  display: block;
+  margin-top: 1.5rem;
 
 /******** gnb **********/
 
