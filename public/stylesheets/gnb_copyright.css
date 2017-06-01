@@ -105,6 +105,13 @@ ul, li, ol {
   padding:0rem;
 }
 
+.designcustom .navbar-default {
+  background:none;
+  border:0rem;
+  padding:0rem;
+  box-shadow:0rem;
+  border-radius: 0rem;  
+}
 .designcustom .navbar-header {
   display:table;
   width:100%;
