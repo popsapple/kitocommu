@@ -205,7 +205,7 @@
 
 .main_kito_desc h1 span {
   display:block;
-  font-size:1.8rem;
+  font-size:1.4rem;
   line-height:2.2rem;
   color:#707070;
   font-weight:400;
@@ -302,17 +302,17 @@
 
 .main_kito_desc figure .meet {
   top:10%;
-  left:25%;
+  left:10%;
   max-width:6.2rem;
 }
 .main_kito_desc figure .cheese {
-  top:17%;
-  left:20%;
+  top:21%;
+  left:3%;
   max-width:6.2rem;
 }
 .main_kito_desc figure .avocado {
-  top:21%;
-  left:15%;
+  top:34.5%;
+  left:0%;
   max-width:6.2rem;
 }
 .main_kito_desc figure .liver {
