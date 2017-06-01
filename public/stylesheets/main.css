@@ -235,6 +235,9 @@
   0% {
     transform: scale(1,1);
   }
+  32% {
+    transform: scale(15,15);
+  }
   100% {
     transform: scale(15,15);
   }
@@ -242,7 +245,13 @@
 
 @keyframes kitoliver2 {
   0% {
-    transform: scale(0,0);
+    transform: scale(1,1);
+  }
+  32% {
+    transform: scale(15,15);
+  }
+  64% {
+    transform: scale(22,22);
   }
   100% {
     transform: scale(22,22);
@@ -251,7 +260,16 @@
 
 @keyframes kitoliver3 {
   0% {
-    transform: scale(0,0);
+    transform: scale(1,1);
+  }
+  32% {
+    transform: scale(15,15);
+  }
+  64% {
+    transform: scale(22,22);
+  }
+  81% {
+    transform: scale(29,29);
   }
   100% {
     transform: scale(29,29);
@@ -286,8 +304,7 @@
   border-radius:100rem;
   opacity:0.3;
   animation-name:kitoliver;
-  animation-duration: 1.5s;
-  animation-delay: -5.5s;
+  animation-duration: 5s;
   animation-fill-mode:both;
   animation-iteration-count: infinite;
 }
@@ -297,8 +314,7 @@
   height:1rem;
   background:#ffa00a;
   animation-name:kitoliver2;
-  animation-duration: 1.5s;
-  animation-delay: 0s;
+  animation-duration: 5s;
 }
 
 .main_kito_desc figure .circle .circle03{
@@ -306,8 +322,7 @@
   height:1rem;
   background:#ffbd0a;
   animation-name:kitoliver3;
-  animation-duration: 1.5s;
-  animation-delay: 4s;
+  animation-duration: 5s;
 }
 
 .main_kito_desc figure .liver {
