@@ -6,10 +6,61 @@ ul, li, ol {
 
 .loading_div {
   position:absolute;
+  width:100vw;
+  height:100vh;
   z-index:20;
-  background:#000000;
+  background:#ffffff;
   font-size:10rem;
   color:#ffffff;
+}
+.loading_div > div {
+  position:relative;
+  width:100%;
+  height:100%;
+}
+.loading_div > div > div {
+  position:absolute;
+  width:9rem;
+  height:9rem;
+  left:50%;
+  top:50%;
+  margin-left:-4.5rem;
+  margin-top:-4.5rem;
+  text-align:center;
+}
+@keyframes loading_div {
+  0%{
+    transform: scale(0,1),rotate(0deg);
+  }
+  100%{
+    transform: scale(1,1),rotate(360deg);
+  }
+}
+.loading_div > div > div:after {
+  position:absolute;
+  z-index:21;
+  width:4.6rem;
+  height:4.6rem;
+  left:50%;
+  top:50%;
+  background:#ffffff;
+  border-radius: 50%;
+  margin-left:-2.3rem;
+  margin-top:-2.3rem;
+  text-align:center;
+}
+.loading_div > div > div:before {
+  display:block;
+  content:"";
+  width:6rem;
+  height:6rem;
+  background:#ffce00;
+  border-radius: 50%;
+  margin-bottom:1rem;
+  animation-name:loading_div;
+  animation-duration: 2s;
+  animation-fill-mode:both;
+  animation-iteration-count: infinite;
 }
 
 .designcustom .blind {
