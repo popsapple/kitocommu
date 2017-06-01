@@ -287,7 +287,7 @@
   opacity:0.3;
   animation-name:kitoliver;
   animation-duration: 1.5s;
-  animation-delay: 4.5s;
+  animation-delay: 5.5s;
   animation-iteration-count: infinite;
 }
 
@@ -297,7 +297,7 @@
   background:#ffa00a;
   animation-name:kitoliver2;
   animation-duration: 1.5s;
-  animation-delay: 1.5s;
+  animation-delay: 2s;
 }
 
 .main_kito_desc figure .circle .circle03{
@@ -306,7 +306,7 @@
   background:#ffbd0a;
   animation-name:kitoliver3;
   animation-duration: 1.5s;
-  animation-delay: 3s;
+  animation-delay: 4s;
 }
 
 .main_kito_desc figure .liver {
