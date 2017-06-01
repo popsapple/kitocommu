@@ -312,6 +312,7 @@
   max-width:6.2rem;
 }
 .main_kito_desc figure .liver {
+  z-index:2;
   bottom:30%;
   left:50%;
   margin-left:-5.2rem;
