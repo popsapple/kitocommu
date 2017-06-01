@@ -61,6 +61,7 @@ ul, li, ol {
   background:#ffce00;
   border-radius: 50%;
   margin-bottom:1rem;
+  transform-origin: center;
   animation-name:loading_div;
   animation-duration: 2s;
   animation-fill-mode:both;
