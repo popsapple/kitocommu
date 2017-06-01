@@ -128,21 +128,27 @@
 .main_recipe > ul > li > a > div {
   position:relative;
   z-index:1;
-  display:table;
+  display:block;
   vertical-align:middle;
   width:100%;
   height:100%;
 }
 
-.main_recipe > ul > li > a h2 {
+.main_recipe > ul > li > a > div > div {
   position:absolute;
+  display:table;
+  vertical-align:middle;
+  width:100%;
+  height:100%;
+}
+.main_recipe > ul > li > a h2 {
+  position:relative;
   display:table-cell;
   vertical-align:middle;
   width:100%;
   height:100%;
 }
 .main_recipe > ul > li > a h2 strong {
-  position:relative;
   display:block;
   padding-top:2rem;
   color:#ffffff;
