@@ -48,9 +48,31 @@ ul, li, ol {
   content:"";
   width:6rem;
   height:6rem;
-  background:#ffce00;
+  background:#ffffff;
   border-radius: 50%;
   margin-bottom:1rem;
+}
+@keyframes loading_div_right {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes loading_div_left {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 .loading_div > div > div > span > b.right {
     position:absolute;
@@ -73,6 +95,10 @@ ul, li, ol {
   transform: rotate(10deg);
   background:#ffce00;
   clip: rect(0,3rem,6rem,0rem);
+  animation-name:loading_div_right;
+  animation-duration: 2s;
+  animation-fill-mode:both;
+  animation-iteration-count: infinite;
 }
 .loading_div > div > div > span > b.left {
     position:absolute;
@@ -92,9 +118,13 @@ ul, li, ol {
   width:6rem;
   border-radius: 50%;
   height:6rem;
-  transform: rotate(10deg);
+  transform: rotate(0deg);
   background:#ffce00;
   clip: rect(0,6rem,6rem,3rem);
+  animation-name:loading_div_left;
+  animation-duration: 2s;
+  animation-fill-mode:both;
+  animation-iteration-count: infinite;
 }
 
 .designcustom .blind {
