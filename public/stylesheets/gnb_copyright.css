@@ -484,3 +484,45 @@ body.ie9 .designcustom .navbar-collapse > ul+button:after {
 .designcustom .navbar-collapse.in > ul+button:after {
   transform: rotate(-45deg);
 }
+
+
+/********** 카피라이트  ***********/
+
+body > footer {
+  background:#f0ede6;
+  padding:5rem 0rem;
+}
+body > footer h1 {
+  margin:auto auto 2rem auto;
+}
+body > footer h1 * {
+  display:block;
+}
+body > footer ul {
+  margin:0rem 0rem 2rem 0rem;
+}
+body > footer ul li {
+  display:block;
+  text-align:center;
+  margin-bottom:2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #999;
+}
+body > footer ul li+li {
+  margin-bottom:0.7rem;
+}
+body > footer ul li+li.icon {
+  display:inline-block;
+  margin-right:0.5rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #999;
+  font-family: "FontAwesome", sans-serif;
+}
+body > footer ul li+li.author {
+  content:"\f040";
+}
+body > footer ul li+li.email {
+  content:"\f0e0";
+}
