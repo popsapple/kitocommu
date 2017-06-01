@@ -486,9 +486,13 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   line-height:2.6rem;
   font-weight:700;
   color:#464646;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .main_kito_faq > ul > li.open h2 span {
   margin-bottom:1rem;
+  white-space: normal;
+  text-overflow: none;
 }
 .main_kito_faq > ul > li a:hover {
   text-decoration: none;
@@ -531,11 +535,14 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
 .main_post_section > ul > li a:hover {
   text-decoration:none;
 }
-.main_post_section > ul > li h2 {
+.main_post_section > ul > li h2 strong {
+  display:block;
   font-size:1.4rem;
   font-weight:300;
   color:#606060;
   margin-bottom:1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .main_post_section > ul > li time {
   display:inline-block;
