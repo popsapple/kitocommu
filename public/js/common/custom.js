@@ -1,3 +1,7 @@
+if (!window.console) {
+    console = {};
+    console.log = function(){};
+}
 $(document).ready(function() {
   if($('.main_visual')){
     $('.main_visual').flexslider({
