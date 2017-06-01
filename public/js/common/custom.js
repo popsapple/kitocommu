@@ -26,3 +26,13 @@ $(document).ready(function() {
     });
   }
 });
+
+$(window).scroll(function(event) {
+  if($(".designcustom .navbar-default")){
+    if($(window).scrollTop() > $(".designcustom .navbar-default").height()){
+      $(".designcustom .navbar-default").addClass("scroll");
+    }else if($(window).scrollTop() == 0){
+      $(".designcustom .navbar-default").removeClass("scroll");
+    }
+  }
+});

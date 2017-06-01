@@ -124,6 +124,14 @@ html,
   vertical-align:middle;
   line-height:inherit;
 }
+
+.designcustom .navbar-default.scroll {
+  position:fixed;
+  z-index:3;
+  top:0;
+  border-bottom:1px solid #999999;
+}
+
 .designcustom .navbar-header > h1 img{
   display:inline-block;
   width: 8rem;
