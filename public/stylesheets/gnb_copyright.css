@@ -469,7 +469,8 @@ body.ie9 .designcustom .navbar-collapse > ul+button:after {
   background:none;
   color:#ffffff;
   font-family: "FontAwesome", sans-serif;
-  font-size:2rem;
+  font-size:3rem;
+  margin-top:-3.5rem;
   margin-left:-1rem;
 }
 
