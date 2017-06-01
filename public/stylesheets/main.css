@@ -372,7 +372,8 @@
   display:block;
   width:1rem;
   height:1rem;
-  background-image:#ff4f0a;
+  background:#ff4f0a;
+  background:url(/images/main/circle01.svg);
   border-radius:50%;
   opacity:0.3;
   animation-name:kitoliver;
@@ -385,6 +386,7 @@
   width:1rem;
   height:1rem;
   background:#ffa00a;
+  background:url(/images/main/circle02.svg);
   animation-name:kitoliver2;
   animation-duration: 5s;
 }
@@ -393,6 +395,7 @@
   width:1rem;
   height:1rem;
   background:#ffbd0a;
+  background:url(/images/main/circle03.svg);
   animation-name:kitoliver3;
   animation-duration: 5s;
 }
