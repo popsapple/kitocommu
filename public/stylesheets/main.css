@@ -325,6 +325,21 @@
   animation-duration: 5s;
 }
 
+body.ie9 .main_kito_desc figure .circle .circle01{
+  width:15rem;
+  height:15rem;
+}
+
+body.ie9 .main_kito_desc figure .circle .circle02{
+  width:22rem;
+  height:22rem;
+}
+
+body.ie9 .main_kito_desc figure .circle .circle03{
+  width:29rem;
+  height:29rem;
+}
+
 .main_kito_desc figure .liver {
   position:absolute;
   z-index:2;
