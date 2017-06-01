@@ -220,11 +220,12 @@
 }
 
 .main_kito_desc h1 span em {
-  display:inline-block;
-  color:#303030;
-  background:#fac304;
-  padding:0.5rem;
-  margin-bottom:2rem;
+  display: inline-block;
+  color: #303030;
+  background: #fac304;
+  padding: 0.1rem 0.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 0rem;
 }
 .main_kito_desc figure {
   position:relative;
