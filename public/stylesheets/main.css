@@ -181,3 +181,111 @@
   left: 50%;
   margin-left: -2rem;
 }
+
+.designcustom .main_recipe .linebutton {
+  margin:5rem 0rem;
+}
+
+
+/***** 키토제닉 다이어트 설명 *****/
+
+.main_kito_desc {
+  display:block;
+  background:#f0ede6;
+  padding-top : 5rem;
+  padding-bottom : 5rem;
+}
+
+.main_kito_desc h1 strong {
+  display:block;
+  font-size:10rem;
+  color:#464646;
+  font-weight:800;
+}
+
+.main_kito_desc h1 span {
+  display:block;
+  font-size:2rem;
+  line-height:2.5rem;
+  color:#707070;
+  font-weight:400;
+}
+
+.main_kito_desc h1 span em {
+  display:inline-block;
+  color:#303030;
+  background:#fac304;
+  padding:0.5rem;
+  margin-bottom:2rem;
+}
+
+.main_kito_desc h1 span em {
+  display:inline-block;
+  color:#303030;
+  background:#fac304;
+  padding:0.5rem;
+  margin-bottom:2rem;
+}
+.main_kito_desc figure {
+  position:relative;
+}
+
+@keyframes kitoliver01 {
+  0% {
+    transform: scale(1,1);
+  }
+  100% {
+    transform: scale(5,5);
+  }
+}
+
+.main_kito_desc figure .circle {
+  position:absolute;
+  z-index:1;
+  display:block;
+  width:1rem;
+  height:1rem;
+}
+
+.main_kito_desc figure .circle > span {
+  position:relative;
+  display:block;
+  width:1rem;
+  height:1rem;
+}
+
+.main_kito_desc figure .circle .circle_obj{
+  position:absolute;
+  left:50%;
+  height:50%;
+  margin-left:-0.5rem;
+  margin-top:-0.5rem;
+  display:block;
+  width:1rem;
+  height:1rem;
+  background:#ff4f0a;
+  border-radius:100rem;
+  opacity:0.3;
+  animation-name:kitoliver;
+  animation-duration: 1.5s;
+  animation-delay: 0s;
+}
+
+.main_kito_desc figure .circle .circle02{
+  width:1rem;
+  height:1rem;
+  background:#ff4f0a;
+  animation-delay: 2s;
+}
+
+.main_kito_desc figure .circle .circle03{
+  width:1rem;
+  height:1rem;
+  background:#ff4f0a;
+  animation-delay: 2s;
+}
+
+.main_kito_desc figure .liver {
+  position:absolute;
+  z-index:2;
+}

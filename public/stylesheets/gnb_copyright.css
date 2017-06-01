@@ -175,7 +175,7 @@ ul, li, ol {
   top:0rem;
   background:#000000;
   opacity:0;
-  z-index:2;
+  z-index:10;
   font-size:0rem;
   -webkit-transition:opacity 1s 1s,height 0s 2s;
   -moz-transition:opacity 1s 1s,height 0s 2s;
@@ -214,7 +214,7 @@ ul, li, ol {
   padding: 5rem 0rem;
   min-height: 10rem;
   background:#ffce00;
-  z-index:2;
+  z-index:10;
   margin-top:-50rem \0/IE8+9;
   animation-name: closemenu;
   animation-name: menu_none \0/IE8+9;
