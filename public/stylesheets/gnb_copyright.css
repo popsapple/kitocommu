@@ -30,10 +30,12 @@ ul, li, ol {
 }
 @keyframes loading_div {
   0% {
-    transform: scale(0,1) rotate(0deg);
+    clip: rect(6rem,6rem,6rem,6rem);
+    transform: rotate(0deg);
   }
   100% {
-    transform: scale(1,1) rotate(360deg);
+    clip: rect(0rem,0rem,0rem,0rem);
+    transform: rotate(360deg);
   }
 }
 .loading_div > div > div:after {
