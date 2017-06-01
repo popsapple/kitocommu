@@ -517,7 +517,7 @@ body > footer ul li {
 body > footer ul li+li {
   margin-bottom:0.7rem;
 }
-body > footer ul li+li.icon {
+body > footer ul li+li.icon:before {
   display:inline-block;
   margin-right:0.5rem;
   font-size: 1.2rem;
@@ -525,9 +525,9 @@ body > footer ul li+li.icon {
   color: #999;
   font-family: "FontAwesome", sans-serif;
 }
-body > footer ul li+li.author {
+body > footer ul li+li.author:before {
   content:"\f040";
 }
-body > footer ul li+li.email {
+body > footer ul li+li.email:before {
   content:"\f0e0";
 }
