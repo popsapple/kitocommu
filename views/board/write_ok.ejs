@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
-</head>
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-<% include ../partials/nav.ejs %>
-  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-    <section>
-      게시물 작성을 완료했습니다.
-      <% if(locals.is_reply == "no") { %>
-        <a class="btn btn-default" href="/board/list?board_table_id=<%= board_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
-      <%} else if(locals.is_reply == "yes") { %>
-        <%if(locals.reply_table_id){%>
-          <a class="btn btn-default" href="/board/list?board_table_id=<%= reply_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
-        <%}%>
-      <% } %>
-      <%if(locals.title){%>
-        <%= title %>
-      <%}%>
-    </section>
-  </div>
-<% include ../partials/footer.ejs %>
-</body>
+  <head>
+    <% include ../partials/header.ejs %>
+    <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+      <% include ../partials/nav.ejs %>
+        <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+          <section>
+            게시물 작성을 완료했습니다.
+            <% if(locals.is_reply == "no") { %>
+              <a class="btn btn-default" href="/board/list?board_table_id=<%= board_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
+            <%} else if(locals.is_reply == "yes") { %>
+              <%if(locals.reply_table_id){%>
+                <a class="btn btn-default" href="/board/list?board_table_id=<%= reply_table_id %>&page=0&page_length=10">목록으로 돌아가기</a>
+              <%}%>
+            <% } %>
+            <%if(locals.title){%>
+              <%= title %>
+            <%}%>
+          </section>
+        </div>
+      </div>
+    <% include ../partials/footer.ejs %>
+  </body>
 </html>

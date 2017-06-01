@@ -2,17 +2,17 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-</head>
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-<% include ../partials/nav.ejs %>
-  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-    <section>
-      <h3>
-        <%= id %>님의 회원가입을 축하합니다.
-      </h3>
-      <a href="/login_form" taget="_self" class="btn btn-default ">로그인 하러가기</a accesskey="s">
-    </section>
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+  <% include ../partials/nav.ejs %>
+    <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+      <section>
+        <h3>
+          <%= id %>님의 회원가입을 축하합니다.
+        </h3>
+        <a href="/login_form" taget="_self" class="btn btn-default ">로그인 하러가기</a accesskey="s">
+      </section>
+    </div>
   </div>
-<% include ../partials/footer.ejs %>
+  <% include ../partials/footer.ejs %>
 </body>
 </html>

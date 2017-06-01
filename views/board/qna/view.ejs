@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../../partials/header.ejs %>
   <link rel="alternate" hreflang="ko-kr" href="<%= css_skin %>" />
-</head>
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-<% include ../../partials/nav.ejs %>
-  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-    <section>
-        <ul>
-          <li>
-            <h2>
-              <strong>제목</strong>
-              <em><%= title %></em>
-            </h2>
-          </li>
-          <li>
-            <strong>카테고리</strong>
-            <em><%= category %></em>
-          </li>
-          <li>
-            <strong>공지사항</strong>
-            <em><%= is_notice %></em>
-          </li>
-          <li>
-            <strong>글내용</strong>
-            <div id="BoardViewContents" class="contents">
-              <%= contents %>
-            </div>
-          </li>
-          <li>
-            <strong>태그</strong>
-            <em><%= tags %></em>
-          </li>
-        </ul>
-    </section>
-    <%if(locals.is_writer){%>
-      <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
-        <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-        <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
-        <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
-        <%if(locals.reply_table_id){%>
-          <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+  <% include ../partials/header.ejs %>
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../../partials/nav.ejs %>
+      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <section>
+            <ul>
+              <li>
+                <h2>
+                  <strong>제목</strong>
+                  <em><%= title %></em>
+                </h2>
+              </li>
+              <li>
+                <strong>카테고리</strong>
+                <em><%= category %></em>
+              </li>
+              <li>
+                <strong>공지사항</strong>
+                <em><%= is_notice %></em>
+              </li>
+              <li>
+                <strong>글내용</strong>
+                <div id="BoardViewContents" class="contents">
+                  <%= contents %>
+                </div>
+              </li>
+              <li>
+                <strong>태그</strong>
+                <em><%= tags %></em>
+              </li>
+            </ul>
+        </section>
+        <%if(locals.is_writer){%>
+          <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
+            <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+            <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+            <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
+            <%if(locals.reply_table_id){%>
+              <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+            <%}%>
+            <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">
+          </form>
+          <form method="get" action="/board/write">
+            <input id="ModifyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+            <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
+            <input id="ModifyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+            <%if(locals.reply_table_id){%>
+              <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+            <%}%>
+            <button type="submit" class="btn btn-default">수정하기</button accesskey="d">
+          </form>
         <%}%>
-        <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">
-      </form>
-      <form method="get" action="/board/write">
-        <input id="ModifyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-        <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
-        <input id="ModifyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
-        <%if(locals.reply_table_id){%>
-          <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+        <%if(locals.is_reply != "yes"){%>
+          <form method="get" action="/board/reply_write">
+            <input id="ReplyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+            <input id="ReplyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+            <input id="ReplyCheck" name="is_reply" type="hidden" value="yes" />
+            <button type="submit" class="btn btn-default">답글달기</button accesskey="d">
+          </form>
         <%}%>
-        <button type="submit" class="btn btn-default">수정하기</button accesskey="d">
-      </form>
-    <%}%>
-    <%if(locals.is_reply != "yes"){%>
-      <form method="get" action="/board/reply_write">
-        <input id="ReplyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-        <input id="ReplyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
-        <input id="ReplyCheck" name="is_reply" type="hidden" value="yes" />
-        <button type="submit" class="btn btn-default">답글달기</button accesskey="d">
-      </form>
-    <%}%>
-  </div>
-  <%if(locals.is_comment == 'yes'){%>
-    <% include ./coments.ejs %>
-  <%}%>
-<% include ../../partials/footer.ejs %>
-</body>
+      </div>
+      <%if(locals.is_comment == 'yes'){%>
+        <% include ./coments.ejs %>
+      <%}%>
+    </div>
+    <% include ../../partials/footer.ejs %>
+  </body>
 </html>

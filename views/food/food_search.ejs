@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
-</head>
-
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-
-<% include ../partials/nav.ejs %>
-<div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-  <article class="food_list" itemscope = "" itemtype = "http://schema.org/Thing">
-    <hgroup itemprop = "about">
-      <h2><strong><%= food_keyword %>에 대한 음식들입니다.</strong></h2>
-    </hgroup>
-    <section>
-      <ul class="food_list">
-        <% for(var i=0; i < food_list.length; i++) { %>
-        <li itemscope = "" itemtype = "http://schema.org/Thing">
-          <h3 itemprop = "name"><%= food_list[i].food_name %></h3>
-          <div itemprop = "description">
-            <figure itemprop = "image">
-              <img src="<%= food_list[i].thumb_img %>" alt="<%= food_list[i].food_name %>" />
-            </figure>
-            <em>칼로리 <span><%= food_list[i].kcal %></span></em>
-          </div>
-          <button class="btn detail_submit" itemprop = "url" data-food_keyword="<%= food_keyword %>" data-category="<%= food_list[i].code %>" data-sid="<%= food_list[i].seq_code %>" >상세 영양성분 보기</button>
-        </li>
-        <% } %>
-      </ul>
-    </section>
-  </article>
-</div>
-<div class="modal">
-  <div class="food_detail">
-  </div>
-</div>
-  <% include ../partials/footer.ejs %>
-</body>
+  <head>
+    <% include ../partials/header.ejs %>
+    <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+      <% include ../partials/nav.ejs %>
+      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <article class="food_list" itemscope = "" itemtype = "http://schema.org/Thing">
+          <hgroup itemprop = "about">
+            <h2><strong><%= food_keyword %>에 대한 음식들입니다.</strong></h2>
+          </hgroup>
+          <section>
+            <ul class="food_list">
+              <% for(var i=0; i < food_list.length; i++) { %>
+              <li itemscope = "" itemtype = "http://schema.org/Thing">
+                <h3 itemprop = "name"><%= food_list[i].food_name %></h3>
+                <div itemprop = "description">
+                  <figure itemprop = "image">
+                    <img src="<%= food_list[i].thumb_img %>" alt="<%= food_list[i].food_name %>" />
+                  </figure>
+                  <em>칼로리 <span><%= food_list[i].kcal %></span></em>
+                </div>
+                <button class="btn detail_submit" itemprop = "url" data-food_keyword="<%= food_keyword %>" data-category="<%= food_list[i].code %>" data-sid="<%= food_list[i].seq_code %>" >상세 영양성분 보기</button>
+              </li>
+              <% } %>
+            </ul>
+          </section>
+        </article>
+      </div>
+      <div class="modal">
+        <div class="food_detail">
+        </div>
+      </div>
+    </div>
+    <% include ../partials/footer.ejs %>
+  </body>
 </html>

@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../../partials/header.ejs %>
   <link rel="alternate" hreflang="ko-kr" href="<%= css_skin %>" />
-</head>
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-<% include ../../partials/nav.ejs %>
-  <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-    <% if(locals.notice_list) { %>
-    <section id="boardNoticeList">
-      <ul>
-        <% for(var i=0; i < notice_list.length; i++) { %>
-        <li>
-          <hgroup>
-            <h2>
-              <span class="label label-default">Notice</span>
-              <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= notice_list[i].post_index %>">
-                <%= notice_list[i].title %>
-              </a>
-            </h2>
-            <h3>
-              <%= notice_list[i].writer_nickname %>
-            </h3>
-            <time>
-              <%= notice_list[i].writed %>
-            </time>
-          </hgroup>
-        </li>
-        <%}%>
-      </ul>
-    </section>
-    <%}%>
-    <section id="boardList">
-      <ul>
-        <% if(locals.board_list.length == 0) { %>
-        <li>
-          작성된 글이 없습니다.
-        </li>
-        <% } %>
-        <% for(var i=0; i < board_list.length; i++) { %>
-        <li>
-          <hgroup>
-            <h2>
-              <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
-                <%= board_list[i].title %>
-              </a>
-            </h2>
-            <h3>
-              <%= board_list[i].writer %>
-            </h3>
-            <time>
-              <%= board_list[i].writed %>
-            </time>
-          </hgroup>
-        </li>
-        <% if(locals.board_list[i].reply_list) { %>
-          <% for(var j=0; j < board_list[i].reply_list.length; j++) { %>
+  <% include ../partials/header.ejs %>
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../../partials/nav.ejs %>
+      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <% if(locals.notice_list) { %>
+        <section id="boardNoticeList">
+          <ul>
+            <% for(var i=0; i < notice_list.length; i++) { %>
             <li>
               <hgroup>
                 <h2>
-                  <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
-                    답글) <%= board_list[i].reply_list[j].title %>
+                  <span class="label label-default">Notice</span>
+                  <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= notice_list[i].post_index %>">
+                    <%= notice_list[i].title %>
                   </a>
                 </h2>
+                <h3>
+                  <%= notice_list[i].writer_nickname %>
+                </h3>
+                <time>
+                  <%= notice_list[i].writed %>
+                </time>
               </hgroup>
             </li>
-          <%}%>
-        <%}%>
-      <%}%>
-      </ul>
-    </section>
-    <section>
-      <ul>
-        <li>
-        <form method="get" action="/board/search_post">
-          <input type="hidden" name="board_table_id" value="<%= board_table_id %>" />
-          <% if(locals.page) { %>
-            <input type="hidden" name="page" value="<%= page %>" />
-          <%}else {%>
-            <input type="hidden" name="page" value="0" />
-          <%}%>
-          <input type="hidden" name="page_length" value="10" />
-          <% if(locals.searchoption) { %>
-            <select name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
-          <%}else {%>
-            <select name="searchoption" value="" id="BoardSearchOption">
-          <%}%>
-            <option value="title">제목</option>
-            <option value="tags">태그</option>
-            <option value="writer">작성자</option>
-            <option value="category">카테고리</option>
-          </select>
-          <% if(locals.searchvalue) { %>
-            <input name="searchvalue" value="<%= searchvalue %>" id="BoardSearchValue" type="text" />
-          <%}else {%>
-            <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
-          <%}%>
-          <input type="submit" value="검색하기" />
-        </form>
-        </li>
-      </ul>
-    </section>
-    <section id="boardPaging">
-      <ul>
-        <% for(var i=0; i < board_paging.length; i++) { %>
-        <li>
-          <% if(board_paging[i].paging != page_) { %>
-            <% if(locals.searchoption) { %>
-              <a href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
-                <%= board_paging[i].paging+1 %>
-              </a>
-            <%}else {%>
-              <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
-                <%= board_paging[i].paging+1 %>
-              </a>
             <%}%>
-          <%}else {%>
-            <% if(locals.searchoption) { %>
-              <a class="active" href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
-                <%= board_paging[i].paging+1 %>
-              </a>
-            <%}else {%>
-              <a class="active" href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
-                <%= board_paging[i].paging+1 %>
-              </a>
+          </ul>
+        </section>
+        <%}%>
+        <section id="boardList">
+          <ul>
+            <% if(locals.board_list.length == 0) { %>
+            <li>
+              작성된 글이 없습니다.
+            </li>
+            <% } %>
+            <% for(var i=0; i < board_list.length; i++) { %>
+            <li>
+              <hgroup>
+                <h2>
+                  <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
+                    <%= board_list[i].title %>
+                  </a>
+                </h2>
+                <h3>
+                  <%= board_list[i].writer %>
+                </h3>
+                <time>
+                  <%= board_list[i].writed %>
+                </time>
+              </hgroup>
+            </li>
+            <% if(locals.board_list[i].reply_list) { %>
+              <% for(var j=0; j < board_list[i].reply_list.length; j++) { %>
+                <li>
+                  <hgroup>
+                    <h2>
+                      <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
+                        답글) <%= board_list[i].reply_list[j].title %>
+                      </a>
+                    </h2>
+                  </hgroup>
+                </li>
+              <%}%>
             <%}%>
           <%}%>
-        </li>
-        <%}%>
-        <% if(locals.writing_level == 'yes') { %>
-          <li>
-            <a href="/board/write?board_table_id=<%= board_table_id %>">글쓰기</a>
-          </li>
-        <%}%>
-      </ul>
-    </section>
-  </div>
-<% include ../../partials/footer.ejs %>
-</body>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li>
+            <form method="get" action="/board/search_post">
+              <input type="hidden" name="board_table_id" value="<%= board_table_id %>" />
+              <% if(locals.page) { %>
+                <input type="hidden" name="page" value="<%= page %>" />
+              <%}else {%>
+                <input type="hidden" name="page" value="0" />
+              <%}%>
+              <input type="hidden" name="page_length" value="10" />
+              <% if(locals.searchoption) { %>
+                <select name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
+              <%}else {%>
+                <select name="searchoption" value="" id="BoardSearchOption">
+              <%}%>
+                <option value="title">제목</option>
+                <option value="tags">태그</option>
+                <option value="writer">작성자</option>
+                <option value="category">카테고리</option>
+              </select>
+              <% if(locals.searchvalue) { %>
+                <input name="searchvalue" value="<%= searchvalue %>" id="BoardSearchValue" type="text" />
+              <%}else {%>
+                <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
+              <%}%>
+              <input type="submit" value="검색하기" />
+            </form>
+            </li>
+          </ul>
+        </section>
+        <section id="boardPaging">
+          <ul>
+            <% for(var i=0; i < board_paging.length; i++) { %>
+            <li>
+              <% if(board_paging[i].paging != page_) { %>
+                <% if(locals.searchoption) { %>
+                  <a href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}else {%>
+                  <a href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}%>
+              <%}else {%>
+                <% if(locals.searchoption) { %>
+                  <a class="active" href="/board/search_post?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}else {%>
+                  <a class="active" href="/board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging[i].paging %>&page_length=10">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}%>
+              <%}%>
+            </li>
+            <%}%>
+            <% if(locals.writing_level == 'yes') { %>
+              <li>
+                <a href="/board/write?board_table_id=<%= board_table_id %>">글쓰기</a>
+              </li>
+            <%}%>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <% include ../../partials/footer.ejs %>
+  </body>
 </html>

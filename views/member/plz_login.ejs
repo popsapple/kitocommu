@@ -2,20 +2,18 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
-</head>
-
-<body itemscope = "" itemtype = "http://schema.org/WebPage">
-
-<% include ../partials/nav.ejs %>
-<div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-  <article class="plz_login" itemscope = "" itemtype = "http://schema.org/Thing">
-    <hgroup itemprop = "about">
-      <h2>
-        <strong>해당 페이지는 로그인 후 이용 가능합니다.</strong>
-        <a href="/login_form" class="btn btn-default " accesskey="s">로그인 페이지로 이동</a>
-      </h2>
-    </hgroup>
-</div>
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../partials/nav.ejs %>
+    <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+      <article class="plz_login" itemscope = "" itemtype = "http://schema.org/Thing">
+        <hgroup itemprop = "about">
+          <h2>
+            <strong>해당 페이지는 로그인 후 이용 가능합니다.</strong>
+            <a href="/login_form" class="btn btn-default " accesskey="s">로그인 페이지로 이동</a>
+          </h2>
+        </hgroup>
+    </div>
+  </div>
   <% include ../partials/footer.ejs %>
 </body>
 </html>
