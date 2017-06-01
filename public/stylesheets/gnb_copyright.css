@@ -135,11 +135,11 @@ html,
 
 @media all and (orientation:landscape) {
   .designcustom .navbar-default.scroll {
-    position:fixed;
-    z-index:2;
+    position:static;
+    z-index:1;
     top:0;
-    background:#ffffff;
-    border-bottom:1px solid #cbc8c2;
+    background:none;
+    border-bottom:none;
   }
 }
 
