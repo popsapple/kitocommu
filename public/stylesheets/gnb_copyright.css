@@ -52,27 +52,49 @@ ul, li, ol {
   border-radius: 50%;
   margin-bottom:1rem;
 }
-  .loading_div > div > div > span > b {
+.loading_div > div > div > span > b.right {
     position:absolute;
     display:block;
     content:"";
     width:6rem;
     border-radius: 50%;
     height:6rem;
-    transform: rotate(90deg);
-    background:#ffce00;
-    clip: rect(0rem,3rem,6rem,6rem);
+    transform: rotate(0deg);
+    background: #ffffff;
+    clip: rect(0,6rem,6rem,3rem);
 }
-.loading_div > div > div > span > b > b {
+.loading_div > div > div > span > b.right > b {
   position:absolute;
   display:block;
   content:"";
   width:6rem;
   border-radius: 50%;
   height:6rem;
-  transform: rotate(1deg);
-  background:red;
-  clip: rect(0rem,3rem,6rem,6rem);
+  transform: rotate(10deg);
+  background:#ffce00;
+  clip: rect(0,3rem,6rem,0rem);
+}
+.loading_div > div > div > span > b.left {
+    position:absolute;
+    display:block;
+    content:"";
+    width:6rem;
+    border-radius: 50%;
+    height:6rem;
+    transform: rotate(0deg);
+    background: #ffffff;
+    clip: rect(0,3rem,6rem,0rem);
+}
+.loading_div > div > div > span > b.left > b {
+  position:absolute;
+  display:block;
+  content:"";
+  width:6rem;
+  border-radius: 50%;
+  height:6rem;
+  transform: rotate(10deg);
+  background:#ffce00;
+  clip: rect(0,6rem,6rem,3rem);
 }
 
 .designcustom .blind {
