@@ -355,11 +355,11 @@
   position:absolute;
   left:50%;
   height:50%;
-  margin-left:-11rem;
-  margin-top:-11rem;
+  margin-left:-8rem;
+  margin-top:-8rem;
   display:block;
-  width:22rem;
-  height:22rem;
+  width:19rem;
+  height:19rem;
   background:#ff4f0a;
   border-radius:50%;
   opacity:0.3;
@@ -382,24 +382,24 @@
 }
 
 body.ie9 .main_kito_desc figure .circle .circle01{
-  width:15rem;
-  height:15rem;
-  margin-left:-7.5rem;
-  margin-top:-7.5rem;
+  width:7.6rem;
+  height:7.6rem;
+  margin-left:-3.8rem;
+  margin-top:-3.8rem;
 }
 
 body.ie9 .main_kito_desc figure .circle .circle02{
-  width:22rem;
-  height:22rem;
-  margin-left:-11rem;
-  margin-top:-711rem;
+  width:13rem;
+  height:13rem;
+  margin-left:-6.5rem;
+  margin-top:-6.5rem;
 }
 
 body.ie9 .main_kito_desc figure .circle .circle03{
-  width:29rem;
-  height:29rem;
-  margin-left:-14.5rem;
-  margin-top:-14.5rem;
+  width:19rem;
+  height:19rem;
+  margin-left:-8em;
+  margin-top:-8rem;
 }
 
 .main_kito_desc figure .liver {
