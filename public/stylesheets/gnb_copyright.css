@@ -510,6 +510,11 @@ html body > footer h1 *{
   height: auto;
   margin: auto;
 }
+html body > footer h1 img
+{
+  width: 100%;
+  max-width: 8rem;
+}
 html body > footer h1 .navbar-brand {
   display:block;
   height: auto;
