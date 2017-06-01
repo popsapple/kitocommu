@@ -61,6 +61,14 @@ ul, li, ol {
   background:#ffce00;
   border-radius: 50%;
   margin-bottom:1rem;
+}
+  .loading_div > div > div > span:after {
+    position:absolute;
+    display:block;
+    content:"";
+    width:6rem;
+    height:6rem;
+    background:red;
   transform-origin: center;
   animation-name:loading_div;
   animation-duration: 2s;
