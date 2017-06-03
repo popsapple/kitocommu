@@ -377,7 +377,7 @@ html,
 
 .designcustom .navbar-collapse > div > ul {
   display:block;
-  width:100vw;
+  width:100%;
   height:auto;
   padding: 5rem 0rem;
   min-height: 10rem;
