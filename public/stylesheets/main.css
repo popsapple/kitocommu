@@ -82,12 +82,12 @@
   text-align: center;
 }
 
-.main_visual_control > * {
+.main_visual_control > div > * {
   display:inline-block;
   font-size:1rem;
 }
 
-.main_visual_control > button {
+.main_visual_control > div > button {
   width: 4rem;
   height: 0.6rem;
   background: #fff;
@@ -96,12 +96,51 @@
   border:0rem;
 }
 
-.main_visual_control > button+button+button {
+.main_visual_control > div > button+button+button {
   margin-right:0rem;
 }
 
-.main_visual_control > button.flex-active {
+.main_visual_control > div > button.flex-active {
   background:#ffce00;
+}
+
+/** 태블릿 이상 **/
+
+@media (min-width: 768px) {
+  .main_visual.flexslider .slides > li > h1 {
+    height:100%;
+    left: 1.5rem;
+  }
+  .main_visual.flexslider .slides>li h1 div span {
+    font-size:1.8rem;
+  }
+  .main_visual.flexslider .slides>li h1 div strong {
+    font-size: 3.5rem;
+    line-height: 5rem;
+    width: 80%;
+  }
+  .main_visual.flexslider.active {
+    position:relative;
+  }
+  .main_visual_control {
+    position:absolute;
+    width:5.3rem;
+    height:100%;
+    top: 0rem;
+    right:0rem;
+    bottom:none;
+  }
+  .main_visual_control > div {
+    position:absolute;
+    top:50%;
+    margin-top:-3rem;
+  }
+  .main_visual_control > div > button {
+    display:block;
+    height:0.7rem;
+    margin-bottom:2rem;
+    margin-right: 0rem;
+  }
 }
 
 
@@ -120,7 +159,6 @@
 
 .main_recipe > ul > li {
   display:block;
-  width:100%;
 }
 
 .main_recipe > ul > li > a {
@@ -186,6 +224,55 @@
   margin:5rem 0rem;
 }
 
+.main_recipe .meal_icon {
+  display:none;
+}
+
+/** 태블릿 이상 **/
+@media (min-width: 768px) {
+  .main_recipe > ul.container {
+    width:90%;
+    margin-left: 5%;
+  }
+  .main_recipe > ul.container > li {
+    padding-bottom: 10%;
+  }
+  .main_recipe > ul > li > a h2 strong {
+    top:12%;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+  .main_recipe > ul > li > a h2 strong:before {
+    width: 2.5rem;
+    height: 0.45rem;
+    top: 0.8rem;
+    margin-left: -1.25rem;
+  }
+
+  .main_recipe .meal_icon {
+    position:absolute;
+    z-index:1;
+    display:block;
+    left:50%;
+    bottom:-5rem;
+    width:12.6rem;
+    height:auto;
+    margin-left:-6.3rem;
+  }
+  .main_recipe .meal_icon img {
+    position:relative;
+  }
+  .main_recipe .meal_icon img:horver {
+    cursor:pointer;
+  }
+}
+@media (min-width: 992px) {
+  .main_recipe .meal_icon {
+    width: 15.6rem;
+  height: auto;
+  margin-left: -7.8rem;
+  }
+}
 
 /***** 키토제닉 다이어트 설명 *****/
 
@@ -407,6 +494,41 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   z-index:2;
 }
 
+
+/** 태블릿 이상  **/
+
+@media (min-width: 520px) {
+  .main_kito_desc figure .avocado,
+  .main_kito_desc figure .cheese,
+  .main_kito_desc figure .meet {
+    max-width: 6.5rem;
+  }
+  .main_kito_desc figure .meet {
+    left:19%;
+  }
+  .main_kito_desc figure .cheese {
+    top: 23%;
+    left: 14%;
+  }
+  .main_kito_desc figure .avocado {
+    top: 37%;
+    left: 10%;
+  }
+}
+
+@media (min-width: 670px) {
+  .main_kito_desc figure .meet {
+    left:23%;
+  }
+  .main_kito_desc figure .cheese {
+    top: 23%;
+    left: 18%;
+  }
+  .main_kito_desc figure .avocado {
+    top: 37%;
+    left: 14%;
+  }
+}
 
 /***** 자주하는 질문  *****/
 

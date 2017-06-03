@@ -4,86 +4,78 @@
       <h1>
         <a class="navbar-brand" href="/" itemprop="logo">
           <figure>
-              <img src="/images/main/gnb_logo.jpg"
-              srcset="/images/main/gnb_logo.jpg 992w,
-              /images/main/gnb_logo.jpg 768w,
-              /images/main/gnb_logo.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="메뉴" role="button" />
+              <img src="/images/main/gnb_logo.jpg" alt="로고" role="button" />
               <figcaption class="blind">CHEESE</figcaption>
           </figure>
         </a>
       </h1>
       <button class="navbar-toggle collapsed" itemprop="potentialAction" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <figure>
-            <img src="/images/main/gnb_menu_icon.jpg"
-            srcset="/images/main/gnb_menu_icon.jpg 992w,
-            /images/main/gnb_menu_icon.jpg 768w,
-            /images/main/gnb_menu_icon.jpg 320w"
-            sizes="(min-width: 769px) 100vw, 100vw"
-            alt="메뉴" role="button" />
+            <img src="/images/main/gnb_menu_icon.jpg" alt="메뉴" role="button" />
             <figcaption class="blind">클릭시 메뉴가 펼쳐집니다.</figcaption>
         </figure>
       </button>
     </div>
-    <div id="navbar" class="navbar-collapse collapse" itemprop="potentialAction">
-      <ul class="nav navbar-nav" role="tablist">
-        <li class="dropdown" role="tab">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다이어트 체크</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">식품정보 확인하기</a></li>
-            <li><a href="#">매일매일 확인하기</a></li>
-          </ul>
-        </li>
-        <li class="dropdown" role="tab">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/board/list?board_table_id=MemberIntroduce&page=0&page_length=10">자기소개</a></li>
-            <li><a href="/board/list?board_table_id=MemberLevel&page=0&page_length=10">등업신청</a></li>
-            <li><a href="/board/list?board_table_id=MemberDiary&page=0&page_length=10">일상톡톡</a></li>
-            <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">자주하는 질문</a></li>
-          </ul>
-        </li>
-        <li class="dropdown last" role="tab">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단소개</a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">식단짜기 원칙</a></li>
-            <li><a href="#">키토제닉 레시피</a></li>
-            <li class="last"><a href="#">키토시스 다이어트 소개</a></li>
-          </ul>
-        </li>
-        <li class="member_side" role="tab">
-          <ul class="menu">
-            <%if(locals.nickname){%>
-              <li itemscope itemtype="http://schema.org/Person">
-                <a class="mypage btn btn-default" aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">
-                  <span itemprop="name"><%= locals.nickname %>님</span>
-                </a>
-                <span class="blind" id="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
-              </li>
-              <li>
-                <a class="btn logout btn-default" href="/logout" role="button">LOGOUT</a>
-              </li>
-            <%}else {%>
-              <li>
-                <a aria-labelledby="JoinMember" class="btn join btn-default" href="/join_member_step2">JOIN</a>
-                <span class="blind" id="JoinMember">회원가입을 진행하실 수 있습니다.</span>
-              </li>
-              <li>
-                <a class="btn login btn-default" href="/login_form">LOGIN</a>
-              </li>
-            <%}%>
-          </ul>
-        </li>
-        <!--li>
-          <form class="navbar-form navbar-left submit_item" method="post" action="/food_search/search_list" role="search">
-            <div class="form-group">
-              <input type="text" name="food_keyword" class="form-control submit_text" placeholder="검색어를 입력하세요 예) 바나나">
-            </div>
-            <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
-          </form>
-        </li-->
-      </ul>
+    <div id="navbar" class="gnb_navbar navbar-collapse collapse" itemprop="potentialAction">
+      <div>
+        <ul class="nav navbar-nav" role="tablist">
+          <li class="dropdown" role="tab">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다이어트 체크</a>
+            <ul class="" role="menu">
+              <li><a href="#">식품정보 확인하기</a></li>
+              <li><a href="#">매일매일 확인하기</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" role="tab">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티</a>
+            <ul class="" role="menu">
+              <li><a href="/board/list?board_table_id=MemberIntroduce&page=0&page_length=10">자기소개</a></li>
+              <li><a href="/board/list?board_table_id=MemberLevel&page=0&page_length=10">등업신청</a></li>
+              <li><a href="/board/list?board_table_id=MemberDiary&page=0&page_length=10">일상톡톡</a></li>
+              <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">자주하는 질문</a></li>
+            </ul>
+          </li>
+          <li class="dropdown last" role="tab">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단소개</a>
+            <ul class="" role="menu">
+              <li><a href="#">식단짜기 원칙</a></li>
+              <li><a href="#">키토제닉 레시피</a></li>
+              <li class="last"><a href="#">키토시스 다이어트 소개</a></li>
+            </ul>
+          </li>
+          <li class="member_side" role="tab">
+            <ul class="menu">
+              <%if(locals.nickname){%>
+                <li itemscope itemtype="http://schema.org/Person">
+                  <a class="mypage btn btn-default" aria-labelledby="ModifyMemberInfo" href="/mypage/list" itemprop="url">
+                    <span itemprop="name"><%= locals.nickname %>님</span>
+                  </a>
+                  <span class="blind" id="ModifyMemberInfo">고객정보를 수정하실 수 있습니다.</span>
+                </li>
+                <li>
+                  <a class="btn logout btn-default" href="/logout" role="button">LOGOUT</a>
+                </li>
+              <%}else {%>
+                <li>
+                  <a aria-labelledby="JoinMember" class="btn join btn-default" href="/join_member_step2">JOIN</a>
+                  <span class="blind" id="JoinMember">회원가입을 진행하실 수 있습니다.</span>
+                </li>
+                <li>
+                  <a class="btn login btn-default" href="/login_form">LOGIN</a>
+                </li>
+              <%}%>
+            </ul>
+          </li>
+          <!--li>
+            <form class="navbar-form navbar-left submit_item" method="post" action="/food_search/search_list" role="search">
+              <div class="form-group">
+                <input type="text" name="food_keyword" class="form-control submit_text" placeholder="검색어를 입력하세요 예) 바나나">
+              </div>
+              <button type="submit" class="btn btn-default ">음식성분 알아보기</button>
+            </form>
+          </li-->
+        </ul>
+      </div>
       <button aria-labelledby="CloseBtn" class="close_btn">
       </button>
       <span id="CloseBtn" class="close_btn blind">닫기버튼 입니다.</span>

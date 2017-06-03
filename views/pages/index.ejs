@@ -10,57 +10,60 @@
         <span id="MainVisualSlider" class="blind">내용이 순차적으로 보여지는 공간입니다.</span>
         <li id="SliderItem01" aria-hidden="false">
           <figure>
-              <img src="/images/main/main_visual_01.jpg"
-              srcset="/images/main/main_visual_01.jpg 992w,
-              /images/main/main_visual_01.jpg 768w,
-              /images/main/main_visual_01.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="샐러드 접시" role="button" />
+            <picture>
+              <source media="(min-width: 1200px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 992px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 768px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <source media="(min-width: 320px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <img src="/images/main/main_visual_01.jpg" alt="샐러드 접시" role="button" />
+            </picture>
               <figcaption class="blind">치즈와 키토제닉 전용 빵이 들어간 샐러드 접시</figcaption>
           </figure>
           <h1>
             <div>
               <div>
-                <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
-                <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+                <strong>다이어트에 있어 식이조절은 <br class="visible-md" />선택이 아닌 필수입니다.</strong>
+                <span><span class="visible-md">탄수화물 섭취는 줄이고, 지방 및 단백질 식사를 늘리는 <br /></span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
               </div>
             </div>
           </h1>
         </li>
         <li id="SliderItem02" aria-hidden="true">
           <figure>
-              <img src="/images/main/main_visual_01.jpg"
-              srcset="/images/main/main_visual_01.jpg 992w,
-              /images/main/main_visual_01.jpg 768w,
-              /images/main/main_visual_01.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="샐러드 접시" role="button" />
+            <picture>
+              <source media="(min-width: 1200px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 992px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 768px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <source media="(min-width: 320px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <img src="/images/main/main_visual_01.jpg" alt="샐러드 접시" role="button" />
+            </picture>
               <figcaption class="blind">치즈와 키토제닉 전용 빵이 들어간 샐러드 접시</figcaption>
           </figure>
           <h1>
             <div>
               <div>
-                <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
-                <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+                <strong>다이어트에 있어 식이조절은 <br class="visible-md" />선택이 아닌 필수입니다.</strong>
+                <span><span class="visible-md">탄수화물 섭취는 줄이고, 지방 및 단백질 식사를 늘리는 <br /></span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
               </div>
             </div>
           </h1>
         </li>
         <li id="SliderItem03" aria-hidden="true">
           <figure>
-              <img src="/images/main/main_visual_01.jpg"
-              srcset="/images/main/main_visual_01.jpg 992w,
-              /images/main/main_visual_01.jpg 768w,
-              /images/main/main_visual_01.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="샐러드 접시" role="button" />
+            <picture>
+              <source media="(min-width: 1200px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 992px)" srcset="/images/main/main_visual_01_md.jpg"></source>
+              <source media="(min-width: 768px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <source media="(min-width: 320px)" srcset="/images/main/main_visual_01.jpg"></source>
+              <img src="/images/main/main_visual_01.jpg" alt="샐러드 접시" role="button" />
+            </picture>
               <figcaption class="blind">치즈와 키토제닉 전용 빵이 들어간 샐러드 접시</figcaption>
           </figure>
           <h1>
             <div>
               <div>
-                <strong>다이어트에 있어 식이조절은 선택이 아닌 필수입니다.</strong>
-                <span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
+                <strong>다이어트에 있어 식이조절은 <br class="visible-md" />선택이 아닌 필수입니다.</strong>
+                <span><span class="visible-md">탄수화물 섭취는 줄이고, 지방 및 단백질 식사를 늘리는 <br /></span>저탄고지 다이어트는 식이조절 식단에 있어 좋은 선택입니다.</span>
               </div>
             </div>
           </h1>
@@ -68,15 +71,17 @@
       </ul>
       <div aria-labelledby="MainSliderButtons" class="main_visual_control carousel_buttons" aria-controls="MainVisualSlider">
         <span class="blind" id="MainSliderButtons">보여지는 내용의 순서를 조절합니다.</span>
-        <button class="button01" aria-selected="true" aria-controls="SliderItem01">
-          <span class="blind">첫번째</span>
-        </button>
-        <button class="button02" aria-selected="false" aria-controls="SliderItem02">
-          <span class="blind">두번째</span>
-        </button>
-        <button class="button03" aria-selected="false" aria-controls="SliderItem03">
-          <span class="blind">세번째</span>
-        </button>
+        <div>
+          <button class="button01" aria-selected="true" aria-controls="SliderItem01">
+            <span class="blind">첫번째</span>
+          </button>
+          <button class="button02" aria-selected="false" aria-controls="SliderItem02">
+            <span class="blind">두번째</span>
+          </button>
+          <button class="button03" aria-selected="false" aria-controls="SliderItem03">
+            <span class="blind">세번째</span>
+          </button>
+        </div>
       </div>
     </section>
     <article class="main_recipe" itemscope itemtype="http://schema.org/Recipe">
@@ -84,8 +89,8 @@
         <strong>키토제닉 레시피</strong>
         <span>키토 다이어트에 맞는 레시피를 확인해보세요</span>
       </h1>
-      <ul>
-        <li>
+      <ul class="container">
+        <li class="col-xs-12 col-sm-4 event_obj no_padding">
           <a herf="#" itemprop="url">
             <div>
               <div>
@@ -95,17 +100,22 @@
               </div>
             </div>
             <figure>
-              <img src="/images/main/recipe_01.jpg"
-              srcset="/images/main/recipe_01.jpg 992w,
-              /images/main/recipe_01.jpg 768w,
-              /images/main/recipe_01.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="키토제닉 빵 사진" />
+              <picture>
+                <source media="(min-width: 1200px)" srcset="/images/main/recipe_01_sm.jpg"></source>
+                <source media="(min-width: 992px)" srcset="/images/main/recipe_01_sm.jpg"></source>
+                <source media="(min-width: 768px)" srcset="/images/main/recipe_01_sm.jpg"></source>
+                <source media="(min-width: 320px)" srcset="/images/main/recipe_01.jpg"></source>
+                <img src="/images/main/recipe_01.jpg" alt="키토제닉 빵 사진" />
+              </picture>
               <figcaption class="blind">따끈따끈하고 풍성해 아주 맛있어 보이는 키토제닉 빵입니다.</figcaption>
+            </figure>
+            <figure class="visible-sm visible-md visible-lg meal_icon">
+                <img src="/images/main/recipe_01_icon.png" alt="빵 아이콘" />
+              <figcaption class="blind">맛있어 보이는 키토제닉 빵 아이콘 입니다.</figcaption>
             </figure>
           </a>
         </li>
-        <li>
+        <li class="col-xs-12 col-sm-4 event_obj no_padding">
           <a herf="#" itemprop="url">
             <div>
               <div>
@@ -115,17 +125,22 @@
               </div>
             </div>
             <figure>
-              <img src="/images/main/recipe_02.jpg"
-              srcset="/images/main/recipe_02.jpg 992w,
-              /images/main/recipe_02.jpg 768w,
-              /images/main/recipe_02.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="키토제닉 피자 사진" />
+              <picture>
+                <source media="(min-width: 1200px)" srcset="/images/main/recipe_02_sm.jpg"></source>
+                <source media="(min-width: 992px)" srcset="/images/main/recipe_02_sm.jpg"></source>
+                <source media="(min-width: 768px)" srcset="/images/main/recipe_02_sm.jpg"></source>
+                <source media="(min-width: 320px)" srcset="/images/main/recipe_02.jpg"></source>
+                <img src="/images/main/recipe_01.jpg" alt="키토제닉 피자 사진" />
+              </picture>
               <figcaption class="blind">치즈가 아주 맛있어 보이는 키토제닉 피자입니다.</figcaption>
+            </figure>
+            <figure class="visible-sm visible-md visible-lg meal_icon">
+                <img src="/images/main/recipe_02_icon.png" alt="피자 아이콘" />
+              <figcaption class="blind">맛있어 보이는 키토제닉 피자 아이콘 입니다.</figcaption>
             </figure>
           </a>
         </li>
-        <li>
+        <li class="col-xs-12 col-sm-4 event_obj no_padding">
           <a herf="#" itemprop="url">
             <div>
               <div>
@@ -135,13 +150,18 @@
               </div>
             </div>
             <figure>
-              <img src="/images/main/recipe_03.jpg"
-              srcset="/images/main/recipe_03.jpg 992w,
-              /images/main/recipe_03.jpg 768w,
-              /images/main/recipe_03.jpg 320w"
-              sizes="(min-width: 769px) 100vw, 100vw"
-              alt="키토제닉 연어 샐러드 사진" />
+              <picture>
+                <source media="(min-width: 1200px)" srcset="/images/main/recipe_03_sm.jpg"></source>
+                <source media="(min-width: 992px)" srcset="/images/main/recipe_03_sm.jpg"></source>
+                <source media="(min-width: 768px)" srcset="/images/main/recipe_03_sm.jpg"></source>
+                <source media="(min-width: 320px)" srcset="/images/main/recipe_03.jpg"></source>
+                <img src="/images/main/recipe_01.jpg" alt="키토제닉 연어 샐러드 사진" />
+              </picture>
               <figcaption class="blind">살코기가 부드럽고 기름진 맛이 느껴지고, 싱싱한 채소들과 같이 만들어진 연어 샐러드입니다.</figcaption>
+            </figure>
+            <figure class="visible-sm visible-md visible-lg meal_icon">
+                <img src="/images/main/recipe_03_icon.png" alt="샐러드 아이콘" />
+              <figcaption class="blind">맛있어 보이는 키토제닉 샐러드 아이콘 입니다.</figcaption>
             </figure>
           </a>
         </li>
@@ -152,37 +172,24 @@
       <article class="main_kito_desc col-xs-12" itemscope itemtype="http://schema.org/Intangible">
         <h1>
           <strong itemprop="alternateName">키토제닉 다이어트란?</strong>
-          <span itemprop="description">
+          <span class="visible-xs" itemprop="description">
             우리 몸은, 혈당이 떨어졌을 경우 <em>지방</em>을 이용해 케토(키토)
     성분을  간에서 만들어 이를 몸의 <em>에너지원</em>으로 사용합니다.
     이 원리로 식단을 저 탄수화물 및 고 지방으로 구성합니다.
           </span>
+          <span class="visible-sm visible-md visible-lg" itemprop="description">
+            키토제닉 다이어트의 원리는 뭄을 움직이는 연료를 탄수화물이 아닌 <em>지방을 사용</em> 하는데에 있습니다.
+            우리 몸은 혈당이 떨어졌을 경우 지방을 이용해 케토(키토)성분을 간에서 만들어 이를 몸의 에너지원으로 사용합니다.
+            몸이 이러한 상태일 경우를 <em>케토시스(키토시스)</em>상태라고 합니다.
+            케토시스 상태에서는 에너지원이 일정하게 공급되므로 식탐과 식욕 컨트롤이 가능하기에 다이어트에도 효과적입니다.
+            키토제닉 다이어트는 이러한 원리를 바탕으로 식단을 저탄수화물 고 지방으로 구성하는 다이어트법 입니다.
+          </span>
         </h1>
         <figure>
-          <img src="/images/main/main_meet.jpg"
-          srcset="/images/main/main_meet.jpg 992w,
-          /images/main/main_meet.jpg 768w,
-          /images/main/main_meet.jpg 320w"
-          sizes="(min-width: 769px) 100vw, 100vw"
-          class="meet" alt="고기" />
-          <img src="/images/main/main_cheese.jpg"
-          srcset="/images/main/main_cheese.jpg 992w,
-          /images/main/main_cheese.jpg 768w,
-          /images/main/main_cheese.jpg 320w"
-          sizes="(min-width: 769px) 100vw, 100vw"
-          class="cheese" alt="치즈" />
-          <img src="/images/main/main_avocado.jpg"
-          srcset="/images/main/main_avocado.jpg 992w,
-          /images/main/main_avocado.jpg 768w,
-          /images/main/main_avocado.jpg 320w"
-          sizes="(min-width: 769px) 100vw, 100vw"
-          class="avocado" alt="아보카도" />
-          <img src="/images/main/main_human.jpg"
-          srcset="/images/main/main_human.jpg 992w,
-          /images/main/main_human.jpg 768w,
-          /images/main/main_human.jpg 320w"
-          sizes="(min-width: 769px) 100vw, 100vw"
-          class="human" alt="인체" />
+          <img src="/images/main/main_meet.jpg" class="meet" alt="고기" />
+          <img src="/images/main/main_cheese.jpg" class="cheese" alt="치즈" />
+          <img src="/images/main/main_avocado.jpg" class="avocado" alt="아보카도" />
+          <img src="/images/main/main_human.jpg" class="human" alt="인체" />
           <div class="circle">
             <div>
               <span class="circle_obj circle01"></span>
@@ -191,12 +198,7 @@
             </div>
             <span class="blind">간에서 케톤체 생성 및 퍼짐</span>
           </div>
-          <img src="/images/main/main_liver.png"
-          srcset="/images/main/main_liver.png 992w,
-          /images/main/main_liver.png 768w,
-          /images/main/main_liver.png 320w"
-          sizes="(min-width: 769px) 100vw, 100vw"
-          class="liver" alt="간" />
+          <img src="/images/main/main_liver.png" class="liver" alt="간" />
           <figcaption class="blind">
             저단백 고지방 식품군인 아보카도,치즈,고기 등을 섭취하므로써 인체 속 간에서 케톤체를 생성할 수 있도록 합니다.
           </figcaption>
