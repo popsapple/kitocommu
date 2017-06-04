@@ -1404,8 +1404,207 @@ if (!window.console) {
     console.log = function(){};
 }
 
+$.fn.onSliderQna = function(options)
+{
+	var obj = this;
+	var defult = {
+		'item_wrapper_wrapper' : '.slides_wrapper',
+		'item_wrapper' : '.slides',
+		'items' : '.slides li',
+		'prev_btn' : '.prev',
+		'next_btn' : '.next',
+    'control_button' : '.carousel_buttons button',
+		'item_length' : 1,
+		'item_length2' : 0,
+		'first_left': 0,
+    'item_id' : 'index'
+	};
+	var options = $.extend({}, defult, options);
+  var item_last_index = parseInt($(options['items']).length-1);
+
+  this.SettingItem = function() {
+		var item_length;
+		var width = $(options['items']).width();
+
+		$(options['item_wrapper']).width(width*$(options['items']).size());
+    $(options['items']).width(width);
+    $(options['items']).each(function(index){
+      $(this).attr('id',options['item_id']+index);
+    });
+	};
+
+	$(document).ready ( function() {
+		obj.SettingItem();
+	});
+
+	this.MoveItem = function(desc,index) {
+		var loadImage = setTimeout(function()
+		{
+			var move_width = parseInt($(options['items']).width());
+			if(desc == 'next') {
+				var clone_item = $(options['items']).eq(0).clone();
+				var clone_item2 = $(options['items']).eq(0).clone().addClass('temp');
+				$(options['items']).eq(0).remove();
+				$(options['item_wrapper']).prepend(clone_item2);
+				$(options['item_wrapper']).animate({
+						'left' : (options['first_left']-=move_width)
+				},1000,function()
+				{
+					$(options['item_wrapper']).find(' .temp').remove();
+					$(options['item_wrapper']).css('left',(options['first_left']+=move_width));
+					$(options['item_wrapper']).append(clone_item);
+
+          var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
+          $(options['control_button']).each(function(){
+            $(this).attr("aria-selected","false");
+            $(this).removeClass("active");
+          });
+          $(options['control_button']).eq(index).attr("aria-selected","true");
+          $(options['control_button']).eq(index).addClass("active");
+
+          $(options['items']).each(function(){
+            $(this).attr("aria-hidden","true");
+          });
+          $(options['items']).eq(0).attr("aria-hidden","false");
+				});
+			}
+			if(desc == 'prev') {
+				var clone_item = $(options['items']).eq(item_last_index).clone();
+				$(options['items']).eq(item_last_index).remove();
+				$(options['item_wrapper']).prepend(clone_item);
+				$(options['item_wrapper']).css('left',(options['first_left']-=move_width));
+				$(options['item_wrapper']).animate({
+						'left' : (options['first_left']+=move_width)
+				},1000,function()
+				{
+						$(options['item_wrapper']).find(' .temp').remove();
+
+            var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
+            $(options['control_button']).each(function(){
+              $(this).attr("aria-selected","false");
+              $(this).removeClass("active");
+            });
+            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).addClass("active");
+
+            $(options['items']).each(function(){
+              $(this).attr("aria-hidden","true");
+            });
+            $(options['items']).eq(0).attr("aria-hidden","false");
+				});
+			}
+			if(desc == 'num') {
+        var clone_item = [];
+        var dir = false;
+        var now_index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
+        var move_width1;
+        var move_width2;
+        var count = (now_index+1)-(index+1);
+        count > 0 ? dir = true : false;
+        if(now_index == item_last_index){
+          count = (now_index+1)-(index+1);
+        }
+        if(index == now_index){
+          return;
+        }
+        if(dir){ // 기존것 보다 숫자가 작은 걸로 이동
+          $(options['items']).each(function(idx){
+            var idx_ = parseInt($(this).attr('id').replace(options['item_id'],''));
+            if(now_index > idx_ && idx_ >= index){
+              clone_item.push($(this).clone());
+              $(this).addClass('temp');
+            }
+          });
+
+          function sortList(a, b) {
+            var a_idx = parseInt(a.attr('id').replace(options['item_id'],''));
+            var b_idx = parseInt(b.attr('id').replace(options['item_id'],''));
+            if(a_idx == b_idx){ return 0} return  a_idx > b_idx ? -1 : 1;
+          }
+          clone_item.sort(sortList);
+
+          move_width1 = options['first_left']-$(options['items']).width()*(clone_item.length);
+
+          for(var i = 0; i < clone_item.length; i++){
+            $(options['item_wrapper']).prepend(clone_item[i]);
+          }
+          $(options['item_wrapper']).css('left',move_width1);
+
+          $(options['item_wrapper']).animate({
+  						'left' : options['first_left']
+  				},1000,function()
+  				{
+  					$(options['item_wrapper']).find('.temp').remove();
+            $(options['control_button']).each(function(){
+              $(this).attr("aria-selected","false");
+              $(this).removeClass("active");
+            });
+            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).addClass("active");
+
+            $(options['items']).each(function(){
+              $(this).attr("aria-hidden","true");
+            });
+            $(options['items']).eq(0).attr("aria-hidden","false");
+  				});
+
+        }else{ // 기존것 보다 숫자가 높은 걸로 이동
+          $(options['items']).each(function(idx){
+            var temp;
+            var idx_ = parseInt($(this).attr('id').replace(options['item_id'],''));
+            if(now_index <= idx_ && idx_ < index){
+              clone_item.push($(this).clone());
+              $(this).addClass('temp');
+            }
+          });
+
+          function sortList(a, b) {
+            var a_idx = parseInt(a.attr('id').replace(options['item_id'],''));
+            var b_idx = parseInt(b.attr('id').replace(options['item_id'],''));
+            if(a_idx == b_idx){ return 0} return  a_idx > b_idx ? -1 : 1;
+          }
+          clone_item.sort(sortList);
+
+          move_width1 = options['first_left']-$(options['items']).width()*(clone_item.length);
+          $(options['item_wrapper']).animate({
+  						'left' : move_width1
+  				},1000,function()
+  				{
+            for(var i = (clone_item.length-1); i >= 0; i--){
+              $(options['item_wrapper']).append(clone_item[i]);
+            }
+            $(options['item_wrapper']).css('left',options['first_left']);
+            $(options['item_wrapper']).find('.temp').remove();
+            $(options['control_button']).each(function(){
+              $(this).attr("aria-selected","false");
+              $(this).removeClass("active");
+            });
+            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).addClass("active");
+
+            $(options['items']).each(function(){
+              $(this).attr("aria-hidden","true");
+            });
+            $(options['items']).eq(0).attr("aria-hidden","false");
+          });
+        }
+			}
+		},100);
+	};
+
+	$(options['next_btn']).on("click",function(){
+		obj.MoveItem('next');
+	});
+	$(options['prev_btn']).on("click",function(){
+		obj.MoveItem('prev');
+	});
+  $(options['control_button']).on("click",function(){
+    var index = $(this).index();
+		obj.MoveItem('num',(index));
+	});
+};
+
 $.fn.MovingFollowMouse = function(options) {
-  console.log("플러그인 불러오기");
   var defalut = {
     "follow_item_p" : ".event_obj",
     "follow_item" : " .meal_icon > img",
@@ -1428,7 +1627,6 @@ $.fn.MovingFollowMouse = function(options) {
       if(x_point < (0-options.dir)) {x_point = (0-options.dir);}
       if(y_point > options.dir) {y_point = options.dir;}
       if(y_point < (0-options.dir)) {y_point = (0-options.dir);}
-      console.log("X1 좌표 :: "+x_point+" :: Y1 좌표 :: "+y_point);
       if(x_point == 0 && x_point == 0){
         move_img.animate({
           'left':x_point,
@@ -1500,44 +1698,60 @@ function LoadingPage(){
 }
 
 
-function DisableGnbDropdown(){ // PC판 이상일때 드롭다운 중지
+function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드롭다운 중지
   if($(window).width() > 1199){
-    $(".gnb_navbar .dropdown").each(function(){
+    $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
     });
   }
   if($(window).width() > 1199){
-    $(".gnb_navbar .dropdown").unbind("click focus");
-    $(".gnb_navbar .dropdown > a").unbind("click focus");
-    $(".gnb_navbar .dropdown").each(function(){
+    $(obj).unbind("click focus");
+    $(obj+" > a").unbind("click focus");
+    $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
       $(this).addClass('open');
     });
-    $(".gnb_navbar .dropdown > a").each(function(){
+    $(obj+" > a").each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
     });
+    callback ? callback() : '';
   }else{
-    $(".gnb_navbar .dropdown").bind("click focus");
-    $(".gnb_navbar .dropdown > a").bind("click focus");
-    $(".gnb_navbar .dropdown").each(function(){
+    $(obj).bind("click focus");
+    $(obj+" > a").bind("click focus");
+    $(obj).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
       $(this).removeClass('open');
     });
-    $(".gnb_navbar .dropdown > a").each(function(){
+    $(obj+" > a").each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
     });
+    callback02 ? callback02() : '';
   }
 }
 
-
 $(document).ready(function() {
   LoadingPage();
-  DisableGnbDropdown();
+  DisableGnbDropdown(".gnb_navbar .dropdown");
+  if($('.main_kito_faq')){
+    $(".main_kito_faq").onSliderQna({
+      'item_wrapper_wrapper' : '.main_kito_faq',
+      'item_wrapper' : '.main_kito_faq > ul',
+      'items' : '.main_kito_faq > ul > li',
+      'prev_btn' : '.main_kito_faq .carousel_buttons button.prev',
+      'next_btn' : '.main_kito_faq .carousel_buttons button.next',
+      'control_button' : '.main_kito_faq .carousel_buttons div button',
+      'item_length' : 1,
+      'item_length2' : 0,
+      'first_left': 0,
+      'item_id': 'FaqSlideritem'
+    });
+    DisableGnbDropdown(".main_kito_faq > ul > li");
+  }
   if($('.main_visual')){
     $('.main_visual').flexslider({
       animation: "slide",
@@ -1548,7 +1762,13 @@ $(document).ready(function() {
       },
       manualControls: ".carousel_buttons button",
       directionNav: false,
-      direction:'horizontal'
+      direction:'horizontal',
+      after: function(){
+        $(".main_visual.active.flexslider .slides>li").each(function(){
+          $(this).attr("aria-hidden","true");
+        });
+        $(".main_visual.active.flexslider .slides>li.flex-active-slide").attr("aria-hidden","false");
+      }
     });
   }
 
@@ -1577,7 +1797,8 @@ $(window).scroll(function(event) {
 });
 
 $(window).resize(function(event){
-  DisableGnbDropdown();
+  DisableGnbDropdown(".gnb_navbar .dropdown");
+  DisableGnbDropdown(".main_kito_faq > ul > li");
 });
 
 /*

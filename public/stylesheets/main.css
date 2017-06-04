@@ -495,7 +495,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 }
 
 
-/** 태블릿 이상  **/
+/** 520,670 이상  **/
 
 @media (min-width: 520px) {
   .main_kito_desc figure .avocado,
@@ -530,6 +530,170 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   }
 }
 
+/** 태블릿 이상 **/
+
+@media (min-width: 768px) {
+  .main_kito_desc {
+    position:relative;
+    white-space:nowrap;
+    overflow:hidden;
+    margin-top: 5rem;
+  }
+  .main_kito_desc h1 {
+    display:inline-block;
+    width:60%;
+    height:auto;
+    margin-bottom:5rem;
+    white-space:normal;
+    text-align:left;
+  }
+  .main_kito_desc h1 strong {
+    width:90%;
+    margin-bottom:3rem;
+    font-size: 4.5rem;
+    line-height: 5.5rem;
+  }
+  .main_kito_desc h1 span {
+    width:90%;
+  }
+  .main_kito_desc figure img.human {
+    position: absolute;
+    width: 200%;
+    max-width: 50rem;
+    height: auto;
+    bottom: -10%;
+    right: -60%;
+  }
+  .main_kito_desc figure img.liver {
+    z-index: 2;
+    margin-top: -80%;
+    bottom: auto;
+    left: auto;
+    margin-left: -4.3rem;
+    max-width: 17.5rem;
+  }
+  .main_kito_desc figure .circle {
+    left:auto;
+    bottom:auto;
+    margin-left: 67%;
+    margin-top: -50%;
+  }
+  .main_kito_desc figure .circle .circle_obj {
+    width:21rem;
+    height:21rem;
+    margin-left:-10.5rem;
+    margin-top:-10.5rem;
+  }
+  body.ie9 .main_kito_desc figure .circle .circle01{
+    width:8.6rem;
+    height:8.6rem;
+    margin-left:-4.3rem;
+    margin-top:-4.3rem;
+  }
+
+  body.ie9 .main_kito_desc figure .circle .circle02{
+    width:14.5rem;
+    height:14.5rem;
+    margin-left:-7.25rem;
+    margin-top:-7.25rem;
+  }
+
+  body.ie9 .main_kito_desc figure .circle .circle03{
+    width:21rem;
+    height:21rem;
+    margin-left:-10.5rem;
+    margin-top:-10.5rem;
+  }
+  .main_kito_desc figure {
+    position:relative;
+    display:inline-block;
+    width:40%;
+    height:auto;
+    white-space:normal;
+    vertical-align:bottom;
+  }
+  .main_kito_desc figure .avocado {
+    margin-top: -135%;
+    margin-left: -50%;
+    top: auto;
+    left: auto;
+  }
+  .main_kito_desc figure .cheese {
+    margin-top: -155%;
+    margin-left: -60%;
+    top: auto;
+    left: auto;
+  }
+  .main_kito_desc figure .meet {
+    margin-top: -170%;
+    margin-left: -60%;
+    top: auto;
+    left: auto;
+  }
+}
+@media (min-width: 992px) {
+  .main_kito_desc figure img.human {
+    right: -40%;
+  }
+  .main_kito_desc figure .circle {
+    margin-top: -40%;
+  }
+  .main_kito_desc figure img.liver {
+    margin-top: -65%;
+    margin-left: -2.3rem;
+  }
+  .main_kito_desc figure .avocado {
+    margin-top: -95%;
+    margin-left: -35%;
+  }
+  .main_kito_desc figure .cheese {
+    margin-top: -110%;
+    margin-left: -45%;
+  }
+  .main_kito_desc figure .meet {
+    margin-top: -125%;
+    margin-left: -35%;
+  }
+}
+@media (min-width: 1200px) {
+  .main_design_section {
+    position:relative;
+    padding:0rem;
+    margin:0em;
+  }
+  .main_kito_desc {
+    padding: 5rem;
+  }
+  .main_kito_desc h1 {
+    margin-bottom: 0rem;
+  }
+  .main_kito_desc figure img.human {
+    right: -60%;
+    margin-bottom: -25%;
+    bottom: 0%;
+  }
+  .main_kito_desc figure .circle {
+    margin-top: -24%;
+    margin-left: 71%;
+  }
+  .main_kito_desc figure img.liver {
+    margin-top: -60%;
+    margin-left: -2.3rem;
+  }
+  .main_kito_desc figure .avocado {
+    margin-top: -95%;
+    margin-left: -43%;
+  }
+  .main_kito_desc figure .cheese {
+    margin-top: -115%;
+    margin-left: -58%;
+  }
+  .main_kito_desc figure .meet {
+    margin-top: -130%;
+    margin-left: -51%;
+  }
+}
+
 /***** 자주하는 질문  *****/
 
 .main_kito_faq > ul > li * {
@@ -549,6 +713,16 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   border:1px solid #cbc8c2;
   margin-bottom:0.7rem;
 }
+
+@media (max-width: 1199px) {
+  .main_kito_faq > ul {
+    width:auto !important;
+  }
+  .main_kito_faq > ul > li {
+    width:auto !important;
+  }
+}
+
 .main_kito_faq > ul > li:last-child{
   margin-bottom:0rem;
 }
@@ -631,6 +805,94 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   font-weight:300;
   color:#606060;
 }
+
+/** PC판 이상 **/
+@media (min-width: 1200px) {
+  .main_kito_faq {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    height: 90%;
+    overflow: hidden;
+    margin-top: -5%;
+    padding: 5rem;
+    background: #fac304;
+  }
+  .designcustom .main_kito_faq .section_title {
+    text-align:left;
+    padding:2rem 2rem 0rem 2rem;
+  }
+  .designcustom .main_kito_faq .section_title strong {
+    margin-bottom:3rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 5.5rem;
+    text-align:left;
+  }
+  .designcustom .main_kito_faq .section_title span {
+    display:none;
+  }
+  .main_kito_faq > ul {
+    position:relative;
+    left:0rem;
+    white-space:nowrap;
+  }
+  .main_kito_faq > ul > li {
+    position:relative;
+    display:inline-block;
+    white-space:normal;
+    padding:0rem;
+    overflow:hidden;
+    border:0rem;
+    opacity:1;
+    vertical-align:top;
+  }
+  .main_kito_faq > ul > li > a {
+    padding:2rem;
+  }
+  .main_kito_faq > ul > li *:hover {
+    text-decoration:none;
+  }
+  .main_kito_faq > ul > li.active {
+    max-height:100rem;
+    border:0rem;
+    opacity:1;
+  }
+  .main_kito_faq > ul > li.active h2 span {
+    padding:1rem;
+  }
+  .main_kito_faq > ul > li .dropdown-toggle {
+    display:none;
+  }
+  .main_kito_faq > ul > li h2+div p {
+    color: #8e6a14;
+    padding:0rem;
+    padding-right:1rem;
+    line-height: 2.3rem;
+  }
+  .main_kito_faq > ul > li h2+div p * {
+    font-size: inherit;
+  }
+  .main_kito_faq .main_faq_control {
+    padding-left:2rem;
+    position: absolute;
+    bottom: 5rem;
+  }
+  .main_kito_faq .main_faq_control button {
+    display:inline-block;
+    width:1rem;
+    height:1rem;
+    margin-right:0.5rem;
+    margin-bottom:0rem;
+    border-radius:50%;
+    border:0rem;
+    background:#ffffff;
+  }
+  .main_kito_faq .main_faq_control button.active {
+    background:#8e6a14;
+  }
+}
+
 
 /****** 키토제닉 일상톡톡 ******/
 
