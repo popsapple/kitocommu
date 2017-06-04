@@ -148,7 +148,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     that_reply.ReplyListing(reply_count);
                   }
                 });
-              });///////////
+              });
             };
           });
         });
