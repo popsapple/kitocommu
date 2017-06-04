@@ -1436,14 +1436,16 @@ $.fn.onSliderQna = function(options)
     $(options['items']).width($(options['item_wrapper_wrapper']).width());
 		var width = $(options['items']).width();
 		$(options['item_wrapper']).width(width*$(options['items']).size());
-
-    $(options['items']).each(function(index){
-      $(this).attr('id',options['item_id']+index);
-    });
 	};
 
 	$(window).resize(function() {
 		obj.SettingItem();
+	});
+
+  $(document).ready(function() {
+    $(options['items']).each(function(index){
+      $(this).attr('id',options['item_id']+index);
+    });
 	});
 
 	this.MoveItem = function(desc,index) {
@@ -1608,6 +1610,7 @@ $.fn.onSliderQna = function(options)
 		obj.MoveItem('prev');
 	});
   $(options['control_button']).on("click",function(){
+
     var index = $(this).index();
 		obj.MoveItem('num',(index));
 	});
@@ -1709,7 +1712,6 @@ function LoadingPage(){
 
 function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드롭다운 중지
   var width_check = viewport().width;
-  console.log("넓이체크 ::"+width_check);
   if(width_check > 1199){
     $(obj).each(function(){
       $(this).attr('data-toggle','');

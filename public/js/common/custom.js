@@ -35,14 +35,16 @@ $.fn.onSliderQna = function(options)
     $(options['items']).width($(options['item_wrapper_wrapper']).width());
 		var width = $(options['items']).width();
 		$(options['item_wrapper']).width(width*$(options['items']).size());
-
-    $(options['items']).each(function(index){
-      $(this).attr('id',options['item_id']+index);
-    });
 	};
 
 	$(window).resize(function() {
 		obj.SettingItem();
+	});
+
+  $(document).ready(function() {
+    $(options['items']).each(function(index){
+      $(this).attr('id',options['item_id']+index);
+    });
 	});
 
 	this.MoveItem = function(desc,index) {
@@ -207,6 +209,7 @@ $.fn.onSliderQna = function(options)
 		obj.MoveItem('prev');
 	});
   $(options['control_button']).on("click",function(){
+
     var index = $(this).index();
 		obj.MoveItem('num',(index));
 	});
