@@ -62,8 +62,10 @@ ul, li, ol {
   width:6rem;
   height:6rem;
   background:#ffffff;
-  border-radius: 50%;
+  border-radius: 100%;
   margin-bottom:1rem;
+  overflow:hidden;
+  clip: rect(0rem,6rem,6rem,0rem);
 }
 @keyframes loading_div_right {
   0% {
@@ -92,7 +94,6 @@ ul, li, ol {
     display:block;
     content:"";
     width:6rem;
-    border-radius: 50%;
     height:6rem;
     transform: rotate(0deg);
     background: #ffffff;
@@ -103,7 +104,6 @@ ul, li, ol {
   display:block;
   content:"";
   width:6rem;
-  border-radius: 50%;
   height:6rem;
   transform: rotate(10deg);
   background:#ffce00;
@@ -118,7 +118,6 @@ ul, li, ol {
     display:block;
     content:"";
     width:6rem;
-    border-radius: 50%;
     height:6rem;
     transform: rotate(0deg);
     background: #ffffff;
@@ -129,7 +128,6 @@ ul, li, ol {
   display:block;
   content:"";
   width:6rem;
-  border-radius: 50%;
   height:6rem;
   transform: rotate(0deg);
   background:#ffce00;
