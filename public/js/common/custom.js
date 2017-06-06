@@ -303,7 +303,7 @@ function LoadingPage(){
       },
       complete:function(){
         setTimeout(function(){
-          $('.loading_div').fadeOut(500);
+          //$('.loading_div').fadeOut(500);
         },2000);
       },
       error:function(e){
