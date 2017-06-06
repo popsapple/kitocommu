@@ -65,7 +65,6 @@ ul, li, ol {
   border-radius: 100%;
   margin-bottom:1rem;
   overflow:hidden;
-  clip: rect(0rem,6rem,6rem,0rem);
 }
 @keyframes loading_div_right {
   0% {
