@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
   <div class="container">
-    <div class="navbar-header">
+    <section class="navbar-header">
       <h1>
         <a class="navbar-brand" href="/" itemprop="logo">
           <figure>
@@ -16,17 +16,17 @@
         </figure>
       </button>
     </div>
-    <div id="navbar" class="gnb_navbar navbar-collapse collapse" itemprop="potentialAction">
+    <div id="navbar" class="gnb_navbar navbar-collapse collapse" itemprop="potentialAction" aria-hidden="true">
       <div>
-        <ul class="nav navbar-nav" role="tablist">
-          <li class="dropdown" role="tab">
+        <ul class="nav navbar-nav" role="menu">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다이어트 체크</a>
             <ul class="" role="menu">
               <li><a href="#">식품정보 확인하기</a></li>
               <li><a href="#">매일매일 확인하기</a></li>
             </ul>
           </li>
-          <li class="dropdown" role="tab">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티</a>
             <ul class="" role="menu">
               <li><a href="/board/list?board_table_id=MemberIntroduce&page=0&page_length=10">자기소개</a></li>
@@ -35,7 +35,7 @@
               <li><a href="/board/list?board_table_id=DiteFaq&page=0&page_length=10">자주하는 질문</a></li>
             </ul>
           </li>
-          <li class="dropdown last" role="tab">
+          <li class="dropdown last">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">식단소개</a>
             <ul class="" role="menu">
               <li><a href="#">식단짜기 원칙</a></li>
@@ -43,7 +43,7 @@
               <li class="last"><a href="#">키토시스 다이어트 소개</a></li>
             </ul>
           </li>
-          <li class="member_side" role="tab">
+          <li class="member_side">
             <ul class="menu">
               <%if(locals.nickname){%>
                 <li itemscope itemtype="http://schema.org/Person">
@@ -79,6 +79,6 @@
       <button aria-labelledby="CloseBtn" class="close_btn">
       </button>
       <span id="CloseBtn" class="close_btn blind">닫기버튼 입니다.</span>
-    </div><!--/.nav-collapse -->
+    </section><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>

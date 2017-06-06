@@ -4,9 +4,9 @@
 <% include ../partials/header.ejs %>
 <div class="main designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
   <% include ../partials/nav.ejs %>
-  <div class="container no_padding no_margin" role="application">
+  <div class="container no_padding no_margin">
     <section class="main_visual flexslider" itemscope itemtype="http://schema.org/mainContentOfPage">
-      <ul aria-labelledby="MainVisualSlider" class="slides" aria-live="polite">
+      <ul aria-labelledby="MainVisualSlider" class="slides">
         <span id="MainVisualSlider" class="blind">내용이 순차적으로 보여지는 공간입니다.</span>
         <li id="SliderItem01" aria-hidden="false">
           <figure>
@@ -70,17 +70,25 @@
         </li>
       </ul>
       <div aria-labelledby="MainSliderButtons" class="main_visual_control carousel_buttons" aria-controls="MainVisualSlider">
-        <span class="blind" id="MainSliderButtons">보여지는 내용의 순서를 조절합니다.</span>
+        <span class="blind" id="MainSliderButtons">보여지는 내용의 순서 및 재생여부를 조절합니다.</span>
         <div>
-          <button class="button01" aria-selected="true" aria-controls="SliderItem01">
-            <span class="blind">첫번째</span>
-          </button>
-          <button class="button02" aria-selected="false" aria-controls="SliderItem02">
-            <span class="blind">두번째</span>
-          </button>
-          <button class="button03" aria-selected="false" aria-controls="SliderItem03">
-            <span class="blind">세번째</span>
-          </button>
+          <ul>
+            <li>
+              <button class="button01" aria-selected="true" aria-controls="SliderItem01">
+                <span class="blind">첫번째</span>
+              </button>
+            </li>
+            <li>
+              <button class="button02" aria-selected="false" aria-controls="SliderItem02">
+                <span class="blind">두번째</span>
+              </button>
+            </li>
+            <li>
+              <button class="button03" aria-selected="false" aria-controls="SliderItem03">
+                <span class="blind">세번째</span>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -209,8 +217,8 @@
           <strong>자주하는 <br class="visible-sm visible-md visible-lg" />질문</strong>
           <span>키토제닉 다이어트에 대한 자주 하는 질문들입니다.</span>
         </h1>
-        <ul id="MainFaqSlider" class="no_padding no_margin">
-          <li class="dropdown active" role="tab" aria-hidden="false">
+        <ul id="MainFaqSlider" class="no_padding no_margin" aria-live="polite">
+          <li class="dropdown active" aria-hidden="false">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
             <a href="" itemprop="url">
               <h2 itemtype="http://schema.org/Question">
@@ -228,7 +236,7 @@
               </div>
             </a>
           </li>
-          <li class="dropdown" role="tab" aria-hidden="true">
+          <li class="dropdown" aria-hidden="true">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
             <a href="" itemprop="url">
               <h2 itemtype="http://schema.org/Question">
@@ -243,7 +251,7 @@
               </div>
             </a>
           </li>
-          <li class="dropdown" role="tab" aria-hidden="true">
+          <li class="dropdown" aria-hidden="true">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
             <a href="" itemprop="url">
               <h2 itemtype="http://schema.org/Question">
@@ -261,15 +269,23 @@
         <div aria-labelledby="FaqSliderButtons" class="main_faq_control visible-lg carousel_buttons" aria-controls="MainFaqSlider">
           <span class="blind" id="FaqSliderButtons">보여지는 내용의 순서를 조절합니다.</span>
           <div>
-            <button class="button01 active" aria-selected="true" aria-controls="FaqSlideritem0">
-              <span class="blind">첫번째</span>
-            </button>
-            <button class="button02" aria-selected="false" aria-controls="FaqSlideritem1">
-              <span class="blind">두번째</span>
-            </button>
-            <button class="button03" aria-selected="false" aria-controls="FaqSlideritem2">
-              <span class="blind">세번째</span>
-            </button>
+            <ul>
+              <li>
+                <button class="button01 active" aria-selected="true" aria-controls="FaqSlideritem0">
+                  <span class="blind">첫번째</span>
+                </button>
+              </li>
+              <li>
+                <button class="button02" aria-selected="false" aria-controls="FaqSlideritem1">
+                  <span class="blind">두번째</span>
+                </button>
+              </li>
+              <li>
+                <button class="button03" aria-selected="false" aria-controls="FaqSlideritem2">
+                  <span class="blind">세번째</span>
+                </button>
+              </li>
+            </ul>
           </div>
           <!--button class="prev">이전</button>
           <button class="next">다음</button-->

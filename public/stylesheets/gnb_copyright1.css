@@ -431,9 +431,9 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   overflow-y: hidden;
   text-align:center;
 }
-.designcustom .navbar .navbar-collapse > div > ul > li > a,
-.designcustom .navbar .navbar-collapse > div > ul > li > a:hover,
-.designcustom .navbar .navbar-collapse > div > ul > li > a:focus {
+.designcustom .navbar .container .navbar-collapse > div > ul > li > a,
+.designcustom .navbar .container .navbar-collapse > div > ul > li > a:hover,
+.designcustom .navbar .container .navbar-collapse > div > ul > li > a:focus {
   display:block;
   height:1.5rem;
   line-height: 1.5rem;
@@ -464,7 +464,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   margin-bottom:0rem;
 }
 
-.designcustom .navbar .navbar-collapse > div > ul > li > a+ul li a {
+.designcustom .navbar .container .navbar-collapse > div > ul > li.open > a+ul li a {
   font-size:1.5rem;
   font-weight:400;
   padding:0rem;
@@ -702,6 +702,9 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
     line-height:1.3rem;
     margin-bottom:1.5rem;
     text-align: left;
+  }
+  .designcustom .navbar .container .navbar-collapse > div > ul > li.open > a+ul li a {
+    font-size:1.3rem;
   }
   .designcustom .navbar-collapse > div > ul > li.member_side {
     width: 15rem;
