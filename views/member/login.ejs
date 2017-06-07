@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
@@ -8,36 +8,41 @@
       <section>
         <form method="post" action="/login">
           <fieldset>
-            <legend>기본 인적사항</legend>
-            <ul>
-              <li>
-                <h3>
+            <legend>
+              <h2 class="section_title left">
+                <strong>로그인 정보 입력</strong>
+                <span>기본적으로 사용되는 회원정보입니다.</span>
+              </h2>
+            </legend>
+            <ul class="col-xs-12">
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinId">아이디</label>
                 </h3>
-                <input id="joinId" name="id" type="text" value="" pattern="^[a-z0-9_]{8,}$" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다.)" required />
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinId" name="id" type="text" aria-required="true" value="" pattern="^[a-z0-9_]{8,}$" data-toggle="tooltip" placeholder="아이디를 입력하세요 (숫자,알파벳,-,_등만 입력 가능합니다.)" required />
+                </div>
               </li>
               <li>
-                <h3>
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinPassword">비밀번호</label>
                 </h3>
-                <input id="joinPassword" name="pw" type="password" placeholder="비밀번호를 입력하세요" required />
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinPassword" name="pw" type="password" aria-required="true" data-toggle="tooltip" placeholder="비밀번호를 입력하세요" required />
+                </div>
               </li>
             </ul>
           </fieldset>
-          <button type="submit" class="btn btn-default ">로그인하기</button accesskey="s">
+          <div class="buttonbox">
+            <button type="submit" class="linebutton middle" accesskey="s">로그인하기</button>
+            <button id="FindIdPw" class="linebutton middle" aria-popup="true" accesskey="f">비밀번호 / 아이디 찾기</button>
+          </div>
         </form>
-        <ul>
-          <li>
-            <button id="FindIdPw">비밀번호 / 아이디 찾기</button>
-          </li>
-        </ul>
       </section>
     </div>
   </div>
   <script>
-    $("#FindIdPw").click(function(){
-      window.open('/search_login_info', '', 'fullscreen=yes, resizable=yes, scrollbars=yes, x=100,y=200,width=' + 400 + ',height=' + 600);
-    });
+
   </script>
   <% include ../partials/footer.ejs %>
 </body>

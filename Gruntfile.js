@@ -13,7 +13,7 @@
       minify:{
          expand: true,
          cwd: 'public/stylesheets/',
-         src: ['editor_contets.css','gnb_copyright.css','main.css'],
+         src: ['editor_contets.css','gnb_copyright.css','main.css','sub.css'],
          dest: 'public/stylesheets',
          ext: '.min.css'
      }

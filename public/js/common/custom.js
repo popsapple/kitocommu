@@ -415,6 +415,7 @@ $(document).ready(function() {
       $('.gnb_navbar').attr('aria-hidden','false');
     });
   }
+
 });
 
 $(window).scroll(function(event) {

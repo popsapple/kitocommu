@@ -1,33 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
       <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
         <section>
-          <form>
-            <fieldset>
-              <legend>회원가입시 입력하신 정보를 작성해주세요, 아이디와 임시 비밀번호가 발급됩니다.</legend>
-              <ul>
-                <li>
-                  <h3>
+          <form class="search_login_info">
+            <fieldset class="clearfix">
+              <legend>
+                <h2 class="section_title left">
+                  <strong>필요정보 작성</strong>
+                  <span>회원가입시 입력하신 정보를 작성해주세요, 아이디와 임시 비밀번호가 발급됩니다.</span>
+                </h2>
+              </legend>
+              <ul class="col-xs-12">
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="searchNickname">닉네임</label>
                   </h3>
-                  <input id="searchNickname" name="nickname" type="text" value="" placeholder="닉네임을 입력하세요 (2~20자)" required />
+                  <div class="col-xs-12 col-md-12 col-lg-12">
+                    <input id="searchNickname" name="nickname" type="text" aria-required="true" value="" data-toggle="tooltip" placeholder="닉네임을 입력하세요 (2~20자)" required />
+                  </div>
                 </li>
-                <li>
-                  <h3>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-12 col-lg-12">
                     <label for="searchEmail">이메일</label>
                   </h3>
-                  <input id="searchEmail" name="email" type="text" value="" placeholder="이메일을 입력하세요" required />
+                  <div class="col-xs-12 col-md-12 col-lg-12">
+                    <input id="searchEmail" name="email" type="text" aria-required="true" value="" data-toggle="tooltip" placeholder="이메일을 입력하세요" required />
+                  </div>
                 </li>
               </ul>
             </fieldset>
-            <button type="submit" class="btn btn-default login_info_submit">정보찾기</button accesskey="s">
+            <div class="buttonbox">
+              <button type="submit" accesskey="s" class="linebutton middle login_info_submit" role="alert">정보찾기</button>
+            </div>
           </form>
         </section>
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
     function CheckFormInput(){
       var input_list = ['searchNickname','searchEmail'];
@@ -42,6 +54,7 @@
         if(!reg_list[key].test($('#'+input_list[count]).val())){
           is_true = false;
           alert(dialog_list[count]);
+          return false;
         }
         count++;
       };
@@ -49,25 +62,42 @@
     };
 
     $(".login_info_submit").on('click', function(){
-      CheckFormInput();
-      $.ajax({
-        type: "POST",
-            url: "/search_login_info_submit",
-            data: JSON.stringify({
-              "pw" : "d241_34a516BC",
-              "nickname" : $("#searchNickname").val(),
-              "email" : $("#searchEmail").val()
-            }),
-            contentType: "application/json",
-            success: function(data) {
-                alert("회원님의 아이디는"+data.id+"이고 비밀번호는 d241_34a516BC 입니다. 반드시 정보수정에 가서 비밀번호를 변경해주세요.");
-            },
-            error: function(data) {
-                console.log("Error!!!!!!!!!!!!");
-            }
-      });
+      console.log("??????");
+      var check = CheckFormInput();
+      if(check) {
+        $.ajax({
+          type: "POST",
+              url: "/search_login_info_submit",
+              data: JSON.stringify({
+                "pw" : "d241_34a516BC",
+                "nickname" : $("#searchNickname").val(),
+                "email" : $("#searchEmail").val()
+              }),
+              contentType: "application/json",
+              success: function(data) {
+                if(!data.id){
+                  alert("입력하신 조건에 맞는 회원을 찾지 못했습니다.");
+                  return false;
+                }
+                alert("회원님의 아이디는"+data.id+"이고 비밀번호는 d241_34a516BC 입니다. 반드시 정보수정에 가서 비밀번호를 변경해주세요. 확인버튼 클릭시 창이 닫힙니다.");
+                self.close();
+              },
+              error: function(data) {
+                  console.log("Error!!!!!!!!!!!!");
+              }
+        });
+      }
+      return false;
     });
 
+    function LoadingPage(){
+      setTimeout(function(){
+        $('.loading_div').fadeOut(500);
+      },2000);
+    };
+    $(document).ready(function(){
+      LoadingPage();
+    });
     </script>
   </body>
 </html>

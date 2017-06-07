@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
   <% include ../partials/nav.ejs %>
     <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
       <section>
-        <h3>
-          <%= id %>님의 회원가입을 축하합니다.
-        </h3>
-        <a href="/login_form" taget="_self" class="btn btn-default ">로그인 하러가기</a accesskey="s">
+        <h2 class="section_title left">
+          <strong><%= id %>님의 회원가입을 축하합니다.</strong>
+          <span>로그인 후에 자기소개 게시판에 가셔서 모두에게 자신을 알려보세요.</span>
+        </h2>
+        <div class="buttonbox">
+          <a href="/login_form" taget="_self" class="linebutton middle" accesskey="s">로그인 하러가기</a>
+        </div>
       </section>
     </div>
   </div>

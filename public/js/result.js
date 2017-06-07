@@ -10,9 +10,9 @@ function CheckFormInput(){
   "닉네임은 8자 이상 영문소문자, 숫자, 특수문자",
   "비밀번호는 10자 이상의 영문대소문자, 숫자, 특수문자를 입력해주세요",
   "이메일은 형식에 맞게 입력해주세요",
-  "전화번호는 형식에 맞게 입력해주세요 숫자만 입력 가능합니다 ex)01011112222",
-  "키는 숫자만 입력 가능합니다",
-  "몸무게는 숫자만 입력 가능합니다",
+  "전화번호는 형식에 맞게 입력해주세요 공백을 제외한 숫자만 입력 가능합니다 ex)01011112222",
+  "키는 공백을 제외한 숫자만 입력 가능합니다",
+  "몸무게는 공백을 제외한 숫자만 입력 가능합니다",
   "아이디 중복체크를 진행해주세요",
   "닉네임 중복체크를 진행해주세요",
   "제목에 내용을 입력해 주세요",
@@ -42,9 +42,11 @@ function CheckFormInput(){
       //이벤트막고 , 기본동작 중지
       event.stopPropagation();
       event.preventDefault();
-
+      $('#'+input_list[count]).attr('aria-invalid','true');
       is_true = false;
       alert(dialog_list[count]);
+    }else if($('#'+input_list[count]) && reg_list[key].test($('#'+input_list[count]).val())){
+      $('#'+input_list[count]).attr('aria-invalid','false');
     }
     count++;
   };
@@ -62,19 +64,21 @@ $(".dobule_check").on('click', function(event, check_type){
     }),
     contentType: "application/json",
     success: function(data) {
-      console.log("받았습니다."+check_type);
       if(data.isdouble != 'no'){
         alert("중복입니다 사용하실 수 없습니다.");
+        $("#"+obj.attr('data-item')).attr('aria-invalid','true');
         obj.val('no');
       }else{
         if(check_type != 'trigger_check'){
           alert("사용하실 수 있습니다.");
+          $("#"+obj.attr('data-item')).attr('aria-invalid','false');
           obj.val('yes');
         }
       }
     },
     error: function(data) {
       alert("사용하실 수 있습니다.");
+      $("#"+obj.attr('data-item')).attr('aria-invalid','false');
       obj.val('yes');
     }
   });
@@ -119,6 +123,17 @@ $(".food_list .detail_submit").on('click', function(){
 
 $(document).ready(function(){
   $("#joinSex").attr("data-sex") ? $("#joinSex").val($("#joinSex").attr("data-sex")) : '';
+  $('[data-toggle="tooltip"]').each(function(){
+    $(this).tooltip({
+      title: $(this).attr('placeholder')
+    });
+    $(this).attr('aria-label',$(this).attr('placeholder'));
+  });
+
+  $("#FindIdPw").click(function(){
+    window.open('/search_login_info', '', 'fullscreen=yes, resizable=yes, scrollbars=yes, x=100,y=200,width=' + 400 + ',height=' + 600);
+    return false;
+  });
 });
 
 /*!
@@ -1816,6 +1831,7 @@ $(document).ready(function() {
       $('.gnb_navbar').attr('aria-hidden','false');
     });
   }
+
 });
 
 $(window).scroll(function(event) {

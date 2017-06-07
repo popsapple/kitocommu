@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
@@ -8,69 +8,99 @@
       <section>
         <form method="post" action="/mypage/submit" onSubmit="CheckFormInput();">
           <fieldset>
-            <legend>기본 인적사항</legend>
-            <ul>
-              <li>
-                <h3>
+            <legend>
+              <h2 class="section_title left">
+                <strong>기본 인적사항</strong>
+                <span>기본적으로 사용되는 회원정보입니다.</span>
+              </h2>
+            </legend>
+            <ul class="col-xs-12">
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinId">아이디</label>
                 </h3>
-                <input id="joinId" name="id" type="text" value="<%= id %>" readonly required />
-                <input type="hidden" id="joinCheckId" value="yes">
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinId" name="id" type="text" value="<%= id %>" aria-required="true" aria-readonly="true" readonly required />
+                  <input type="hidden" id="joinCheckId" value="yes">
+                </div>
               </li>
-              <li>
-                <h3>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinPassword">비밀번호</label>
                 </h3>
-                <input id="joinPassword" name="pw" type="password" placeholder="비밀번호를 입력하세요 (숫자,알파벳만 입력 가능합니다. 10자 이상)" required />
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinPassword" name="pw" type="password" data-toggle="tooltip" placeholder="비밀번호를 입력하세요 (숫자,알파벳만 입력 가능합니다. 10자 이상)" aria-required="true" required />
+                </div>
               </li>
-              <li>
-                <h3>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinNickname">닉네임</label>
                 </h3>
-                <input id="joinNickname" name="nickname" type="text" value="<%= nickname %>" placeholder="닉네임을 입력하세요 (2~20자)" required />
-                <input type="button" id="joinCheckNickname" class="dobule_check" data-item="joinNickname" value="yes">중복확인하기</button>
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinNickname" name="nickname" type="text" aria-required="true" value="<%= nickname %>" data-toggle="tooltip" placeholder="닉네임을 입력하세요 (2~20자)" required />
+                  <button type="button" id="joinCheckNickname" class="linebutton small dobule_check" data-item="joinNickname" value="yes" role="alert">
+                    중복확인하기
+                  </button>
+                </div>
               </li>
-              <li>
-                <h3>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinEmail">이메일</label>
                 </h3>
-                <input id="joinEmail" name="email" type="text" value="<%= email %>" placeholder="이메일을 입력하세요" required />
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinEmail" name="email" type="text" value="<%= email %>" data-toggle="tooltip" placeholder="이메일을 입력하세요" aria-required="true" required />
+                </div>
               </li>
-              <li>
-                <h3>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                   <label for="joinTel">전화번호</label>
                 </h3>
-                <input id="joinTel" name="tel" type="text" value="<%= tel %>" placeholder="전화번호를 입력하세요" required />
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <input id="joinTel" name="tel" type="text" value="<%= tel %>" data-toggle="tooltip" placeholder="전화번호를 입력하세요" aria-required="true" required />
+                </div>
               </li>
             </ul>
             </fieldset>
             <fieldset>
-              <legend>다이어트 관련 기본정보</legend>
-              <ul>
-                <li>
-                  <h3>
+              <legend>
+                <h2 class="section_title left">
+                  <strong>신체정보</strong>
+                  <span>차후 다이어트 관련 서비스 제안시 사용될 내용입니다.</span>
+                </h2>
+              </legend>
+              <ul class="col-xs-12">
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                     <label for="joinSex">성별</label>
                   </h3>
-                  <select id="joinSex" data-sex="<%= sex %>" name="sex" required >
-                    <option value="female">여성</option>
-                    <option value="male">남성</option>
-                  </select>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <select id="joinSex" data-sex="<%= sex %>" name="sex" aria-required="true" required >
+                      <option value="female">여성</option>
+                      <option value="male">남성</option>
+                    </select>
+                  </div>
                 </li>
-                <li>
-                  <h3>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                     <label for="joinHeight">키</label>
                   </h3>
-                  <input id="joinHeight" name="height" type="text" value="<%= height %>" placeholder="키를 입력해주세요 (숫자만 가능합니다)" required />
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <input id="joinHeight" name="height" type="text" value="<%= height %>" data-toggle="tooltip" placeholder="키를 입력해주세요 (숫자만 가능합니다)" aria-required="true" required />
+                  </div>
                 </li>
-                <li>
-                  <h3>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                     <label for="joinWeight">몸무게</label>
                   </h3>
-                  <input id="joinWeight" name="weight" type="text" value="<%= weight %>" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" required />
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <input id="joinWeight" name="weight" type="text" value="<%= weight %>" data-toggle="tooltip" placeholder="몸무게를 입력해주세요 (숫자만 가능합니다)" aria-required="true" required />
+                  </div>
                 </li>
               </ul>
             </fieldset>
-            <button type="submit" class="btn btn-default ">정보변경하기</button accesskey="s">
+            <div class="buttonbox">
+              <button type="submit" class="linebutton middle" accesskey="s">정보변경하기</button>
+            </div>
           </form>
       </section>
     </div>

@@ -145,7 +145,8 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   save_data = global.MEMBER_DB.model;
   var id_info = {nickname: info['nickname']};
   save_data.findOne(id_info, function(err, member){
-    if(err){  // 아무것도 못 찾았을 때
+    if(err || !member || !member.nickname){  // 아무것도 못 찾았을 때
+        console.log("멤버를 못 찾았습니다");
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
     }

@@ -97,6 +97,9 @@
   margin-right: 3rem;
   float:left;
 }
+.main_visual_control > div > ul li+li+li {
+  margin-right: 0rem;
+}
 
 .main_visual_control > div > ul button {
   width: 4rem;
@@ -162,6 +165,10 @@
 
 .main_recipe {
   text-align:center;
+}
+
+.main.designcustom .main_recipe .linebutton {
+  margin:6rem;
 }
 
 .main_recipe > ul {

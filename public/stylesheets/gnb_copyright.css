@@ -172,7 +172,7 @@ html *,
   color:#707070;
   margin:auto;
   padding:1rem 2rem;
-  margin:6rem;
+  margin:auto;
   border:1px solid #bfbfbf;
   border-color:#bfbfbf;
   background-color:#ffffff;
@@ -202,6 +202,11 @@ html *,
   padding: 6rem 0.5rem 4rem 0.5rem;
   text-align:center;
 }
+
+.designcustom .section_title.left {
+  text-align:left;
+}
+
 
 .designcustom .section_title strong {
   font-size:2.3rem;
@@ -262,6 +267,11 @@ html *,
   position:fixed;
   z-index:3;
   top:0;
+  background:#ffffff;
+  border-bottom:1px solid #cbc8c2;
+}
+
+html.sub .designcustom .navbar-default {
   background:#ffffff;
   border-bottom:1px solid #cbc8c2;
 }
@@ -468,12 +478,14 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 .designcustom .navbar-collapse > div > ul > li > ul {
   position:relative;
   display:block;
+  visibility:hidden;
   max-height:0rem;
   overflow:hidden;
   transition: max-height 0.5s ease-out 0.5s;
 }
 .designcustom .navbar-collapse > div > ul > li.open > ul {
   display:block;
+  visibility:visible;
   max-height:10rem;
   transition:max-height 1s ease-in 0s;
 }
@@ -487,6 +499,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 
 .designcustom .navbar-collapse > div > ul > li.member_side > ul.menu {
   display:table-row;
+  visibility:visible !important;
   width:100%;
   overflow:visible;
   max-height:20rem;
