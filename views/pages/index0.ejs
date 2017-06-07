@@ -2,11 +2,12 @@
 <html>
 <head>
 <% include ../partials/header.ejs %>
-<div class="main designcustom" itemscope itemtype = "http://schema.org/WebPage" role="application">
+<div class="main designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
   <% include ../partials/nav.ejs %>
+  <input id="first" value="first in the character stream" tabindex="0">
   <div class="container no_padding no_margin">
     <section class="main_visual flexslider" itemscope itemtype="http://schema.org/mainContentOfPage">
-      <ul aria-labelledby="MainVisualSlider" class="slides" role="main">
+      <ul aria-labelledby="MainVisualSlider" class="slides">
         <span id="MainVisualSlider" class="blind">내용이 순차적으로 보여지는 공간입니다.</span>
         <li id="SliderItem01" aria-hidden="true">
           <figure>

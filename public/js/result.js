@@ -1789,6 +1789,9 @@ $(document).ready(function() {
       animation: "slide",
       slideshow: false,
       start: function(slider){
+        if(slider.hasClass('active')){
+          $(".main_visual").attr("aria-live","polite");
+        }
         var slider = $('.main_visual').data('flexslider');
             slider.resize();
             slider.addClass('active');
@@ -1797,7 +1800,6 @@ $(document).ready(function() {
       directionNav: false,
       direction:'horizontal',
       after: function(){
-        $(".main_visual").attr("aria-live","polite");
         $(".main_visual .slides li").each(function(){
           $(this).attr("aria-hidden","true");
         });
