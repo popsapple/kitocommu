@@ -351,6 +351,7 @@ function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드�
 }
 
 $(document).ready(function() {
+  $(".gnb-navbar-brand").focus();
   LoadingPage();
   DisableGnbDropdown(".gnb_navbar .dropdown");
   if($('.main_kito_faq')){

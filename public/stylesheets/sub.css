@@ -7,10 +7,25 @@
   margin: 5rem 0rem;
   text-align: center;
 }
-.sub.designcustom .buttonbox > * {
+.sub.designcustom .buttonbox > div > * {
+  display:block;
+  float:left;
   margin-right:1rem;
 }
-.sub.designcustom .buttonbox > *:last-child {
+.sub.designcustom .buttonbox > div {
+  display:inline-block;
+  width:auto;
+  margin:auto;
+}
+.sub.designcustom .buttonbox > div:after {
+  content:"";
+  width:100%;
+  height:auto;
+  clear:both;
+  display:block;
+  float:none;
+}
+.sub.designcustom .buttonbox > div > *:last-child {
   margin-right:0rem;
 }
 .sub.designcustom > .container {
