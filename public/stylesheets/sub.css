@@ -33,6 +33,11 @@
   padding:3rem 1rem;
   min-height:57.4rem;
 }
+@media (min-width: 1200px) {
+  .sub.designcustom > .container {
+    padding:3rem 0rem;
+  }
+}
 .sub.designcustom {
   font-size:1.4rem;
 }
@@ -58,6 +63,7 @@
  color:#303030;
  padding-left:1rem;
 }
+.sub .container .title_line > *:before,
 .sub .container form h3 > *:before,
 .sub .container form h4 > *:before {
   content:"";
@@ -87,9 +93,32 @@
   border-color: #bfbfbf;
   background-color: #fff;
 }
+
+.sub .container form input[type=text],
+.sub .container form input[type=password] {
+  background: #f9f9f9;
+}
+.sub .container form input:-ms-input-placeholder,
+.sub .container form input:-webkit-input-placeholder,
+.sub .container form input:-moz-input-placeholder,
+.sub .container form input:-moz-input-placeholder {
+  color:#d0d0d0;
+}
+
+.sub .container form input[type=button].normal {
+  width:60%;
+  max-width:30rem;
+  margin-right:1rem;
+  padding: 1rem 2rem;
+  font-size:1.4rem;
+  border: 1px solid #bfbfbf;
+  border-color: #bfbfbf;
+  background:#f9f9f9;
+  background: #f9f9f9;
+}
 .sub .container form select,
 .sub .container form option {
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   font-size: 1.4rem;
   border: 1px solid #bfbfbf;
   border-color: #bfbfbf;
@@ -113,4 +142,52 @@
 }
 .sub form.search_login_info .section_title {
   padding-top:2rem !important;
+}
+.sub .container .label {
+  color: #fff;
+  font-size: 1.2rem;
+  vertical-align: middle;
+  font-weight: 400;
+  padding: 0.1rem 0.7rem;
+  text-transform: uppercase;
+}
+
+html.sub .sub_visual,
+html.sub .sub_visual *,
+html.sub .sub_visual h1 {
+  max-height:22rem;
+  max-width:none;
+  overflow:hidden;
+}
+html.sub .sub_visual {
+  display: table;
+  margin-top: 2.7rem;
+  padding: 0rem 1rem;
+  position: relative;
+  width: 100%;
+  height: 22rem;
+  background:url('/images/main/main_visual_01_md.jpg');
+  background-size:cover;
+}
+html.sub .sub_visual h1 {
+  display: table-cell;
+  vertical-align: middle;
+  color: #ffffff;
+  font-size: 2rem;
+  line-height: 4.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  html.sub .sub_visual h1 {
+    font-size: 2.5rem;
+  }
+}
+html.sub .sub_visual img {
+  position:absolute;
+  max-width:none;
+  max-height:none;
+  margin:0rem;
+  padding:0rem;
+  width:100%;
 }

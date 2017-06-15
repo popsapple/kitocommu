@@ -194,6 +194,11 @@ html *,
 }
 
 .designcustom .linebutton.middle {
+  font-size:1.6rem;
+  font-weight:400;
+}
+
+.designcustom .linebutton.big {
   font-size:1.8rem;
   font-weight:400;
 }
@@ -273,7 +278,7 @@ html *,
 
 html.sub .designcustom .navbar-default {
   background:#ffffff;
-  border-bottom:1px solid #cbc8c2;
+  border-bottom:1px solid #e5e5e5;
 }
 
 @media (max-width:767px) and (orientation:landscape) {

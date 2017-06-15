@@ -1,4 +1,3 @@
-require('node-import');
 var express = require('express');
 global.EXPRESS = express;
 var multer = require('multer');
@@ -10,11 +9,12 @@ global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParserJsonError = require('express-body-parser-json-error');
-var methodOverride = require('method-override');
+//var methodOverride = require('method-override');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/views'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -27,7 +27,6 @@ app.use(session({
 }));
 
 app.use(function (request, response, next) {
-  console.log("설정실행");
   response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
   response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
   next();

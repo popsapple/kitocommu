@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
   <head>
+    <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>" />
     <% include ../partials/header.ejs %>
     <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
@@ -39,109 +40,142 @@
             <%}%>
             <fieldset>
               <ul>
-                <li>
-                  <label for="BoardTitle">제목</label>
-                  <%if(locals.title){%>
-                    <input id="BoardTitle" name="title" type="text" value="<%= title %>" />
-                  <%}else {%>
-                    <input id="BoardTitle" name="title" type="text" />
-                  <%}%>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-3 col-lg-2">
+                    <label for="BoardTitle">제목</label>
+                  </h3>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <%if(locals.title){%>
+                      <input id="BoardTitle" class="width100" name="title" type="text" required="" value="<%= title %>" />
+                    <%}else {%>
+                      <input id="BoardTitle" class="width100" name="title" type="text" required="" />
+                    <%}%>
+                  </div>
                 </li>
-                <li>
-                  <label for="BoardCategory">카테고리</label>
-                  <%if(locals.category){%>
-                    <select id="BoardCategory" name="category" type="text" data-value="<%= category %>">
-                      <%if(locals.category_list){%>
-                        <% for(var i=0; i < category_list.length; i++) { %>
-                          <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-3 col-lg-2">
+                    <label for="BoardCategory">카테고리</label>
+                  </h3>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <%if(locals.category){%>
+                      <select id="BoardCategory" name="category" type="text" required="" data-value="<%= category %>">
+                        <%if(locals.category_list){%>
+                          <% for(var i=0; i < category_list.length; i++) { %>
+                            <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                          <%}%>
                         <%}%>
-                      <%}%>
-                    </select>
-                  <%}else {%>
-                    <select id="BoardCategory" name="category" type="text">
-                      <%if(locals.category_list){%>
-                        <% for(var i=0; i < category_list.length; i++) { %>
-                          <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                      </select>
+                    <%}else {%>
+                      <select id="BoardCategory" name="category" type="text" required="">
+                        <%if(locals.category_list){%>
+                          <% for(var i=0; i < category_list.length; i++) { %>
+                            <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
+                          <%}%>
                         <%}%>
-                      <%}%>
-                    </select>
-                  <%}%>
+                      </select>
+                    <%}%>
+                  </div>
                 </li>
-                <li>
-                  <label for="BoardSecret">비밀글</label>
-                  <%if(locals.is_secret){%>
-                    <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="<%= is_secret %>" type="checkbox" />
-                  <%}else {%>
-                    <input id="BoardSecret" class="CommentSecret" name="is_secret" data-value="" type="checkbox" />
-                  <%}%>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-3 col-lg-2">
+                    <label for="BoardSecret">비밀글</label>
+                  </h3>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
+                    <%if(locals.is_secret){%>
+                      <input id="BoardSecret" class="CommentSecret check" name="is_secret" data-value="<%= is_secret %>" type="checkbox" />
+                    <%}else {%>
+                      <input id="BoardSecret" class="CommentSecret check" name="is_secret" data-value="" type="checkbox" />
+                    <%}%>
+                  </div>
                 </li>
                 <%if(locals.is_admin == true){%>
-                  <li>
-                    <label for="BoardNotice">공지사항</label>
+                  <li class="clearfix">
+                    <h3 class="col-xs-12 col-md-3 col-lg-2">
+                      <label for="BoardNotice">공지사항</label>
+                    </h3>
+                    <div class="col-xs-12 col-md-9 col-lg-10">
                     <%if(locals.is_notice == "on"){%>
                       <input id="BoardNotice" name="is_notice" type="checkbox" data-value="<%= is_notice %>" />
                     <%}else {%>
                       <input id="BoardNotice" name="is_notice" type="checkbox" value="false"/>
                     <%}%>
+                    </div>
                   </li>
                 <%}%>
-                <li>
-                  <label for="BoardTags">태그 #으로 분리해서 적어주세요</label>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-3 col-lg-2">
+                    <label for="BoardTags">태그</label>
+                  </h3>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
                   <%if(locals.tags){%>
-                    <input id="BoardTags" name="tags" type="text" value="<%= tags %>" />
+                    <input id="BoardTags" class="width100" name="tags" type="text" value="<%= tags %>" data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" required="" />
                   <%}else {%>
-                    <input id="BoardTags" name="tags" type="text" />
+                    <input id="BoardTags" class="width100" name="tags" type="text" required=""  data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" />
                   <%}%>
+                  </div>
                 </li>
-                <li>
-                  <label for="BoardContents">글내용</label>
+                <li class="clearfix">
+                  <h3 class="col-xs-12 col-md-3 col-lg-2">
+                    <label for="BoardContents">글내용</label>
+                  </h3>
+                  <div class="col-xs-12 col-md-9 col-lg-10">
                   <%if(locals.contents){%>
-                    <textarea id="BoardContents" name="contents"><%= contents %></textarea>
+                    <textarea id="BoardContents" name="contents" required=""><%= contents %></textarea>
                   <%}else {%>
-                    <textarea id="BoardContents" name="contents"></textarea>
+                    <textarea id="BoardContents" name="contents" required=""></textarea>
                   <%}%>
+                  </div>
                 </li>
               </ul>
             </fieldset>
-            <%if(!locals.title){%>
-              <button id="BoardSaveButton" type="submit" class="btn btn-default">등록하기</button accesskey="s">
-            <%} else{%>
-              <button id="BoardModifyButton" type="submit" class="btn btn-default">수정하기</button accesskey="s">
-            <%}%>
-            <%if(locals.list_type == 'thumnail'){%>
-              <%if(locals.thumnail){%>
-                <input id="BoardThumnailValue" name="thumnail" type="hidden" value="<%= thumnail %>" />
-              <%}else {%>
-                <input id="BoardThumnailValue" name="thumnail" type="hidden" value="" />
-              <%}%>
-            <%}%>
           </form>
           <%if(locals.list_type == 'thumnail'){%>
-            <div>
-              <label for="BoardContents">썸네일</label>
-              <%if(locals.thumnail){%>
-                <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-                  <input id="BoardThumnail" name="thumnailfile" type="file" value="<%= thumnail %>" />
-                  <input id="BoardThumnailButton" type="button" value="Submit" />
-                </form>
-              <%}else {%>
-                <form id="ajaxform" action="/upload_thumnail" method="post" enctype="multipart/form-data">
-                  <input id="BoardThumnail" name="thumnailfile" type="file" value="" />
-                  <input id="BoardThumnailButton" type="button" value="Submit" />
-                </form>
-              <%}%>
+            <div class="clearfix">
+              <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
+                <label for="BoardThumnail">썸네일</label>
+              </h3>
+              <div class="col-xs-12 col-md-9 col-lg-10">
+                <%if(locals.thumnail){%>
+                  <form id="ajaxform" class="file_form" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+                    <label for="BoardThumnail">파일을 첨부해주세요</label>
+                    <input id="BoardThumnail" class="file_input" name="thumnailfile" type="file" value="<%= thumnail %>" />
+                    <button class="linebutton middle" type="button">이미지첨부</button>
+                    <input id="BoardThumnailButton" class="linebutton middle" type="button" value="파일 올리기" />
+                  </form>
+                <%}else {%>
+                  <form id="ajaxform" class="file_form" action="/upload_thumnail" method="post" enctype="multipart/form-data">
+                    <label for="BoardThumnail">파일을 첨부해주세요</label>
+                    <input id="BoardThumnail" class="file_input" name="thumnailfile" type="file" value="" />
+                    <button class="linebutton middle" type="button">이미지첨부</button>
+                    <input id="BoardThumnailButton" class="linebutton middle" type="button" value="파일 올리기" />
+                  </form>
+                <%}%>
+              </div>
             </div>
           <%}%>
           <%if(locals.title){%>
-              <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
-                <input id="CheckReply" name="is_reply" type="hidden" value="<%= is_reply %>" />
-                <%if(locals.reply_table_id){%>
-                  <input id="ReplyTableId" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
-                <%}%>
-                <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
-                <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
-                <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">
-              </form>
+            <form id="PostDeleteForm" method="post" action="/board_remove_submit">
+              <input id="CheckReply" name="is_reply" type="hidden" value="<%= is_reply %>" />
+              <%if(locals.reply_table_id){%>
+                <input id="ReplyTableId" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
+              <%}%>
+              <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+              <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
+            </form>
+          <%}%>
+          <%if(!locals.title){%>
+          <div class="buttonbox">
+            <div>
+              <button id="BoardSaveButton" data-form-id="BoardWriteForm" class="linebutton middle submit_btn" accesskey="s">등록하기</button>
+            </div>
+          </div>
+          <%} else{%>
+            <div class="buttonbox">
+              <div>
+                <button id="BoardModifyButton" data-form-id="BoardWriteForm" class="linebutton middle submit_btn" accesskey="u">수정하기</button>
+                <button data-form-id="PostDeleteForm" class="linebutton middle submit_btn" accesskey="d">삭제하기</button>
+              </div>
+            </div>
           <%}%>
           <script>
           CKEDITOR.replace( 'BoardContents', {

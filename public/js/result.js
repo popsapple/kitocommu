@@ -1720,6 +1720,7 @@ function LoadingPage(){
       complete:function(){
         setTimeout(function(){
           $('.loading_div').fadeOut(500);
+          $('.loading_complete').addClass('active');
         },2000);
       },
       error:function(e){
@@ -1761,6 +1762,15 @@ function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드�
     $(obj+" > a").each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
+    });
+
+    $('li.dropdown ul li').on('click', function() {
+        var $el = $(this);
+            var $a = $el.children('a');
+            if ($a.length && $a.attr('href')) {
+                location.href = $a.attr('href');
+            }
+            console.log("??");
     });
     callback02 ? callback02() : '';
   }
@@ -3085,15 +3095,17 @@ $(document).ready(function(){
     BoardViewHtmlDecode(); //DB에서 끌고온 내용 html 화
   })();
 
-  $("#BoardCategory") ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : '';
+  $("#BoardCategory").attr('data-value') ? $("#BoardCategory").val($("#BoardCategory").attr('data-value')) : $("#BoardCategory").val($("#BoardCategory").find(' option').eq(0).attr('value'));
   $("#BoardNotice").val() == "on" ? $("#BoardNotice").attr("checked", true) : '';
   $(".CommentSecret").each(function(){
-    console.log("도는중");
     if($(this).attr('data-value') == "on"){
-      console.log("체크");
       $(this).attr("checked", true);
     }
   });
+
+  BoardFileInput();
+
+  BoardSubmitButton();
 });
 
 var BoradWriteFileDelete = function(is_remove_post_){
@@ -3125,3 +3137,28 @@ var BoradWriteUnloadEvent = function(){
   window.confirm("이 페이지를 넘어가시면 작성중인 내용은 저장되지 않습니다. 페이지를 넘어가시려면 확인 버튼을 눌러주세요.");
   BoradWriteFileDelete("writing"); // 작성중일 때 파일삭제
 };
+
+var BoardFileInput = function(){
+  $("form.file_form").each(function(){
+    var obj = $(this);
+    var pattern = /[^\\]+[\.\w]+/g;
+    obj.find(" > button").click(function(){
+      obj.find(".file_input").trigger('click');
+    });
+    obj.find(".file_input").on("change",function(){
+      var count = 0;
+      var val = $(this).val().match(pattern);
+      obj.find(" > label").html(val[val.length-1]);
+    });
+  });
+}
+
+
+var BoardSubmitButton = function(){
+  $('.submit_btn').click(function(){
+    if($(this).attr('data-form-id') == 'PostDeleteForm'){
+      BoradWriteFileDelete('remove');
+    }
+    $('#'+$(this).attr('data-form-id')).submit();
+  });
+}

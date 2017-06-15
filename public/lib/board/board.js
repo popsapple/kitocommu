@@ -126,6 +126,8 @@ module.exports.board_con = function(app,mongoose){
         }else if(request.body.reply_table_id){
           request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
         }
+
+        data.category_list ? data.category_list = data.category_list.split(",") : '';
         return response.render('board/write',data);
       });
     }

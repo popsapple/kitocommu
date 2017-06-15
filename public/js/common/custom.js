@@ -304,6 +304,7 @@ function LoadingPage(){
       complete:function(){
         setTimeout(function(){
           $('.loading_div').fadeOut(500);
+          $('.loading_complete').addClass('active');
         },2000);
       },
       error:function(e){
@@ -345,6 +346,15 @@ function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드�
     $(obj+" > a").each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
+    });
+
+    $('li.dropdown ul li').on('click', function() {
+        var $el = $(this);
+            var $a = $el.children('a');
+            if ($a.length && $a.attr('href')) {
+                location.href = $a.attr('href');
+            }
+            console.log("??");
     });
     callback02 ? callback02() : '';
   }

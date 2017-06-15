@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
-  <link rel="alternate" hreflang="ko-kr" href="<%= css_skin %>" />
+  <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>" />
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
-      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+      <div class="container board normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <% include ../partials/sub_visual.ejs %>
         <% if(locals.notice_list) { %>
-        <section id="boardNoticeList">
+        <section id="boardNoticeList" class="loading_complete">
           <ul>
             <% for(var i=0; i < notice_list.length; i++) { %>
             <li>
-              <hgroup>
+              <div>
                 <h2>
                   <span class="label label-default">Notice</span>
                   <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= notice_list[i].post_index %>">
                     <%= notice_list[i].title %>
                   </a>
                 </h2>
-                <h3>
+                <time class="visible-sm visible-md visible-lg">
+                  <span class="blind">작성일</span>
+                  <%= notice_list[i].writed_date %>
+                </time>
+                <h3 class="visible-sm visible-md visible-lg">
+                  <span class="blind">작성자</span>
                   <%= notice_list[i].writer_nickname %>
                 </h3>
-                <time>
-                  <%= notice_list[i].writed %>
-                </time>
-              </hgroup>
+              </div>
             </li>
             <%}%>
           </ul>
         </section>
         <%}%>
-        <section id="boardList">
+        <section id="boardList" class="loading_complete">
           <ul>
             <% if(locals.board_list.length == 0) { %>
             <li>
@@ -39,37 +42,49 @@
             <% } %>
             <% for(var i=0; i < board_list.length; i++) { %>
             <li>
-              <hgroup>
+              <div>
                 <h2>
                   <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
                     <%= board_list[i].title %>
                   </a>
                 </h2>
-                <h3>
-                  <%= board_list[i].writer %>
-                </h3>
-                <time>
-                  <%= board_list[i].writed %>
+                <time class="visible-sm visible-md visible-lg">
+                  <span class="blind">작성일</span>
+                  <%= board_list[i].writed_date %>
                 </time>
-              </hgroup>
+                <h3>
+                  <span class="blind">작성자</span>
+                  <%= board_list[i].writer_nickname %>
+                </h3>
+              </div>
             </li>
             <% if(locals.board_list[i].reply_list) { %>
               <% for(var j=0; j < board_list[i].reply_list.length; j++) { %>
                 <li>
-                  <hgroup>
-                    <h2>
-                      <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
-                        답글) <%= board_list[i].reply_list[j].title %>
-                      </a>
-                    </h2>
-                  </hgroup>
+                    <div>
+                      <h2>
+                        <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
+                          <span class="reple_icon">
+                            <span class="blind"> 답글 </span>
+                          </span> <%= board_list[i].reply_list[j].title %>
+                        </a>
+                      </h2>
+                      <time class="visible-sm visible-md visible-lg">
+                        <span class="blind">작성일</span>
+                        <%= board_list[i].reply_list[j].writed_date %>
+                      </time>
+                      <h3>
+                        <span class="blind">작성자</span>
+                          <%= board_list[i].reply_list[j].writer_nickname %>
+                      </h3>
+                    </div>
                 </li>
               <%}%>
             <%}%>
           <%}%>
           </ul>
         </section>
-        <section>
+        <section class="search_con">
           <ul>
             <li>
             <form method="get" action="/board/search_post">
@@ -95,13 +110,13 @@
               <%}else {%>
                 <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
               <%}%>
-              <input type="submit" value="검색하기" />
+              <input type="submit" class="linebutton small search_button" value="검색하기" />
             </form>
             </li>
           </ul>
         </section>
         <section id="boardPaging">
-          <ul>
+          <ul class="write_<%= locals.writing_level %>">
             <% for(var i=0; i < board_paging.length; i++) { %>
             <li>
               <% if(board_paging[i].paging != page_) { %>
@@ -128,8 +143,8 @@
             </li>
             <%}%>
             <% if(locals.writing_level == 'yes') { %>
-              <li>
-                <a href="/board/write?board_table_id=<%= board_table_id %>">글쓰기</a>
+              <li class="button_li">
+                <a class="linebutton small" href="/board/write?board_table_id=<%= board_table_id %>">글쓰기</a>
               </li>
             <%}%>
           </ul>

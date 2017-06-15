@@ -86,7 +86,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         function sortList(a, b) {
           if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
         }
-        that.db_model .find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
+        that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
           data.board_list = board;
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
@@ -104,7 +104,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   callback(data,mongoose,request,response);
                   return false;
                 }
-
                 var reply_doc = [];
                 var that_reply = {};
                 var reply_count = 0;
@@ -133,6 +132,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             post_count=0;
                             that_reply.ReplyListing(reply_count,post_count);
                           }else if(reply_count == max_reply_length){
+                            //global.BOARD_DB.ChangeWritedDate(data,function(data,mongoose,request,response){callback(data,mongoose,request,response)},'reply',mongoose,request,response);
                             callback(data,mongoose,request,response);
                             return false;
                           }
@@ -188,7 +188,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     });
   },getBoardListByNotice : function (obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
-    var page_length = 5;
+    var page_length = 2;
     var search_hint = {is_notice: "on"};
     function sortList(a, b) {
       if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
@@ -197,7 +197,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       obj.notice_list = board;
       obj.notice_list.sort(sortList);
       obj.notice_list = obj.notice_list.slice(0,page_length);
-      callback(obj,mongoose,request,response);
+      global.BOARD_DB.ChangeWritedDate(obj,callback(obj,mongoose,request,response),'notice');
     });
   },getBoardPostByIndex : function (mongoose,request,response,callback,type){
     var request_list;
@@ -237,6 +237,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           var board_table_id = request_list.board_table_id;
+
+          board_info_.tags_list = board_info_.tags.split("#").join(" ");
 
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
             var comment = comment;
@@ -309,7 +311,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           for (var key in config){
             board_info_[key] = config[key];
           }
-
           board_info_.category_list ? board_info_.category_list = board_info_.category_list.split(",") : '';
 
           global.MEMBERLIB.CheckAuthenfication(board.writer,request.session.userid,request,response,function(value_){
@@ -484,7 +485,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              response.render('board'+obj.template+'/list',obj);
+
+              global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
         });
@@ -502,7 +504,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              response.render('board'+obj.template+'/list',obj);
+              global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
         });
@@ -549,7 +551,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              response.render('board'+obj.template+'/list',obj);
+              global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
         });
@@ -567,7 +569,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-              response.render('board'+obj.template+'/list',obj);
+              global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
         });
@@ -610,14 +612,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         save_data.comment_contents = request.body.comment_contents;
         save_data.comment_writer = request.session.userid;
         request.body.comment_date ? save_data.comment_date = data.comment_date : save_data.comment_date = new Date();
-        request.body.is_secret ? save_data.is_secret = "on" : save_data.is_secret = "no";
+        request.body.is_secret = save_data.is_secret ? save_data.is_secret = "on" : save_data.is_secret = "no";
         save_data.save(function(err){
           if(err){
               console.error("코멘트저장에러 :: "+err);
               request.json({result: 0});
               return;
           }
-          return response.redirect('/');
+          return response.redirect('/board/view?board_table_id='+save_data.board_id+'&post_index='+save_data.post_index);
         });
       });
     });
@@ -645,5 +647,103 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       mongoose.models = {};
       mongoose.modelSchemas = {};
       global.BOARD_REPLY_DB = mongoose.model('reply', Memberschema);
+  },ChangeWritedDate : function(obj,callback,type,mongoose,request,response){
+    console.log("++++++++++++++++++++++++++");
+    var index = 0;
+    var key = 'board_list';
+    if(type && type == 'notice'){
+      key = 'notice_list';
     }
+    outside:
+    for(var key_ in obj[key]){ // 시간 뷰페이지에 맞게 가공
+      var time_pattern = /(\S+)/g;
+      var date = String.prototype.match.apply(obj[key][index].writed,[time_pattern]);
+      function DateChange(time_pattern,date){
+        switch(date[1]){
+          case("January") :{
+            date[1] = "01";
+            break;
+          }case("Febuary") :{
+            date[1] = "02";
+            break;
+          }case("March") :{
+            date[1] = "03";
+            break;
+          }case("April") :{
+            date[1] = "04";
+            break;
+          }case("May") :{
+            date[1] = "05";
+            break;
+          }case("Jun") :{
+            date[1] = "06";
+            break;
+          }case("July") :{
+            date[1] = "07";
+            break;
+          }case("August") :{
+            date[1] = "08";
+            break;
+          }case("September") :{
+            date[1] = "09";
+            break;
+          }case("October") :{
+            date[1] = "10";
+            break;
+          }case("November") :{
+            date[1] = "11";
+            break;
+          }case("December") :{
+            date[1] = "12";
+            break;
+          }
+        }
+      };
+
+      /*reply_list**/
+
+      DateChange(time_pattern,date);
+
+      obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
+      var reply_idx = 0;
+      if((obj[key].length-1) == index && JSON.stringify(obj[key][index]['reply_list']) == "[]"){
+        (function RenderWeitredDateLastindex(index,obj,key){
+          if(obj[key][index].writed_date == undefined || obj[key][index].writed_date == null){
+            obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
+            RenderWeitredDateLastindex(index,obj,key);
+          //  return;
+          }
+          if(typeof callback == "function") {
+            callback(obj,mongoose,request,response);
+          }else{
+            callback;
+          }
+        })(index,obj,key);
+      }
+      if(JSON.stringify(obj[key][index]['reply_list']) != "[]"){
+        for(var reply in obj[key][index]['reply_list']){
+          var date_reple = String.prototype.match.apply(obj[key][index]['reply_list'][reply_idx].writed,[time_pattern]);
+          DateChange(time_pattern,date_reple);
+          obj[key][index]['reply_list'][reply_idx].writed_date = date_reple[1]+"."+date_reple[2]+"."+date_reple[3];
+          if((obj[key].length-1) == index && (obj[key][index]['reply_list'].length-1) == reply_idx){ // 맨 마지막 아무래도 맨 마지막 게 위의 swich나 for문이 다 돌기 전에 실행되는 듯 하여 복잡하게 추가...
+            (function RenderWeitredDateLastindex(index,obj,key){
+              if(obj[key][index].writed_date == undefined || obj[key][index].writed_date == null){
+                obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
+                obj[key][index]['reply_list'][reply_idx].writed_date = date_reple[1]+"."+date_reple[2]+"."+date_reple[3];
+                RenderWeitredDateLastindex(index,obj,key);
+              //  return;
+              }
+              if(typeof callback == "function") {
+                callback(obj,mongoose,request,response);
+              }else{
+                callback;
+              }
+            })(index,obj,key);
+          };
+          reply_idx++;
+        }
+      }
+      index++;
+    };
+  }
 }

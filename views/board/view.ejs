@@ -1,67 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html class="sub">
 <head>
-  <link rel="alternate" hreflang="ko-kr" href="<%= css_skin %>" />
+  <meta name="keywords" content="<%= tags_list %>" />
+  <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>" />
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
-      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-        <section>
+      <div class="view_container container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <section class="post_view">
             <ul>
-              <li>
-                <h2>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                   <strong>제목</strong>
-                  <em><%= title %></em>
-                </h2>
-              </li>
-              <li>
-                <strong>카테고리</strong>
-                <em><%= category %></em>
-              </li>
-              <li>
-                <strong>공지사항</strong>
-                <em><%= is_notice %></em>
-              </li>
-              <li>
-                <strong>글내용</strong>
-                <div id="BoardViewContents" class="contents">
-                  <%= contents %>
+                </h3>
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <%= title %>
                 </div>
               </li>
-              <li>
-                <strong>태그</strong>
-                <em><%= tags %></em>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
+                  <strong>카테고리</strong>
+                </h3>
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <%= category %>
+                </div>
+              </li>
+              <!--li class="clearfix">
+                <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
+                  <strong>공지사항</strong>
+                </h3>
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <%= is_notice %>
+                </div>
+              </li-->
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
+                  <strong>태그</strong>
+                </h3>
+                <div class="col-xs-12 col-md-9 col-lg-10">
+                  <%= tags %>
+                </div>
+              </li>
+              <li class="clearfix">
+                <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
+                  <strong>글내용</strong>
+                </h3>
+                <div class="col-xs-12 col-md-9 col-lg-10 contents" id="BoardViewContents">
+                  <%= contents %>
+                </div>
               </li>
             </ul>
         </section>
         <%if(locals.is_writer){%>
-          <form method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
+          <form id="BoardRemoveForm" method="post" action="/board_remove_submit" onclick="BoradWriteFileDelete('remove');">
             <input id="RemoveTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
             <input id="RemovePostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
             <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
             <%if(locals.reply_table_id){%>
               <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
             <%}%>
-            <button type="submit" class="btn btn-default">삭제하기</button accesskey="d">
           </form>
-          <form method="get" action="/board/write">
+          <form id="BoardModifyForm" method="get" action="/board/write">
             <input id="ModifyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
             <input id="ModifyReplyCheck" name="is_reply" type="hidden" value="<%= is_reply %>" />
             <input id="ModifyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
             <%if(locals.reply_table_id){%>
               <input id="ModifyReplyIdCheck" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
             <%}%>
-            <button type="submit" class="btn btn-default">수정하기</button accesskey="d">
           </form>
         <%}%>
-        <%if(locals.is_reply != "yes" && locals.is_reply_type != "yes"){%>
-          <form method="get" action="/board/reply_write">
+        <%if(locals.is_reply != "yes" && locals.is_reply_type == "yes"){%>
+          <form id="BoardReplyForm" method="get" action="/board/reply_write">
             <input id="ReplyTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
             <input id="ReplyPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
             <input id="ReplyCheck" name="is_reply" type="hidden" value="yes" />
-            <button type="submit" class="btn btn-default">답글달기</button accesskey="d">
           </form>
         <%}%>
+        <div class="buttonbox">
+          <div>
+            <%if(locals.is_writer){%>
+              <button id="BoardRemoveButton" data-form-id="BoardRemoveForm" class="linebutton middle submit_btn" accesskey="d">삭제하기</button>
+              <button id="BoardModifyButton" data-form-id="BoardModifyForm" class="linebutton middle submit_btn" accesskey="u">수정하기</button>
+            <%}%>
+            <%if(locals.is_reply != "yes" && locals.is_reply_type == "yes"){%>
+              <button id="BoardReplyButton" data-form-id="BoardReplyForm" class="linebutton middle submit_btn" accesskey="r">답글달기</button>
+            <%}%>
+          </div>
+        </div>
       </div>
       <%if(locals.is_comment == 'yes'){%>
         <% include ./coments.ejs %>
