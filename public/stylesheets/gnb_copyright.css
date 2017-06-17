@@ -392,7 +392,7 @@ html.sub .designcustom .navbar-default {
   height:auto;
   padding: 5rem 0rem;
   margin:0rem;
-  min-height: 10rem;
+  min-height: 15rem;
   background:#ffce00;
   z-index:10;
   animation-name: closemenu;
@@ -491,7 +491,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 .designcustom .navbar-collapse > div > ul > li.open > ul {
   display:block;
   visibility:visible;
-  max-height:10rem;
+  max-height:20rem;
   transition:max-height 1s ease-in 0s;
 }
 

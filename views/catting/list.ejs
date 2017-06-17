@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="sub">
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/chatting.css" />
+  <script src="/js/common/catting.js"></script>
+  <% include ../partials/header.ejs %>
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../partials/nav.ejs %>
+      <article class="container chatting chatting_list" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <section id="MakeNewRoom">
+          <fieldset>
+            <h2 class="blind">
+              방 만들기
+            </h2>
+            <form id="AddNewCattingRoom">
+              <label for="AddNewCattingRoomTitle" class="blind">방 제목</label>
+              <input id="AddNewCattingRoomTitle" name="room_title"
+              type="text" placeholder="만드실 방 제목을 추가해주세요." />
+              <button id="AddNewCattingRoomButton" class="linebutton small" type="button">확인</button>
+            </form>
+          </fieldset>
+        </section>
+        <section id="TotalRoomList">
+          <h2 class="blind">
+            방 목록확인
+          </h2>
+          <ul class="room_list">
+              <li><h3>맛있는등갈비를 먹고싶지만 다이어트때문에 참아야해서 짜증나는 모임</h3>
+                <strong>현재 참여인원 : 0명</strong>
+                <button data-roomid="saysun3420170617115203" class="linebutton small" role="button">입장하기</button></li>
+                <li><h3>다이어트때문에 맛있는 음식들(치킨,피자,등갈비,족발,보쌈,냉면,만두,떡볶이)참아야해서 짜증나는 모임을 갖고싶지만 어쩔 수없이 집에서 혼자 영화보는 모임</h3>
+                  <strong>현재 참여인원 : 0명</strong>
+                <button data-roomid="saysun3420170617115203" class="linebutton small" role="button">입장하기</button></li>
+              <% for(var i=0; i < room_list.length; i++ ) { %>
+              <li>
+                <h3><%= room_list[i].room_title %></h3>
+                <strong>현재 참여인원 : <%= room_list[i].participate %>명</strong>
+                <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
+              </li>
+              <% } %>
+          </ul>
+        </section>
+        <section id="CattingLog">
+          <ul id="CattingUserlist">
+            <li>
+              <i class="master">치즈갈비맛있어</i>
+            </li>
+            <li>
+              <i class="member">짜장면맛있어</i>
+            </li>
+            <li>
+              <i class="member">서래갈매기 등갈비~~완전좋아</i>
+            </li>
+            <li>
+              <i class="member">네네치킨이아니라굽네치킨볼케이노는 밥이랑 비벼먹어야지 최고지</i>
+            </li>
+          </ul>
+          <div>
+            <section id="CattingDialog">
+              <ul>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
+                  </strong>
+                  <div class="contents">
+                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
+                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
+                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
+                  </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="master">치즈갈비맛있어</i>
+                  </strong>
+                  <div class="contents">
+                    심장아 나대지마 이런 감정은 처음이에요
+                    커피 백잔을 마신것처럼 어지러워요<br/>
+                    둘 사이 전기가 찌릿 펑 터져와
+                    무심한 척 해봐도 너만 보여 난<br/>
+                    거칠게 없어 우리 사인 하이패스 두근 두근 두근대 막 부릉 부릉 부릉 부릉 부릉 oh oh<br/>
+                    달려갈거야
+                 </div>
+                </li>
+                <li>
+                  <strong class="nickname">
+                    <i class="member">네네치킨이아니라굽네치킨볼케이노는 밥이랑 비벼먹어야지 최고지</i>
+                  </strong>
+                  <div class="contents">
+                    Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을 보내 signal 보내 I must let you know<br/>
+​                    Sign을 보내 signal 보내 근데 전혀 안 통해 눈빛을 보내 눈치를 주네 근데 못 알아듣네<br/>
+                    답답해서 미치겠다 정말 왜 그런지 모르겠다 정말 다시 한 번 힘을 내서 Sign을 보내 signal 보내 Sign을 보내 signal 보내 Sign을
+                 </div>
+                </li>
+              </ul>
+            </section>
+            <form id="CattingContentsEnter">
+              <textarea id="CattingContentsText" rows="2"></textarea>
+              <button id="CattingContentsButton" type="button">
+                입력하기
+              </button>
+            </form>
+          </div>
+        </section>
+      </article>
+    </div>
+<% include ../partials/footer.ejs %>
+<script>
+var socket = io.connect('http://192.168.219.102:5000');
+socket.on('render_addedroom',function(data){ // 서버가 각 클라이언트에 소켓 연결을 발생한걸 먼저 받아야함...
+  var newRoom = "<li>"+
+    "<h3>"+data.room_title+"</h3>"+
+    "<button data-roomid=''"+data.room_id+"' class='linebutton small' role='button'>입장하기</button>"+
+  "</li>";
+  $("#TotalRoomList > ul").append(newRoom);
+});
+function CattingListLoadList(title_value){
+  var data = {
+    "room_title": $("#AddNewCattingRoomTitle").val()
+  };
+  socket.emit('add_addedroom', data);
+}
+$("#AddNewCattingRoomButton").click(function(){
+  CattingListLoadList($("#AddNewCattingRoomTitle").val());
+  var newRoom = "<li>"+
+    "<h3>"+$("#AddNewCattingRoomTitle").val()+"</h3>"+
+    "<button data-roomid='"+"saysun3420170617115203"+"' class='linebutton small' role='button'>입장하기</button>"+
+  "</li>";
+  $("#TotalRoomList").append(newRoom);
+});
+
+</script>
+</body>
+</html>

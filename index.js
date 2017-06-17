@@ -7,6 +7,7 @@ var aws = require('aws-sdk');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
+var socketio = require('socket.io')(app);
 var session = require('express-session');
 var bodyParserJsonError = require('express-body-parser-json-error');
 //var methodOverride = require('method-override');
@@ -58,6 +59,16 @@ app.get('/', function(request, response, next) {
   }
 });
 
+
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow:");
+});
+
+
+var server = app.listen(app.get('port'), function() {});
+var socketio = require('socket.io').listen(server);
+
 // 식품정보찾기
 require('./public/lib/food/food_search.js').food_search(app);
 
@@ -67,17 +78,8 @@ require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 // 게시판관련
 require('./public/lib/board/board.js').board_con(app,mongoose);
 
-app.get('/robots.txt', function (req, res) {
-    res.type('text/plain');
-    res.send("User-agent: *\nDisallow:");
-});
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-
+// 채팅관련
+require('./public/lib/catting/catting.js').catting_con(app,socketio);
 /* NodeJs 식품정보 아이디 갖고오기....
 
 
