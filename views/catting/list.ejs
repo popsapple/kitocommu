@@ -2,8 +2,8 @@
 <html class="sub">
 <head>
   <link rel="stylesheet" type="text/css" href="/stylesheets/chatting.css" />
-  <script src="/js/common/catting.js"></script>
   <% include ../partials/header.ejs %>
+  <script src="/js/common/catting.js"></script>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
       <article class="container chatting chatting_list" itemscope = "" itemtype = "http://schema.org/CreativeWork">
@@ -25,38 +25,38 @@
             방 목록확인
           </h2>
           <ul class="room_list">
-              <li><h3>맛있는등갈비를 먹고싶지만 다이어트때문에 참아야해서 짜증나는 모임</h3>
-                <strong>현재 참여인원 : 0명</strong>
-                <button data-roomid="saysun3420170617115203" class="linebutton small" role="button">입장하기</button></li>
-                <li><h3>다이어트때문에 맛있는 음식들(치킨,피자,등갈비,족발,보쌈,냉면,만두,떡볶이)참아야해서 짜증나는 모임을 갖고싶지만 어쩔 수없이 집에서 혼자 영화보는 모임</h3>
-                  <strong>현재 참여인원 : 0명</strong>
-                <button data-roomid="saysun3420170617115203" class="linebutton small" role="button">입장하기</button></li>
               <% for(var i=0; i < room_list.length; i++ ) { %>
               <li>
-                <h3><%= room_list[i].room_title %></h3>
-                <strong>현재 참여인원 : <%= room_list[i].participate %>명</strong>
-                <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
+                <div>
+                  <h3><%= room_list[i].room_title %></h3>
+                  <strong>현재 참여인원 : <%= room_list[i].participate %>명</strong>
+                  <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
+                </div>
               </li>
               <% } %>
           </ul>
         </section>
         <section id="CattingLog">
-          <ul id="CattingUserlist">
-            <li>
-              <i class="master">치즈갈비맛있어</i>
-            </li>
-            <li>
-              <i class="member">짜장면맛있어</i>
-            </li>
-            <li>
-              <i class="member">서래갈매기 등갈비~~완전좋아</i>
-            </li>
-            <li>
-              <i class="member">네네치킨이아니라굽네치킨볼케이노는 밥이랑 비벼먹어야지 최고지</i>
-            </li>
-          </ul>
+          <div id="CattingUserlist">
+            <h3>대화방 참여인원</h3>
+            <ul>
+              <li>
+                <i class="master"><span class="blind">방장</span>치즈갈비맛있어</i>
+              </li>
+              <li>
+                <i class="member">짜장면맛있어</i>
+              </li>
+              <li>
+                <i class="member">서래갈매기 등갈비~~완전좋아</i>
+              </li>
+              <li>
+                <i class="member">네네치킨이아니라굽네치킨볼케이노는 밥이랑 비벼먹어야지 최고지</i>
+              </li>
+            </ul>
+          </div>
           <div>
             <section id="CattingDialog">
+              <h3 class="blind">대화목록</h3>
               <ul>
                 <li>
                   <strong class="nickname">
@@ -194,8 +194,8 @@
               </ul>
             </section>
             <form id="CattingContentsEnter">
-              <textarea id="CattingContentsText" rows="2"></textarea>
-              <button id="CattingContentsButton" type="button">
+              <textarea id="CattingContentsText" placeholder="채팅할 내용을 넣어주세요."></textarea>
+              <button id="CattingContentsButton" class='linebutton small' type="button">
                 입력하기
               </button>
             </form>
@@ -207,11 +207,13 @@
 <script>
 var socket = io.connect('http://192.168.219.102:5000');
 socket.on('render_addedroom',function(data){ // 서버가 각 클라이언트에 소켓 연결을 발생한걸 먼저 받아야함...
-  var newRoom = "<li>"+
+  var newRoom = "<li><div>"+
     "<h3>"+data.room_title+"</h3>"+
+    "<strong>현재 참여인원 : 0명</strong>"+
     "<button data-roomid=''"+data.room_id+"' class='linebutton small' role='button'>입장하기</button>"+
-  "</li>";
+  "</div></li>";
   $("#TotalRoomList > ul").append(newRoom);
+  $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
 });
 function CattingListLoadList(title_value){
   var data = {
@@ -221,11 +223,13 @@ function CattingListLoadList(title_value){
 }
 $("#AddNewCattingRoomButton").click(function(){
   CattingListLoadList($("#AddNewCattingRoomTitle").val());
-  var newRoom = "<li>"+
+  var newRoom = "<li><div>"+
     "<h3>"+$("#AddNewCattingRoomTitle").val()+"</h3>"+
+    "<strong>현재 참여인원 : 0명</strong>"+
     "<button data-roomid='"+"saysun3420170617115203"+"' class='linebutton small' role='button'>입장하기</button>"+
-  "</li>";
-  $("#TotalRoomList").append(newRoom);
+  "</div></li>";
+  $("#TotalRoomList > ul").append(newRoom);
+  $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
 });
 
 </script>

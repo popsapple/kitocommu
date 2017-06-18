@@ -24,10 +24,185 @@
   max-width:15rem;
 }
 
-#MakeNewRoom #TotalRoomList .room_list > li {
-  display:block;
+#TotalRoomList .room_list {
   position:relative;
+  margin-top:3rem;
+}
+#TotalRoomList .room_list > li {
+  position:absolute;
+  display:block;
+  float:left;
   top: 0px;
   left: 0px;
-/*  transform: translate3d(0px, 724px, 0px) 1.5s 0.5s;*/
+  transform:matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform:matrix(1, 0, 0, 1, 0, 0);
+}
+#TotalRoomList .room_list > li > div {
+  padding:2.5rem 1.5rem;
+  border:1px solid #e5e5e5;
+}
+#TotalRoomList .room_list > li > div > * {
+  display:block;
+  margin:auto;
+}
+#TotalRoomList .room_list > li > div > h3,
+#TotalRoomList .room_list > li > div > strong {
+  padding:0rem;
+  font-size:1.4rem;
+  line-height:2rem;
+  text-align:center;
+  margin-bottom:1rem;
+}
+#TotalRoomList .room_list:after {
+  content:"";
+  width:100%;
+  height:auto;
+  clear:both;
+}
+
+#CattingDialog > ul {
+  position:relative;
+  padding:3rem 1.5rem;
+  border:1px solid #e5e5e5;
+  border-bottom:0px;
+}
+
+#CattingDialog > ul li {
+  display:block;
+  font-size:1.4rem;
+  margin-bottom:2rem;
+}
+#CattingDialog > ul li:last-child {
+  margin-bottom:0rem;
+}
+#CattingDialog > ul li:after {
+  content:"";
+  display:block;
+  clear:both;
+}
+#CattingDialog > ul li > strong {
+  padding-right:2rem;
+  padding-bottom:1rem;
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  color:#303030;
+}
+#CattingDialog > ul li > strong i {
+  font-style:normal;
+  font-size:1.4rem;
+  font-weight:500;
+  color:#303030;
+}
+#CattingDialog > ul li > * {
+  display:block;
+  font-size:1.4rem;
+  text-align:left;
+}
+@media (min-width: 768px) {
+  #CattingDialog > ul li > strong {
+    padding-bottom:0rem;
+    width:20%;
+    max-width:20rem;
+  }
+  #CattingDialog > ul li > * {
+    width:80%;
+    float:left;
+  }
+}
+#CattingContentsEnter {
+  display:block;
+}
+#CattingContentsEnter textarea {
+  float:left;
+  border:1px solid #bfbfbf;
+  border-right:0px;
+  width:80%;
+  height:5rem;
+  padding:1.2rem 2rem;
+  resize: none;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  font-size:1.4rem;
+}
+#CattingContentsEnter textarea:-ms-input-placeholder,
+#CattingContentsEnter textarea:-webkit-input-placeholder,
+#CattingContentsEnter textarea:-moz-input-placeholder {
+  color:#d0d0d0;
+}
+#CattingContentsEnter button {
+  float:left;
+  width:20%;
+  height:5rem;
+  box-sizing: border-box;
+}
+#CattingContentsEnter:after {
+  content:"";
+  display:block;
+  clear:both;
+}
+
+
+
+
+
+div#CattingUserlist {
+    position: relative;
+    margin-top: 3rem;
+    padding: 3rem 1.5rem;
+    border: 1px solid #e5e5e5;
+    border-bottom: 0px;
+    margin-top:3rem;
+    background:#f9f9f9;
+}
+
+div#CattingUserlist:after,
+div#CattingUserlist ul:after {
+  content:"";
+  display:block;
+  clear:both;
+}
+div#CattingUserlist h3 {
+  padding-right:2rem;
+  padding-bottom:1rem;
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  color:#303030;
+}
+div#CattingUserlist li > i {
+  font-style:normal;
+  font-size:1.4rem;
+  line-height:2.2rem;
+  font-weight:500;
+}
+div#CattingUserlist li > i.master:before {
+  font-family: "FontAwesome", sans-serif;
+  content: "\f005";
+  margin-right:0.5rem;
+}
+div#CattingUserlist ul {
+  display:block;
+  font-size:1.4rem;
+  text-align:left;
+}
+div#CattingUserlist ul li {
+  display:block;
+  float:left;
+  margin-right:1.5rem;
+}
+@media (min-width: 768px) {
+div#CattingUserlist h3 {
+    padding-bottom:0rem;
+    width:20%;
+    max-width:20rem;
+    float:left;
+    padding-top:0rem;
+  }
+div#CattingUserlist ul {
+    width:80%;
+    float:left;
+  }
 }
