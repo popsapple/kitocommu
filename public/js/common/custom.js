@@ -293,6 +293,10 @@ $.fn.MovingFollowMouse = function(options) {
 };
 
 function LoadingPage(){
+  if($(location).attr('href').indexOf('catting/list') != -1){
+    $('.loading_div').fadeOut(500);
+    return;
+  }
   $.ajax({
       type:"GET",
       url:$(location).attr('href'),

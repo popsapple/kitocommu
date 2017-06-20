@@ -211,6 +211,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_num = parseInt(request_list.post_index);
     var board_info_ = {};
     BOARD_DB_MODEL.findOne({post_index: page_num}, function(err,board){
+      var page_length = 10;
+      var board_paging = ((page_num/page_length)-1);
+      board_info_.board_paging = board_paging;
       var board_id = 'Board_'+(request_list.board_table_id);
       var count = 0;
       for (var key in BOARD_DB_MODEL_SCHEMA){
@@ -237,7 +240,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var db_object = global.BOARD_COMMENT_MODEL;
           var post_index_ = board_info_.post_index;
           var board_table_id = request_list.board_table_id;
-
           board_info_.tags_list = board_info_.tags.split("#").join(" ");
 
           db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
@@ -485,7 +487,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
-
+              if(obj.template == undefined){
+                obj.template = '';
+              }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
@@ -503,6 +507,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.writing_level = "yes";
               }else{
                 obj.writing_level = "no";
+              }
+              if(obj.template == undefined){
+                obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
@@ -551,6 +558,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               }else{
                 obj.writing_level = "no";
               }
+              if(obj.template == undefined){
+                obj.template = '';
+              }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
           });
@@ -568,6 +578,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.writing_level = "yes";
               }else{
                 obj.writing_level = "no";
+              }
+              if(obj.template == undefined){
+                obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
             },'check_admin',level);
@@ -648,14 +661,25 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       mongoose.modelSchemas = {};
       global.BOARD_REPLY_DB = mongoose.model('reply', Memberschema);
   },ChangeWritedDate : function(obj,callback,type,mongoose,request,response){
-    console.log("++++++++++++++++++++++++++");
     var index = 0;
     var key = 'board_list';
     if(type && type == 'notice'){
       key = 'notice_list';
     }
+    if(obj['board_list'].length == 0){
+      console.log("로드");
+      //obj.message = "작성된 게시물이 없습니다";
+      if(typeof callback == "function") {
+        console.log("로드11");
+        callback(obj,mongoose,request,response);
+      }else{
+        console.log("로드22");
+        callback;
+      }
+    }
     outside:
     for(var key_ in obj[key]){ // 시간 뷰페이지에 맞게 가공
+      console.log("??????");
       var time_pattern = /(\S+)/g;
       var date = String.prototype.match.apply(obj[key][index].writed,[time_pattern]);
       function DateChange(time_pattern,date){
@@ -706,7 +730,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
       var reply_idx = 0;
-      if((obj[key].length-1) == index && JSON.stringify(obj[key][index]['reply_list']) == "[]"){
+      if((obj[key].length-1) == index && (JSON.stringify(obj[key][index]['reply_list']) == "[]" || JSON.stringify(obj[key][index]['reply_list']) == undefined)){
         (function RenderWeitredDateLastindex(index,obj,key){
           if(obj[key][index].writed_date == undefined || obj[key][index].writed_date == null){
             obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];

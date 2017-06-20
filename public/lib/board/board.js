@@ -194,6 +194,7 @@ module.exports.board_con = function(app,mongoose){
         for (var key in req_data){
           data[key] = req_data[key];
         }
+        data.category_list ? data.category_list = data.category_list.split(",") : '';
         data.is_reply = request.query.is_reply;
         data.reply_index = request.query.post_index;
         if(request.query.reply_table_id){

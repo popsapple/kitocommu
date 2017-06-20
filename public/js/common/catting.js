@@ -128,3 +128,190 @@ $.fn.onMovingFllowingItem = function(options){
 $(document).ready(function(){
   $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
 });
+
+
+
+
+/***** 채팅 웹소켓 ******/
+
+$(document).ready(function(){
+  var socket = io.connect('http://192.168.219.102:5000/catting/list');
+  function AddNewCattingCheckSecretEvent(){ //비밀 대화방 이벤트
+    $("#CheckSecretCattingRoom").on("change",function(){
+      if($(this).attr('checked') == true){
+        if(!$("body > .modal")){
+          $("body").append(
+            "<div class='modal'>"+
+              "<label for='PasswordSecretCattingRoom'>비밀번호</label>"+
+              "<input id='PasswordSecretCattingRoom' type='password' value='' />"+
+              "<button class='close'></button>"+
+            "</div>"
+          );
+          $("body > .modal").hide();
+          $("body > .modal").fadeIn(500);
+        }else{
+          $("body > .modal").fadeIn(500);
+        }
+        $("body > .modal .close").on('click',function(){
+          $(this).fadeOut(500);
+        });
+      }
+    });
+  }
+  function AddNewCattingRoomButtonEvent(){ // 채팅방 입장 소켓이벤트
+    $("#TotalRoomList .room_list > li > div > button").click(function(){
+      if($(this).hasClass('active')){ // 입장중일 때
+        return false;
+      }
+      var data = {
+        "room_id": $(this).attr("data-roomid"),
+        "user_nickname": $("#UserNickname").val(),
+        "now_room": $("#UserNowRoom").val()
+      };
+      console.log("강제클릭개수");
+      socket.emit('join_catting',data);
+      $("#UserNowRoom").val($(this).attr("data-roomid"));
+      $("#TotalRoomList .room_list > li > div > button.active").html("입장하기").attr('class','linebutton small');
+      $(this).html("참여중").addClass('active');
+      $("#CattingDialog > ul").html(""); // 채팅방 입장시 컨텐츠 비우기
+    });
+  }
+  function CattingListLoadListEvent(title_value,CreateDate){ // 채팅방 목록 소켓이벤트
+    var data = {
+      "room_title": $("#AddNewCattingRoomTitle").val(),
+      "time": CreateDate,
+      "user_id": $("#UserId").val(),
+      "user_nickname": $("#UserNickname").val()
+    };
+    socket.emit('add_addedroom', data);
+  }
+  function AddNewCattingContentsEvent(){ // 글 등록 소켓이벤트
+    $("#CattingContentsEnter > button").click(function(){
+      var is_whisper = false;
+      if($("#CattingUserlist > ul li.active").length > 0){
+        is_whisper = true;
+      }
+      var data = {
+        "catting_contents": $(this).parent().find("textarea").val(),
+        "user_nickname": $("#UserNickname").val(),
+        "to_user": $("#CattingUserlist > ul li.active").find("i").html(),
+        "room_id": $("#UserNowRoom").val(),
+        "is_whisper": is_whisper
+      };
+      socket.emit('update_catting',data);
+    });
+  }
+  function UpdatingCattingContentsWhisper(){ // 귓속말 소켓이벤트
+    $("#CattingUserlist > ul li").click(function(){
+      var is_active = $(this).closest("li").hasClass("active");
+      $("#CattingUserlist > ul li").each(function(index){
+        $(this).attr("class","");
+      });
+      if(!is_active){
+        $(this).addClass("active");
+      }
+    });
+  }
+  $("#AddNewCattingRoomButton").click(function(){ // 방 추가 버튼 클릭 시
+    var CreateDate = new Date();
+    CreateDate = CreateDate.getFullYear()+''+CreateDate.getMonth()+''+CreateDate.getDate()+''+CreateDate.getHours()+''+CreateDate.getMinutes()+''+CreateDate.getSeconds()+''+CreateDate.getMilliseconds();
+
+    CattingListLoadListEvent($("#AddNewCattingRoomTitle").val(),CreateDate);
+    var newRoom = "<li><div>"+
+      "<h3>"+$("#AddNewCattingRoomTitle").val()+"</h3>"+
+      "<strong>현재 참여인원 : 0명</strong>"+
+      "<button data-roomid='"+$("#UserId").val()+CreateDate+"' class='linebutton small' role='button'>입장하기</button>"+
+    "</div></li>";
+    $("#TotalRoomList > ul").append(newRoom);
+    $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
+
+    AddNewCattingRoomButtonEvent(); // 방 추가 후 입장하기 이벤트 추가
+  });
+
+  socket.on('render_addedroom',function(data){ // 서버가 각 클라이언트에 소켓 연결을 발생한걸 먼저 받아야함...
+    var newRoom = "<li><div>"+
+      "<h3>"+data.room_title+"</h3>"+
+      "<strong>현재 참여인원 : 0명</strong>"+
+      "<button data-roomid='"+data.room_id+"' class='linebutton small' role='button'>입장하기</button>"+
+    "</div></li>";
+    $("#TotalRoomList > ul").append(newRoom);
+    $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
+    AddNewCattingRoomButtonEvent(); // 방 추가 후 입장하기 이벤트 추가
+  });
+
+  socket.on('render_userlist',function(data){ // 접속중인 유저
+    $("#CattingUserlist > ul").html("");
+    console.log("몇 번 로드되었나 확인");
+    outside :
+    for(var i = 0; i <= data.list.length-1; i++){
+      var is_master = " class='member'";
+      inside :
+      for(var j = 0; j <= data.master_user.length-1; j++){
+        if(data.list[i] == data.master_user[j]){
+          is_master = " class='master'";
+        }
+        if(j == data.master_user.length-1){
+          var newUser = "<li>"+
+            "<i"+is_master+">"+data.list[i]+"</i>"+
+            "</li>";
+          $("#CattingUserlist > ul").append(newUser);
+          if(i == data.list.length-1){
+            UpdatingCattingContentsWhisper(); // 귓속말
+            $("#CattingDialog > ul").append("<li>"+data.new_user+"님이 입장하셨습니다.</li>");
+          }
+        }
+      }
+    }
+  });
+  socket.on('logout_user',function(data){
+    $("#CattingDialog > ul").append("<li>"+data.user+"님이 나가셨습니다.</li>");
+    $("#CattingUserlist > ul li i").each(function(){
+      if($(this).text() == data.user){
+        $(this).parent().remove();
+        return;
+      }
+    });
+  });
+  socket.on('render_cattingcontents',function(data){ // 귓속말 기능 및 채팅입력
+    var whisper = false;
+    if(data.is_whisper){
+      whisper = data.user_nickname+"</i>"+'님의 귓속말';
+    }else{
+      whisper = data.user_nickname+"</i>";
+    }
+    if(data.is_whisper && ($("#UserNickname").val() != data.to_user)){
+      whisper =  data.to_user+"</i>"+'님에게 보낸 귓속말';
+    }
+    var contents = "<li>"+
+      "<strong class='nickname'>"+
+        "<i class='member'>"+whisper+
+      "</strong>"+
+      "<div class='contents'>"+data.catting_contents+
+      "</div>"+
+    "</li>";
+    $("#CattingDialog > ul").append(contents);
+  });
+  socket.on('loading_user',function(data){ // DB에 맞춰서 채팅방 강제 참여
+    console.log("이벤트받음");
+    $("#TotalRoomList .room_list > li > div > button").each(function(){
+      if($(this).attr("data-roomid") == data.room_id){
+        $(this).click();
+      }
+    });
+  });
+  AddNewCattingRoomButtonEvent(); // 방 렌더링 후 입장하기 이벤트 추가
+  AddNewCattingContentsEvent(); // 대화 내용 입력 이벤트
+  AddNewCattingCheckSecretEvent(); // 비밀대화방 체크
+});
+
+$(window).bind('beforeunload', function(){ // 페이지 이동시 로그아웃 처리
+  var value = e.returnValue;
+  if(value){
+    var data = {
+      "user_nickname": $("#UserNickname").val(),
+      "room_id": $("#UserNowRoom").val(),
+      "now_room": $("#UserNowRoom").val()
+    };
+    socket.emit('kicked_out',data);
+  }
+});

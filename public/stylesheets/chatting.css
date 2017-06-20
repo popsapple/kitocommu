@@ -39,11 +39,17 @@
 }
 #TotalRoomList .room_list > li > div {
   padding:2.5rem 1.5rem;
+  background:#ffffff;
   border:1px solid #e5e5e5;
 }
 #TotalRoomList .room_list > li > div > * {
   display:block;
   margin:auto;
+}
+#TotalRoomList .room_list > li > div > .active {
+  border-color: #ffce00;
+  background-color: #ffce00;
+  color: #000;
 }
 #TotalRoomList .room_list > li > div > h3,
 #TotalRoomList .room_list > li > div > strong {
@@ -151,6 +157,7 @@ div#CattingUserlist {
     position: relative;
     margin-top: 3rem;
     padding: 3rem 1.5rem;
+    padding-bottom:2.5rem;
     border: 1px solid #e5e5e5;
     border-bottom: 0px;
     margin-top:3rem;
@@ -174,7 +181,7 @@ div#CattingUserlist h3 {
 }
 div#CattingUserlist li > i {
   font-style:normal;
-  font-size:1.4rem;
+  font-size:1.2rem;
   line-height:2.2rem;
   font-weight:500;
 }
@@ -189,17 +196,25 @@ div#CattingUserlist ul {
   text-align:left;
 }
 div#CattingUserlist ul li {
-  display:block;
-  float:left;
-  margin-right:1.5rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dedede;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+}
+div#CattingUserlist ul li.active {
+  background: #ededed;
 }
 @media (min-width: 768px) {
 div#CattingUserlist h3 {
-    padding-bottom:0rem;
     width:20%;
     max-width:20rem;
     float:left;
     padding-top:0rem;
+    padding-bottom:0rem;
+    margin-top: 0.5rem;
   }
 div#CattingUserlist ul {
     width:80%;

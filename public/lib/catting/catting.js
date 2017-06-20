@@ -1,21 +1,58 @@
-module.exports.catting_con = function(app,socketio){
+module.exports.catting_con = function(app,socketio,mongoose){
   global.CATTING_SERVICE = require('./catting_service.js');
-  app.get('/catting/list/:result_type', function(request, response) {
-    var request_data;
-    if(!request.params){
-      request_data = request.body;
-    }else{
-      request_data = request.params;
+  global.CATTING_SERVICE.CattingRoomDbSetting(mongoose,socketio,function(){
+    app.get('/catting/list', function(request, response) {
+      var request_data;
+      if(!request.params){
+        request_data = request.body;
+      }else{
+        request_data = request.params;
+      }
+      global.CATTING_SERVICE.CattingListLoadView(request, response,socketio,mongoose); // 처음 로드 시 렌더링처리
+    });
+  });
+  socketio.of('/catting/list').on('connection', function(socket){
+    console.log("소켓연결");
+    if(socket.request.session){
+      console.log("세션 아이디 :: "+socket.request.session.userid);
+      console.log("세션 닉네임 :: "+socket.request.session.nickname);
+      var user_nickname = socket.request.session.nickname;
+      var Firstfunction = function(data){ // DB에 있던 대로 참여자별 소켓 생성 STEP02
+        if(typeof user_nickname == 'string') {
+          global.CATTING_SERVICE_DB.find({}, function(err,room_info){
+            console.log("로딩개수");
+            room_info.forEach(function(arr,index){
+              arr.user_list.forEach(function(arr_,index_){
+                if(arr_ == user_nickname){
+                  var data = {
+                    room_id: arr.room_id
+                  }
+                  socket.join(user_nickname);
+                  console.log("로딩을 두번");
+                  socketio.of('/catting/list').in(user_nickname).emit('loading_user',data); // DB에 있던 대로 방 참여
+                }
+              });
+            });
+          });
+        }
+      };
+      Firstfunction();
     }
 
-    global.CATTING_SERVICE.CattingListLoadView(request, response); // 처음 로드 시 렌더링처리
-  });
-
-  socketio.sockets.on('connection', function(socket){
-    //socket.emit('catting_socket', { will: 'be received by everyone'}); // 서버가 먼저 각 클라이언트에 소켓 연결을 발생해 줘야 함...
     socket.on('add_addedroom', function(data){
-      global.CATTING_SERVICE.CattingListAddList(data,socket);
+      global.CATTING_SERVICE.CattingListAddList(data,socket,socketio);
     });
+    socket.on('join_catting', function(data){
+      console.log("여길 두번");
+      global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
+    });
+    socket.on('update_catting', function(data){
+      global.CATTING_SERVICE.UpdatingCattingContents(data,socket,socketio);
+    });
+    socket.on('kicked_out', function(data){
+      global.CATTING_SERVICE.LogoutUserList(data,socket,socketio);
+    });
+
     //socket.on('disconnect', function(){ console.log('disconnected'); });
   });
 }

@@ -7,7 +7,7 @@ var aws = require('aws-sdk');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
-var socketio = require('socket.io')(app);
+//var socketio = require('socket.io')(app);
 var session = require('express-session');
 var bodyParserJsonError = require('express-body-parser-json-error');
 //var methodOverride = require('method-override');
@@ -20,13 +20,14 @@ app.use(express.static(__dirname+'/node_modules/socket.io/node_modules/socket.io
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({
+var usingSession = session({
   key: 'sid', // 세션키
   secret: 'secret', // 비밀키
   cookie: {
     maxAge: 4000 * 60 * 60 // 쿠키 유효기간 4시간
   }
-}));
+});
+app.use(usingSession);
 
 app.use(function (request, response, next) {
   response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
@@ -68,7 +69,10 @@ app.get('/robots.txt', function (req, res) {
 
 var server = app.listen(app.get('port'), function() {});
 var socketio = require('socket.io').listen(server);
-
+socketio.of('/catting/list').use(function(socket, next){
+  usingSession(socket.request, socket.request.res, next);
+//  next();
+});
 // 식품정보찾기
 require('./public/lib/food/food_search.js').food_search(app);
 
@@ -79,7 +83,7 @@ require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 require('./public/lib/board/board.js').board_con(app,mongoose);
 
 // 채팅관련
-require('./public/lib/catting/catting.js').catting_con(app,socketio);
+require('./public/lib/catting/catting.js').catting_con(app,socketio,mongoose);
 /* NodeJs 식품정보 아이디 갖고오기....
 
 

@@ -8,7 +8,9 @@
   border-bottom: 1px solid #e5e5e5;
   border-top: 1px solid #e5e5e5;
 }
-
+.container.board.normal #boardNoticeList.notice_index0 {
+  border-bottom:0px;
+}
 .container.board.normal #boardList *,
 .container.board.normal #boardNoticeList * {
   margin:0rem;
@@ -276,6 +278,11 @@
   color: #303030;
   background: #f9f9f9;
 }
+.container.board.normal #boardPaging li a.linebutton.active,
+.container.board.normal #boardPaging li a.linebutton:hover {
+  font-weight: 400;
+  background: #ffce00;
+}
 .container.board.normal #boardPaging ul:after {
   display:block;
   content:"";
@@ -395,7 +402,7 @@ html.sub .comment_container textarea {
   margin-bottom:2rem;
 }
 .sub .container strong.commentSecret_info {
-  font-size:1.4rem;  
+  font-size:1.4rem;
 }
 html.sub .comment_container label {
   font-size: 1.4rem;
@@ -412,7 +419,7 @@ html.sub .comment_container label {
   color: #808080;
 }
 .view_container .post_view li > div#BoardViewContents{
-  overflow: scroll;
+  overflow: auto;
 }
 @media (min-width: 992px) {
   .view_container .post_view li > div {

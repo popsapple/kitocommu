@@ -85,6 +85,9 @@
             <%if(locals.is_reply != "yes" && locals.is_reply_type == "yes"){%>
               <button id="BoardReplyButton" data-form-id="BoardReplyForm" class="linebutton middle submit_btn" accesskey="r">답글달기</button>
             <%}%>
+            <a id="BoardListButton" href="
+            /board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging %>&page_length=10"
+            class="linebutton middle submit_btn" accesskey="l">목록으로</a>
           </div>
         </div>
       </div>
