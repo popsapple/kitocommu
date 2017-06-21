@@ -2,6 +2,9 @@ module.exports.catting_con = function(app,socketio,mongoose){
   global.CATTING_SERVICE = require('./catting_service.js');
   global.CATTING_SERVICE.CattingRoomDbSetting(mongoose,socketio,function(){
     app.get('/catting/list', function(request, response) {
+      if(!request.session.userid || !request.session.nickname){ // 비로그인 사용자 접근불가
+        return response.redirect('/member/plz_login'); //
+      }
       var request_data;
       if(!request.params){
         request_data = request.body;
