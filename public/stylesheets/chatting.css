@@ -196,6 +196,7 @@ div#CattingUserlist ul {
   text-align:left;
 }
 div#CattingUserlist ul li {
+  position:relative;
   display: inline-block;
   margin-right: 0.5rem;
   padding: 0.5rem 1rem;
@@ -203,6 +204,43 @@ div#CattingUserlist ul li {
   border-radius: 1rem;
   margin-bottom: 0.5rem;
   background-color: white;
+}
+div#CattingUserlist ul li > div {
+  position: absolute;
+  z-index: 1;
+  left: 0rem;
+  bottom: -7rem;
+  width: 100%;
+  height: 8rem;
+  text-align: center;
+  padding: 0.5rem 0rem;
+  box-shadow: 0rem 0rem 0.3rem #d0d0d0;
+  border: 1px solid #dedede;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+}
+div#CattingUserlist ul li.master > div {
+  bottom: -0.95rem;
+  height: 1.95rem;
+}
+div#CattingUserlist ul li > div button {
+  display:block;
+  width:100%;
+  margin:0rem;
+  padding:0rem;
+  border:0rem;
+  height:1.95rem;
+  background:#ffffff;
+  line-height:1.95rem;
+  margin-bottom:0.5rem;
+  text-align: center;
+}
+div#CattingUserlist ul li > div button:hover {
+  text-decoration:underline;
+}
+div#CattingUserlist ul li > div button:last-child {
+  margin-bottom:0rem;
 }
 div#CattingUserlist ul li.active {
   background: #ededed;

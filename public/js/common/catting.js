@@ -164,13 +164,10 @@ $(document).ready(function(){
         return false;
       }
       var data = {
-        "room_id": $(this).attr("data-roomid"),
-        "user_nickname": $("#UserNickname").val(),
-        "now_room": $("#UserNowRoom").val()
+        "room_id": $(this).attr("data-roomid")
       };
-      console.log("강제클릭개수");
       socket.emit('join_catting',data);
-      $("#UserNowRoom").val($(this).attr("data-roomid"));
+    //  $("#UserNowRoom").val($(this).attr("data-roomid"));
       $("#TotalRoomList .room_list > li > div > button.active").html("입장하기").attr('class','linebutton small');
       $(this).html("참여중").addClass('active');
       $("#CattingDialog > ul").html(""); // 채팅방 입장시 컨텐츠 비우기
@@ -179,9 +176,7 @@ $(document).ready(function(){
   function CattingListLoadListEvent(title_value,CreateDate){ // 채팅방 목록 소켓이벤트
     var data = {
       "room_title": $("#AddNewCattingRoomTitle").val(),
-      "time": CreateDate,
-      "user_id": $("#UserId").val(),
-      "user_nickname": $("#UserNickname").val()
+      "time": CreateDate
     };
     socket.emit('add_addedroom', data);
   }
@@ -193,9 +188,7 @@ $(document).ready(function(){
       }
       var data = {
         "catting_contents": $(this).parent().find("textarea").val(),
-        "user_nickname": $("#UserNickname").val(),
         "to_user": $("#CattingUserlist > ul li.active").find("i").html(),
-        "room_id": $("#UserNowRoom").val(),
         "is_whisper": is_whisper
       };
       socket.emit('update_catting',data);
@@ -212,6 +205,28 @@ $(document).ready(function(){
       }
     });
   }
+  function RoomMasterEvent(data){
+    $("#CattingUserlist > ul li").on("mouseenter",function(){
+      if($(this).find("i").text().indexOf(data.nickname) != -1){ // 자기 자신일 경우
+        return false;
+      }
+      $("#CattingUserlist > ul li > div").each(function(){
+        $(this).remove();
+      });
+      if(parseInt(data.level) >= 4) { // 관리자인지 방장인지
+        $(this).append("<div class='admin'><button class='kick'>강퇴하기</button><button class='add_master'>방장추가</button><button class='remove_master'>방장삭제</button></div>");
+      }else {
+        $(this).append("<div class='master'><button class='kick'>강퇴하기</button></div>");
+      }
+      $(this).find("div").click(function(){
+      });
+    });
+    $("#CattingUserlist > ul li").on("mouseleave",function(){
+      $("#CattingUserlist > ul li").each(function(){
+        $(this).find("div").remove();
+      });
+    });
+  };
   $("#AddNewCattingRoomButton").click(function(){ // 방 추가 버튼 클릭 시
     var CreateDate = new Date();
     CreateDate = CreateDate.getFullYear()+''+CreateDate.getMonth()+''+CreateDate.getDate()+''+CreateDate.getHours()+''+CreateDate.getMinutes()+''+CreateDate.getSeconds()+''+CreateDate.getMilliseconds();
@@ -241,7 +256,6 @@ $(document).ready(function(){
 
   socket.on('render_userlist',function(data){ // 접속중인 유저
     $("#CattingUserlist > ul").html("");
-    console.log("몇 번 로드되었나 확인");
     outside :
     for(var i = 0; i <= data.list.length-1; i++){
       var is_master = " class='member'";
@@ -262,6 +276,10 @@ $(document).ready(function(){
         }
       }
     }
+
+    socket.on('add_roommaster',function(data){ // 방장 추가 이벤트
+      RoomMasterEvent(data); // 방장이벤트
+    });
   });
   socket.on('logout_user',function(data){
     $("#CattingDialog > ul").append("<li>"+data.user+"님이 나가셨습니다.</li>");
@@ -292,7 +310,6 @@ $(document).ready(function(){
     $("#CattingDialog > ul").append(contents);
   });
   socket.on('loading_user',function(data){ // DB에 맞춰서 채팅방 강제 참여
-    console.log("이벤트받음");
     $("#TotalRoomList .room_list > li > div > button").each(function(){
       if($(this).attr("data-roomid") == data.room_id){
         $(this).click();
@@ -308,9 +325,7 @@ $(window).bind('beforeunload', function(){ // 페이지 이동시 로그아웃 �
   var value = e.returnValue;
   if(value){
     var data = {
-      "user_nickname": $("#UserNickname").val(),
-      "room_id": $("#UserNowRoom").val(),
-      "now_room": $("#UserNowRoom").val()
+      "user_nickname": $("#UserNickname").val()
     };
     socket.emit('kicked_out',data);
   }

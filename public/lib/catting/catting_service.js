@@ -1,7 +1,6 @@
 exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,callback){
     var obj = this;
     var Schema = mongoose.Schema;
-console.log("콜백실행00");
     var CattingRoomschema = new Schema({
       is_secret: String,
       room_master: Array,
@@ -25,26 +24,26 @@ console.log("콜백실행00");
       room_info.forEach(function(arr,index){
         global.catting_room_list.room_list.push(arr);
         if(index == (room_info.length-1) && typeof callback == 'function'){
-          console.log("콜백실행01");
           callback();
         }
       });
     });
   },CattingListAddList  : function(data,socket,socketio,user_id,user_nickname){
-    data.room_id = data.user_id+data.time;
+    var user_id = socket.request.session.userid;
+    var user_nickname = socket.request.session.nickname;
+    data.room_id = user_id+data.time;
     var AddedRoomInfo = {
       'is_secret' : 'no',
       'room_title' : data.room_title,
       'room_id' : data.room_id,
       'participate' : [],
-      'room_master': data.user_nickname,
+      'room_master': user_nickname,
       'user_list': []
     }
     global.catting_room_list.room_list.push(AddedRoomInfo);
 
     var AddedRoomInfo = new global.CATTING_SERVICE_DB(AddedRoomInfo);
     AddedRoomInfo.save({});
-    console.log("render_addedroom");
     socket.broadcast.emit('render_addedroom',data);
   },CattingListLoadView  : function(request, response,socketio,mongoose){
     var request_data;
@@ -55,9 +54,9 @@ console.log("콜백실행00");
     }
     response.render('catting/list',global.catting_room_list);
   },LogoutUserList  : function(data,socket,socketio){
-    var room_id = data.room_id;
-    var now_room = data.now_room;
-    var user_nickname = data.user_nickname;
+    var room_id = socket.request.session.room_id;
+    var now_room = socket.request.session.now_room;
+    var user_nickname = socket.request.session.nickname;
     socket.leave(now_room);
     Object.keys(global.catting_room_list.room_list).forEach(function(element,index){
       var ele = global.catting_room_list.room_list[index];
@@ -68,32 +67,39 @@ console.log("콜백실행00");
         room_obj.user_list.forEach(function(element,idx){
           if(element == user_nickname){
             room_obj.user_list.splice(idx,1);
-
-              var search_room_id = now_room;
-              global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
-                 { room_id: search_room_id },
-                 {
-                   $set: {
-                     user_list: global.catting_room_list.room_list[room_index].user_list,
-                     participate: global.catting_room_list.room_list[room_index].user_list
-                   }
+            room_obj.room_master.splice(idx,1);
+            var search_room_id = now_room;
+            global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
+               { room_id: search_room_id },
+               {
+                 $set: {
+                   user_list: global.catting_room_list.room_list[room_index].user_list,
+                   participate: global.catting_room_list.room_list[room_index].user_list,
+                   room_master: room_obj.room_master
                  }
-              ,{ multi: true },function (error, user){});
-              socketio.of('/catting/list').in(now_room).emit('logout_user',data);
+               }
+            ,{ multi: true },function (error, user){});
+            socketio.of('/catting/list').in(now_room).emit('logout_user',data);
           }
         });
       }
     });
   },CattingUserlist  : function(data,socket,socketio){
-    var room_id = data.room_id;
-    var now_room = data.now_room;
+    var room_id = socket.request.session.room_id = data.room_id; // 세션에 어드 방으로 들어갔는지 체크
+
+    var now_room;
+    if(socket.request.session.now_room == undefined){ // 세션에 기존 방 체크
+      socket.request.session.now_room = data.room_id;
+    }
+    now_room = socket.request.session.now_room; // 세션에 기존 방 체크
     var user_nickname = socket.request.session.nickname;
     var is_double = false;
+    var is_double_admin = false;
     var room_obj;
     var that = this;
     var room_index;
-    console.log("기존 접속 방 :: "+data.now_room);
-    if(room_id != now_room && data.now_room != undefined){ //기존에 접속한 방이 있었다면
+
+    if(room_id != now_room){ //기존에 접속한 방이 있었다면
       global.CATTING_SERVICE.LogoutUserList(data,socket,socketio);
     }
     socket.join(room_id);
@@ -101,37 +107,58 @@ console.log("콜백실행00");
 
     that.AddUser = function(room_index,is_double){
       room_obj = global.catting_room_list.room_list[room_index];
-      var search_room_id = room_id;
-      var data = {
-        list: room_obj.user_list,
-        new_user: user_nickname,
-        master_user: room_obj.room_master
-      };
-      if(is_double != true){
-        room_obj.user_list.push(user_nickname);
-      }
-      console.log('render_userlist');
-      socketio.of('/catting/list').in(room_id).emit('render_userlist',data);
-      //to  - 나를 제외 한
-      //in - 나를 포함한
+      // 관리자일 경우 방장 추가. - 4등급 이상이 관리자
+      var level = 4;
+      global.MEMBERLIB.CheckAuthenfication('',socket.request.session.userid,'','',function(value_){
+        var user_nickname = socket.request.session.nickname;
+        // 클라이언트에다가 유저 리스트 넘김
+        var search_room_id = room_id;
+        var data = {
+          list: room_obj.user_list,
+          new_user: user_nickname,
+          master_user: room_obj.room_master
+        };
+        if(is_double != true){
+          room_obj.user_list.push(user_nickname);
+        }
+        socketio.of('/catting/list').in(room_id).emit('render_userlist',data);
+        //to  - 나를 제외 한
+        //in - 나를 포함한
 
-      room_obj.user_list.forEach(function(ele_,index_){
-        if(ele_ == undefined || JSON.stringify(ele_) == "[]"){
-        //  console.log("널값");
-          room_obj.user_list.splice(index_,1);
-        }
-        if(index_ == (room_obj.user_list.length-1)){
-          global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
-             { room_id: search_room_id },
-             {
-               $set: {
-                 user_list: global.catting_room_list.room_list[room_index].user_list,
-                 participate: global.catting_room_list.room_list[room_index].user_list
+        room_obj.room_master.forEach(function(ele_,index_){
+          if(ele_ == user_nickname){
+            is_double = true; // 이미 목록에 있던 사람인지 체크
+          }
+            if(value_ && (!is_double_admin)){ // 관리자일 경우 마스터리스트에 추가
+              room_obj.room_master.push(user_nickname);
+            }
+            if(value_) { // 관리자일 경우 마스터리스트에 추가
+              socketio.of('/catting/list').in(user_nickname).emit('add_roommaster',{'level': level,'nickname': user_nickname});
+            }
+            if(ele_ == user_nickname && (!is_double_admin)) { // 일반 방장일경우 추가
+              socketio.of('/catting/list').in(user_nickname).emit('add_roommaster',{'level': '0','nickname': user_nickname});
+            }
+        });
+
+        room_obj.user_list.forEach(function(ele_,index_){
+          if(ele_ == undefined || JSON.stringify(ele_) == "[]"){
+          //  console.log("널값");
+            room_obj.user_list.splice(index_,1);
+          }
+          if(index_ == (room_obj.user_list.length-1)){
+            global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
+               { room_id: search_room_id },
+               {
+                 $set: {
+                   user_list: room_obj.user_list,
+                   participate: room_obj.user_list
+                 }
                }
-             }
-          ,{ multi: true },function (error, user){});
-        }
-      });
+            ,{ multi: true },function (error, user){});
+          }
+        });
+
+      },'check_admin',level);
     }
 
     Object.keys(global.catting_room_list.room_list).forEach(function(element,index){
@@ -140,20 +167,17 @@ console.log("콜백실행00");
       var ele_room_id = ele.room_id;
 
       if(ele_room_id == room_id){
-        console.log("render_userlist0000");
         room_obj = ele;
         room_index = index;
         if(JSON.stringify(room_obj.user_list) == "[]" || room_obj.user_list == undefined){
           that.AddUser(room_index,'');
         }else{
-          console.log("render_userlist1111");
           room_obj.user_list.forEach(function(element,idx){
             var ele = room_obj.user_list[idx];
             if(ele == user_nickname){
               is_double = true; // 이미 있던 사람인지 체크
             }
             if(idx == (room_obj.user_list.length-1)){
-              console.log("render_userlist222222");
               that.AddUser(room_index,is_double);
             }
           });
@@ -163,10 +187,10 @@ console.log("콜백실행00");
   },UpdatingCattingContents  : function(data,socket,socketio){
     if(data.is_whisper){
       var id = data.to_user;
-      var me = data.user_nickname;
+      var me = socket.request.session.nickname;
       socketio.of('/catting/list').in(me).emit('render_cattingcontents',data);
     }else{
-      var id = data.room_id;
+      var id = socket.request.session.room_id;
     }
     socketio.of('/catting/list').in(id).emit('render_cattingcontents',data);
   }

@@ -12,15 +12,15 @@ module.exports.catting_con = function(app,socketio,mongoose){
     });
   });
   socketio.of('/catting/list').on('connection', function(socket){
-    console.log("소켓연결");
     if(socket.request.session){
       console.log("세션 아이디 :: "+socket.request.session.userid);
       console.log("세션 닉네임 :: "+socket.request.session.nickname);
+      console.log("이동할 방 or 이동 한 방 :: "+socket.request.session.room_id);
+      console.log("이동 전의 방 :: "+socket.request.session.now_room);
       var user_nickname = socket.request.session.nickname;
       var Firstfunction = function(data){ // DB에 있던 대로 참여자별 소켓 생성 STEP02
         if(typeof user_nickname == 'string') {
           global.CATTING_SERVICE_DB.find({}, function(err,room_info){
-            console.log("로딩개수");
             room_info.forEach(function(arr,index){
               arr.user_list.forEach(function(arr_,index_){
                 if(arr_ == user_nickname){
@@ -28,7 +28,6 @@ module.exports.catting_con = function(app,socketio,mongoose){
                     room_id: arr.room_id
                   }
                   socket.join(user_nickname);
-                  console.log("로딩을 두번");
                   socketio.of('/catting/list').in(user_nickname).emit('loading_user',data); // DB에 있던 대로 방 참여
                 }
               });
@@ -43,7 +42,6 @@ module.exports.catting_con = function(app,socketio,mongoose){
       global.CATTING_SERVICE.CattingListAddList(data,socket,socketio);
     });
     socket.on('join_catting', function(data){
-      console.log("여길 두번");
       global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
     });
     socket.on('update_catting', function(data){
