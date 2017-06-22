@@ -294,12 +294,29 @@ $.fn.MovingFollowMouse = function(options) {
 
 function LoadingPage(){
   if($(location).attr('href').indexOf('catting/list') != -1){
-    $('.loading_div').fadeOut(500);
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('join_member_step2') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('join_member_step3') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('/login') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('/mypage/submit') != -1){
+    $('.loading_div').fadeOut(1500);
     return;
   }
   $.ajax({
       type:"GET",
       url:$(location).attr('href'),
+      async: false,
       success:function(res){
       },
       beforeSend:function(){
@@ -309,7 +326,7 @@ function LoadingPage(){
         setTimeout(function(){
           $('.loading_div').fadeOut(500);
           $('.loading_complete').addClass('active');
-        },2000);
+        },1000);
       },
       error:function(e){
         console.log("에러");

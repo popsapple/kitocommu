@@ -221,8 +221,8 @@ div#CattingUserlist ul li > div {
   background-color: white;
 }
 div#CattingUserlist ul li.master > div {
-  bottom: -0.95rem;
-  height: 1.95rem;
+  bottom: -1.5rem;
+  height: 3rem;
 }
 div#CattingUserlist ul li > div button {
   display:block;

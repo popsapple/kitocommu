@@ -212,18 +212,37 @@ $(document).ready(function(){
       }
       $("#CattingUserlist > ul li > div").each(function(){
         $(this).remove();
+        $(this).parent().removeClass("master");
       });
-      if(parseInt(data.level) >= 4) { // 관리자인지 방장인지
-        $(this).append("<div class='admin'><button class='kick'>강퇴하기</button><button class='add_master'>방장추가</button><button class='remove_master'>방장삭제</button></div>");
-      }else {
-        $(this).append("<div class='master'><button class='kick'>강퇴하기</button></div>");
+      if($(this).find("i").html() != data.new_user){
+        if(parseInt(data.level) >= 4 && data.is_master) { // 관리자인지 방장인지
+          $(this).append("<div><button class='kick'>강퇴하기</button><button class='add_master'>방장추가</button><button class='remove_master'>방장삭제</button></div>");
+        }else if(data.level == '0' && data.is_master) {
+          $(this).append("<div><button class='kick'>강퇴하기</button></div>");
+          $(this).addClass("master");
+        }
       }
-      $(this).find("div").click(function(){
+      $(this).find('.kick').on("click",function(){
+        socket.emit('kicked_out',{
+          kick_nickname: $(this).parent().parent().find("i").html(),
+          type: 'master_kick'
+        });
+      });
+      $(this).find('.add_master').on("click",function(){
+        socket.emit('roommaster_add',{
+          add_master_nickname: $(this).parent().parent().find("i").html()
+        });
+      });
+      $(this).find('.remove_master').on("click",function(){
+        socket.emit('roommaster_remove',{
+          remove_master_nickname: $(this).parent().parent().find("i").html()
+        });
       });
     });
     $("#CattingUserlist > ul li").on("mouseleave",function(){
       $("#CattingUserlist > ul li").each(function(){
         $(this).find("div").remove();
+        $(this).removeClass("master");
       });
     });
   };
@@ -253,33 +272,34 @@ $(document).ready(function(){
     $("#TotalRoomList .room_list > li ").onMovingFllowingItem();
     AddNewCattingRoomButtonEvent(); // 방 추가 후 입장하기 이벤트 추가
   });
-
-  socket.on('render_userlist',function(data){ // 접속중인 유저
-    $("#CattingUserlist > ul").html("");
-    outside :
-    for(var i = 0; i <= data.list.length-1; i++){
-      var is_master = " class='member'";
-      inside :
-      for(var j = 0; j <= data.master_user.length-1; j++){
-        if(data.list[i] == data.master_user[j]){
-          is_master = " class='master'";
-        }
-        if(j == data.master_user.length-1){
-          var newUser = "<li>"+
-            "<i"+is_master+">"+data.list[i]+"</i>"+
-            "</li>";
-          $("#CattingUserlist > ul").append(newUser);
-          if(i == data.list.length-1){
-            UpdatingCattingContentsWhisper(); // 귓속말
-            $("#CattingDialog > ul").append("<li>"+data.new_user+"님이 입장하셨습니다.</li>");
-          }
+  socket.on('render_userlist',function(data){
+    if(data.is_master == true){
+      RoomMasterEvent(data); // 방장이벤트
+    };
+  });
+  socket.on('render_mastermark',function(data){
+    $("#CattingUserlist > ul > li").each(function(index){
+      for(var i = 0; i <= data.masterlist.length-1; i++){
+        if($(this).find("i").html() == data.masterlist[i]){
+          $("#CattingUserlist > ul > li").eq(index).find("i").addClass("master");
         }
       }
-    }
-
-    socket.on('add_roommaster',function(data){ // 방장 추가 이벤트
-      RoomMasterEvent(data); // 방장이벤트
     });
+  });
+  socket.on('render_userlist_all',function(data){ // 접속중인 유저
+    $("#CattingUserlist > ul").html("");
+    outside :
+    for(var i = 0; i <= data.user_list.length-1; i++){
+      var newUser = "<li>"+
+      "<i>"+data.user_list[i]+"</i>"+
+      "</li>";
+      $("#CattingUserlist > ul").append(newUser);
+      if(i == data.user_list.length-1){
+        UpdatingCattingContentsWhisper(); // 귓속말
+        $("#CattingDialog > ul").append("<li>"+data.new_user+"님이 입장하셨습니다.</li>");
+      }
+    }
+    socket.emit('master_account',{});
   });
   socket.on('logout_user',function(data){
     $("#CattingDialog > ul").append("<li>"+data.user+"님이 나가셨습니다.</li>");
@@ -289,6 +309,12 @@ $(document).ready(function(){
         return;
       }
     });
+  });
+  socket.on('kicked_user',function(data){ // 강퇴당한 유저
+    $("#CattingDialog > ul").html("");
+    $("#CattingUserlist > ul").html("");
+    alert("관리자에 의해 강제 퇴장되셨습니다");
+    socket.emit('kicked_connect',{});
   });
   socket.on('render_cattingcontents',function(data){ // 귓속말 기능 및 채팅입력
     var whisper = false;
