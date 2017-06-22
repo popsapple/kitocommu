@@ -275,10 +275,15 @@ $(document).ready(function(){
   socket.on('render_userlist',function(data){
     if(data.is_master == true){
       RoomMasterEvent(data); // 방장이벤트
+    }else{
+      $("#CattingUserlist > ul li").off("mouseenter");
     };
   });
   socket.on('render_mastermark',function(data){
     $("#CattingUserlist > ul > li").each(function(index){
+      if($("#CattingUserlist > ul > li").eq(index).find("i").hasClass("master")){
+        $("#CattingUserlist > ul > li").eq(index).find("i").removeClass("master");
+      }
       for(var i = 0; i <= data.masterlist.length-1; i++){
         if($(this).find("i").html() == data.masterlist[i]){
           $("#CattingUserlist > ul > li").eq(index).find("i").addClass("master");

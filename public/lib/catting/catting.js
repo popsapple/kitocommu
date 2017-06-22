@@ -55,16 +55,17 @@ module.exports.catting_con = function(app,socketio,mongoose){
       global.CATTING_SERVICE.LogoutUserList(data,socket,socketio);
     });
     socket.on('kicked_connect', function(){
-      global.CATTING_SERVICE.KickedUserConnect(data,socket,socketio);
+      global.CATTING_SERVICE.KickedUserConnect(socket,socketio);
     });
     socket.on('master_account', function(data){
       global.CATTING_SERVICE.CheckMasterAccount(data,socket,socketio);
     });
     socket.on('roommaster_add', function(data){
-      global.CATTING_SERVICE.AddMasterAccount(data,socket,socketio);
+      global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'add');
     });
     socket.on('roommaster_remove', function(data){
-    //  global.CATTING_SERVICE.RemoveMasterAccount(data,socket,socketio);
+      console.log("방장삭제 작동");
+      global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'remove');
     });
     //socket.on('disconnect', function(){ console.log('disconnected'); });
   });

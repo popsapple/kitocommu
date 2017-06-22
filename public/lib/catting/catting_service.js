@@ -82,6 +82,18 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                   if(element == user_nickname){
                     room_obj.user_list.splice(idx,1);
                     socketio.of('/catting/list').to(user_nickname).emit('kicked_user');
+                    // 강퇴당한 사람 외의 룸 전원한테 메세지를 보내도록
+                    socketio.of('/catting/list').to(user_nickname).clients(function(error, clients){
+                      var kicked_user_id = clients;
+                      socketio.of('/catting/list').in(room_id).clients(function(error, clients){
+                        if (error) throw error;
+                        clients.forEach(function(client_ele,index){
+                          if(client_ele != kicked_user_id) {
+                            socketio.of('/catting/list').to(client_ele).emit('logout_user',{user: user_nickname});
+                          }
+                        });
+                      });
+                    });
 
                     // 클라이언트의 disconnect 랑 같이 사용됨.
                     // 대신 leave가 선언이 안 되어있음, 다음 연결시 기존 room이 남음.
@@ -133,14 +145,12 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
         }
       });
     }
-  },KickedUserConnect : function(data,socket,socketio){
+  },KickedUserConnect : function(socket,socketio){
     var user_nickname = socket.request.session.nickname;
     var room_id = socket.request.session.room_id;
     socket.request.session.room_id = undefined; // 접속중인 방 정보 초기화
     socket.request.session.now_room = undefined;
-    socket.leave(room_id,function(){
-      socketio.of('/catting/list').to(room_id).emit('logout_user',{user: user_nickname});
-    });
+    socket.leave(room_id,function(){/**/});
     socket.leave(user_nickname);
   },CattingUserlist  : function(data,socket,socketio){
     var now_room = socket.request.session.now_room; // 세션에 기존 방 체크
@@ -303,9 +313,10 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
         });
       }
     });
-  },AddMasterAccount : function(data,socket,socketio){
+  },AddRemoveMasterAccount : function(data,socket,socketio,type){
     var room_id = socket.request.session.room_id, search_room_id = socket.request.session.room_id;
     var add_master_nickname = data.add_master_nickname;
+    var remove_master_nickname = data.remove_master_nickname;
     var level = 4;
     global.MEMBERLIB.CheckAuthenfication('',socket.request.session.userid,'','',function(value_){
       if(value_){ // 관리자일 경우
@@ -313,7 +324,15 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
           var ele_room_id = global.catting_room_list.room_list[index].room_id;
           if(ele_room_id == room_id){
             room_obj = global.catting_room_list.room_list[index];
-            room_obj.room_master.push(add_master_nickname);
+            if(type == 'add'){
+              room_obj.room_master.push(add_master_nickname);
+            }else{
+              room_obj.room_master.forEach(function(ele,index){
+                if(ele == remove_master_nickname){
+                  room_obj.room_master.splice(index,1);
+                }
+              });
+            }
             global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
              { room_id: search_room_id },
              {
@@ -322,7 +341,12 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                }
              }
              ,{ multi: true },function (error, user){
-               socketio.of('/catting/list').in(room_id).emit('render_userlist',data);
+               socketio.of('/catting/list').in(room_id).emit('render_mastermark',{masterlist: room_obj.room_master});
+               if(type == 'add'){
+                socketio.of('/catting/list').to(add_master_nickname).emit('render_userlist',{is_master: true,nickname: add_master_nickname,new_user: add_master_nickname,level: '0'});
+              }else{
+                socketio.of('/catting/list').to(remove_master_nickname).emit('render_userlist',{is_master: false});
+              }
             });
           }
         });
