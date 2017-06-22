@@ -15,7 +15,6 @@ module.exports.catting_con = function(app,socketio,mongoose){
     });
   });
   socketio.of('/catting/list').on('connection', function(socket){
-    console.log("커넥션은 이루어짐");
     if(socket.request.session){
     /*  console.log("세션 아이디 :: "+socket.request.session.userid);
       console.log("세션 닉네임 :: "+socket.request.session.nickname);
@@ -64,7 +63,6 @@ module.exports.catting_con = function(app,socketio,mongoose){
       global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'add');
     });
     socket.on('roommaster_remove', function(data){
-      console.log("방장삭제 작동");
       global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'remove');
     });
     //socket.on('disconnect', function(){ console.log('disconnected'); });

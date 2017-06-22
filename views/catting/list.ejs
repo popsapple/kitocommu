@@ -33,7 +33,7 @@
               <li>
                 <div>
                   <h3><%= room_list[i].room_title %></h3>
-                  <strong>현재 참여인원 : <%= room_list[i].participate.slice(',').length %>명</strong>
+                  <strong class='participate'>참여인원 : <%= room_list[i].participate.length %>명</strong>
                   <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
                 </div>
               </li>
@@ -42,7 +42,7 @@
         </section>
         <section id="CattingLog">
           <div id="CattingUserlist">
-            <h3>대화방 참여인원</h3>
+            <h3>현재 접속인원</h3>
             <ul>
               <!--li>
                 <i class="master"><span class="blind">방장</span>치즈갈비맛있어</i>

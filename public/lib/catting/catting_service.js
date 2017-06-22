@@ -56,13 +56,13 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
   },LogoutUserList  : function(data,socket,socketio){
     var room_id = socket.request.session.room_id;
     var now_room = socket.request.session.now_room;
+    var now_room_ = socket.request.session.now_room;
     var user_nickname = socket.request.session.nickname;
     var user_nickname_ = socket.request.session.nickname;
     var roommaster_nickname;
     var level;
     var is_roommaster = false;
     if(data.type == 'master_kick'){ // 방장이 강퇴시킨 경우
-      console.log("너님강퇴임");
       level = 4;
       user_nickname = data.kick_nickname;
       roommaster_nickname = socket.request.session.nickname;
@@ -81,7 +81,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                 room_obj.user_list.forEach(function(element,idx){
                   if(element == user_nickname){
                     room_obj.user_list.splice(idx,1);
-                    socketio.of('/catting/list').to(user_nickname).emit('kicked_user');
+                    socketio.of('/catting/list').to(user_nickname).emit('kicked_user',{now_room:now_room_,participate_length:room_obj.user_list.length});
                     // 강퇴당한 사람 외의 룸 전원한테 메세지를 보내도록
                     socketio.of('/catting/list').to(user_nickname).clients(function(error, clients){
                       var kicked_user_id = clients;
@@ -89,14 +89,11 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                         if (error) throw error;
                         clients.forEach(function(client_ele,index){
                           if(client_ele != kicked_user_id) {
-                            socketio.of('/catting/list').to(client_ele).emit('logout_user',{user: user_nickname});
+                            socketio.of('/catting/list').to(client_ele).emit('logout_user',{user: user_nickname,user_list: room_obj.user_list,participate: room_obj.user_list});
                           }
                         });
                       });
                     });
-
-                    // 클라이언트의 disconnect 랑 같이 사용됨.
-                    // 대신 leave가 선언이 안 되어있음, 다음 연결시 기존 room이 남음.
 
                     var search_room_id = now_room;
                     global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
@@ -118,7 +115,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
     }else{ // 방이 바뀌거나 사이트를 나가서 로그아웃
       Object.keys(global.catting_room_list.room_list).forEach(function(element,index){
         var ele = global.catting_room_list.room_list[index];
-        var data = {user: user_nickname};
+        var data = {user: user_nickname,user_list: room_obj.user_list,participate: room_obj.user_list};
         if(ele.room_id == now_room){
           room_obj = ele;
           room_index = index;
@@ -140,6 +137,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
               ,{ multi: true },function (error, user){});
               socket.request.session.now_room = socket.request.session.room_id; // 나간 담에 기존 방을 업데이트
               socketio.of('/catting/list').in(now_room).emit('logout_user',data);
+              socketio.of('/catting/list').to(user_nickname).emit('logouted_user',{now_room:now_room_,participate_length:room_obj.user_list.length});
             }
           });
         }
@@ -179,6 +177,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
       var search_room_id = room_id;
       var data = {
         user_list: room_obj.user_list,
+        participate: room_obj.user_list,
         new_user: user_nickname,
         master_user: room_obj.room_master
       };
@@ -196,7 +195,17 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
           room_obj.user_list.splice(index_,1);
         }
         if(ele_ == socket.request.session.nickname){
-          socketio.of('/catting/list').in(room_id).emit('render_userlist_all',data);
+          socketio.of('/catting/list').in(room_id).clients(function(error, clients){
+            data.user_list = []; // 실 접속중인 유저만 표시하기 위해 따로 이렇게 함.
+            clients.forEach(function(client_ele,index){ // 현재 접속중인 유저만 표시
+              if(socketio.of('/catting/list').connected[client_ele].request.session.nickname){
+                data.user_list.push(socketio.of('/catting/list').connected[client_ele].request.session.nickname);
+              }
+              if(index == (clients.length-1)){
+                socketio.of('/catting/list').in(room_id).emit('render_userlist_all',data);
+              }
+            });
+          });
           // 만약에 방장이 없음 바로 DB에 추가 및 소켓작업
           if(room_obj.room_master == undefined || JSON.stringify(room_obj.room_master) == "[]"){
             global.MEMBERLIB.CheckAuthenfication('',socket.request.session.userid,'','',function(value_){

@@ -253,7 +253,7 @@ $(document).ready(function(){
     CattingListLoadListEvent($("#AddNewCattingRoomTitle").val(),CreateDate);
     var newRoom = "<li><div>"+
       "<h3>"+$("#AddNewCattingRoomTitle").val()+"</h3>"+
-      "<strong>현재 참여인원 : 0명</strong>"+
+      "<strong class='participate'>참여인원 : 0명</strong>"+
       "<button data-roomid='"+$("#UserId").val()+CreateDate+"' class='linebutton small' role='button'>입장하기</button>"+
     "</div></li>";
     $("#TotalRoomList > ul").append(newRoom);
@@ -265,7 +265,7 @@ $(document).ready(function(){
   socket.on('render_addedroom',function(data){ // 서버가 각 클라이언트에 소켓 연결을 발생한걸 먼저 받아야함...
     var newRoom = "<li><div>"+
       "<h3>"+data.room_title+"</h3>"+
-      "<strong>현재 참여인원 : 0명</strong>"+
+      "<strong class='participate'>참여인원 : 0명</strong>"+
       "<button data-roomid='"+data.room_id+"' class='linebutton small' role='button'>입장하기</button>"+
     "</div></li>";
     $("#TotalRoomList > ul").append(newRoom);
@@ -302,6 +302,7 @@ $(document).ready(function(){
       if(i == data.user_list.length-1){
         UpdatingCattingContentsWhisper(); // 귓속말
         $("#CattingDialog > ul").append("<li>"+data.new_user+"님이 입장하셨습니다.</li>");
+        $("#TotalRoomList .room_list > li > div > .active").parent().find(".participate").html("참여인원 : "+data.participate.length+"명");
       }
     }
     socket.emit('master_account',{});
@@ -311,13 +312,26 @@ $(document).ready(function(){
     $("#CattingUserlist > ul li i").each(function(){
       if($(this).text() == data.user){
         $(this).parent().remove();
+        $("#TotalRoomList .room_list > li > div > .active").parent().find(".participate").html("참여인원 : "+data.participate.length+"명");
         return;
+      }
+    });
+  });
+  socket.on('logouted_user',function(data){
+    $("#TotalRoomList .room_list > li > div > .linebutton").each(function(){
+      if($(this).attr('data-roomid') == data.now_room){
+        $(this).parent().find(".participate").html("참여인원 : "+data.participate_length+"명");
       }
     });
   });
   socket.on('kicked_user',function(data){ // 강퇴당한 유저
     $("#CattingDialog > ul").html("");
     $("#CattingUserlist > ul").html("");
+    $("#TotalRoomList .room_list > li > div > .linebutton").each(function(){
+      if($(this).attr('data-roomid') == data.now_room){
+        $(this).parent().find(".participate").html("참여인원 : "+data.participate_length+"명");
+      }
+    });
     alert("관리자에 의해 강제 퇴장되셨습니다");
     socket.emit('kicked_connect',{});
   });
