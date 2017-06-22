@@ -19,7 +19,7 @@ module.exports.catting_con = function(app,socketio,mongoose){
     /*  console.log("세션 아이디 :: "+socket.request.session.userid);
       console.log("세션 닉네임 :: "+socket.request.session.nickname);
       console.log("이동할 방 or 이동 한 방 :: "+socket.request.session.room_id);
-      console.log("이동 전의 방 :: "+socket.request.session.now_room);*/
+      console.log("이동 전의 방 :: "+socket.request.session.now_room)*/
       var user_nickname = socket.request.session.nickname;
       socket.join(user_nickname);
       var Firstfunction = function(data){ // DB에 있던 대로 참여자별 소켓 생성 STEP02
