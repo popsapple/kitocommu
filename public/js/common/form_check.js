@@ -134,8 +134,8 @@ $(document).ready(function(){
     window.open('/search_login_info', '', 'fullscreen=yes, resizable=yes, scrollbars=yes, x=100,y=200,width=' + 400 + ',height=' + 600);
     return false;
   });
-
-  $("#MemberSignOut").click(function({ // 회원탈퇴
+ // 회원탈퇴
+  $("#MemberSignOut").click(function({
     var singout_check = confirm("회원탈퇴시 계정복구는 불가능합니다. 탈퇴 하시겠습니까?");
     if(singout_check){
       $.ajax({
