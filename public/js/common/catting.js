@@ -413,6 +413,8 @@ $(document).ready(function(){
   AddNewCattingCheckSecretEvent(); // 비밀대화방 체크
   $(window).bind('beforeunload', function(event){
     return "방에서 나가시겠습니까? 나가시려면 확인 버튼을 눌러주세요.";
+  });
+  $(window).bind('unload', function(event){
     if($("#TotalRoomList .room_list > li > div > button.active")){
       socket.emit('kicked_out',{
         type: 'unload'

@@ -166,10 +166,13 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
           var data = {user: user_nickname,user_list: room_obj.user_list,room_id: now_room_,participate: room_obj.user_list,leave_user:'false'};
           room_index = index;
           room_obj.user_list.forEach(function(element,idx){
-            console.log("BBBBBBBBBB");
             if(element == user_nickname){
               room_obj.user_list.splice(idx,1);
               room_obj.participate.splice(idx,1);
+              if(room_obj.user_list.length == 0){
+                room_obj.user_list = [];
+                room_obj.participate = [];
+              }
               socket.leave(now_room);
                 var search_room_id = now_room;
                 global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
@@ -188,10 +191,13 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                 global.CATTING_SERVICE_SOCKETLIST.forEach(function(clients, index){
                   client_all[index] = clients;
                   if(index == (global.CATTING_SERVICE_SOCKETLIST.length -1)){
-
+                    console.log("CCCCCCCC");
                     socketio.of('/catting/list').in(now_room_).clients(function(error, client_rooms){
+                      console.log("DDDDDDDDD :: "+client_rooms.length);
+
                       if(client_rooms.length == 0){
                         for(var all = 0; all < client_all.length; all++){
+                          console.log("EEEEEEEEE :: "+client_all.length);
                           data.leave_user = 'true';
                           data.room_id = now_room_;
                           data.participate = room_obj.user_list;
