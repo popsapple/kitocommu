@@ -134,6 +134,24 @@ $(document).ready(function(){
     window.open('/search_login_info', '', 'fullscreen=yes, resizable=yes, scrollbars=yes, x=100,y=200,width=' + 400 + ',height=' + 600);
     return false;
   });
+  // 회원탈퇴
+   $("#MemberSignOut").on('click', function(){
+     var singout_check = confirm("회원탈퇴시 계정복구는 불가능합니다. 탈퇴 하시겠습니까?");
+     if(singout_check == true){
+       $.ajax({
+         type: "POST",
+           url: "/member/sign_out",
+           data: JSON.stringify({}),
+           contentType: "application/json",
+           success: function(data) {
+             alert(data.message);
+           },
+           error: function(data) {
+             console.log("Error!!!!!!!!!!!!");
+           }
+       });
+     }
+   });
 });
 
 /*!
@@ -1726,6 +1744,14 @@ function LoadingPage(){
     return;
   }
   if($(location).attr('href').indexOf('/mypage/submit') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('/member') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('/mypage') != -1){
     $('.loading_div').fadeOut(1500);
     return;
   }
