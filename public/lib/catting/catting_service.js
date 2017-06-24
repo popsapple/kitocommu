@@ -188,7 +188,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                   if(index == (global.CATTING_SERVICE_SOCKETLIST.length -1)){
                     socketio.of('/catting/list').in(now_room).clients(function(error, client_rooms){
                       client_rooms.forEach(function(ele, idx){
-                        for(var i = 0; i < client_all.length; i++){
+                        /*for(var i = 0; i < client_all.length; i++){
                           if(client_all[i].id == ele){
                             client_room.push(ele);
                             data.leave_user = 'false';
@@ -204,6 +204,28 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                               data.room_id = now_room_;
                               data.participate = room_obj.user_list;
                               socketio.of('/catting/list').to(client_all[j].id).emit('logout_user_participate',data);
+                            };
+                          }
+                        }*/
+                        for(var i = 0; i < client_all.length; i++){
+                          if(client_all[i].id == ele){
+                            client_room.push(ele);
+                            client_all.splice(i,1);
+                            i--;
+                          }
+                          if(i == (client_all.length-1) && idx == (client_rooms.length-1)){
+                            for(var all = 0; all < client_all.length; all++){
+                              data.leave_user = 'true';
+                              data.room_id = now_room_;
+                              data.participate = room_obj.user_list;
+                              socketio.of('/catting/list').to(client_all[all].id).emit('logout_user_participate',data);
+                            };
+                            for(var j = 0; j < client_room.length; j++){
+                              data.leave_user = 'false';
+                              data.room_id = now_room_;
+                              data.participate = room_obj.user_list;
+                              data.user = user_nickname;
+                              socketio.of('/catting/list').to(client_room[j]).emit('logout_user_participate',data);
                             };
                           }
                         }
