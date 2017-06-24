@@ -297,15 +297,11 @@ function LoadingPage(){
     $('.loading_div').fadeOut(1500);
     return;
   }
-  if($(location).attr('href').indexOf('join_member_step2') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  if($(location).attr('href').indexOf('join_member_step3') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
   if($(location).attr('href').indexOf('/login') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('join') != -1){
     $('.loading_div').fadeOut(1500);
     return;
   }

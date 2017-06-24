@@ -141,9 +141,17 @@ $(document).ready(function(){
        $.ajax({
          type: "POST",
            url: "/member/sign_out",
-           data: JSON.stringify({}),
+           data: JSON.stringify({
+             "password": $("#joinPassword").val(),
+             "type": "sign_out"
+           }),
            contentType: "application/json",
            success: function(data) {
+             if(data.is_ok == 'true'){
+               setTimeout(function(){
+                 $(location).attr('href','/');
+               },500);
+             }
              alert(data.message);
            },
            error: function(data) {

@@ -16,13 +16,18 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.writed = new Date();
   save_data.updated = new Date();
   save_data.member_point = 0;
+  save_data.member_level = 0;
   save_data.save(function(err){
     if(err){
         console.error(err);
         request.json({result: 0});
         return;
     }
-    return response.render('member/join_member_step3',save_data);
+    request.session.destroy();
+    var data = {
+      id:save_data.id
+    }
+    return response.render('member/join_member_step3',data);
   });
 }
 
@@ -173,15 +178,30 @@ Member.search_login_info = function(info,request,response,mongoose,type){
 }
 
 Member.sign_out_member = function(info,request,response,mongoose,type){
-  var member_model = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
-  member_model = member_model.model;
+  global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  var member_model = global.MEMBER_DB.model;
   var user_id = request.session.userid;
+  console.log("값 가져오기 확인 :: "+request.body.type);
   if(type == 'normal_member') {
-    member_model.remove({id: user_id}, function(err,member){
+    member_model.findOne({id: user_id}, function(err,member){
       if(err){
         return;
       }
-      response.send({message:"탈퇴 되셨습니다."});
+      global.MEMBER_DB.MemberMethod(member,mongoose,request,response);
+
+      if(!request.body.password){
+        response.send({message:"비밀번호를 확인해주세요",is_ok:'false'});
+        return;
+      }
+      var is_ok = member.checkloginPassword(request.body.password,member.password);
+      if(is_ok){
+        member_model.remove({id: user_id}, function(err,member){
+          response.send({message:"탈퇴 되셨습니다.",is_ok:'true'});
+          request.session.destroy();
+        });
+      }else{
+        response.send({message:"비밀번호를 확인 부탁드립니다.",is_ok:'false'});
+      }
     });
   }
 }
