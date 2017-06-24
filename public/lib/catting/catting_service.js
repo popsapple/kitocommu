@@ -168,7 +168,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
             if(element == user_nickname){
               room_obj.user_list.splice(idx,1);
               room_obj.participate.splice(idx,1);
-              socket.leave(now_room,function(){
+              socket.leave(now_room);
                 var search_room_id = now_room;
                 global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
                    { room_id: search_room_id },
@@ -215,6 +215,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                           }
                           if(i == (client_all.length-1) && idx == (client_rooms.length-1)){
                             for(var all = 0; all < client_all.length; all++){
+                              console.log("?????????");
                               data.leave_user = 'true';
                               data.room_id = now_room_;
                               data.participate = room_obj.user_list;
@@ -233,7 +234,6 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                     });
                   }
                 });
-              });
             }
           });
         }
