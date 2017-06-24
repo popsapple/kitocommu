@@ -13,14 +13,20 @@
               방 만들기
             </h2>
             <form id="AddNewCattingRoom">
+              <div>
               <label for="AddNewCattingRoomTitle" class="blind">방 제목</label>
               <% if(locals.nickname){%><input id="UserNickname" type="hidden" value="<%= locals.nickname %>"/><%}%>
               <% if(locals.userid){%><input id="UserId" type="hidden" value="<%= locals.userid %>"/><%}%>
               <input id="AddNewCattingRoomTitle" name="room_title"
               type="text" placeholder="만드실 방 제목을 추가해주세요." />
-              <label for="CheckSecretCattingRoom" class="blind">비밀글</label>
-              <input id="CheckSecretCattingRoom" name="room_secret" type="checkbox" placeholder="비밀 대화방을 만들고 싶은 경우 넣어주세요" />
+              <div class="line visible-xs visible-sm"></div>
+              <label for="CheckSecretCattingRoom">
+                <div class="lock"></div>
+                <span class="blind">비밀글</span>
+              </label>
+              <input id="CheckSecretCattingRoom" class="room_secret" name="room_secret" type="checkbox" placeholder="비밀 대화방을 만들고 싶은 경우 넣어주세요" />
               <button id="AddNewCattingRoomButton" class="linebutton small" type="button">확인</button>
+              </div>
             </form>
           </fieldset>
         </section>
@@ -34,6 +40,7 @@
                 <div>
                   <h3><%= room_list[i].room_title %></h3>
                   <strong class='participate'>참여인원 : <%= room_list[i].participate.length %>명</strong>
+                  <i class='<%= room_list[i].room_is_secret %>'></i>
                   <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
                 </div>
               </li>
@@ -44,25 +51,14 @@
           <div id="CattingUserlist">
             <h3>현재 접속인원</h3>
             <ul>
-              <!--li>
-                <i class="master"><span class="blind">방장</span>치즈갈비맛있어</i>
-              </li-->
+
             </ul>
           </div>
           <div>
             <section id="CattingDialog">
               <h3 class="blind">대화목록</h3>
               <ul>
-                <!--li>
-                  <strong class="nickname">
-                    <i class="member">서래갈매기 등갈비~~완전좋아</i>
-                  </strong>
-                  <div class="contents">
-                    내가 제일 사랑하는 고향은 별일이 하나 있지 바람부는 벌판에 서 있어도 나는 외롭지 않아~<br/>
-                    그러나 꽃잎 하나 떨어지면 눈물 따라 흐르고 고이 접은 가슴마다 햇살은 다시 떠 오르네<br />
-                    아아 영원히 변치 않을 우리들의 사랑으로 피묻은 손에 손을 내밀어 밝혀 주리라~~
-                  </div>
-                </li-->
+
               </ul>
             </section>
             <form id="CattingContentsEnter">

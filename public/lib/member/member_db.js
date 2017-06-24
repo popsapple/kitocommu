@@ -61,6 +61,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       height:  Number,
       weight:  Number,
       member_level:  Number,
+      member_point:  Number,
       writed: { type: Date, default: Date.now },
       updated: { type: Date, default: Date.now }
     }, { collection: 'Memberschema' });

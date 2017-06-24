@@ -2,11 +2,11 @@
 <html class="sub">
 <head>
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>" />
-  <% include ../partials/header.ejs %>
+  <% include ../../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
-    <% include ../partials/nav.ejs %>
+    <% include ../../partials/nav.ejs %>
       <div class="container board normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-        <% include ../partials/sub_visual.ejs %>
+        <% include ../../partials/sub_visual.ejs %>
         <% if(locals.notice_list) { %>
         <section id="boardNoticeList" class="loading_complete notice_index<%= locals.notice_list.length %>">
           <ul>
@@ -155,6 +155,6 @@
         </section>
       </div>
     </div>
-<% include ../partials/footer.ejs %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>

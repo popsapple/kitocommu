@@ -137,6 +137,7 @@ body.ie9 .loading_div > div > div > span > b {
   opacity:1;
 }
 
+div.modal .blind,
 body > .blind,
 .designcustom .blind {
   position: absolute !important;
@@ -167,6 +168,7 @@ html *,
   margin:auto;
 }
 
+body > .modal .linebutton,
 .designcustom .linebutton {
   display:inline-block;
   color:#707070;
@@ -179,6 +181,7 @@ html *,
   transition: background-color 0.5s, border-color 0.5s, color 0.5s;
 }
 
+body > .modal .linebutton:hover,
 .designcustom .linebutton:hover,
 .designcustom .linebutton:focus {
   border-color:#ffce00;
@@ -193,6 +196,7 @@ html *,
   font-weight:400;
 }
 
+body > .modal .linebutton.middle,
 .designcustom .linebutton.middle {
   font-size:1.6rem;
   font-weight:400;

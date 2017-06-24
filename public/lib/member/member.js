@@ -15,6 +15,7 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.settingPassword();
   save_data.writed = new Date();
   save_data.updated = new Date();
+  save_data.member_point = 0;
   save_data.save(function(err){
     if(err){
         console.error(err);
@@ -171,6 +172,20 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   });
 }
 
+Member.sign_out_member = function(info,request,response,mongoose,type){
+  var member_model = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
+  member_model = member_model.model;
+  var user_id = request.session.userid;
+  if(type == 'normal_member') {
+    member_model.remove({id: user_id}, function(err,member){
+      if(err){
+        return;
+      }
+      response.send({message:"탈퇴 되셨습니다."});
+    });
+  }
+}
+
 exports = module.exports = {member  : function (app,mongoose) {
 
     this.CheckAuthenfication = function(account1,account2,request,response,callback,type,level){ // 알맞는 권한을 가진 계정인지 체크
@@ -247,6 +262,10 @@ exports = module.exports = {member  : function (app,mongoose) {
 
     app.get('/member/plz_login', function(request, response) {
       return response.render('member/plz_login');
+    });
+
+    app.post('/member/sign_out', function(request, response){
+      Member.sign_out_member(request.body,request,response,mongoose,'normal_member');
     });
 
     return this;

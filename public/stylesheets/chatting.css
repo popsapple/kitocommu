@@ -15,13 +15,60 @@
 #MakeNewRoom #AddNewCattingRoom > * {
   display:table-cell;
 }
-#MakeNewRoom #AddNewCattingRoom > input {
+#MakeNewRoom #AddNewCattingRoom > * > #AddNewCattingRoomTitle {
   width:65%;
+  min-width:20rem;
   max-width:50rem;
 }
-#MakeNewRoom #AddNewCattingRoom > button {
+#MakeNewRoom #AddNewCattingRoom > * > button {
   width:30%;
+  min-width:10rem;
   max-width:15rem;
+}
+#MakeNewRoom #AddNewCattingRoom > * > .line {
+  display:block;
+  width:100%;
+  margin-bottom:0.8rem;
+}
+
+#MakeNewRoom #AddNewCattingRoom .room_secret {
+  width: 0.1rem;
+  height: 0.1rem;
+  overflow:hidden;
+  vertical-align: middle;
+  padding-left: 2rem;
+  margin: 0rem;
+}
+#MakeNewRoom #AddNewCattingRoom > * > label .lock:before {
+  display: inline-block;
+  font-family: FontAwesome,sans-serif;
+  content: "\f09c";
+  width: 4.5rem;
+  height: 4.3rem;
+  text-align: center;
+  line-height: 3.35rem;
+  font-size: 2rem;
+  vertical-align: middle;
+  padding: 0.5rem 1rem;
+  border: 1px solid #bfbfbf;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+}
+#MakeNewRoom #AddNewCattingRoom > * > label .lock:hover:before {
+  background-color:#ededed;
+}
+div.modal.catting_dialog > div > div label{
+  display:inline-block;
+}
+#AddNewCattingRoom .lock:hover {
+  cursor:pointer;
+}
+#MakeNewRoom #AddNewCattingRoom > * > label .lock.active:before {
+  display: inline-block;
+  font-family: FontAwesome,sans-serif;
+  content: "\f023";
+  position:relative;
 }
 
 #TotalRoomList .room_list {
@@ -65,7 +112,18 @@
   height:auto;
   clear:both;
 }
-
+#TotalRoomList .room_list > li > div > i {
+  text-align:center;
+}
+#TotalRoomList .room_list > li > div > i.true:before {
+  font-style:normal;
+  display:inline-block;
+  font-family: FontAwesome,sans-serif;
+  content: "\f023";
+  font-size: 1.8rem;
+  margin-right:0.5rem;
+  vertical-align:middle;
+}
 #CattingDialog > ul {
   position:relative;
   padding:3rem 1.5rem;
@@ -148,10 +206,6 @@
   display:block;
   clear:both;
 }
-
-
-
-
 
 div#CattingUserlist {
     position: relative;
@@ -258,4 +312,40 @@ div#CattingUserlist ul {
     width:80%;
     float:left;
   }
+}
+
+div.modal.catting_dialog {
+  display:none;
+  background:url(/images/main/transparent_black.png);
+}
+div.modal.catting_dialog > div {
+  display:table;
+  width:100%;
+  height:100%;
+}
+div.modal.catting_dialog > div > div {
+  display:table-cell;
+  width:100%;
+  height:100%;
+  vertical-align:middle;
+  text-align:center;
+}
+div.modal.catting_dialog > div > div input {
+  display: inline-block;
+  width: 60%;
+  max-width: 40rem;
+  margin-right: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  border: 1px solid #bfbfbf;
+  border-color: #bfbfbf;
+  background-color: #fff;
+}
+div.modal.catting_dialog > div > div button {
+  float: none;
+  clear: both;
+  opacity: 1;
+  padding: 1.2rem;
+  vertical-align: bottom;
+  line-height: 100%;
 }

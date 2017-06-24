@@ -313,6 +313,14 @@ function LoadingPage(){
     $('.loading_div').fadeOut(1500);
     return;
   }
+  if($(location).attr('href').indexOf('/member') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
+  if($(location).attr('href').indexOf('/mypage') != -1){
+    $('.loading_div').fadeOut(1500);
+    return;
+  }
   $.ajax({
       type:"GET",
       url:$(location).attr('href'),
