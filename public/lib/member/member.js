@@ -48,8 +48,8 @@ Member.login = function(request,response,mongoose){
       // 로그인 되면 세션 생성
       if(passord_true) {
 
-        request.session.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
-        request.session.nickname = member.nickname;
+        request.session.userid = response.locals.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
+        request.session.nickname = response.locals.nickname = member.nickname;
         response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
       }
       else {

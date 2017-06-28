@@ -39,7 +39,9 @@
     "grunt-contrib-cssmin": "2.1.0",
     "aws-sdk": "2.49.0",
     "nodemon": "1.11.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "express-ipfilter" : "0.2.4",
+    "svg-captcha" : "1.3.7"
   },
   "keywords": [
     "node",

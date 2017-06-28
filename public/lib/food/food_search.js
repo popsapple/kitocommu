@@ -81,3 +81,26 @@ app.post('/food_search/:result_type', function(request, response) {
 });
 
 };
+
+/* NodeJs 식품정보 아이디 갖고오기....
+
+
+var request = require('request');
+
+var url = 'http://api.dbstore.or.kr:8880/foodinfo/get_id.do';
+var queryParams = '?' + encodeURIComponent('api_key') + '=' + encodeURIComponent('DS64NUS4');
+queryParams += '&' + encodeURIComponent('area') + '=' + encodeURIComponent('서울');
+queryParams += '&' + encodeURIComponent('sex') + '=' + encodeURIComponent('m');
+queryParams += '&' + encodeURIComponent('age') + '=' + encodeURIComponent('30');
+
+request({
+    url: url + queryParams,
+    method: 'GET',
+    headers : {
+          "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
+          "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
+}, function (error, response, body) {
+    console.log('Reponse received', body);
+});
+
+*/

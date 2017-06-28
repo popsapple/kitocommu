@@ -33,8 +33,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       writing_level:  Number,
       css_skin:  String,
       template:  String,
-      post_point:  Number,
-      comment_point:  Number,
       category_list:  String
     }, { collection: 'Board_Typelist' });
 
@@ -364,22 +362,19 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     // 디비에 있는 내용을 확인하고 저장해야 하므로 save 함수를 콜백으로 넘깁니다.
     function SaveFunction(save_data,type){
       if(type=='save'){
-        var board_table_id;
-
-        that.save_data.update(that.save_data,{upsert: true}, function(err,data){
+        console.log("답글저장");
+        that.save_data.save(function(err){
           if(err){
               console.error(err);
               request.json({result: 0});
               return;
-          }else{
-            (request.query.is_reply && request.query.is_reply == "yes") ? save_data.is_reply = "yes" : save_data.is_reply = "no";
-            request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
-
-            request.body.reply_table_id ? board_table_id = request.body.reply_table_id : board_table_id = request.body.board_table_id;
-            global.MEMBER_DB.MemberPointSetting(mongoose,10,request.session.userid,function(){
-              return response.render('board/write_ok',save_data);
-            },'','','','','writer',board_table_id);
           }
+          (request.query.is_reply && request.query.is_reply == "yes") ? save_data.is_reply = "yes" : save_data.is_reply = "no";
+          request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
+
+          global.MEMBER_DB.MemberPointSetting(10,request.session.userid,function(){
+            return response.render('board/write_ok',save_data);
+          });
         });
       } else {
         var request_list;
@@ -392,7 +387,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
         that.save_data.findOne({post_index: post_index_}, function(err, data){
         that.modify_item(data,info,request_list);
-        data.update(data,{upsert: true}, function(err){
+        data.save(function(err){
           if(err){
               request.json({result: 0});
               return;
@@ -432,88 +427,54 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var board_id = request.body.board_table_id;
     this.Removing = function(){
       that.db_model.findOne({post_index: page_num}, function(err, board){
-        global.MEMBER_DB.MemberPointSetting(mongoose,10,board.writer,function(){
-          board.remove(function(){
-            /// Ok
-            that.db.BoardCommentDbSetting(mongoose,request,response);
-            var db_object = global.BOARD_COMMENT_MODEL;
-            var db_reply_object = global.BOARD_REPLY_DB;
-            var board_table_id = request.body.board_table_id;
-            db_object.find({post_index: page_num, board_id: board_table_id}, function(err, comment){
-              var comment_index = 0;
-              comment.forEach(function(arr,comment__index){
-                //Ok
-                var CommentPointRemoving = function(comment_index){
-                  global.MEMBER_DB.MemberPointSetting(mongoose,10,comment,function(){
-                    db_reply_object.find({reply_index: page_num, reply_table: board_table_id}, function(err, reply){
-                      var reply_index = 0;
-                      reply.forEach(function(arr,reply__index){
-                        var ReplyPointRemoving = function(reply_index){
-                          global.MEMBER_DB.MemberPointSetting(mongoose,10,reply,function(){
-                          },'minus','multi__',reply_index,(reply.length-1),'writer',board_table_id);
-                        }
-                        if(reply__index == 0){
-                          ReplyPointRemoving(reply_index);
-                        }
-                        arr.remove(
-                          function(){
-                            if(reply__index == (reply.length-1)){
-                              db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{reply_index: -1 }},{ multi: true },function (error, obj){});
-                            }
-                          }
-                        );
-                      });
-                    });
-                  },'minus','multi',comment_index,(comment.length-1),'comment_writer',board_table_id);
-                }
-                if(comment__index == (comment.length-1)){
-                  CommentPointRemoving(comment_index);
-                };
-                arr.remove(
-                  function(){
-                    if(comment__index == (comment.length-1)){
-                      db_object.update({post_index: {$gte: page_num}, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
-                    }
+        global.MEMBER_DB.MemberPointSetting(10,board.writer,function(){},'minus');
+        board.remove(function(){
+          that.db.BoardCommentDbSetting(mongoose,request,response);
+          var db_object = global.BOARD_COMMENT_MODEL;
+          var db_reply_object = global.BOARD_REPLY_DB;
+          var board_table_id = request.body.board_table_id;
+          db_object.find({post_index: page_num, board_id: board_table_id}, function(err, comment){
+            comment.forEach(function(arr,index){
+              var point = 10*comment.length;
+              global.MEMBER_DB.MemberPointSetting(point,arr.comment_writer,function(){},'minus');
+              arr.remove(
+                function(){
+                  if(index == (comment.length-1)){
+                    db_object.update({post_index: {$gte: page_num}, board_id: board_table_id},{$inc:{post_index: -1 }},{ multi: true },function (error, obj){});
                   }
-                );
-                //Ok
-              });
-              //만약 댓글이 없을 경우..
-              if(comment.length == 0){
-                db_reply_object.find({reply_index: page_num, reply_table: board_table_id}, function(err, reply){
-                  var reply_index = 0;
-                  reply.forEach(function(arr,reply__index){
-                    var ReplyPointRemoving = function(reply_index){
-                      global.MEMBER_DB.MemberPointSetting(mongoose,10,reply,function(){
-                      },'minus','multi__',reply_index,(reply.length-1),'writer',board_table_id);
-                    }
-                    if(reply__index == 0){
-                      ReplyPointRemoving(reply_index);
-                    }
-                    arr.remove(
-                      function(){
-                        if(reply__index == (reply.length-1)){
-                          db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{reply_index: -1 }},{ multi: true },function (error, obj){});
-                        }
-                      }
-                    );
-                  });
-                });
-              }
-              //
+                }
+              );
             });
-            that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
-            function (error, obj) {
-              if(request.body.is_reply == 'yes'){
-                board_id = request.body.reply_table_id;
-                return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
-              }else {
-                return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
-              }
-            });
-            /// Ok
           });
-        },'minus','check','','','writer',board_id);
+          db_reply_object.find({reply_index: page_num, reply_table: board_table_id}, function(err, reply){
+            reply.forEach(function(arr,index){
+              var point = 10*reply.length;
+              global.MEMBER_DB.MemberPointSetting(point,arr.writer,function(){},'minus');
+              arr.remove(
+                function(){
+                  if(index == (reply.length-1)){
+                    db_reply_object.update({reply_index: {$gte: page_num}, reply_table: board_table_id},{$inc:{reply_index: -1 }},{ multi: true },function (error, obj){});
+                  }
+                }
+              );
+            });
+          });
+          that.db_model.update({post_index: {$gte: page_num}},{$inc:{post_index: -1 }},{ multi: true },
+          function (error, obj) {
+            if(request.body.is_reply == 'yes'){
+              board_id = request.body.reply_table_id;
+              return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+            }else {
+              return response.redirect("/board/list?board_table_id="+board_id+"&page=0&page_length=10");
+            }
+          });
+          that.db_model.find({post_index: page_num}, function(err, board){
+            board.forEach(function(arr,index){
+              global.MEMBER_DB.MemberPointSetting(10,arr.writer,function(){},'minus');
+              arr.remove();
+            });
+          });
+        });
       });
     };
 
@@ -709,14 +670,15 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         save_data.is_secret = request.body.is_secret ? request.body.is_secret = "on" : "no";
         save_data.save(function(err){
           if(err){
+              console.error("코멘트저장에러 :: "+err);
               request.json({result: 0});
               return;
           }
 
           if(request.body.is_modify != 'yes'){
-            global.MEMBER_DB.MemberPointSetting(mongoose,10,request.session.userid,function(){
+            global.MEMBER_DB.MemberPointSetting(10,request.session.userid,function(){
               return response.redirect('/board/view?board_table_id='+save_data.board_id+'&post_index='+save_data.post_index);
-            },'','','','','comment_writer',board_table_id);
+            });
           }
         });
       });

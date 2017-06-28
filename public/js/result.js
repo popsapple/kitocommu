@@ -1735,49 +1735,32 @@ $.fn.MovingFollowMouse = function(options) {
 };
 
 function LoadingPage(){
-  if($(location).attr('href').indexOf('catting/list') != -1){
+  if($(location).attr('href') == 'http://192.168.219.104:5000'){
+    $.ajax({
+        type:"GET",
+        cache:false,
+        url:'http://192.168.219.104:5000',
+        async: true,
+        success:function(res){
+        },
+        beforeSend:function(){
+          $('.loading_div').show();
+        },
+        complete:function(){
+          setTimeout(function(){
+            $('.loading_div').fadeOut(500);
+            $('.loading_complete').addClass('active');
+          },1000);
+        },
+        error:function(e){
+          console.log("에러");
+        }
+    });
+  }else{
     $('.loading_div').fadeOut(1500);
-    return;
+    if($('.loading_complete')){$('.loading_complete').addClass('active');}
+    return false;
   }
-  if($(location).attr('href').indexOf('/login') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  if($(location).attr('href').indexOf('join') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  if($(location).attr('href').indexOf('/mypage/submit') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  if($(location).attr('href').indexOf('/member') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  if($(location).attr('href').indexOf('/mypage') != -1){
-    $('.loading_div').fadeOut(1500);
-    return;
-  }
-  $.ajax({
-      type:"GET",
-      url:$(location).attr('href'),
-      async: false,
-      success:function(res){
-      },
-      beforeSend:function(){
-        $('.loading_div').show();
-      },
-      complete:function(){
-        setTimeout(function(){
-          $('.loading_div').fadeOut(500);
-          $('.loading_complete').addClass('active');
-        },1000);
-      },
-      error:function(e){
-        console.log("에러");
-      }
-  });
 }
 
 

@@ -18,7 +18,46 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
 
     global.CATTING_SERVICE_DB = mongoose.model('cattingroom_db', CattingRoomschema);
 
-    if(global.catting_room_list == undefined){ // 채팅방 리스트 초기화
+    global.catting_room_list = {
+      room_list : []
+    };
+
+    if(typeof callback == 'function'){
+      callback();
+    }
+
+  },CattingListAddList  : function(data,socket,socketio,user_id,user_nickname){
+    var user_id = socket.request.session.userid;
+    var user_nickname = socket.request.session.nickname;
+    data.room_id = user_id+data.time;
+    var AddedRoomInfo = {
+      is_secret : 'no',
+      room_title : data.room_title,
+      room_id : (data.room_id == undefined ? 's1245' : data.room_id),
+      room_password : data.room_password,
+      room_is_secret : data.room_is_secret,
+      participate : [],
+      room_master: [user_nickname],
+      user_list: []
+    }
+    global.catting_room_list.room_list.push(AddedRoomInfo);
+
+    var AddedRoomInfo = new global.CATTING_SERVICE_DB(AddedRoomInfo);
+    global.CATTING_SERVICE.RoomSerectPassword(AddedRoomInfo,data.room_password);
+    if(data.room_is_secret == 'true'){
+      AddedRoomInfo.settingPassword();
+    }
+    AddedRoomInfo.save(function (error, user){
+      socket.broadcast.emit('render_addedroom',data);
+    });
+  },CattingListLoadView  : function(request, response,socketio,mongoose){
+    var request_data;
+    if(!request.query.room_title){
+      request_data = request.body;
+    }else{
+      request_data = request.query;
+    }
+    if(JSON.stringify(global.catting_room_list.room_list) == '[]'){
       global.catting_room_list = {
         room_list : []
       };
@@ -32,47 +71,27 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
          }
       ,{ multi: true },function (error, user){
         global.CATTING_SERVICE_DB.find({}, function(err,room_info){
+          if(room_info.length == 0){
+            response.render('catting/list',global.catting_room_list);
+          }
           room_info.forEach(function(arr,index){
             global.catting_room_list.room_list.push(arr);
-            if(index == (room_info.length-1) && typeof callback == 'function'){
-              callback();
+            if(index == (room_info.length-1)){
+              response.render('catting/list',global.catting_room_list);
             }
           });
         });
       });
+    } else{
+      response.render('catting/list',global.catting_room_list);
+      if(global.catting_room_list.remove_id != undefined){
+        var data = {
+          room_id: global.catting_room_list.remove_id
+        }
+        socketio.of('/catting/list').emit('room_removed',data);
+      }
     }
-  },CattingListAddList  : function(data,socket,socketio,user_id,user_nickname){
-    var user_id = socket.request.session.userid;
-    var user_nickname = socket.request.session.nickname;
-    data.room_id = user_id+data.time;
-    var AddedRoomInfo = {
-      'is_secret' : 'no',
-      'room_title' : data.room_title,
-      'room_id' : data.room_id,
-      'room_password' : data.room_password,
-      'room_is_secret' : data.room_is_secret,
-      'participate' : [],
-      'room_master': user_nickname,
-      'user_list': []
-    }
-    global.catting_room_list.room_list.push(AddedRoomInfo);
-
-    var AddedRoomInfo = new global.CATTING_SERVICE_DB(AddedRoomInfo);
-    global.CATTING_SERVICE.RoomSerectPassword(AddedRoomInfo,data.room_password);
-    if(data.room_is_secret == 'true'){
-      AddedRoomInfo.settingPassword();
-    }
-    AddedRoomInfo.save({});
-    socket.broadcast.emit('render_addedroom',data);
-  },CattingListLoadView  : function(request, response,socketio,mongoose){
-    var request_data;
-    if(!request.query.room_title){
-      request_data = request.body;
-    }else{
-      request_data = request.query;
-    }
-    response.render('catting/list',global.catting_room_list);
-  },LogoutUserList  : function(data,socket,socketio){
+  },LogoutUserList  : function(data,socket,socketio,request){
     var room_id = socket.request.session.room_id;
     var now_room = socket.request.session.now_room;
     var now_room_ = socket.request.session.now_room;
@@ -120,7 +139,6 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                                 i--;
                               }
                               if(i == (client_all.length-1) && idx == (client_rooms.length-1)){
-                                console.log("client_all length :: "+client_all.length);
                                 for(var all = 0; all < client_all.length; all++){
                                   data.leave_user = 'true';
                                   data.room_id = now_room_;
@@ -158,22 +176,30 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
         });
       },'check_admin',level);
     }else{ // 방이 바뀌거나 사이트를 나가서 로그아웃
-      console.log("AAAAAAAAA");
-      Object.keys(global.catting_room_list.room_list).forEach(function(element,index){
+      for(var index = 0; index < global.catting_room_list.room_list.length; index++){
         var ele = global.catting_room_list.room_list[index];
+        var remove_index;
+        if(data.type == 'unload'){
+          now_room = socket.request.session.room_id;
+        }
         if(ele.room_id == now_room){
           room_obj = ele;
+          if(data.type == 'unload' && room_obj.user_list.length == 0){
+            room_obj.user_list = [user_nickname];
+          }
           var data = {user: user_nickname,user_list: room_obj.user_list,room_id: now_room_,participate: room_obj.user_list,leave_user:'false'};
-          room_index = index;
           room_obj.user_list.forEach(function(element,idx){
             if(element == user_nickname){
               room_obj.user_list.splice(idx,1);
               room_obj.participate.splice(idx,1);
-              if(room_obj.user_list.length == 0){
+              var user_list_length = room_obj.user_list.length;
+              if(user_list_length == 0){
+                remove_index = index;
                 room_obj.user_list = [];
                 room_obj.participate = [];
               }
               socket.leave(now_room);
+              if(user_list_length != 0) {
                 var search_room_id = now_room;
                 global.CATTING_SERVICE_DB.update( // DB에 방 접속자 수정
                    { room_id: search_room_id },
@@ -191,13 +217,9 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                 global.CATTING_SERVICE_SOCKETLIST.forEach(function(clients, index){
                   client_all[index] = clients;
                   if(index == (global.CATTING_SERVICE_SOCKETLIST.length -1)){
-                    console.log("CCCCCCCC");
                     socketio.of('/catting/list').in(now_room_).clients(function(error, client_rooms){
-                      console.log("DDDDDDDDD :: "+client_rooms.length);
-
                       if(client_rooms.length == 0){
                         for(var all = 0; all < client_all.length; all++){
-                          console.log("EEEEEEEEE :: "+client_all.length);
                           data.leave_user = 'true';
                           data.room_id = now_room_;
                           data.participate = room_obj.user_list;
@@ -231,10 +253,21 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
                     });
                   }
                 });
+              }else{
+                global.catting_room_list.room_list.splice(remove_index,1);
+                global.catting_room_list.remove_id = now_room;
+                var search_room_id = now_room;
+                global.CATTING_SERVICE_DB.remove({ room_id: search_room_id },function (error, user){
+
+                });
+                data.room_id = now_room_;
+                socketio.of('/catting/list').emit('room_removed',data);
+                socket.request.session.now_room = socket.request.session.room_id; // 나간 담에 기존 방을 업데이트
+              }
             }
           });
         }
-      });
+      };
     }
   },KickedUserConnect : function(socket,socketio){
     var user_nickname = socket.request.session.nickname;
@@ -259,7 +292,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
     var that = this;
     var room_index;
 
-    if(room_id != now_room){ //기존에 접속한 방이 있었다면
+    if(now_room != undefined){ //기존에 접속한 방이 있었다면
       global.CATTING_SERVICE.LogoutUserList(data,socket,socketio);
     }
 

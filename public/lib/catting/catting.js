@@ -64,6 +64,10 @@ module.exports.catting_con = function(app,socketio,mongoose){
     socket.on('roommaster_remove', function(data){
       global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'remove');
     });
+    socket.on('remove_room', function(data){
+      // 방삭제
+      //global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'remove');
+    });
     //socket.on('disconnect', function(){ console.log('disconnected'); });
   });
 }

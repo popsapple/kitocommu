@@ -1,5 +1,6 @@
 Board =  new Object(); // Member란 전부를 한꺼번에 가진 정의.
 Board.write = function(info,request,response,mongoose,collection,type,type_reply){
+
   var that = this;
   this.save_data = new global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
   this.save_data = global.BOARD_DB.model;
@@ -45,7 +46,6 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
       }
       return list;
     })();
-    // += (","+request.session.filelist) : '';
     request_list.thumnail ? data.thumnail = request_list.thumnail : '';
   }
 
@@ -97,11 +97,11 @@ Board.write_coments = function(request,response,mongoose){
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
-    if(!request.session.userid || !request.session.nickname){
-      return response.redirect('/member/plz_login'); //
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      request.session.urlpath = request.protocol + '://' + request.get('host') + request.originalUrl;
+      var board_id = 'Board_'+(request.query.board_table_id);
+      var BoardList = new Board.list_render(request.query,request,response,mongoose,board_id);
     }
-    var board_id = 'Board_'+(request.query.board_table_id);
-    var BoardList = new Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/search_post', function(request, response) {
@@ -110,100 +110,139 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/write', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
-    request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      request.session.urlpath = request.protocol + '://' + request.get('host') + request.originalUrl;
+      var board_id = 'Board_'+(request.query.board_table_id);
+      request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
 
-    if(request.query.post_index){
-      Board.view(request.query,request,response,mongoose,board_id,'modify');
-    }else{
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
-        for (var key in req_data){
-          data[key] = req_data[key];
-        }
-        data.is_reply = "no";
-        if(request.query.reply_table_id){
-          request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
-        }else if(request.body.reply_table_id){
-          request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
-        }
-
-        data.category_list ? data.category_list = data.category_list.split(",") : '';
-        return response.render('board/write',data);
-      });
+      if(request.query.post_index){
+        Board.view(request.query,request,response,mongoose,board_id,'modify');
+      }else{
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
+          for (var key in req_data){
+            data[key] = req_data[key];
+          }
+          data.is_reply = "no";
+          if(request.query.reply_table_id){
+            request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
+          }else if(request.body.reply_table_id){
+            request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
+          }
+          data.category_list ? data.category_list = data.category_list.split(",") : '';
+          var captcha = global.svgCaptcha.create();
+          data.captcha_img = captcha.data;
+          data.captcha_data = captcha.text;
+          request.session.captcha_data = data.captcha_data.toString();
+          return response.render('board/write',data);
+        });
+      }
     }
   });
 
   app.get('/board/view', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
-    Board.view(request.query,request,response,mongoose,board_id);
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      var board_id = 'Board_'+(request.query.board_table_id);
+      Board.view(request.query,request,response,mongoose,board_id);
+    }
   });
 
   app.post('/board_write_submit', function(request, response) {
-    var board_id = 'Board_'+(request.body.board_table_id);
-    Board.write(request.body,request,response,mongoose,board_id,'save');
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      if(request.body.captcha == request.session.captcha_data){
+        var board_id = 'Board_'+(request.body.board_table_id);
+        Board.write(request.body,request,response,mongoose,board_id,'save');
+      }else{
+        response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
+      }
+    }
   });
 
   app.post('/board_reply_submit', function(request, response) {
-    Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
-    Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
-    Board.reply_write.save_data = global.BOARD_REPLY_DB;
-    var info = request.body;
-    Board.reply_write.save_item = function(info){
-      Board.reply_write.save_data.reply = "";
-      Board.reply_write.save_data.reply_index = info.reply_index;
-      Board.reply_write.save_data.category = info.category;
-      Board.reply_write.save_data.is_notice = info.is_notice;
-      Board.reply_write.save_data.title = info.title;
-      Board.reply_write.save_data.contents = info.contents;
-      Board.reply_write.save_data.tags = info.tags;
-      Board.reply_write.save_data.reply_table = info.board_table_id;
-      Board.reply_write.save_data.board_table_id = info.board_table_id;
-      Board.reply_write.save_data.writer = request.session.userid;
-      Board.reply_write.save_data.writer_nickname = request.session.nickname;
-      info.thumnail ? Board.reply_write.save_data.thumnail = info.thumnail : '';
-      info.is_secret ? Board.reply_write.save_data.is_secret = "on" : Board.reply_write.save_data.is_secret = "no";
-      request.session.filelist ? Board.reply_write.save_data.file_list = request.session.filelist : '';
-      Board.reply_write.save_data.writed = new Date();
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      if(request.body.captcha == request.session.captcha_data){
+        Board.reply_write = new Board.write(request.body,request,response,mongoose,'Board_ReplyList','save','reply');
+        Board.reply_write.save_data = new global.BOARD_DB.BoardReplyDbSetting(mongoose,request,response,'Board_ReplyList');
+        Board.reply_write.save_data = global.BOARD_REPLY_DB;
+        var info = request.body;
+        Board.reply_write.save_item = function(info){
+          Board.reply_write.save_data.reply = "";
+          Board.reply_write.save_data.reply_index = info.reply_index;
+          Board.reply_write.save_data.category = info.category;
+          Board.reply_write.save_data.is_notice = info.is_notice;
+          Board.reply_write.save_data.title = info.title;
+          Board.reply_write.save_data.contents = info.contents;
+          Board.reply_write.save_data.tags = info.tags;
+          Board.reply_write.save_data.reply_table = info.board_table_id;
+          Board.reply_write.save_data.board_table_id = info.board_table_id;
+          Board.reply_write.save_data.writer = request.session.userid;
+          Board.reply_write.save_data.writer_nickname = request.session.nickname;
+          info.thumnail ? Board.reply_write.save_data.thumnail = info.thumnail : '';
+          info.is_secret ? Board.reply_write.save_data.is_secret = "on" : Board.reply_write.save_data.is_secret = "no";
+          request.session.filelist ? Board.reply_write.save_data.file_list = request.session.filelist : '';
+          Board.reply_write.save_data.writed = new Date();
+        }
+        global.BOARD_DB.onSaveBoardPost(Board.reply_write,info,request,response,mongoose,'Board_ReplyList','save');
+      }else{
+        response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
+      }
     }
-    global.BOARD_DB.onSaveBoardPost(Board.reply_write,info,request,response,mongoose,'Board_ReplyList','save');
   });
 
   app.post('/board_modify_submit', function(request, response) {
-    var board_id = 'Board_'+(request.body.board_table_id);
-    Board.write(request.body,request,response,mongoose,board_id,'modify');
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      if(request.body.captcha == request.session.captcha_data){
+        var board_id = 'Board_'+(request.body.board_table_id);
+        Board.write(request.body,request,response,mongoose,board_id,'modify');
+      }else{
+        response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
+      }
+    }
   });
 
   app.post('/board_remove_submit', function(request, response) {
-    var board_id = 'Board_'+(request.body.board_table_id);
-    var BoardRemove = new Board.remove(request.body,request,response,mongoose,board_id);
-    BoardRemove.Remove.Removing();
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      var board_id = 'Board_'+(request.body.board_table_id);
+      var BoardRemove = new Board.remove(request.body,request,response,mongoose,board_id);
+      BoardRemove.Remove.Removing();
+    }
   });
 
   app.post('/board_comment_submit', function(request, response) {
-    Board.write_coments(request,response,mongoose);
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      Board.write_coments(request,response,mongoose);
+    }
   });
 
   app.get('/board/reply_write', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
-    request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      request.session.urlpath = request.protocol + '://' + request.get('host') + request.originalUrl;
+      var board_id = 'Board_'+(request.query.board_table_id);
+      request.session.filelist = []; // 현재 작성중인 상태일 때 추가되는 첨부파일 리스트.
 
-    if(request.query.post_index && (!request.query.is_reply)){
-      Board.view(request.query,request,response,mongoose,board_id,'modify');
-    }else{
-      global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
-        for (var key in req_data){
-          data[key] = req_data[key];
-        }
-        data.category_list ? data.category_list = data.category_list.split(",") : '';
-        data.is_reply = request.query.is_reply;
-        data.reply_index = request.query.post_index;
-        if(request.query.reply_table_id){
-          request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
-        }else if(request.body.reply_table_id){
-          request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
-        }
-        return response.render('board/write',data);
-      });
+      if(request.query.post_index && (!request.query.is_reply)){
+        Board.view(request.query,request,response,mongoose,board_id,'modify');
+      }else{
+        global.BOARD_DB.getBoardConfig(mongoose,request,response,board_id,request.query,function(data,req_data){
+          for (var key in req_data){
+            data[key] = req_data[key];
+          }
+          data.category_list ? data.category_list = data.category_list.split(",") : '';
+          data.is_reply = request.query.is_reply;
+          data.reply_index = request.query.post_index;
+          if(request.query.reply_table_id){
+            request.query.reply_table_id ? data.reply_table_id = request.query.reply_table_id : "";
+          }else if(request.body.reply_table_id){
+            request.body.reply_table_id ? data.reply_table_id = request.body.reply_table_id : "";
+          }
+
+          var captcha = global.svgCaptcha.create();
+          data.captcha_img = captcha.data;
+          data.captcha_data = captcha.text;
+          request.session.captcha_data = data.captcha_data.toString();
+
+          return response.render('board/write',data);
+        });
+      }
     }
   });
 }

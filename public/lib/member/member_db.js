@@ -45,8 +45,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
       obj.password = obj.encryptPassword(pw); // 사용자정의 메소드 호출
     }
-  },
-  MemberDbSetting  : function (mongoose,request,response){
+  }, MemberDbSetting  : function (mongoose,request,response){
     var obj = this;
     var Schema = mongoose.Schema;
 
@@ -70,5 +69,82 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     mongoose.modelSchemas = {};
 
     exports.model = mongoose.model('member', Memberschema);
+  }, MemberPointSetting : function (mongoose,insert_point,member_id,callback,type,multi,multi_index,multi_length,member_id_key,board_id){
+
+    member_data = global.MEMBER_DB.model;
+    var that = this;
+    that.point_method = function(multi_index,member_id){
+      if(multi != undefined && multi.indexOf('multi') != -1){
+        member__id = member_id[multi_index][member_id_key];
+      }else{
+        member__id = member_id;
+      }
+      console.log("대상자 아이디 :: "+insert_point+"대상 게시판 ::"+board_id);
+      member_data.findOne({id: member__id},function(err,member){
+        if(typeof type == 'undefined' || type != 'minus'){
+          member.member_point += insert_point;
+        }else if(type == 'minus'){
+          member.member_point -= insert_point;
+        }
+        member.save(function(err){
+          if(typeof multi == 'undefined' || multi.indexOf('multi') == -1){
+            if(typeof callback == 'function'){
+              callback();
+            }
+          }else if(multi.indexOf('multi') != -1){
+            if(typeof callback == 'function'){
+              if(multi_index <= multi_length){
+                that.point_method(multi_index,member_id);
+                if(multi_index == multi_length){
+                  callback();
+                }
+              }
+            }
+          }
+        });
+      });
+      multi_index++;
+    }
+
+    if(board_id != undefined){
+      global.BOARD_STYLE_MODEL.findOne({board: 'Board_'+board_id}, function(err,board_config){
+        if(member_id_key == 'comment_writer'){
+          insert_point = board_config.comment_point;
+        }else{
+          insert_point = board_config.post_point;
+        }
+        multi == undefined ? that.point_method('',member_id) : that.point_method(multi_index,member_id);
+      });
+    }else{
+      multi == undefined ? that.point_method('',member_id) : that.point_method(multi_index,member_id);
+    }
+
+    // global.BOARD_DB.MemberPointSetting(insert_point,member_id,callback);
+  }, MemberPointGetting : function (member_id,callback){
+    member_data = global.MEMBER_DB.model;
+    member_data.findOne({id: member_id},function(err,member){
+      var point = member.member_point;
+      if(typeof callback == 'function'){
+        callback(point);
+      }
+    });
+  }, MemberSessionAndIsPageCheck : function (err,typecheck,nullcheck,request,response,move_path){ // 로그아웃 되었을 시 재로그인.
+    if(err || typecheck == null || typeof typecheck == 'undefined' || typeof typecheck == 'undefined'){
+      if(request == undefined){
+        response.redirect('/login_form');
+      }else{ // 로그인은 되었는데 존재하지 않는 페이지 접근시 이전 페이지로 이동.
+        response.redirect(move_path);
+        return false;
+      }
+    }else{
+      return true;
+    }
+  }, CheckLoginUser: function(request,response){
+    if(!request.session.userid || !request.session.nickname){
+      response.redirect('/member/plz_login'); //
+      return false;
+    }else {
+      return true;
+    }
   }
 }

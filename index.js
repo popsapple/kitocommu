@@ -1,5 +1,5 @@
 var express = require('express');
-global.EXPRESS = express;
+var ipfilter = require('express-ipfilter').IpFilter;
 var multer = require('multer');
 var multerS3 = require('multer-s3');
 var fs = require('file-system');
@@ -7,12 +7,12 @@ var aws = require('aws-sdk');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
-//var socketio = require('socket.io')(app);
 var session = require('express-session');
 var bodyParserJsonError = require('express-body-parser-json-error');
-//var methodOverride = require('method-override');
+global.svgCaptcha = require('svg-captcha');
 
 var app = express();
+app.disable('view cache');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/views'));
@@ -20,18 +20,25 @@ app.use(express.static(__dirname+'/node_modules/socket.io/node_modules/socket.io
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+// 접근제한 할 IP들.... 나중에 관리자페이지에서 작업할 수 있게 해야지...
+var ips = []; //['127.0.0.1'];
+app.use(ipfilter(ips));
+
 var usingSession = session({
-  key: 'sid', // 세션키
-  secret: 'secret', // 비밀키
-  cookie: {
-    maxAge: 4000 * 60 * 60 // 쿠키 유효기간 4시간
-  }
+  key: '@#Hans%On%Me', // 세션키
+  secret: 'Ooishi%Masayoshi#!' // 비밀키
 });
 app.use(usingSession);
 
 app.use(function (request, response, next) {
-  response.locals.nickname == undefined ? response.locals.nickname = request.session.nickname : '';
-  response.locals.userid == undefined ? response.locals.userid = request.session.userid : '';
+  response.set('Cache-Control', 'no-cache'); // 뒤로가기시 로그인 유지 막기
+  response.set('Cache-Control', 'no-store'); // 뒤로가기시 로그인 유지 막기
+  response.locals.nickname = request.session.nickname;
+  response.locals.userid = request.session.userid;
+  var getDateFull = new Date();
+  getDateFull = parseInt(getDateFull.getMonth()+''+getDateFull.getDate()+''+getDateFull.getHours()+''+getDateFull.getMinutes()+''+getDateFull.getSeconds()+''+getDateFull.getMilliseconds());
+  response.locals.nowtime = Math.floor(Math.random() * 100000000)+getDateFull;
   next();
 });
 
@@ -52,7 +59,7 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 // 회원관련
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
-// 로그인 세션
+// 처음 접속
 app.get('/', function(request, response, next) {
   response.render('pages/index');
   if(typeof next == "function"){
@@ -60,10 +67,19 @@ app.get('/', function(request, response, next) {
   }
 });
 
-
+// 봇 처리
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
     res.send("User-agent: *\nDisallow:");
+});
+
+//에러 처리
+app.use(function(err, req, res, next) {
+  res.status(404).send('페이지가 존재하지 않습니다.');
+  res.status(403).send('페이지가 응답하지 않습니다.');
+  res.status(500).send('페이지가 응답하지 않습니다.');
+  res.status(501).send('페이지가 응답하지 않습니다.');
+  res.status(503).send('페이지가 응답하지 않습니다.');
 });
 
 
@@ -84,25 +100,3 @@ require('./public/lib/board/board.js').board_con(app,mongoose);
 
 // 채팅관련
 require('./public/lib/catting/catting.js').catting_con(app,socketio,mongoose);
-/* NodeJs 식품정보 아이디 갖고오기....
-
-
-var request = require('request');
-
-var url = 'http://api.dbstore.or.kr:8880/foodinfo/get_id.do';
-var queryParams = '?' + encodeURIComponent('api_key') + '=' + encodeURIComponent('DS64NUS4');
-queryParams += '&' + encodeURIComponent('area') + '=' + encodeURIComponent('서울');
-queryParams += '&' + encodeURIComponent('sex') + '=' + encodeURIComponent('m');
-queryParams += '&' + encodeURIComponent('age') + '=' + encodeURIComponent('30');
-
-request({
-    url: url + queryParams,
-    method: 'GET',
-    headers : {
-          "x-waple-authorization" : "MzY4LTE0OTE4NDE3MDg3NzUtMjVkNzNiMmYtZjQ3Ni00OTRiLTk3M2ItMmZmNDc2Mjk0YmI5",
-          "content-type":"application/x-www-form-urlencoded; charset=UTF-8"}
-}, function (error, response, body) {
-    console.log('Reponse received', body);
-});
-
-*/

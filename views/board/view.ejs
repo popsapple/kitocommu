@@ -2,7 +2,7 @@
 <html class="sub">
 <head>
   <meta name="keywords" content="<%= tags_list %>" />
-  <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>" />
+  <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <% include ../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
@@ -85,9 +85,15 @@
             <%if(locals.is_reply != "yes" && locals.is_reply_type == "yes"){%>
               <button id="BoardReplyButton" data-form-id="BoardReplyForm" class="linebutton middle submit_btn" accesskey="r">답글달기</button>
             <%}%>
-            <a id="BoardListButton" href="
-            /board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging %>&page_length=10"
-            class="linebutton middle submit_btn" accesskey="l">목록으로</a>
+            <%if(locals.is_reply != "yes" && locals.is_reply_type == "yes"){%>
+              <a id="BoardListButton" href="
+              /board/list?board_table_id=<%= board_table_id %>&page=<%= board_paging %>&page_length=10"
+              class="linebutton middle submit_btn" accesskey="l">목록으로</a>
+            <%} else {%>
+              <a id="BoardListButton" href="
+              /board/list?board_table_id=<%= reply_table_id %>&page=<%= board_paging %>&page_length=10"
+              class="linebutton middle submit_btn" accesskey="l">목록으로</a>
+            <%}%>
           </div>
         </div>
       </div>

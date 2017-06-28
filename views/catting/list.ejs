@@ -35,15 +35,17 @@
             방 목록확인
           </h2>
           <ul class="room_list">
-              <% for(var i=0; i < room_list.length; i++ ) { %>
-              <li>
-                <div>
-                  <h3><%= room_list[i].room_title %></h3>
-                  <strong class='participate'>참여인원 : <%= room_list[i].participate.length %>명</strong>
-                  <i class='<%= room_list[i].room_is_secret %>'></i>
-                  <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
-                </div>
-              </li>
+              <% if(locals.room_list[0] && locals.room_list[0].room_title) { %>
+                <% for(var i=0; i < room_list.length; i++ ) { %>
+                <li>
+                  <div>
+                    <h3><%= room_list[i].room_title %></h3>
+                    <strong class='participate'>참여인원 : <%= room_list[i].participate.length %>명</strong>
+                    <i class='<%= room_list[i].room_is_secret %>'></i>
+                    <button data-roomid="<%= room_list[i].room_id %>" class="linebutton small" role="button">입장하기</button>
+                  </div>
+                </li>
+                <% } %>
               <% } %>
           </ul>
         </section>
