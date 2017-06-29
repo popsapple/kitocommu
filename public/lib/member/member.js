@@ -17,6 +17,7 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.updated = new Date();
   save_data.member_point = 0;
   save_data.member_level = 0;
+  save_data.member_ban = false;
   save_data.save(function(err){
     if(err){
         console.error(err);
