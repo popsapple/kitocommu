@@ -26,8 +26,8 @@ var ips = []; //['127.0.0.1'];
 app.use(ipfilter(ips));
 
 var usingSession = session({
-  key: '@#Hans%On%Me', // 세션키
-  secret: 'Ooishi%Masayoshi#!' // 비밀키
+  key: process.env.SESSIONKEY, // 세션키
+  secret: process.env.SECRETKEY // 비밀키
 });
 app.use(usingSession);
 
