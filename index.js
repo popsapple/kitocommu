@@ -24,7 +24,6 @@ app.use(cookieParser());
 // 접근제한 할 IP들.... 나중에 관리자페이지에서 작업할 수 있게 해야지...
 var ips = []; //['127.0.0.1'];
 app.use(ipfilter(ips));
-
 var usingSession = session({
   key: process.env.SESSIONKEY, // 세션키
   secret: process.env.SECRETKEY // 비밀키
@@ -76,8 +75,12 @@ app.get('/robots.txt', function (req, res) {
 
 //에러 처리
 app.use(function(err, req, res, next) {
-  res.status(404).send('페이지가 존재하지 않습니다.');
+  res.status(400).send('페이지가 응답하지 않습니다.');
+  res.status(401).send('페이지가 응답하지 않습니다.');
   res.status(403).send('페이지가 응답하지 않습니다.');
+  res.status(404).send('페이지가 존재하지 않습니다.');
+  res.status(405).send('페이지가 응답하지 않습니다.');
+  res.status(301).send('페이지가 응답하지 않습니다.');
   res.status(500).send('페이지가 응답하지 않습니다.');
   res.status(501).send('페이지가 응답하지 않습니다.');
   res.status(503).send('페이지가 응답하지 않습니다.');

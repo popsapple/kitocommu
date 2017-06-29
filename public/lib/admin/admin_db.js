@@ -1,4 +1,18 @@
-exports = module.exports = {getMemberListByIndex : function (mongoose,request,response,callback,type){
+exports = module.exports = {AdminDbSetting  : function (mongoose,request,response){
+    var Schema = mongoose.Schema;
+
+    var Memberschema = new Schema({
+      working_date: { type: Date, default: Date.now },
+      working_type: String,
+      woring_reason:  String,
+      woring_admin: String
+    }, { collection: 'Admin_Diary' });
+
+    mongoose.models = {};
+    mongoose.modelSchemas = {};
+    global.ADMIN_DIRAY_DB = mongoose.model('admin_diray', Memberschema);
+
+  },getMemberListByIndex : function (mongoose,request,response,callback,type){
   var that = this;
   that.db_model = global.MEMBER_DB.model;
   var page_num;
@@ -117,5 +131,39 @@ exports = module.exports = {getMemberListByIndex : function (mongoose,request,re
         });
       }
     });
+  },setMemberBanStatus : function (mongoose,request,response){
+    var member_db = global.MEMBER_DB.model;
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var user_id = request.body.user_id;
+    var is_ban = request.body.is_ban.toString();
+    var change_ban;
+    var data = {"id": user_id};
+    console.log("유저 아이디 찾기 :: "+user_id);
+    console.log("유저 정보 찾기 :: "+is_ban);
+    var admin_data = new admin_db(admin_db.schema);
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+
+    if(member_db){
+      member_db.findOne(data, function(err, member_info){
+        var data_info = {};
+        if(is_ban == "true"){
+          change_ban = true;
+          data_info.is__ban = "off";
+        }else{
+          change_ban = false;
+          data_info.is__ban = "on";
+        }
+        member_info.member_ban = change_ban;
+        member_info.save(function(err){
+          admin_data.save(function(err){
+            console.log("관리정보 저장");
+          });
+          response.send(data_info);
+        });
+      });
+    }
   }
 }

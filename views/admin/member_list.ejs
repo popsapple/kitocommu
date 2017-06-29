@@ -2,6 +2,7 @@
 <html class="sub admin_page">
 <head>
   <% include ../partials/header.ejs %>
+  <script type="text/javascript" src="/js/common/admin.js"></script>
   <link rel="stylesheet" type="text/css" href="/admin/admin.css?token='<%= locals.nowtime %>'" />
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
@@ -35,7 +36,7 @@
             <% for(var i=0; i < member_list.length; i++) { %>
             <li>
               <div>
-                <h2>
+                <h2 class="userid">
                   <%= member_list[i].id %>
                 </h2>
                 <span>
@@ -47,17 +48,17 @@
                 <span>
                   <%= member_list[i].email %>
                 </span>
-                <span>
+                <span class="userlevel">
                   <%= member_list[i].member_level %>
                 </span>
-                <span>
+                <span class="userpoint">
                   <%= member_list[i].member_point %>
                 </span>
                 <div>
-                  <% if(!member_list[i].member_ban){ %>
-                    <button class="linebutton small">영구정지</button>
+                  <% if(member_list[i].member_ban){ %>
+                    <button class="linebutton small ban_false ban_button">영구정지</button>
                   <%}else {%>
-                    <button class="linebutton small">정지해제</button>
+                    <button class="linebutton small ban_true ban_button">정지해제</button>
                   <%}%>
                 </div>
               </div>

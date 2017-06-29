@@ -12,4 +12,8 @@ module.exports.admin_con = function(app,mongoose){
       },type);
     }
   });
+  app.post('/admin_page/member_list/ban_member', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setMemberBanStatus(mongoose,request,response);
+  });
 }
