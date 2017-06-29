@@ -105,8 +105,10 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.get('/board/search_post', function(request, response) {
-    var board_id = 'Board_'+(request.query.board_table_id);
-    Board.search_render(request.query,request,response,mongoose,board_id);
+    if(global.MEMBER_DB.CheckLoginUser(request,response)){
+      var board_id = 'Board_'+(request.query.board_table_id);
+      Board.search_render(request.query,request,response,mongoose,board_id);
+    }
   });
 
   app.get('/board/write', function(request, response) {

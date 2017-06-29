@@ -1,4 +1,5 @@
 function CheckFormInput(){
+  console.log("STEP01");
   $(".dobule_check").each(function(){
     if($(this).attr('data-hascheck') != ''){
       $(this).trigger('click', ['trigger_check']);
@@ -40,6 +41,7 @@ function CheckFormInput(){
   for(var key in reg_list){
     if($('#'+input_list[count]) && !reg_list[key].test($('#'+input_list[count]).val())){
       //이벤트막고 , 기본동작 중지
+      console.log("STEP02 :: "+is_true);
       event.stopPropagation();
       event.preventDefault();
       $('#'+input_list[count]).attr('aria-invalid','true');
@@ -50,6 +52,7 @@ function CheckFormInput(){
     }
     count++;
   };
+  console.log("STEP03 :: "+is_true);
   return is_true;
 };
 //정규표현식
@@ -133,6 +136,11 @@ $(document).ready(function(){
   $("#FindIdPw").click(function(){
     window.open('/search_login_info', '', 'fullscreen=yes, resizable=yes, scrollbars=yes, x=100,y=200,width=' + 400 + ',height=' + 600);
     return false;
+  });
+  //정보변경
+  $('.submit_btn_memberinfo').click(function(){
+    console.log("버튼클릭 :: "+$(this).attr('data-form-id'));
+    $('#ModifyMemberInfo .submit_hidden_btn').click();
   });
   // 회원탈퇴
    $("#MemberSignOut").on('click', function(){
@@ -1878,7 +1886,6 @@ $(document).ready(function() {
       $('.gnb_navbar').attr('aria-hidden','false');
     });
   }
-
 });
 
 $(window).scroll(function(event) {

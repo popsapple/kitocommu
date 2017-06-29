@@ -173,7 +173,7 @@ body > .modal .linebutton,
   display:inline-block;
   color:#707070;
   margin:auto;
-  padding:1rem 2rem;
+  padding:1rem 2rem !important;
   margin:auto;
   border:1px solid #bfbfbf;
   border-color:#bfbfbf;
@@ -192,19 +192,19 @@ body > .modal .linebutton:hover,
 }
 
 .designcustom .linebutton.small {
-  font-size:1.4rem;
-  font-weight:400;
+  font-size:1.4rem !important;
+  font-weight:400 !important;
 }
 
 body > .modal .linebutton.middle,
 .designcustom .linebutton.middle {
-  font-size:1.6rem;
-  font-weight:400;
+  font-size:1.6rem !important;
+  font-weight:400 !important;
 }
 
 .designcustom .linebutton.big {
-  font-size:1.8rem;
-  font-weight:400;
+  font-size:1.8rem !important;
+  font-weight:400 !important;
 }
 
 .designcustom .section_title {
@@ -520,7 +520,9 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   text-align:center;
   vertical-align:middle;
 }
-
+.designcustom .navbar-collapse > div > ul > li.member_side > ul.admin_menu > li {
+  width:33.3%;
+}
 .designcustom .navbar-collapse > div > ul > li.member_side > ul.menu > li * {
   font-size:1.3rem;
   font-weight:900;
@@ -538,6 +540,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 .navbar-collapse > div > ul > li.member_side > ul.menu .join:before,
 .navbar-collapse > div > ul > li.member_side > ul.menu .login:before,
 .navbar-collapse > div > ul > li.member_side > ul.menu .mypage:before,
+.navbar-collapse > div > ul > li.member_side > ul.menu .admin:before,
 .navbar-collapse > div > ul > li.member_side > ul.menu .logout:before {
   font-family: "FontAwesome", sans-serif;
   content: "\f234";
@@ -558,6 +561,9 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 }
 .navbar-collapse > div > ul > li.member_side > ul.menu .mypage:before {
   content: "\f2bd";
+}
+.navbar-collapse > div > ul > li.member_side > ul.menu .admin:before {
+  content: "\f013";
 }
 
 .designcustom .navbar-collapse > div+button {
@@ -719,7 +725,7 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
     text-align: left;
   }
   .designcustom .navbar-collapse > div > ul > li.member_side {
-    width: 15rem;
+    width: 19rem;
     position: absolute;
     top: 5rem;
     right: 0rem;

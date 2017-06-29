@@ -61,6 +61,7 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       weight:  Number,
       member_level:  Number,
       member_point:  Number,
+      member_ban:  Boolean,
       writed: { type: Date, default: Date.now },
       updated: { type: Date, default: Date.now }
     }, { collection: 'Memberschema' });
@@ -79,7 +80,6 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
       }else{
         member__id = member_id;
       }
-      console.log("대상자 아이디 :: "+insert_point+"대상 게시판 ::"+board_id);
       member_data.findOne({id: member__id},function(err,member){
         if(typeof type == 'undefined' || type != 'minus'){
           member.member_point += insert_point;
@@ -139,12 +139,24 @@ exports = module.exports = { MemberMethod : function (obj,mongoose,request,respo
     }else{
       return true;
     }
-  }, CheckLoginUser: function(request,response){
-    if(!request.session.userid || !request.session.nickname){
-      response.redirect('/member/plz_login'); //
-      return false;
-    }else {
-      return true;
+  }, CheckLoginUser: function(request,response,admin_check){
+    var level = 3;
+    if(admin_check != undefined){ // 관리자인지 확인
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        if(value_){
+          return true;
+        }else{
+          response.redirect('/member/plz_login'); //
+          return false;
+        }
+      },'check_admin',level);
+    }else{
+      if(!request.session.userid || !request.session.nickname){
+        response.redirect('/member/plz_login'); //
+        return false;
+      }else {
+        return true;
+      }
     }
   }
 }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="sub admin_page">
+<head>
+  <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/admin/admin.css?token='<%= locals.nowtime %>'" />
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../partials/nav.ejs %>
+      <div class="container member_list normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <% if(locals.member_list) { %>
+        <section id="MemberList" class="loading_complete active">
+          <ul class="titlelist">
+            <li>
+              아이디
+            </li>
+            <li>
+              닉네임
+            </li>
+            <li>
+              전화번호
+            </li>
+            <li>
+              이메일
+            </li>
+            <li>
+              멤버 등급
+            </li>
+            <li>
+              포인트(치즈)
+            </li>
+            <li>
+              차단여부
+            </li>
+          </ul>
+          <ul>
+            <% for(var i=0; i < member_list.length; i++) { %>
+            <li>
+              <div>
+                <h2>
+                  <%= member_list[i].id %>
+                </h2>
+                <span>
+                  <%= member_list[i].nickname %>
+                </span>
+                <span>
+                  <%= member_list[i].tel %>
+                </span>
+                <span>
+                  <%= member_list[i].email %>
+                </span>
+                <span>
+                  <%= member_list[i].member_level %>
+                </span>
+                <span>
+                  <%= member_list[i].member_point %>
+                </span>
+                <div>
+                  <% if(!member_list[i].member_ban){ %>
+                    <button class="linebutton small">영구정지</button>
+                  <%}else {%>
+                    <button class="linebutton small">정지해제</button>
+                  <%}%>
+                </div>
+              </div>
+            </li>
+            <%}%>
+          </ul>
+        </section>
+        <%}%>
+        <section class="search_con">
+          <ul>
+            <li>
+            <form method="get" action="/admin_page/member_list">
+              <input type="hidden" name="board_id" value="<%= board_id %>" />
+              <input type="hidden" name="search" value="true" />
+              <% if(locals.page) { %>
+                <input type="hidden" name="page" value="<%= page %>" />
+              <%}else {%>
+                <input type="hidden" name="page" value="0" />
+              <%}%>
+              <input type="hidden" name="page_length" value="10" />
+              <% if(locals.searchoption) { %>
+                <select name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
+              <%}else {%>
+                <select name="searchoption" value="" id="BoardSearchOption">
+              <%}%>
+                <option value="nickname">닉네임</option>
+                <option value="id">아이디</option>
+                <option value="member_level">레벨</option>
+              </select>
+              <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
+              <input type="submit" class="linebutton small search_button" value="검색하기" />
+            </form>
+            </li>
+          </ul>
+        </section>
+        <section id="MemeberListPaging">
+          <ul>
+            <% for(var i=0; i < board_paging.length; i++) { %>
+            <li>
+              <% if(board_paging[i].paging != page_) { %>
+                <% if(locals.searchoption) { %>
+                  <a href="/admin_page/search_member_list?page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}else {%>
+                  <a href="/admin_page/member_list?page=<%= board_paging[i].paging %>&page_length=10">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}%>
+              <%}else {%>
+                <% if(locals.searchoption) { %>
+                  <a class="active" href="/admin_page/search_member_list?page=<%= board_paging[i].paging %>&page_length=10&searchoption=<%= searchoption %>&searchvalue=<%= searchvalue %>">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}else {%>
+                  <a class="active" href="/admin_page/member_list?page=<%= board_paging[i].paging %>&page_length=10">
+                    <%= board_paging[i].paging+1 %>
+                  </a>
+                <%}%>
+              <%}%>
+            </li>
+            <%}%>
+          </ul>
+        </section>
+      </div>
+    </div>
+<% include ../partials/footer.ejs %>
+</body>
+</html>

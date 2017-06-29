@@ -50,6 +50,7 @@ Member.login = function(request,response,mongoose){
 
         request.session.userid = response.locals.userid = member.id; // 그냥 id로 하면 서버에서 세션에 넣는 id로 들어감...
         request.session.nickname = response.locals.nickname = member.nickname;
+        request.session.member_level = response.locals.member_level = member.member_level;
         response.send("<script>alert('"+member.nickname+"님 정상적으로 로그인 되었습니다'); location.href='/';</script>");
       }
       else {
@@ -266,13 +267,14 @@ exports = module.exports = {member  : function (app,mongoose) {
     });
 
     app.get('/mypage/list', function(request, response) {
-    //  Member.join(request.query,MemberDB(mongoose,'',request,response),request,response,mongoose,'modfiy_list');
-    Member.modfiy_list(request.query,request,response,mongoose);
+      if(global.MEMBER_DB.CheckLoginUser(request,response)){
+        Member.modfiy_list(request.query,request,response,mongoose);
+      }
     });
 
     app.post('/mypage/submit', function(request, response) {
-    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'modfiy_submit');
-    Member.modfiy_submit(request.body,request,response,mongoose);
+      console.log("여기까진 접근");
+      Member.modfiy_submit(request.body,request,response,mongoose);
     });
 
     app.get('/logout', function(request, response) {

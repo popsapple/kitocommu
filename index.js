@@ -36,6 +36,7 @@ app.use(function (request, response, next) {
   response.set('Cache-Control', 'no-store'); // 뒤로가기시 로그인 유지 막기
   response.locals.nickname = request.session.nickname;
   response.locals.userid = request.session.userid;
+  response.locals.member_level = request.session.member_level;
   var getDateFull = new Date();
   getDateFull = parseInt(getDateFull.getMonth()+''+getDateFull.getDate()+''+getDateFull.getHours()+''+getDateFull.getMinutes()+''+getDateFull.getSeconds()+''+getDateFull.getMilliseconds());
   response.locals.nowtime = Math.floor(Math.random() * 100000000)+getDateFull;
@@ -100,3 +101,6 @@ require('./public/lib/board/board.js').board_con(app,mongoose);
 
 // 채팅관련
 require('./public/lib/catting/catting.js').catting_con(app,socketio,mongoose);
+
+// 관리자페이지 관련
+require('./public/lib/admin/admin.js').admin_con(app,mongoose);

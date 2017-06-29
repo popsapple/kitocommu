@@ -94,6 +94,14 @@
   background-color: #fff;
 }
 
+html.sub body .container form .hidden_item {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  visibility: hidden;
+  text-indent: -100000000px;
+}
+
 .sub .container form input[type=text],
 .sub .container form input[type=password] {
   background: #f9f9f9;

@@ -6,7 +6,7 @@
     <% include ../partials/nav.ejs %>
     <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
       <section>
-        <form method="post" action="/mypage/submit" onSubmit="CheckFormInput();">
+        <form id="ModifyMemberInfo" method="post" action="/mypage/submit" onSubmit="CheckFormInput();">
           <fieldset>
             <legend>
               <h2 class="section_title left">
@@ -106,9 +106,10 @@
                 </li>
               </ul>
             </fieldset>
+            <input type="submit" class="submit_hidden_btn hidden_item" />
           </form>
           <div class="buttonbox">
-            <button type="submit" class="linebutton middle" accesskey="s">정보변경하기</button>
+            <button data-form-id="ModifyMemberInfo" class="submit_btn_memberinfo linebutton middle" accesskey="s">정보변경하기</button>
             <button id="MemberSignOut" class="linebutton middle" accesskey="d">회원탈퇴</button>
           </div>
       </section>
