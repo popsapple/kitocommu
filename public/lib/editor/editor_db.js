@@ -38,6 +38,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         html ="\""+filePath+"\"";
 
         if(remove_thumnail != undefined){
+          console.log("기존썸네일삭제");
           var FileDelete = new global.EDITOR_FUNCTION.FileDelete(s3,req,res,obj,'thumnail',remove_thumnail);
         }
         res.send(html);

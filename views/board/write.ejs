@@ -144,6 +144,11 @@
                 <%}%>
               </ul>
             </fieldset>
+            <%if(locals.thumnail){%>
+              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="<%= thumnail %>" />
+            <%}else {%>
+              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="" />
+            <%}%>
           </form>
           <%if(locals.list_type == 'thumnail'){%>
             <div class="clearfix">
@@ -155,7 +160,6 @@
                   <form id="ajaxform" class="file_form" action="/upload_thumnail" method="post" enctype="multipart/form-data">
                     <label for="BoardThumnail">파일을 첨부해주세요</label>
                     <input id="BoardThumnail" class="file_input" name="thumnailfile" type="file" value="<%= thumnail %>" />
-                    <input id="BoardThumnailValue" name="thumnail" type="hidden" value="<%= thumnail %>" />
                     <button class="linebutton middle" type="button">이미지첨부</button>
                     <input id="BoardThumnailButton" class="linebutton middle" type="button" value="파일 올리기" />
                   </form>
@@ -163,7 +167,6 @@
                   <form id="ajaxform" class="file_form" action="/upload_thumnail" method="post" enctype="multipart/form-data">
                     <label for="BoardThumnail">파일을 첨부해주세요</label>
                     <input id="BoardThumnail" class="file_input" name="thumnailfile" type="file" value="" />
-                    <input id="BoardThumnailValue" name="thumnail" type="hidden" value="" />
                     <button class="linebutton middle" type="button">이미지첨부</button>
                     <input id="BoardThumnailButton" class="linebutton middle" type="button" value="파일 올리기" />
                   </form>
