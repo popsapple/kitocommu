@@ -7,6 +7,7 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
 
     obj.filelist = req.session.filelist;
 
+
     obj.filelist.push(filePath);
     for(key in obj.filelist){
       if(obj.filelist.hasOwnProperty(key)){
@@ -37,18 +38,27 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
 
   var upload_callback = upload.single('upload');
   app.post('/upload', function(req, res, next) {
+    if(req.session.filelist == undefined){
+      req.session.filelist = [];
+    }
     console.log("파일업로드 :: process.env.AWSKEY :: "+process.env.AWSKEY);
     console.log("파일업로드 :: process.env.AWSID :: "+process.env.AWSID);
     var UploadFile = new global.EDITOR_FUNCTION.UploadFile(upload_callback,s3,req,res,obj);
   });
 
   var thumnail_upload_callback = upload.single('thumnailfile'); // 실제 input에 있는 name이랑 이름이 같아야 함
+  if(req.session.filelist == undefined){
+    req.session.filelist = [];
+  }
   app.post('/upload_thumnail', function(req, res, next) {
     console.log("썸네일");
     var UploadThumnailFile = new global.EDITOR_FUNCTION.UploadThumnailFile(thumnail_upload_callback,s3,req,res,obj);
   });
 
   app.post('/upload_file_delete', function(req, res, next) {
+    if(req.session.filelist == undefined){
+      req.session.filelist = [];
+    }
     console.log("파일삭제");
     var FileDelete = new global.EDITOR_FUNCTION.FileDelete(s3,req,res);
   });
