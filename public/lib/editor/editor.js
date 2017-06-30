@@ -52,7 +52,8 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
       req.session.filelist = [];
     }
     console.log("썸네일");
-    var UploadThumnailFile = new global.EDITOR_FUNCTION.UploadThumnailFile(thumnail_upload_callback,s3,req,res,obj);
+    var remove_thumnail = [req.body.thumnail];
+    var UploadThumnailFile = new global.EDITOR_FUNCTION.UploadThumnailFile(thumnail_upload_callback,s3,req,res,obj,remove_thumnail);
   });
 
   app.post('/upload_file_delete', function(req, res, next) {

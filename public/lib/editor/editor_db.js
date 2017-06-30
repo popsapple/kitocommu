@@ -21,7 +21,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         html += "</script>";
         res.send(html);
       });
-    }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res,obj) {
+    }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res,obj,remove_thumnail) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
           console.log("업로드 에러 :: "+err);
@@ -36,9 +36,13 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
 
         var html;
         html ="\""+filePath+"\"";
+
+        if(remove_thumnail != undefined){
+          var FileDelete = new global.EDITOR_FUNCTION.FileDelete(s3,req,res,obj,'thumnail',remove_thumnail);
+        }
         res.send(html);
       });
-    }, FileDelete : function (s3,req,res,obj) {
+    }, FileDelete : function (s3,req,res,obj,type,remove_thumnail) {
       var remove_item;
       var post_idx;
       var count = 0;
@@ -73,6 +77,9 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
     };
     if(req.body.is_remove_post == "writing"){
       remove_item = req.session.filelist; // 작성중인걸 삭제할때
+      if(type == 'thumnail' && remove_thumnail != undefined){
+        remove_item = thumnail_file; // 썸네일 새로 올릴 때
+      }
       RemovingFile();
     }
     else{ // 이미 작성되어있는걸 삭제할때
@@ -87,7 +94,6 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
             RemovingFile();
           }
         }
-
       });
     }
   }
