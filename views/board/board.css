@@ -151,7 +151,18 @@
   padding-left: 0.5rem;
 }
 
-
+.borad_spam_con > div {
+  width:170px;
+}
+.borad_spam_con > * {
+  display:block;
+  float:left;
+}
+.borad_spam_con:after{
+  content:"";
+  display:block;
+  clear:both;
+}
 
 
 /********* 페이징 및 찾기 ***********/

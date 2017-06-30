@@ -95,9 +95,9 @@
                     </h3>
                     <div class="col-xs-12 col-md-9 col-lg-10">
                     <%if(locals.is_notice == "on"){%>
-                      <input id="BoardNotice" name="is_notice" type="checkbox" data-value="<%= is_notice %>" />
+                      <input id="BoardNotice" name="is_notice" class="check" type="checkbox" data-value="<%= is_notice %>" />
                     <%}else {%>
-                      <input id="BoardNotice" name="is_notice" type="checkbox" value="false"/>
+                      <input id="BoardNotice" name="is_notice" class="check" type="checkbox" value="false"/>
                     <%}%>
                     </div>
                   </li>
@@ -134,11 +134,11 @@
                         <span class="blind"><%= captcha_data %></span>
                       </label>
                     </h3>
-                    <div class="col-xs-12 col-md-9 col-lg-10">
+                    <div class="col-xs-12 col-md-9 col-lg-10 borad_spam_con">
                       <div>
                         <%= captcha_img  %>
                       </div>
-                      <input type="text" id="BoardCaptchaContents" name="captcha" data-toggle="captcha" placeholder="#으로 분리해서 적어주세요" />
+                      <input type="text" id="BoardCaptchaContents" name="captcha" data-toggle="captcha" placeholder="스팸방지문자를 적어주세요" />
                     </div>
                   </li>
                 <%}%>

@@ -1,13 +1,15 @@
 exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,obj){
+      console.log("업로드 실행");
       upload_callback(req, res, function (err) {
         if (err) {
           // 업로드 에러시
+          console.log("업로드 에러");
           return;
         }
 
         var filePath = req.file.location;
         obj.file_listing(req,filePath);  // 수정중인 첨부파일 리스트 편집.
-
+        console.log("업로드 파일 위치 :: "+filePath);
         var html;
         html = "";
         html += "<script type='text/javascript'>";

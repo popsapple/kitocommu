@@ -3,7 +3,6 @@ module.exports.admin_con = function(app,mongoose){
   app.get('/admin_page/member_list', function(request, response) {
     if(global.MEMBER_DB.CheckLoginUser(request,response)){
       var type = 'list';
-      console.log("request.query.search :: "+request.query.search);
       if(request.query.search == "true"){
         type = 'search';
       }
