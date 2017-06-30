@@ -37,7 +37,8 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
 
   var upload_callback = upload.single('upload');
   app.post('/upload', function(req, res, next) {
-    console.log("파일업로드");
+    console.log("파일업로드 :: process.env.AWSKEY :: "+process.env.AWSKEY);
+    console.log("파일업로드 :: process.env.AWSID :: "+process.env.AWSID);
     var UploadFile = new global.EDITOR_FUNCTION.UploadFile(upload_callback,s3,req,res,obj);
   });
 
