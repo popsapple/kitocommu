@@ -285,6 +285,7 @@ html.sub .designcustom .navbar-default {
   border-bottom:1px solid #e5e5e5;
 }
 
+/*
 @media (max-width:767px) and (orientation:landscape) {
   .designcustom .navbar-default.scroll {
     position:static;
@@ -293,6 +294,7 @@ html.sub .designcustom .navbar-default {
     border-bottom:none;
   }
 }
+*/
 
 .designcustom .navbar-header > h1 img{
   display:inline-block;
