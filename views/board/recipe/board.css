@@ -1,0 +1,34 @@
+.container.board.normal #boardList.recipe_list > ul > li{
+  position:absolute;
+  display:inline-block;
+}
+.container.board.normal #boardList.recipe_list > ul{
+  position:relative;
+}
+.container.board.normal #boardList.recipe_list li:after{
+  display:none;
+}
+.container.board.normal #boardList.recipe_list li img {
+  display:block;
+  width:100%;
+}
+.container.board.normal #boardList.recipe_list li img:hover {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+  cursor:pointer;
+}
+.container.board.normal #boardList.recipe_list li div {
+  margin: 3rem 0rem 1.5rem 0rem;
+  padding: 0rem;
+}
+.container.board.normal #boardList.recipe_list li div:after {
+  display:block;
+  width:100%;
+  content:"";
+  clear:both;
+}
+.container.board.normal #boardList.recipe_list li > * > *,
+.container.board.normal #boardList.recipe_list li > * > * > *
+{
+  margin-left:0rem;
+}

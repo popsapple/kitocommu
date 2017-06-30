@@ -2,10 +2,11 @@
 <html class="sub">
 <head>
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
+  <link rel="stylesheet" type="text/css" href="/board/recipe/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <% include ../../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../../partials/nav.ejs %>
-      <div class="container board normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+      <div class="container board normal recipe" itemscope = "" itemtype = "http://schema.org/CreativeWork">
         <% include ../../partials/sub_visual.ejs %>
         <% if(locals.notice_list) { %>
         <section id="boardNoticeList" class="loading_complete notice_index<%= locals.notice_list.length %>">
@@ -33,7 +34,7 @@
           </ul>
         </section>
         <%}%>
-        <section id="boardList" class="loading_complete">
+        <section id="boardList" class="recipe_list loading_complete">
           <ul>
             <% if(board_list.length == 0) {%>
             <li>
@@ -50,7 +51,9 @@
                 <% if(locals.board_list[i].thumnail) {%>
                   <figure class='thumnail_list'>
                     <picture>
-                      <img src="<%= board_list[i].thumnail %>" />
+                      <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
+                        <img src="<%= board_list[i].thumnail %>" />
+                      </a>
                     </picture>
                       <figcaption class="blind"><%= board_list[i].title %></figcaption>
                   </figure>
@@ -60,39 +63,12 @@
                     <%= board_list[i].title %>
                   </a>
                 </h2>
-                <time class="visible-sm visible-md visible-lg">
-                  <span class="blind">작성일</span>
-                  <%= board_list[i].writed_date %>
-                </time>
                 <h3>
                   <span class="blind">작성자</span>
                   <%= board_list[i].writer_nickname %>
                 </h3>
               </div>
             </li>
-            <% if(locals.board_list[i].reply_list) { %>
-              <% for(var j=0; j < board_list[i].reply_list.length; j++) { %>
-                <li>
-                    <div>
-                      <h2>
-                        <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
-                          <span class="reple_icon">
-                            <span class="blind"> 답글 </span>
-                          </span> <%= board_list[i].reply_list[j].title %>
-                        </a>
-                      </h2>
-                      <time class="visible-sm visible-md visible-lg">
-                        <span class="blind">작성일</span>
-                        <%= board_list[i].reply_list[j].writed_date %>
-                      </time>
-                      <h3>
-                        <span class="blind">작성자</span>
-                          <%= board_list[i].reply_list[j].writer_nickname %>
-                      </h3>
-                    </div>
-                </li>
-              <%}%>
-            <%}%>
           <%}%>
           </ul>
         </section>

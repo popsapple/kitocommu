@@ -783,7 +783,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           }case("Jun") :{
             date[1] = "06";
             break;
-          }case("July") :{
+          }case("Jul") :{
             date[1] = "07";
             break;
           }case("August") :{

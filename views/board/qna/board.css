@@ -397,19 +397,6 @@ html .sub.designcustom>.comment_container.container {
 .view_container .post_view li {
   margin-bottom:1rem;
 }
-.view_container .post_view .ckeditor-col-container li {
-  font-size: 1.4rem;
-}
-.view_container .post_view .ckeditor-col-container ul li {
-  list-style:circle;
-  list-style: inside;
-}
-.view_container .post_view .ckeditor-col-container ol {
-  padding-left:1.4rem;
-}
-.view_container .post_view .ckeditor-col-container ol li {
-  list-style:decimal;
-}
 .sub.designcustom .view_container .buttonbox {
   margin-bottom:2rem;
 }
@@ -468,16 +455,4 @@ html.sub .comment_container .submit_btn {
 }
 html.sub .comment_container section {
   margin-bottom: 6rem;
-}
-
-@media (max-width: 767px) {
-  .view_container .post_view .ckeditor-col-container .first-col{
-    width:100% !important;
-    padding:0rem !important;
-    padding-bottom:2rem !important;
-  }
-  .view_container .post_view .ckeditor-col-container .last-col{
-    width:100% !important;
-    padding:0rem !important;
-  }
 }
