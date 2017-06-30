@@ -8,6 +8,9 @@
 .container.board.normal #boardList.recipe_list li:after{
   display:none;
 }
+.container.board.normal #boardList.recipe_list li.none_post{
+  width:100%!important;
+}
 .container.board.normal #boardList.recipe_list li img {
   display:block;
   width:100%;
