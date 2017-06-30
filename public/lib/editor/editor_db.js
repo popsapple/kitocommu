@@ -20,7 +20,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         html += " window.parent.CKEDITOR.tools.callFunction(funcNum, url);";
         html += "</script>";
         res.send(html);
-      })();
+      });
     }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
@@ -36,7 +36,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         var html;
         html ="\""+filePath+"\"";
         res.send(html);
-      })();
+      });
     }, FileDelete : function (s3,req,res) {
       var remove_item;
       var post_idx;
