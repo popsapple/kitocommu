@@ -60,6 +60,6 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
       req.session.filelist = [];
     }
     console.log("파일삭제");
-    var FileDelete = new global.EDITOR_FUNCTION.FileDelete(s3,req,res);
+    var FileDelete = new global.EDITOR_FUNCTION.FileDelete(s3,req,res,obj);
   });
 }

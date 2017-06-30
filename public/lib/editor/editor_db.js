@@ -21,7 +21,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         html += "</script>";
         res.send(html);
       });
-    }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res) {
+    }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res,obj) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
           console.log("업로드 에러 :: "+err);
@@ -38,7 +38,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
         html ="\""+filePath+"\"";
         res.send(html);
       });
-    }, FileDelete : function (s3,req,res) {
+    }, FileDelete : function (s3,req,res,obj) {
       var remove_item;
       var post_idx;
       var count = 0;
