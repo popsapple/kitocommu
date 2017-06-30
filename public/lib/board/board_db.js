@@ -776,6 +776,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       console.log("체크02 :: "+obj[key][index]);
       console.log("체크03 :: "+obj[key][index].writed);
       if(!obj[key][index].writed){
+        obj[key] = [];
         callback(obj,mongoose,request,response);
         break;
       }
