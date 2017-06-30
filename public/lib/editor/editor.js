@@ -47,10 +47,10 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
   });
 
   var thumnail_upload_callback = upload.single('thumnailfile'); // 실제 input에 있는 name이랑 이름이 같아야 함
-  if(req.session.filelist == undefined){
-    req.session.filelist = [];
-  }
   app.post('/upload_thumnail', function(req, res, next) {
+    if(req.session.filelist == undefined){
+      req.session.filelist = [];
+    }
     console.log("썸네일");
     var UploadThumnailFile = new global.EDITOR_FUNCTION.UploadThumnailFile(thumnail_upload_callback,s3,req,res,obj);
   });
