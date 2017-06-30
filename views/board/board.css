@@ -258,6 +258,7 @@
 
 .container.board.normal #boardPaging li.button_li a {
   padding:0rem;
+  line-height:1.5rem;
 }
 .container.board.normal #boardPaging li.button_li a:hover {
   color:#303030;
