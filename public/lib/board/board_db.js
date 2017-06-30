@@ -162,6 +162,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_length = parseInt(request.query.page_length);
     var search_option = request.query.searchoption;
     var search_value = request.query.searchvalue;
+    if(request.query.searchvalue == undefined){
+      search_value = " ";
+    }
     var search_hint;
     if(search_option == "title"){
       search_hint = {title: search_value};
@@ -769,6 +772,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     outside:
     for(var key_ in obj[key]){ // 시간 뷰페이지에 맞게 가공
+      console.log("체크01 :: "+obj[key]);
+      console.log("체크02 :: "+obj[key][index]);
+      console.log("체크03 :: "+obj[key][index].writed);
+      if(!obj[key][index].writed){
+        callback(obj,mongoose,request,response);
+        break;
+      }
       var time_pattern = /(\S+)/g;
       var date = String.prototype.match.apply(obj[key][index].writed,[time_pattern]);
       function DateChange(time_pattern,date){
