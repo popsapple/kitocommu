@@ -2,7 +2,6 @@
 <html class="sub">
 <head>
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
-  <link rel="stylesheet" type="text/css" href="/board/qna/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <% include ../../partials/header.ejs %>
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../../partials/nav.ejs %>
@@ -63,29 +62,6 @@
                 </h3>
               </div>
             </li>
-            <% if(locals.board_list[i].reply_list) { %>
-              <% for(var j=0; j < board_list[i].reply_list.length; j++) { %>
-                <li>
-                    <div>
-                      <h2>
-                        <a href="/board/view?board_table_id=<%= board_list[i].reply_list[j].board_table_id %>&post_index=<%= board_list[i].reply_list[j].post_index %>&is_reply=yes&reply_table_id=<%= board_list[i].reply_list[j].reply_table %>">
-                          <span class="reple_icon">
-                            <span class="blind"> 답글 </span>
-                          </span> <%= board_list[i].reply_list[j].title %>
-                        </a>
-                      </h2>
-                      <time class="visible-sm visible-md visible-lg">
-                        <span class="blind">작성일</span>
-                        <%= board_list[i].reply_list[j].writed_date %>
-                      </time>
-                      <h3>
-                        <span class="blind">작성자</span>
-                          <%= board_list[i].reply_list[j].writer_nickname %>
-                      </h3>
-                    </div>
-                </li>
-              <%}%>
-            <%}%>
           <%}%>
           </ul>
         </section>

@@ -244,8 +244,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             var db_object = global.BOARD_COMMENT_MODEL;
             var post_index_ = board_info_.post_index;
             var board_table_id = request_list.board_table_id;
-            board_info_.tags_list = board_info_.tags.split("#").join(" ");
-
+            if(board_info_.tags == undefined){
+              board_info_.tags_list = "#키토제닉#저탄고지#다이어트";
+            }else{
+              board_info_.tags_list = board_info_.tags.split("#").join(" ");
+            }
             db_object.find({post_index: post_index_, board_id: board_table_id}, function(err, comment){
               var comment = comment;
               if(!comment || comment == '' || comment.length == 0) { // 댓글 없을 때
@@ -254,7 +257,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                     board_info_[key] = config[key];
                   }
-                  return response.render('board/view',board_info_);
+                  return response.render('board'+board_info_.template+'/view',board_info_);
                 });
                 return false;
               }else {
@@ -281,7 +284,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                             for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                               board_info_[key] = config[key];
                             }
-                            return response.render('board/view',board_info_);
+                            return response.render('board'+board_info_.template+'/view',board_info_);
                           });
                           //return response.render('board/view',board_info_);
                         }else{
@@ -294,7 +297,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                     if(finded_count > 0){
                       this.CheckFunction(i,that);
                     }else{
-                      return response.render('board/view',board_info_);
+                      return response.render('board'+board_info_.template+'/view',board_info_);
                     }
                   });
                 });
@@ -306,7 +309,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               for (var key in global.BOARD_STYLE_MODEL.schema.paths){
                 board_info_[key] = config[key];
               };
-              return response.render('board/view',board_info_);
+              if(board_info_.tags == undefined){
+                board_info_.tags_list = "#키토제닉#저탄고지#다이어트";
+              }else{
+                board_info_.tags_list = board_info_.tags.split("#").join(" ");
+              }
+              return response.render('board'+board_info_.template+'/view',board_info_);
             });
           }
 
