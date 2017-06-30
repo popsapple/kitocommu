@@ -1,10 +1,10 @@
 exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,obj){
       console.log("업로드 실행");
       upload_callback(req, res, function (err) {
-        console.log("upload_callback :: "+err);
+
         if (err) {
           // 업로드 에러시
-          console.log("업로드 에러");
+          console.log("업로드 에러 :: "+err);
           return;
         }
 
@@ -24,6 +24,7 @@ exports = module.exports = { UploadFile : function (upload_callback,s3,req,res,o
     }, UploadThumnailFile : function (thumnail_upload_callback,s3,req,res) {
       thumnail_upload_callback(req, res, function (err) {
         if (err) {
+          console.log("업로드 에러 :: "+err);
           return;
         }
         var filePath;
