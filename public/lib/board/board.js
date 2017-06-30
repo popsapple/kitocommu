@@ -14,7 +14,7 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
     that.save_data.board_table_id = info.board_table_id;
     that.save_data.writer = request.session.userid;
     that.save_data.writer_nickname = request.session.nickname;
-    info.thumnail ? this.save_data.thumnail = info.thumnail : '';
+    info.thumnail ? that.save_data.thumnail = info.thumnail : '';
     info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
     request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
     that.save_data.writed = new Date();
