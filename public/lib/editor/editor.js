@@ -14,8 +14,8 @@ module.exports.editor_con = function(app,aws,multer,multerS3,fs){
     }
   };
   aws.config.update({
-      secretAccessKey: process.env.AWSID,
-      accessKeyId: process.env.AWSKEY,
+      secretAccessKey: process.env.AWSKEY,
+      accessKeyId: process.env.AWSID,
       region: 'ap-northeast-2',
       endpoint: 's3.ap-northeast-2.amazonaws.com',
       signatureVersion: 'v4'
