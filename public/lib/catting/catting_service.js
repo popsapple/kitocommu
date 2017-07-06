@@ -556,6 +556,10 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
         global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
       }else{
         global.CATTING_SERVICE_DB.findOne({room_id: room_id_key},function(err,room_info){
+          if(room_info == undefined || typeof room_info == 'undefined'){
+            socketio.of('/catting/list').in(user_nickname).emit('passed_error');
+            return false;
+          }
           if(room_info.room_is_secret != 'true'){
             global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
           }else{ // 비밀글인 경우
