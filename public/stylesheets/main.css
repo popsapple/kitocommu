@@ -1,4 +1,4 @@
-/*********  메인비주얼  *********/
+﻿/*********  메인비주얼  *********/
 .main_visual.flexslider,
 .main_visual.flexslider .slides {
   margin:0rem;
@@ -47,6 +47,15 @@
   width:100%;
   height:100%;
 }
+
+/** 태블릿 이상 **/
+
+@media (min-width: 768px) {
+  .main_visual.flexslider .slides > li h1 > div > div {
+    width:90%;
+  }
+}
+
 
 .main_visual.flexslider .slides > li h1 div * {
   display:block;
@@ -140,7 +149,7 @@
     width:5.3rem;
     height:100%;
     top: 0rem;
-    right:0rem;
+    right:5%;
     bottom:none;
   }
   .main_visual_control > div {
