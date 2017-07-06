@@ -35,7 +35,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
       room_title : data.room_title,
       room_id : (data.room_id == undefined ? 's1245' : data.room_id),
       room_password : data.room_password,
-      room_is_secret : data.room_is_secret,
+      room_is_secret : (data.room_is_secret == undefined ? 'false' : data.room_is_secret),
       participate : [],
       room_master: [user_nickname],
       user_list: []
