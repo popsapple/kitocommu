@@ -40,13 +40,22 @@ module.exports.catting_con = function(app,socketio,mongoose){
     }
 
     socket.on('add_addedroom', function(data){
+      if(typeof request == 'undefined' && !socket.request.session.userid){
+        return false;
+      }
       global.CATTING_SERVICE.CattingListAddList(data,socket,socketio);
     });
     socket.on('join_catting', function(data){
       // 비밀글 접속 인증
+      if(typeof request == 'undefined' && !socket.request.session.userid){
+        return false;
+      }
       global.CATTING_SERVICE.AuthSecretRoom(data,socket,socketio);
     });
     socket.on('update_catting', function(data){
+      if(typeof request == 'undefined' && !socket.request.session.userid){
+        return false;
+      }
       global.CATTING_SERVICE.UpdatingCattingContents(data,socket,socketio);
     });
     socket.on('kicked_out', function(data){
@@ -59,9 +68,15 @@ module.exports.catting_con = function(app,socketio,mongoose){
       global.CATTING_SERVICE.CheckMasterAccount(data,socket,socketio);
     });
     socket.on('roommaster_add', function(data){
+      if(typeof request == 'undefined' && !socket.request.session.userid){
+        return false;
+      }
       global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'add');
     });
     socket.on('roommaster_remove', function(data){
+      if(typeof request == 'undefined' && !socket.request.session.userid){
+        return false;
+      }
       global.CATTING_SERVICE.AddRemoveMasterAccount(data,socket,socketio,'remove');
     });
     socket.on('remove_room', function(data){

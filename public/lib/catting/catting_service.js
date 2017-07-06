@@ -287,7 +287,6 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
 
     var user_nickname = socket.request.session.nickname;
     var is_double = false;
-    var is_double_admin = false;
     var room_obj;
     var that = this;
     var room_index;
@@ -429,6 +428,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
       }
     }
   },CheckMasterAccount : function(data,socket,socketio){
+    var is_double_admin = false;
     var room_id = socket.request.session.room_id;
     var user_nickname = socket.request.session.nickname;
     Object.keys(global.catting_room_list.room_list).forEach(function(element,index){
@@ -442,23 +442,23 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
               room_obj.room_master.forEach(function(master_ele,index_){
                 if(ele_ == master_ele){
                   is_double_admin = true; // 이미 목록에 있던 사람인지 체크 및 일반 관리자의 경우 체크
-                  if(value_ && (!is_double_admin)){ // 관리자일 경우 마스터리스트에 추가
-                    room_obj.room_master.push(user_nickname);
-                  }
-                  if(value_){ // 관리자일 경우 마스터리스트에 추가
-                    data.is_master = true;
-                    data.new_user = user_nickname;
-                    data.level = 4;
-                    socketio.of('/catting/list').in(room_id).emit('render_mastermark',{masterlist: room_obj.room_master});
-                    socketio.of('/catting/list').to(ele_).emit('render_userlist',data);
-                  }
-                  if(!value_){ // 일반 방장일경우 추가
-                    data.is_master = true;
-                    data.new_user = user_nickname;
-                    data.level = '0';
-                    socketio.of('/catting/list').in(room_id).emit('render_mastermark',{masterlist: room_obj.room_master});
-                    socketio.of('/catting/list').to(ele_).emit('render_userlist',data);
-                  }
+                }
+                if(value_ && (!is_double_admin)){ // 관리자일 경우 마스터리스트에 추가
+                  room_obj.room_master.push(user_nickname);
+                }
+                if(value_){ // 관리자일 경우 마스터리스트에 추가
+                  data.is_master = true;
+                  data.new_user = user_nickname;
+                  data.level = 4;
+                  socketio.of('/catting/list').in(room_id).emit('render_mastermark',{masterlist: room_obj.room_master});
+                  socketio.of('/catting/list').to(ele_).emit('render_userlist',data);
+                }
+                if(!value_){ // 일반 방장일경우 추가
+                  data.is_master = true;
+                  data.new_user = user_nickname;
+                  data.level = '0';
+                  socketio.of('/catting/list').in(room_id).emit('render_mastermark',{masterlist: room_obj.room_master});
+                  socketio.of('/catting/list').to(ele_).emit('render_userlist',data);
                 }
               });
             },'check_admin',level);
@@ -557,7 +557,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
       }else{
         global.CATTING_SERVICE_DB.findOne({room_id: room_id_key},function(err,room_info){
           if(room_info == undefined || typeof room_info == 'undefined'){
-            socketio.of('/catting/list').in(user_nickname).emit('passed_error');
+            global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
             return false;
           }
           if(room_info.room_is_secret != 'true'){

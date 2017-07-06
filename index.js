@@ -51,7 +51,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function(){
-    console.log("몽고디비에 연결되었습니다.");
+    console.log("몽고디비-에 연결되었습니다.");
 });
 
 mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.mlab.com:23361/heroku_jzh3ndmz");

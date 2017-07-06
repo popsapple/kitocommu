@@ -222,7 +222,7 @@ exports = module.exports = {member  : function (app,mongoose) {
       if(type == 'check_admin'){
         member_data.findOne({id: account2}, function(err, member){
           if(member == undefined || typeof member == 'undefined'){
-            request.session.destroy();
+            if(request.session != undefined){request.session.destroy();}
             response.redirect('/member/plz_login'); //
             return false;
           }

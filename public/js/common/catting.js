@@ -284,7 +284,6 @@ $(document).ready(function(){
     $("#CattingDialog > ul").append(contents);
   });
   socket.on('room_removed',function(data){ // 0명시 방 삭제
-    console.log("삭제이벤트 받음 :: "+data.room_id);
     var RemoveRoomElment = function(){
       $("#TotalRoomList .room_list > li > div > button").each(function(){
         if($(this).attr('data-roomid') == data.room_id){
@@ -297,11 +296,12 @@ $(document).ready(function(){
         }
       });
     }
-    if($("#TotalRoomList .room_list > li > div > button").length == 0){
+    RemoveRoomElment();
+    /*if($("#TotalRoomList .room_list > li > div > button").length == 0){
       setTimeout(function(){
         RemoveRoomElment();
       },500);
-    }
+    }*/
   });
   socket.on('passed_error',function(data){ // 비밀방 로그인 실패
     $("#TotalRoomList .room_list > li > div > button.active").html("입장하기").removeClass('active');
