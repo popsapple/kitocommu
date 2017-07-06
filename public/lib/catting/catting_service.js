@@ -541,7 +541,7 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
     };
 
     // 스키마 가져오기
-    var Schmea_ = require('mongoose').model('member').schema;
+    var Schmea_ = global.MEMBER_DB.model.schema; //require('mongoose').model('member').schema;
     // 비밀번호 저장 시 사용
     obj.settingPassword = function(){
       obj.hash = obj.makingHash(); // 사용자정의 메소드 호출
