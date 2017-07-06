@@ -38,6 +38,7 @@
   vertical-align: middle;
   padding-left: 2rem;
   margin: 0rem;
+  opacity: 0;
 }
 #MakeNewRoom #AddNewCattingRoom > * > label .lock:before {
   display: inline-block;
