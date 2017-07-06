@@ -569,7 +569,8 @@ exports = module.exports = {CattingRoomDbSetting  : function (mongoose,socketio,
             if(is_passed){
               global.CATTING_SERVICE.CattingUserlist(data,socket,socketio);
             }else{
-              socketio.of('/catting/list').in(user_nickname).emit('passed_error');
+              typeof socket.request.session.now_room != 'undefined'? data.now_room = socket.request.session.now_room : '';
+              socketio.of('/catting/list').in(user_nickname).emit('passed_error',data);
             }
           }
         });

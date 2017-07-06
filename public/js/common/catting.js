@@ -65,7 +65,7 @@ $(document).ready(function(){
           };
           socket.emit('join_catting',data);
           $("#TotalRoomList .room_list > li > div > button.active").html("입장하기").attr('class','linebutton small');
-          obj.html("입장대기중").addClass('active');
+          obj.html("참여중").addClass('active');
           $("#CattingDialog > ul").html(""); // 채팅방 입장시 컨텐츠 비우기
         });
         $("body > .modal.secret .dont").on('click',function(){
@@ -131,7 +131,7 @@ $(document).ready(function(){
       });
       if($(this).find("i").html() != data.new_user){
         if(parseInt(data.level) >= 4 && data.is_master) { // 관리자인지 방장인지
-          $(this).append("<div><button class='kick'>강퇴하기</button><button class='add_master'>방장추가</button><button class='remove_master'>방장삭제</button><button class='remove_room'>채팅방삭제</button></div>");
+          $(this).append("<div><button class='kick'>강퇴하기</button><button class='add_master'>방장추가</button><button class='remove_master'>방장삭제</button></div>");
         }else if(data.level == '0' && data.is_master) {
           $(this).append("<div><button class='kick'>강퇴하기</button></div>");
           $(this).addClass("master");
@@ -305,6 +305,11 @@ $(document).ready(function(){
   });
   socket.on('passed_error',function(data){ // 비밀방 로그인 실패
     $("#TotalRoomList .room_list > li > div > button.active").html("입장하기").removeClass('active');
+    $("#TotalRoomList .room_list > li > div > button").each(function(){
+      if(data.now_room != undefined && $(this).attr('data-roomid') == data.now_room){
+        $(this).html("참여중").addClass('active');
+      }
+    });
     alert("입장에 실패하셨습니다. 비밀번호를 확인해주세요");
   });
   AddNewCattingRoomButtonEvent(); // 방 렌더링 후 입장하기 이벤트 추가
