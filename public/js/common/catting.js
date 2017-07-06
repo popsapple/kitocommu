@@ -17,7 +17,7 @@ $(document).ready(function(){
 /***** 채팅 웹소켓 ******/
 
 $(document).ready(function(){
-  var socket = io.connect('http://192.168.219.104:5000/catting/list');
+  var socket = io.connect('http://kitocommu.herokuapp.com/catting/list');
   function AddNewCattingCheckSecretEvent(){ //비밀 대화방 이벤트
     $("#CheckSecretCattingRoom").on("change",function(){
       $("#MakeNewRoom #AddNewCattingRoom > * > label .lock").toggleClass("active");
