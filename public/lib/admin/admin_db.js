@@ -51,6 +51,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list){
         var count = 0;
+        member_list = member_list.splice(page_length,page_num);
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
           if(arr.nickname != undefined){
