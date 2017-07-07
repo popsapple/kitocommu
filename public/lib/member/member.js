@@ -9,7 +9,6 @@ Member.join = function(info,request,response,mongoose,type){
   }
 
   save_data.writing_level = 0; //처음 가입시 일반화원.
-
   // 디비를 갖고 온 후에 사용할 메서드
   var save_data_ = new global.MEMBER_DB.MemberMethod(save_data,mongoose,request,response);
   save_data.settingPassword();
@@ -18,13 +17,18 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.member_point = 0;
   save_data.member_level = 0;
   save_data.member_ban = false;
-  save_data.findOne({id: save_data.id, nickname: save_data.nickname}, function(err,data){
+  var check_id = save_data.id;
+  global.MEMBER_DB.model.findOne({id: check_id}, function(err, data) {
     if(err){
-      data.alert_message = "이미 가입된 아이디입니다. 다른 아이디로 가입해 주세요.";
+      data.alert_message = "데이터 전송 중 오류가 있었습니다 다시 가입 부탁드립니다.";
       return response.render('member/join_member_step2', {message: data.alert_message});
     }
-    if(typeof data == 'undefined'){
-      save_data.update(save_data,{upsert: true}, function(err,data){
+    if(data){
+     data.alert_message = "이미 가입된 아이디입니다. 다른 아이디로 가입해 주세요.";
+     return response.render('member/join_member_step2', {message: data.alert_message});
+    }
+    if(!data){
+      global.MEMBER_DB.model.update(save_data,{upsert: true}, function(err,data){
         if(err){
             console.error(err);
             request.json({result: 0});
@@ -123,7 +127,6 @@ Member.double_check = function(info,request,response,mongoose){
       is_double = {
         isdouble: "no"
       };
-      console.log("최종 ::"+is_double);
       response.send(is_double);
     }
   });
