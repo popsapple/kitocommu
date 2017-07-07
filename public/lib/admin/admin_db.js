@@ -52,6 +52,8 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       that.db_model.find(data, function(err, member_list){
         var count = 0;
         member_list = member_list.splice(page_length,page_num);
+        console.log("page_length :: "+page_length);
+        console.log("page_num :: "+page_num);
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
           if(arr.nickname != undefined){
@@ -59,7 +61,6 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
             count++;
           }
           if(index == (member_list.length-1)){
-            console.log("끝");
             member_list.page_ = page_num_;
             global.ADMIN_DB.getMemberPagingByIndex(member_list,mongoose,request,response,type);
           }
@@ -68,7 +69,6 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     });
   }();
 },getMemberPagingByIndex : function (member_list,mongoose,request,response,type){
-    console.log("getMemberPagingByIndex");
     var member_db = global.MEMBER_DB.model;
     var page_num;
     var page_num_;
@@ -120,13 +120,11 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       };
       if(page_num_ < (page_length_-1)){
         this.getCountArray(member_list,'all',function(member_list){ // 맨 마지막 페이지일때
-          console.log("getCountArray == all");
           member_list.board_id = board_id;
           response.render('admin/member_list',member_list);
         });
       }else{
         this.getCountArray(member_list,'',function(member_list){
-          console.log("getCountArray == none");
           member_list.board_id = board_id;
           response.render('admin/member_list',member_list);
         });
@@ -139,14 +137,11 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     var is_ban = request.body.is_ban.toString();
     var change_ban;
     var data = {"id": user_id};
-    console.log("유저 아이디 찾기 :: "+user_id);
-    console.log("유저 정보 찾기 :: "+is_ban);
     var admin_data = new admin_db(admin_db.schema);
     admin_data.working_date = new Date();
     admin_data.working_type = request.body.working_type;
     admin_data.woring_reason = request.body.woring_reason;
     admin_data.woring_admin = request.session.userid;
-
     if(member_db){
       member_db.findOne(data, function(err, member_info){
         var data_info = {};
@@ -160,7 +155,6 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         member_info.member_ban = change_ban;
         member_info.save(function(err){
           admin_data.save(function(err){
-            console.log("관리정보 저장");
           });
           response.send(data_info);
         });

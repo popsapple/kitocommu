@@ -28,7 +28,7 @@ Member.join = function(info,request,response,mongoose,type){
      return response.render('member/join_member_step2', {message: data.alert_message});
     }
     if(!data){
-      global.MEMBER_DB.model.update(save_data,{upsert: true}, function(err,data){
+      save_data.save(function(err,data){
         if(err){
             console.error(err);
             request.json({result: 0});
@@ -170,7 +170,6 @@ Member.search_login_info = function(info,request,response,mongoose,type){
   var id_info = {nickname: info['nickname']};
   save_data.findOne(id_info, function(err, member){
     if(err || !member || !member.nickname){  // 아무것도 못 찾았을 때
-        console.log("멤버를 못 찾았습니다");
         response.send("<script>alert('입력해주신 정보에 맞는 회원을 찾지 못했습니다. 입력내용을 다시한번 확인해주세요');</script>");
         return false;
     }
@@ -199,7 +198,6 @@ Member.sign_out_member = function(info,request,response,mongoose,type){
   global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
   var member_model = global.MEMBER_DB.model;
   var user_id = request.session.userid;
-  console.log("값 가져오기 확인 :: "+request.body.type);
   if(type == 'normal_member') {
     member_model.findOne({id: user_id}, function(err,member){
       if(err){
@@ -225,8 +223,7 @@ Member.sign_out_member = function(info,request,response,mongoose,type){
 }
 
 exports = module.exports = {member  : function (app,mongoose) {
-
-    this.CheckAuthenfication = function(account1,account2,request,response,callback,type,level){ // 알맞는 권한을 가진 계정인지 체크
+  this.CheckAuthenfication = function(account1,account2,request,response,callback,type,level){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
       var member_data = global.MEMBER_DB.model;
@@ -279,13 +276,11 @@ exports = module.exports = {member  : function (app,mongoose) {
     });
 
     app.post('/member_double_check', function(request, response) {
-    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'double_check');
       Member.double_check(request.body,request,response,mongoose);
     });
 
     app.post('/search_login_info_submit', function(request, response) {
-    //  Member.join(request.body,MemberDB(mongoose,'modfiy',request,response),request,response,mongoose,'login_info_submit');
-    Member.search_login_info(request.body,request,response,mongoose);
+      Member.search_login_info(request.body,request,response,mongoose);
     });
 
     app.get('/mypage/list', function(request, response) {
@@ -295,7 +290,6 @@ exports = module.exports = {member  : function (app,mongoose) {
     });
 
     app.post('/mypage/submit', function(request, response) {
-      console.log("여기까진 접근");
       Member.modfiy_submit(request.body,request,response,mongoose);
     });
 
