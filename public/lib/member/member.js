@@ -18,7 +18,7 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.member_point = 0;
   save_data.member_level = 0;
   save_data.member_ban = false;
-  save_data.findOne({id: save_data.id, nickname: save_data.nickname}}, function(err,data){
+  save_data.findOne({id: save_data.id, nickname: save_data.nickname}, function(err,data){
     if(err){
       data.alert_message = "이미 가입된 아이디입니다. 다른 아이디로 가입해 주세요.";
       return response.render('member/join_member_step2', {message: data.alert_message});
