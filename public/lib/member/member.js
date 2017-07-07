@@ -18,17 +18,25 @@ Member.join = function(info,request,response,mongoose,type){
   save_data.member_point = 0;
   save_data.member_level = 0;
   save_data.member_ban = false;
-  save_data.save(function(err){
+  save_data.findOne({id: save_data.id, nickname: save_data.nickname}}, function(err,data){
     if(err){
-        console.error(err);
-        request.json({result: 0});
-        return;
+      data.alert_message = "이미 가입된 아이디입니다. 다른 아이디로 가입해 주세요.";
+      return response.render('member/join_member_step2', {message: data.alert_message});
     }
-    request.session.destroy();
-    var data = {
-      id:save_data.id
+    if(typeof data == 'undefined'){
+      save_data.update(save_data,{upsert: true}, function(err,data){
+        if(err){
+            console.error(err);
+            request.json({result: 0});
+            return;
+        }
+        request.session.destroy();
+        var data = {
+          id:save_data.id
+        }
+        return response.render('member/join_member_step3',data);
+      });
     }
-    return response.render('member/join_member_step3',data);
   });
 }
 

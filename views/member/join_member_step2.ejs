@@ -6,7 +6,7 @@
     <% include ../partials/nav.ejs %>
       <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
         <section>
-          <form method="get" action="/join_member_step3">
+          <form method="get" action="/join_member_step3" autocomplete="off">
             <fieldset class="clearfix">
               <legend>
                 <h2 class="section_title left">
@@ -112,4 +112,7 @@
     </div>
   <% include ../partials/footer.ejs %>
   </body>
+  <% if(locals.message) {%>
+    <script>alert("<%= message %>");</script>
+  <%}%>
 </html>
