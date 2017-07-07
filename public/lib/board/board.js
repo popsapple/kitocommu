@@ -18,6 +18,8 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
     info.is_secret ? that.save_data.is_secret = "on" : that.save_data.is_secret = "no";
     request.session.filelist ? that.save_data.file_list = request.session.filelist : '';
     that.save_data.writed = new Date();
+    !info.post_index ? that.save_data.post_index = 0 : '';
+    console.log("포스트인덱스 01 :: "+that.save_data.post_index);
   }
   this.modify_item = function(data,info,request_list){
     data.board_table_id = info.board_table_id;

@@ -50,16 +50,28 @@
                 </span>
                 <span class="userlevel">
                   <%= member_list[i].member_level %>
+                  <% if(member_list[i].member_level < locals.member_level){ %>
+                    <input id="AdminMemberLevelInput" type="number" name="member_level" value="<%= member_list[i].member_level %>" />
+                    <button id="AdminMemberLevelButton" class="linebutton level_change small">등급변경</button>
+                  <%}%>
                 </span>
                 <span class="userpoint">
                   <%= member_list[i].member_point %>
+                  <% if(member_list[i].member_level < locals.member_level){ %>
+                    <input id="AdminMemberPointInput" type="number" name="member_point" value="<%= member_list[i].member_point %>" />
+                    <button id="AdminMemberPointButton" class="linebutton point_change small">포인트변경</button>
+                  <%}%>
                 </span>
                 <div>
-                  <% if(member_list[i].member_ban){ %>
-                    <button class="linebutton small ban_false ban_button">영구정지</button>
-                  <%}else {%>
-                    <button class="linebutton small ban_true ban_button">정지해제</button>
-                  <%}%>
+                  <% if(member_list[i].member_level < locals.member_level){ %>
+                    <% if(member_list[i].member_ban){ %>
+                      <button class="linebutton small ban_false ban_button">영구정지</button>
+                    <%}else {%>
+                      <button class="linebutton small ban_true ban_button">정지해제</button>
+                    <%}%>
+                  <%} else {%>
+                    <button class="linebutton small">정지불가</button>
+                  <%} %>
                 </div>
               </div>
             </li>

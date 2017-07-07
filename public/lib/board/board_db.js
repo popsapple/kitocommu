@@ -61,11 +61,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
-        obj.post_index = numOfDocs;
-        BOARD_DB_MODEL.find({post_index: numOfDocs}, function(err,result){
+        obj.post_index = (numOfDocs-1);
+        BOARD_DB_MODEL.find({post_index: (numOfDocs-1)}, function(err,result){
           // 동기적으로 실행해야 하므로 콜백으로 처리한 함수.
           if(result){
-            obj.post_index = (numOfDocs+1);
+            obj.post_index = (numOfDocs);
           }
           callback(obj);
         });
@@ -82,8 +82,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var page_length = parseInt(request.query.page_length);
     that.getListing = function(){
       that.db_model.count({}, function(error, numOfDocs){
-        page_num = numOfDocs-(page_num*page_length);
-        page_length = page_num-page_length+1;
+        page_num = numOfDocs-(page_num*page_length)-1;
+        page_length = (page_num-page_length)+1;
         var data = {};
         function sortList(a, b) {
           if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
@@ -175,8 +175,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }else if(search_option == "category"){
       search_hint = {category: search_value};
     }
-    page_num = page_num*page_length;
-    page_length = page_num+page_length-1;
+    page_num = numOfDocs-(page_num*page_length)-1;
+    page_length = (page_num-page_length)+1;
     var data = {};
     function sortList(a, b) {
       if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
@@ -376,13 +376,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     function SaveFunction(save_data,type){
       if(type=='save'){
         var board_table_id;
-
         that.save_data.update(that.save_data,{upsert: true}, function(err,data){
           if(err){
               console.error(err);
               request.json({result: 0});
               return;
           }else{
+            console.log("포스트 인덱스 값 :: "+that.save_data.post_index);
             (request.query.is_reply && request.query.is_reply == "yes") ? save_data.is_reply = "yes" : save_data.is_reply = "no";
             request.query.reply_table_id ? save_data.reply_table_id = request.query.reply_table_id : "";
 

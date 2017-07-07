@@ -34,8 +34,12 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
   var board_id = 'Memberschema';
   that.getListing = function(){
     that.db_model.count({}, function(error, numOfDocs){
-      page_num = numOfDocs-(page_num*page_length);
-      page_length = page_num-page_length+1;
+      //slice를 사용하기 때문에..
+      page_num = numOfDocs-(page_num*page_length)-1;
+      page_length = (page_num-page_length)+1;
+      page_length_max = page_length+10;
+      page_length_max > (numOfDocs-1) ? page_length_max = (numOfDocs-1) : '';
+      page_length < 0 ? page_length = 0 : '';
       var data = {};
 
       if(type == 'search'){
@@ -51,9 +55,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list){
         var count = 0;
-        member_list = member_list.splice(page_length,page_num);
-        console.log("page_length :: "+page_length);
-        console.log("page_num :: "+page_num);
+        member_list = member_list.splice(page_length,page_length_max);
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
           if(arr.nickname != undefined){
@@ -144,21 +146,99 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     admin_data.woring_admin = request.session.userid;
     if(member_db){
       member_db.findOne(data, function(err, member_info){
-        var data_info = {};
-        if(is_ban == "true"){
-          change_ban = true;
-          data_info.is__ban = "off";
+        var is_changable = global.ADMIN_DB.IsChangeableMember(request,response,member_info);
+        if(!is_changable){
+          return false;
         }else{
-          change_ban = false;
-          data_info.is__ban = "on";
-        }
-        member_info.member_ban = change_ban;
-        member_info.save(function(err){
-          admin_data.save(function(err){
+          var data_info = {};
+          if(is_ban == "true"){
+            change_ban = true;
+            data_info.is__ban = "off";
+          }else{
+            change_ban = false;
+            data_info.is__ban = "on";
+          }
+          member_info.member_ban = change_ban;
+          member_info.save(function(err){
+            admin_data.save(function(err){
+            });
+            response.send(data_info);
           });
-          response.send(data_info);
-        });
+        }
       });
     }
+  },setMemberPoint : function (mongoose,request,response){
+    var member_db = global.MEMBER_DB.model;
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var user_id = request.body.user_id;
+    var admin_data = new admin_db(admin_db.schema);
+    var data = {"id": user_id};
+    var member_point = parseInt(request.body.member_point);
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    if(member_db){
+      member_db.findOne(data, function(err, member_info){
+        var is_changable = global.ADMIN_DB.IsChangeableMember(request,response,member_info);
+        if(!is_changable){
+          return false;
+        }else{
+          member_info.member_point = member_point;
+          member_info.save(function(err){
+            admin_data.save(function(err){
+            });
+            response.send({'member_point': member_point});
+          });
+        }
+      });
+    }
+  },setMemberLevel : function (mongoose,request,response){
+    var member_db = global.MEMBER_DB.model;
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var user_id = request.body.user_id;
+    var data = {"id": user_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var member_level = parseInt(request.body.member_level);
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    if(member_db){
+      member_db.findOne(data, function(err, member_info){
+        var is_changable = global.ADMIN_DB.IsChangeableMember(request,response,member_info);
+        if(!is_changable){
+          return false;
+        }else{
+          member_info.member_level_ = member_level;
+          var is_changable_ = global.ADMIN_DB.IsChangeableMember(request,response,member_info);
+          if(!is_changable_){
+            return false;
+          }else{
+            member_info.member_level = member_level;
+            member_info.save(function(err){
+              admin_data.save(function(err){
+              });
+              response.send({'member_level': member_level});
+            });
+          }
+        }
+      });
+    }
+  },IsChangeableMember : function (request,response,member_info){
+    var is_return = true;
+    if(member_info.member_level_ > request.session.member_level){
+      response.send({'message': '자신의 등급보다 더 높게 수정하실 수 없습니다.'});
+      is_return = false;
+    }
+    if(member_info.id == request.session.userid){
+      response.send({'message': '자기 자신은 수정하실 수 없습니다.'});
+      is_return = false;
+    }
+    if(member_info.member_level > request.session.member_level){
+      response.send({'message': '자신보다 윗 등급의 멤버는 수정하실 수 없습니다.'});
+      is_return = false;
+    }
+    return is_return;
   }
 }

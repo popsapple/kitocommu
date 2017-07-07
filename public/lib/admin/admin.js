@@ -15,4 +15,12 @@ module.exports.admin_con = function(app,mongoose){
     global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
     global.ADMIN_DB.setMemberBanStatus(mongoose,request,response);
   });
+  app.post('/admin_page/member_list/level_change', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setMemberLevel(mongoose,request,response);
+  });
+  app.post('/admin_page/member_list/point_change', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setMemberPoint(mongoose,request,response);
+  });
 }
