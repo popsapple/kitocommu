@@ -219,8 +219,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       var prev_path = request.session.urlpath;
       if(global.MEMBER_DB.MemberSessionAndIsPageCheck(err,board,'post_index',request,response,prev_path)){ // 접속오류 체크
         var page_length = 10;
-        var board_paging = ((page_num/page_length)-1);
-        board_info_.board_paging = board_paging;
+        board_info_.board_paging = Math.floor(parseInt(page_num)/10);
         var board_id = 'Board_'+(request_list.board_table_id);
         var count = 0;
         for (var key in BOARD_DB_MODEL_SCHEMA){
@@ -869,5 +868,30 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       }
       index++;
     };
+  },getBoardData : function(data,request,response,mongoose,data_list,post_length,collection,callback){
+    var collection_ = collection;
+    var collection = "Board_"+collection;
+    global.BOARD_DB.BoardDbSetting(mongoose,request,response,collection);
+    global.BOARD_DB.model.count({}, function(error, board_count){
+      data.board_data[collection] = [];
+      global.BOARD_DB.model.find({},function(err,board__data){
+        board__data.forEach(function(arr,index){
+          if(index < post_length){
+            var board_paging = Math.floor(parseInt(arr.post_index)/10);
+            if (!data.board_data[collection][index]) {
+              data.board_data[collection][index] = [];
+            }
+            for(var key in data_list){
+              var key = data_list[key];
+              data.board_data[collection][index][key] = arr[key];
+            }
+            data.board_data[collection][index]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+arr.post_index;
+          }
+          if(index == post_length || index == (board_count-1)){
+            callback(data);
+          }
+        });
+      });
+    });
   }
 }

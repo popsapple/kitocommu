@@ -1037,7 +1037,7 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
     text-align:right;
   }
   .main_post_section > ul > li > a > h2 {
-    width:70%;
+    width:85%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

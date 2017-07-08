@@ -447,7 +447,12 @@ html.sub .comment_container label {
   color: #808080;
 }
 .view_container .post_view li > div#BoardViewContents{
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: visible;
+  min-height: 400px;
+}
+.view_container .post_view li > div#BoardViewContents * {
+  font-size:1.4rem;
 }
 @media (min-width: 992px) {
   .view_container .post_view li > div {

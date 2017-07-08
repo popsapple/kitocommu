@@ -59,14 +59,6 @@ mongoose.connect("mongodb://heroku_jzh3ndmz:gt0kqpf30michom691ku6fkj68@ds123361.
 // 회원관련
 global.MEMBERLIB = require('./public/lib/member/member.js').member(app,mongoose);
 
-// 처음 접속
-app.get('/', function(request, response, next) {
-  response.render('pages/index');
-  if(typeof next == "function"){
-    next();
-  }
-});
-
 // 봇 처리
 app.get('/robots.txt', function (req, res) {
     res.type('text/plain');
@@ -101,6 +93,9 @@ require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 
 // 게시판관련
 require('./public/lib/board/board.js').board_con(app,mongoose);
+
+// 메인페이지
+require('./public/lib/main_page/main_page.js').index_page(app,mongoose);
 
 // 채팅관련
 require('./public/lib/catting/catting.js').catting_con(app,socketio,mongoose);
