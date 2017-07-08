@@ -1,0 +1,25 @@
+<ul id="MainFaqSlider" class="no_padding no_margin" aria-live="polite">
+  <% for(var i=0; i < board_data.Board_DiteFaq.length; i++) { %>
+  <li class="dropdown active" aria-hidden="false">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
+    <a href="<%= board_data.Board_DiteFaq[i].link %>" itemprop="url">
+      <h2 itemtype="http://schema.org/Question">
+        <span itemprop="name"><%= board_data.Board_DiteFaq[i].title %></span>
+      </h2>
+      <div itemtype="http://schema.org/Answer" class="faq_con">
+        <p itemprop="text">
+          <%= board_data.Board_DiteFaq[i].contents %>
+        </p>
+      </div>
+    </a>
+  </li>
+  <% } %>
+</ul>
+<script>
+  $(".faq_con").each(function(){
+    var txt = $("<textarea></textarea>");
+    txt.html($(this).html());
+    var text_ = txt.val();
+    $(this).html(text_);
+  });
+</script>

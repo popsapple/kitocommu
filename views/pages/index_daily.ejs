@@ -1,0 +1,20 @@
+<ul class="no_margin no_padding">
+  <% for(var i=0; i < board_data.Board_MemberDiary.length; i++) { %>
+  <li>
+    <a href="<%= board_data.Board_MemberDiary[i].link %>" itemprop="url">
+      <h2 class="no_margin no_padding">
+        <strong itemprop="about"><%= board_data.Board_MemberDiary[i].title %></strong>
+      </h2>
+      <span itemprop="author"><%= board_data.Board_MemberDiary[i].writer_nickname %></span>
+    </a>
+  </li>
+  <% } %>
+</ul>
+<script>
+  $(".faq_con").each(function(){
+    var txt = $("<textarea></textarea>");
+    txt.html($(this).html());
+    var text_ = txt.val();
+    $(this).html(text_);
+  });
+</script>
