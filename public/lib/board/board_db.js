@@ -89,6 +89,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
         }
         that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
+          if(err){
+            return response.render('/');
+          }
           data.board_list = board;
           data.board_list.sort(sortList);
           data.page_ = request.query.page;
