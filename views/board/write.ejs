@@ -4,9 +4,9 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
     <% include ../partials/header.ejs %>
-    <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <div class="sub designcustom" role="main">
     <% include ../partials/nav.ejs %>
-      <div class="container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+      <div class="container" itemscope itemtype="http://schema.org/BlogPosting">
         <section>
           <%if(!locals.title){%>
             <%if(locals.is_reply != "yes"){%>
@@ -46,9 +46,9 @@
                   </h3>
                   <div class="col-xs-12 col-md-9 col-lg-10">
                     <%if(locals.title){%>
-                      <input id="BoardTitle" class="width100" name="title" type="text" required="" value="<%= title %>" />
+                      <input itemprop="name" id="BoardTitle" class="width100" name="title" type="text" required="" value="<%= title %>" />
                     <%}else {%>
-                      <input id="BoardTitle" class="width100" name="title" type="text" required="" />
+                      <input itemprop="name" id="BoardTitle" class="width100" name="title" type="text" required="" />
                     <%}%>
                   </div>
                 </li>
@@ -58,7 +58,7 @@
                   </h3>
                   <div class="col-xs-12 col-md-9 col-lg-10">
                     <%if(locals.category){%>
-                      <select id="BoardCategory" name="category" type="text" required="" data-value="<%= category %>">
+                      <select itemprop="genre" id="BoardCategory" name="category" type="text" required="" data-value="<%= category %>">
                         <%if(locals.category_list){%>
                           <% for(var i=0; i < category_list.length; i++) { %>
                             <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
@@ -66,7 +66,7 @@
                         <%}%>
                       </select>
                     <%}else {%>
-                      <select id="BoardCategory" name="category" type="text" required="">
+                      <select itemprop="genre" id="BoardCategory" name="category" type="text" required="">
                         <%if(locals.category_list){%>
                           <% for(var i=0; i < category_list.length; i++) { %>
                             <option value="<%= category_list[i] %>"><%= category_list[i] %></option>
@@ -108,9 +108,9 @@
                   </h3>
                   <div class="col-xs-12 col-md-9 col-lg-10">
                   <%if(locals.tags){%>
-                    <input id="BoardTags" class="width100" name="tags" type="text" value="<%= tags %>" data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" required="" />
+                    <input itemprop="keywords" id="BoardTags" class="width100" name="tags" type="text" value="<%= tags %>" data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" required="" />
                   <%}else {%>
-                    <input id="BoardTags" class="width100" name="tags" type="text" required=""  data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" />
+                    <input itemprop="keywords" id="BoardTags" class="width100" name="tags" type="text" required=""  data-toggle="tooltip" placeholder="#으로 분리해서 적어주세요" />
                   <%}%>
                   </div>
                 </li>
@@ -120,9 +120,9 @@
                   </h3>
                   <div class="col-xs-12 col-md-9 col-lg-10">
                   <%if(locals.contents){%>
-                    <textarea id="BoardContents" name="contents" required=""><%= contents %></textarea>
+                    <textarea itemprop="text" id="BoardContents" name="contents" required=""><%= contents %></textarea>
                   <%}else {%>
-                    <textarea id="BoardContents" name="contents" required=""></textarea>
+                    <textarea itemprop="text" id="BoardContents" name="contents" required=""></textarea>
                   <%}%>
                   </div>
                 </li>
@@ -145,13 +145,13 @@
               </ul>
             </fieldset>
             <%if(locals.thumnail){%>
-              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="<%= thumnail %>" />
+              <input id="BoardThumnailValue" type="hidden" value="<%= thumnail %>" />
             <%}else {%>
-              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="" />
+              <input id="BoardThumnailValue" type="hidden" value="" />
             <%}%>
           </form>
           <%if(locals.list_type == 'thumnail'){%>
-            <div class="clearfix">
+            <div itemprop="thumbnailUrl" class="clearfix">
               <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                 <label for="BoardThumnail">썸네일</label>
               </h3>

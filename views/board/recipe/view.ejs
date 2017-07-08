@@ -5,16 +5,16 @@
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <link rel="stylesheet" type="text/css" href="/board/recipe/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <% include ../../partials/header.ejs %>
-  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+  <div class="sub designcustom" role="main">
     <% include ../../partials/nav.ejs %>
-      <div class="view_container container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
-        <section class="post_view">
+      <div class="view_container container">
+        <section class="post_view" itemscope itemtype="http://schema.org/BlogPosting">
             <ul>
               <li class="clearfix">
                 <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                   <strong>제목</strong>
                 </h3>
-                <div class="col-xs-12 col-md-9 col-lg-10">
+                <div itemprop="name" class="col-xs-12 col-md-9 col-lg-10">
                   <%= title %>
                 </div>
               </li>
@@ -22,7 +22,7 @@
                 <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                   <strong>카테고리</strong>
                 </h3>
-                <div class="col-xs-12 col-md-9 col-lg-10">
+                <div itemprop="genre" class="col-xs-12 col-md-9 col-lg-10">
                   <%= category %>
                 </div>
               </li>
@@ -38,7 +38,7 @@
                 <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                   <strong>태그</strong>
                 </h3>
-                <div class="col-xs-12 col-md-9 col-lg-10">
+                <div itemprop="keywords" class="col-xs-12 col-md-9 col-lg-10">
                   <%= tags %>
                 </div>
               </li>
@@ -46,7 +46,7 @@
                 <h3 class="col-xs-12 col-md-3 col-lg-2 title_line">
                   <strong>글내용</strong>
                 </h3>
-                <div class="col-xs-12 col-md-9 col-lg-10 contents" id="BoardViewContents">
+                <div itemprop="text" class="col-xs-12 col-md-9 col-lg-10 contents" id="BoardViewContents">
                   <%= contents %>
                 </div>
               </li>
