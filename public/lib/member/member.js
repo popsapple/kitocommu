@@ -223,28 +223,32 @@ Member.sign_out_member = function(info,request,response,mongoose,type){
 }
 
 exports = module.exports = {member  : function (app,mongoose) {
-  this.CheckAuthenfication = function(account1,account2,request,response,callback,type,level){ // 알맞는 권한을 가진 계정인지 체크
+  this.CheckAuthenfication = function(account1,account2,request,response,callback,type,level,none_member){ // 알맞는 권한을 가진 계정인지 체크
       var value_;
       var member_data = new global.MEMBER_DB.MemberDbSetting(mongoose,request,response);
       var member_data = global.MEMBER_DB.model;
       if(type == 'check_admin'){
         member_data.findOne({id: account2}, function(err, member){
-          if(member == undefined || typeof member == 'undefined'){
+          if(!none_member && (member == undefined || typeof member == 'undefined')){
             if(request.session != undefined){request.session.destroy();}
             response.redirect('/member/plz_login'); //
             return false;
           }
-          (level == undefined) ? level = 3 : '';
-          if(parseInt(member.member_level) >= parseInt(level)){ // 4등급 이상이 관리자등급.
-            value_ = true;
+          if(!none_member && (member != undefined)){
+            (level == undefined) ? level = 3 : '';
+            if(parseInt(member.member_level) >= parseInt(level)){ // 4등급 이상이 관리자등급.
+              value_ = true;
+            }
           }
           callback(value_);
         });
       }else if(type == 'both_check'){
         member_data.findOne({id: account2}, function(err, member){
           account1 == account2 ? value_ = true : value_ = false;
-          if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
-            value_ = true;
+          if(!none_member && (member != undefined)){
+            if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
+              value_ = true;
+            }
           }
           callback(value_);
         });

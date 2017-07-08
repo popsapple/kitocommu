@@ -582,7 +582,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
-            },'check_admin',level);
+            },'check_admin',level,true);
           });
         });
       }else{
@@ -603,7 +603,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
-            },'check_admin',level);
+            },'check_admin',level,true);
           });
         });
       }
@@ -653,7 +653,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
-            },'check_admin',level);
+            },'check_admin',level,true);
           });
         });
       }else{
@@ -674,7 +674,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                 obj.template = '';
               }
               global.BOARD_DB.ChangeWritedDate(obj,function(array){response.render('board'+obj.template+'/list',array)},'post');
-            },'check_admin',level);
+            },'check_admin',level,true);
           });
         });
       }
