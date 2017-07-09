@@ -245,7 +245,7 @@ exports = module.exports = {member  : function (app,mongoose) {
       }else if(type == 'both_check'){
         member_data.findOne({id: account2}, function(err, member){
           account1 == account2 ? value_ = true : value_ = false;
-          if(!none_member && (member != undefined)){
+          if((member != undefined)){
             if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
               value_ = true;
             }
