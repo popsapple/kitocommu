@@ -1,7 +1,6 @@
-<% if(locals.nickname) { %>
-<div class="comment_container container" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+<div class="comment_container container">
   <% if(locals.comments_list) { %>
-  <section id="CommentContents">
+  <section id="CommentContents" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <ul>
       <% for(var i=0; i < comments_list.length; i++) { %>
       <li>
@@ -39,6 +38,7 @@
     </ul>
   </section>
   <%}%>
+  <% if(locals.nickname) { %>
   <section>
     <form method="post" action="/board_comment_submit">
       <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
@@ -54,5 +54,5 @@
       <button type="submit" class="linebutton small submit_btn">댓글 작성하기</button>
     </form>
   </section>
+  <% } %>
 </div>
-<% } %>
