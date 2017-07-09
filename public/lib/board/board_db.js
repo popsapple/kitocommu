@@ -879,7 +879,27 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       data.board_data[collection] = [];
       global.BOARD_DB.model.find({},function(err,board__data){
         var is_ok = true;
-        board__data.forEach(function(arr,index){
+        var count = (board_count-1);
+        var count_ = 0;
+        for(var i = count; i >= 0; i--){
+          if(count_ < post_length){
+            var board_paging = Math.floor(parseInt(arr.post_index)/10);
+            if (!data.board_data[collection][index]) {
+              data.board_data[collection][index] = [];
+            }
+            for(var key in data_list){
+              var key = data_list[key];
+              data.board_data[collection][index][key] = board__data[i][key];
+            }
+            data.board_data[collection][index]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+board__data[i].post_index;
+            count_++;
+          }
+          if((count_ == post_length || count_ == (board_count-1)) && is_ok){
+            is_ok = false;
+            callback(data);
+          }
+        }
+        /*board__data.forEach(function(arr,index){
           if(index < post_length){
             var board_paging = Math.floor(parseInt(arr.post_index)/10);
             if (!data.board_data[collection][index]) {
@@ -896,7 +916,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             console.log("두번실행인가");
             callback(data);
           }
-        });
+        });*/
       });
     });
   }
