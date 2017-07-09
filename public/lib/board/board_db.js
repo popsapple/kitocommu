@@ -899,7 +899,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             callback(data);
             return false;
           }
-          if((count_ == post_length && is_ok){
+          if((count_ == post_length) && is_ok){
             is_ok = false;
             callback(data);
             return false;
