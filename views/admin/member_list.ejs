@@ -7,29 +7,30 @@
   <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
     <% include ../partials/nav.ejs %>
       <div class="container member_list normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <% include ./tab_menu.ejs %>
         <% if(locals.member_list) { %>
-        <section id="MemberList" class="loading_complete active">
+        <section id="MemberList" class="list_section loading_complete active">
           <ul class="titlelist">
             <li>
-              아이디
+              <h3>아이디</h3>
             </li>
             <li>
-              닉네임
+              <h3>닉네임</h3>
             </li>
             <li>
-              전화번호
+              <h3>전화번호</h3>
             </li>
             <li>
-              이메일
+              <h3>이메일</h3>
             </li>
             <li>
-              멤버 등급
+              <h3>멤버 등급</h3>
             </li>
             <li>
-              포인트(치즈)
+              <h3>포인트(치즈)</h3>
             </li>
             <li>
-              차단여부
+              <h3>차단여부</h3>
             </li>
           </ul>
           <ul>

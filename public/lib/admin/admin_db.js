@@ -240,5 +240,33 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       is_return = false;
     }
     return is_return;
+  },getBoardList(mongoose,request,response,callback){
+    global.BOARD_DB.getBoardConfig(mongoose,request,response,'','',function(){
+      global.BOARD_STYLE_MODEL.count({}, function(error, numOfDocs){
+        global.BOARD_STYLE_MODEL.find({}, function(err, board_list){
+          var template_list = '';
+          board_list.forEach(function(board__list,index){
+            if(board__list.template == ''){
+              board__list.template = "/default";
+            }
+            if(template_list.indexOf(board__list.template) == -1){
+              template_list += board__list.template;
+            }
+            board__list.template = board__list.template.substring(1);
+            if(index == numOfDocs-1){
+              board_list.template_list = template_list.split('/');
+              var length_ = board_list.template_list.length;
+              board_list.template_list.forEach(function(arr,index){
+                if(index == (length_-1)){
+                  console.log("템플릿 찍기 :: "+board__list.template);
+                  board_list.board_list = board_list;
+                  callback(board_list,request,response);
+                }
+              });
+            }
+          })
+        });
+      });
+    },true);
   }
 }

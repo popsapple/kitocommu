@@ -22,11 +22,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.modelSchemas = {};
 
     exports.model = mongoose.model('board', Memberschema);
-  },getBoardConfig : function (mongoose,request,response,board_id,config,callback){
+  },getBoardConfig : function (mongoose,request,response,board_id,config,callback,is_model){
     var Schema = mongoose.Schema;
 
     var BoardConfigSchema = new Schema({
       board: String,
+      board_name: String,
       list_type:  String,
       is_comment:  String,
       is_reply_type:  String,
@@ -41,6 +42,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     mongoose.models = {};
     mongoose.modelSchemas = {};
     global.BOARD_STYLE_MODEL = mongoose.model('board_type_list', BoardConfigSchema);
+    if(is_model){
+      callback();
+      return false;
+    }
     BOARD_STYLE_MODEL.find({board: board_id}, function(err,board_config){
       var config_list = {};
       board_config.forEach(function(item,index){
@@ -774,9 +779,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     outside:
     for(var key_ in obj[key]){ // 시간 뷰페이지에 맞게 가공
-      console.log("체크01 :: "+obj[key]);
-      console.log("체크02 :: "+obj[key][index]);
-      console.log("체크03 :: "+obj[key][index].writed);
       if(!obj[key][index].writed){
         obj[key] = [];
         callback(obj,mongoose,request,response);
@@ -905,24 +907,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             return false;
           }
         }
-        /*board__data.forEach(function(arr,index){
-          if(index < post_length){
-            var board_paging = Math.floor(parseInt(arr.post_index)/10);
-            if (!data.board_data[collection][index]) {
-              data.board_data[collection][index] = [];
-            }
-            for(var key in data_list){
-              var key = data_list[key];
-              data.board_data[collection][index][key] = arr[key];
-            }
-            data.board_data[collection][index]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+arr.post_index;
-          }
-          if((index == post_length || index == (board_count-1)) && is_ok){
-            is_ok = false;
-            console.log("두번실행인가");
-            callback(data);
-          }
-        });*/
       });
     });
   }

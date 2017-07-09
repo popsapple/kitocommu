@@ -122,4 +122,10 @@ $(document).ready(function(){
         }
     });
   });
+
+  // selebox 기본값
+  $(".AdminBoardTemplateSelect").each(function(){
+    $(this).val($(this).attr('data-value'));
+    console.log("값 :: "+$(this).attr('data-value'));
+  });
 });

@@ -1,35 +1,43 @@
+.sub.designcustom .admin_menu ul li {
+  display:inline-block;
+  margin-left:0rem;
+  margin-bottom:2rem;
+}
+.admin_menu ul li+li {
+  margin-left:0.5rem;
+}
 .container.member_list.normal {
   display:block;
 }
 
-.container.member_list.normal #MemberList * {
+.container.member_list.normal .list_section * {
   margin:0rem;
   padding:0rem;
   font-size:0rem;
 }
 
-.container.member_list.normal #MemberList {
+.container.member_list.normal .list_section {
   width:100%;
   overflow-x:auto;
   overflow-y:visible;
 }
-.container.member_list.normal #MemberList ul {
+.container.member_list.normal .list_section ul {
   min-width:100rem;
 }
 
-.container.member_list.normal #MemberList li {
+.container.member_list.normal .list_section li {
   display:block;
   opacity:0;
   border-bottom: 1px solid #e5e5e5;
 }
 
-.container.member_list.normal #MemberList.active li {
+.container.member_list.normal .list_section.active li {
   opacity:1;
   transition:opacity 0.3s 1.2s;
 }
 
-.container.member_list.normal #MemberList li > * > * > *,
-.container.member_list.normal #MemberList li > * > * > * > * > * {
+.container.member_list.normal .list_section li > * > * > *,
+.container.member_list.normal .list_section li > * > * > * > * > * {
   display:inline-block;
   margin: 0rem;
   padding: 0rem;
@@ -39,36 +47,36 @@
   vertical-align: middle;
 }
 
-.container.member_list.normal #MemberList li > * > * a {
+.container.member_list.normal .list_section li > * > * a {
   margin-left:0rem;
 }
 
-.container.member_list.normal #MemberList li > * > * a a {
+.container.member_list.normal .list_section li > * > * a a {
   width:70%;
   overflow:hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.container.member_list.normal #MemberList li > * > * {
+.container.member_list.normal .list_section li > * > * {
   width:65%;
 }
-.container.member_list.normal #MemberList li > * > h3,
-.container.member_list.normal #MemberList li > * > time > time {
+.container.member_list.normal .list_section li > * > h3,
+.container.member_list.normal .list_section li > * > time > time {
   position:relative;
   font-size: 1.3rem;
   color: #999999;
   float: right;
   top: 2.3rem;
 }
-.container.member_list.normal #MemberList li > * > time > time {
+.container.member_list.normal .list_section li > * > time > time {
   position:relative;
   font-size: 1.3rem;
   color: #999999;
   float: right;
   top: 2.1rem;
 }
-.container.member_list.normal #MemberList li > * > * {
+.container.member_list.normal .list_section li > * > * {
   display:inline-block;
   padding: 1rem 0rem;
   margin: 0rem;
@@ -79,14 +87,15 @@
   width: auto;
   font-weight:normal;
 }
-.container.member_list.normal #MemberList li > * > h3 {
+.container.member_list.normal .list_section li > * > h3 {
   max-width: 10rem;
 }
-.container.member_list.normal #MemberList ul.titlelist {
+.container.member_list.normal .list_section ul.titlelist {
   white-space:nowrap;
   font-size: 0rem;
 }
-.container.member_list.normal #MemberList ul.titlelist li {
+.container.member_list.normal .list_section ul.titlelist > li,
+.container.member_list.normal .list_section ul.titlelist > li h3 {
   display: inline-block;
   text-align: center;
   font-size: 1.4rem;
@@ -95,24 +104,53 @@
   border-top: 1px solid #e5e5e5;
   background: #f9f9f9;
 }
-.container.member_list.normal #MemberList ul:first-child li,
-.container.member_list.normal #MemberList ul+ul li > * > * {
+.container.member_list.normal .list_section ul.titlelist > li > * { border-top:0rem !important; }
+.container.member_list.normal .list_section ul:first-child li,
+.container.member_list.normal .list_section ul+ul li > * > *,
+.container.member_list.normal .list_section ul.board_list_ul li {
   width:14.2%;
   padding: 1.5rem 0rem;
   text-align:center;
 }
-.container.member_list.normal #MemberList ul:first-child li:last-child,
-.container.member_list.normal #MemberList ul+ul li > * > *:last-child {
+.container.member_list.normal .list_section ul.board_list_ul li {
+  float:left;
+  min-height: 14rem;
+}
+.container.member_list.normal .list_section ul.board_list_ul li.alone {
+  line-height: 14rem;
+}
+.container.member_list.normal .list_section ul.board_list_ul li.alone input {
+  position: relative;
+  top: 2rem;
+}
+.container.member_list.normal .list_section ul.board_list_ul li button {
+  line-height: normal;
+}
+.container.member_list.normal .list_section ul.board_list_ul:after {
+  display:block;
+  content: "";
+  clear:both;
+}
+.container.member_list.normal .list_section ul:first-child li:last-child,
+.container.member_list.normal .list_section ul+ul li > * > *:last-child {
   width:14.8%;
 }
-.container.member_list.normal #MemberList li:after {
+.container.member_list.normal .list_section ul:first-child li.long,
+.container.member_list.normal .list_section ul.board_list_ul li.long  {
+  width:18.5%;
+}
+.container.member_list.normal .list_section ul:first-child li.long_,
+.container.member_list.normal .list_section ul.board_list_ul li.long_  {
+  width:19.8%;
+}
+.container.member_list.normal .list_section li:after {
   display:block;
   content:"";
   float:none;
   clear:both;
 }
 
-.container.member_list.normal #MemberList li > * > * .reple_icon {
+.container.member_list.normal .list_section li > * > * .reple_icon {
   display: inline-block;
   width: 2rem;
   height: 0.2rem;
@@ -122,11 +160,14 @@
   margin-right: 1rem;
 }
 
-.container.member_list.normal #MemberList li > * > *+* {
+.container.member_list.normal .list_section li > * > *+* {
   padding-left: 1rem;
 }
 
-.container.member_list.normal #MemberList li > * > * > input {
+.container.member_list.normal .list_section li > * > * > input,
+.container.member_list.normal .list_section li input,
+.container.member_list.normal .list_section li select,
+.container.member_list.normal .list_section li option {
   display: block;
   width: 10rem;
   line-height: 3rem;
@@ -138,7 +179,13 @@
   background: #f9f9f9;
   box-sizing: border-box;
 }
-
+.container.member_list.normal .list_section li select { padding: 0rem; }
+.container.member_list.normal .list_section li option {
+  width:100% !important;
+  margin:0rem;
+  padding:0rem;
+  border-top:0rem;
+}
 
 
 /********* 페이징 및 찾기 ***********/
