@@ -884,14 +884,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         for(var i = count; i >= 0; i--){
           if(count_ < post_length){
             var board_paging = Math.floor(parseInt(board__data[i].post_index)/10);
-            if (!data.board_data[collection][index]) {
-              data.board_data[collection][index] = [];
+            if (!data.board_data[collection][count_]) {
+              data.board_data[collection][count_] = [];
             }
             for(var key in data_list){
               var key = data_list[key];
-              data.board_data[collection][index][key] = board__data[i][key];
+              data.board_data[collection][count_][key] = board__data[i][key];
             }
-            data.board_data[collection][index]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+board__data[i].post_index;
+            data.board_data[collection][count_]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+board__data[i].post_index;
             count_++;
           }
           if((count_ == post_length || count_ == (board_count-1)) && is_ok){
