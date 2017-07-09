@@ -22,9 +22,13 @@
               <%if(locals.reply_table_id){%>
                 <input id="ReplyTableId" name="reply_table_id" type="hidden" value="<%= reply_table_id %>" />
               <%}%>
-              <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+              <%if(locals.is_reply != "yes"){%>
+                <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+              <%} else {%>
+                <input id="BoardTableId" name="board_table_id" type="hidden" value="<%= board_table_id %>" />
+              <%}%>
             <%}%>
-            <%if(locals.post_index){%>
+            <%if(locals.title){%> <!--locals.post_index -->
               <%if(locals.is_reply != "yes"){%>
                 <input id="BoardPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
               <%} else {%>

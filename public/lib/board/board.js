@@ -21,8 +21,7 @@ Board.write = function(info,request,response,mongoose,collection,type,type_reply
     !info.post_index ? that.save_data.post_index = 0 : '';
   }
   this.modify_item = function(data,info,request_list){
-    data.board_table_id = request_list.board_table_id;
-    console.log("테이블 아이디 :: "+data.board_table_id);
+    data.board_table_id = info.board_table_id;
     data.post_index = request_list.post_index;
     data.category = request_list.category;
     data.is_notice = request_list.is_notice;
