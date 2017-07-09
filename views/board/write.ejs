@@ -145,9 +145,9 @@
               </ul>
             </fieldset>
             <%if(locals.thumnail){%>
-              <input id="BoardThumnailValue" type="hidden" value="<%= thumnail %>" />
+              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="<%= thumnail %>" />
             <%}else {%>
-              <input id="BoardThumnailValue" type="hidden" value="" />
+              <input id="BoardThumnailValue" name="thumnail" type="hidden" value="" />
             <%}%>
           </form>
           <%if(locals.list_type == 'thumnail'){%>
