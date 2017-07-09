@@ -894,7 +894,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             data.board_data[collection][count_]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+board__data[i].post_index;
             count_++;
           }
-          if((count_ == post_length || count_ == (board_count-1)) && is_ok){
+          if(board_count < post_length && (count_ == board_count) && is_ok){
+            is_ok = false;
+            callback(data);
+            return false;
+          }
+          if((count_ == post_length && is_ok){
             is_ok = false;
             callback(data);
             return false;
