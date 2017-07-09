@@ -897,6 +897,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           if((count_ == post_length || count_ == (board_count-1)) && is_ok){
             is_ok = false;
             callback(data);
+            return false;
           }
         }
         /*board__data.forEach(function(arr,index){
