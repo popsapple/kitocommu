@@ -102,3 +102,6 @@ require('./public/lib/catting/catting.js').catting_con(app,socketio,mongoose);
 
 // 관리자페이지 관련
 require('./public/lib/admin/admin.js').admin_con(app,mongoose);
+
+// rss 관련
+require('./rss_builder.js').rss_builder(app,mongoose);

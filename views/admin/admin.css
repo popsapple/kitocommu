@@ -37,7 +37,6 @@
   font-weight: normal;
   color: #303030;
   vertical-align: middle;
-  margin-left: 1.5rem;
 }
 
 .container.member_list.normal #MemberList li > * > * a {
@@ -127,6 +126,18 @@
   padding-left: 1rem;
 }
 
+.container.member_list.normal #MemberList li > * > * > input {
+  display: block;
+  width: 10rem;
+  line-height: 3rem;
+  max-width: 30rem;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: 1px solid #bfbfbf;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}
 
 
 

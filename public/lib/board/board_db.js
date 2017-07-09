@@ -878,6 +878,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     global.BOARD_DB.model.count({}, function(error, board_count){
       data.board_data[collection] = [];
       global.BOARD_DB.model.find({},function(err,board__data){
+        var is_ok = true;
         board__data.forEach(function(arr,index){
           if(index < post_length){
             var board_paging = Math.floor(parseInt(arr.post_index)/10);
@@ -890,7 +891,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
             }
             data.board_data[collection][index]['link'] = "/board/view?board_table_id="+collection_+"&page="+board_paging+"&post_index="+arr.post_index;
           }
-          if(index == post_length || index == (board_count-1)){
+          if((index == post_length || index == (board_count-1)) && is_ok){
+            is_ok = false;
+            console.log("두번실행인가");
             callback(data);
           }
         });

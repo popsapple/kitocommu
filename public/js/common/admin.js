@@ -5,6 +5,10 @@ $(document).ready(function(){
     var user__id = $.trim($(this).parent().parent().find(".userid").text());
     $(this).hasClass("ban_true")? is_ban = true : is_ban = false;
     var reason = prompt("적절한 사유를 입력해 주세요");
+    if(!reason){
+      alert("사유를 입력해 주세요");
+      return false;
+    }
     $.ajax({
         type:"POST",
         cache:false,
@@ -39,7 +43,19 @@ $(document).ready(function(){
     var button_obj = $(this);
     var user__id = $.trim($(this).parent().parent().find(".userid").text());
     member__point = $(this).parent().find('input').val();
+    member__point_check = $(this).parent().find('input').text();
     var reason = prompt("적절한 사유를 입력해 주세요");
+    member__point_length = member__point.length;
+    var pattern = /^[0-9]+$/g
+    var is_num = pattern.test(member__point);
+    if(!reason){
+      alert("사유를 입력해 주세요");
+      return false;
+    }
+    if(!is_num){
+      alert("숫자를 입력해 주세요 :: "+member__point);
+      return false;
+    }
     $.ajax({
         type:"POST",
         cache:false,
@@ -57,7 +73,7 @@ $(document).ready(function(){
             alert(data.message);
             return false;
           }
-          alert("변경이 완료되었습니다");
+          alert("변경이 완료되었습니다 :: "+member__point);
         },
         error:function(e){
           console.log("에러");
@@ -69,7 +85,19 @@ $(document).ready(function(){
     var button_obj = $(this);
     var user__id = $.trim($(this).parent().parent().find(".userid").text());
     member__level = $(this).parent().find('input').val();
+    member__level_check = $(this).parent().find('input').text();
     var reason = prompt("적절한 사유를 입력해 주세요");
+    member__level_length = member__level.length;
+    var pattern = /^[0-9]+$/g
+    var is_num = pattern.test(member__level);
+    if(!reason){
+      alert("사유를 입력해 주세요");
+      return false;
+    }
+    if(!is_num){
+      alert("숫자를 입력해 주세요 :: "+member__level);
+      return false;
+    }
     $.ajax({
         type:"POST",
         cache:false,
@@ -87,7 +115,7 @@ $(document).ready(function(){
             alert(data.message);
             return false;
           }
-          alert("변경이 완료되었습니다");
+          alert("변경이 완료되었습니다 :: "+member__level);
         },
         error:function(e){
           console.log("에러");
