@@ -3,12 +3,12 @@
   <section id="CommentContents" itemscope = "" itemtype = "http://schema.org/CreativeWork">
     <ul>
       <% for(var i=0; i < comments_list.length; i++) { %>
-      <li>
+      <li itemprop="comment">
         <% if(is_comment_writer[i] == true) { %>
           <form method="post" action="/board_comment_submit">
-            <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
+            <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" itemprop="author" />
             <label for="CommentContents" class="blind">댓글내용</label>
-            <textarea id="CommentContents" rows="5" name="comment_contents"><%= comments_list[i].comment_contents %></textarea>
+            <textarea id="CommentContents" rows="5" name="comment_contents" itemprop="text"><%= comments_list[i].comment_contents %></textarea>
             <input id="CommentTableId" name="board_id" type="hidden" value="<%= board_table_id %>" />
             <input id="CommentIsModify" name="is_modify" type="hidden" value="yes">
             <input id="CommentPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
@@ -21,16 +21,14 @@
           </form>
         <%} else {%>
           <% if(comments_list[i].is_secret != "on") { %>
-            <div>
+            <div itemprop="text">
               <%= comments_list[i].comment_contents %>
             </div>
-            <strong>
+            <strong itemprop="author">
               <%= comments_list[i].comment_writer %>
-              비밀글여부확인 :: <%= comments_list[i].is_secret %>
             </strong>
-          </hgroup>
           <%} else {%>
-            <strong class="commentSecret_info">해당 댓글은 작성자와 운영자만 보실 수 있습니다</strong>
+            <strong itemprop="text" class="commentSecret_info">해당 댓글은 작성자와 운영자만 보실 수 있습니다</strong>
           <%}%>
         <%}%>
       </li>
@@ -39,11 +37,11 @@
   </section>
   <%}%>
   <% if(locals.nickname) { %>
-  <section>
-    <form method="post" action="/board_comment_submit">
-      <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" />
+  <section itemscope = "" itemtype = "http://schema.org/CreativeWork">
+    <form method="post" action="/board_comment_submit" itemprop="comment">
+      <input id="CommentPostWriter" name="comment_post_writer" type="hidden" value="<%= writer %>" itemprop="author" />
       <label for="CommentContents" class="blind">댓글내용</label>
-      <textarea id="CommentContents" rows="5" name="comment_contents" placeholder="아름다운 댓글은 당신의 얼굴입니다 :)"></textarea>
+      <textarea id="CommentContents" rows="5" name="comment_contents" placeholder="아름다운 댓글은 당신의 얼굴입니다 :)" itemprop="text"></textarea>
       <input id="CommentTableId" name="board_id" type="hidden" value="<%= board_table_id %>" />
       <!--input id="CommentIdx" name="comment_index" type="hidden" value="" /-->
       <input id="CommentPostIdx" name="post_index" type="hidden" value="<%= post_index %>" />
