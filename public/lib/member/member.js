@@ -234,7 +234,7 @@ exports = module.exports = {member  : function (app,mongoose) {
             response.redirect('/member/plz_login'); //
             return false;
           }
-          if(!none_member && (member != undefined)){
+          if((member != undefined)){
             (level == undefined) ? level = 3 : '';
             if(parseInt(member.member_level) >= parseInt(level)){ // 4등급 이상이 관리자등급.
               value_ = true;
