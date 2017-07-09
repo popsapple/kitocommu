@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="sub admin_page">
+<head>
+  <% include ../partials/header.ejs %>
+  <script type="text/javascript" src="/js/common/admin.js?token='<%= locals.nowtime %>'"></script>
+  <link rel="stylesheet" type="text/css" href="/admin/admin.css?token='<%= locals.nowtime %>'" />
+  <div class="sub designcustom" itemscope itemtype = "http://schema.org/WebPage" role="main">
+    <% include ../partials/nav.ejs %>
+      <div class="container member_list board_list normal" itemscope = "" itemtype = "http://schema.org/CreativeWork">
+        <% include ./tab_menu.ejs %>
+        <section id="BoardList" class="list_section loading_complete active">
+          <ul class="titlelist">
+            <li class="long">
+              <h3>게시판제목</h3>
+            </li>
+            <li class="long">
+              <h3>사용할 템플릿</h3>
+            </li>
+            <li class="long_">
+              <h3>카테고리</h3>
+            </li>
+            <li>
+              <h3>글쓰기 등급</h3>
+            </li>
+            <li>
+              <h3>일반 글 보상 포인트(치즈)</h3>
+            </li>
+            <li>
+              <h3>댓글 보상 포인트(치즈)</h3>
+            </li>
+          </ul>
+          <% for(var i=0; i < board_list.length; i++) { %>
+          <ul class="board_list_ul">
+            <li class="long alone">
+              <input id="AdminBoardNameInput" type="text" name="board_name" value="<%= board_list[i].board_name %>" readonly />
+            </li>
+            <li class="long">
+              <select id="AdminBoardTemplateSelect<%= i %>" class="AdminBoardTemplateSelect" name="template" data-value="<%= board_list[i].template %>" value="<%= board_list[i].template %>">
+                <% for(var j=0; j < template_list.length; j++) { %>
+                  <option>
+                    <%= template_list[j] %>
+                  </option>
+                <%}%>
+              </select>
+              <button id="AdminBoardTemplateButton" class="linebutton board_template small">템플릿변경</button>
+            </li>
+            <li class="long_">
+              <input id="AdminBoardCategoryInput" type="text" name="category_list"  value="<%= board_list[i].category_list %>" />
+              <button id="AdminBoardCategoryButton" class="linebutton board_writing_level small">카테고리변경</button>
+            </li>
+            <li>
+              <input id="AdminBoardLevelInput" type="number" name="writing_level" min="0" value="<%= board_list[i].writing_level %>" />
+              <button id="AdminBoardLevelButton" class="linebutton board_writing_level small">등급변경</button>
+            </li>
+            <li>
+              <input id="AdminBoardPostPointInput" type="number" name="post_point" min="0" value="<%= board_list[i].post_point %>" />
+              <button id="AdminBoardPostPointButton" class="linebutton board_post_point small">포인트변경</button>
+            </li>
+            <li>
+              <input id="AdminBoardCommentPointInput" type="number" name="comment_point" min="0" value="<%= board_list[i].comment_point %>" />
+              <button id="AdminBoardCommentPointButton" class="linebutton board_comment_point small">포인트변경</button>
+            </li>
+          </ul>
+          <%}%>
+        </section>
+      </div>
+    </div>
+<% include ../partials/footer.ejs %>
+</body>
+</html>
