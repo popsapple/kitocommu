@@ -105,3 +105,6 @@ require('./public/lib/admin/admin.js').admin_con(app,mongoose);
 
 // rss 관련
 require('./rss_builder.js').rss_builder(app,mongoose);
+
+// sitemap 관련
+require('./sitemap_builder.js').rss_builder(app,mongoose);

@@ -34,4 +34,25 @@ module.exports.admin_con = function(app,mongoose){
     global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
     global.ADMIN_DB.setMemberPoint(mongoose,request,response);
   });
+  app.post('/admin_page/board_list/board_template_change', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setBoardTemplate(mongoose,request,response);
+  });
+  app.post('/admin_page/board_list/board_category_change', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setBoardCategory(mongoose,request,response);
+  });
+  app.post('/admin_page/board_list/writeing_level_change', function(request, response) {
+    console.log("STEP00 :: ");
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setBoardWritingLevel(mongoose,request,response);
+  });
+  app.post('/admin_page/board_list/board_post_point', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setBoardPostPoint(mongoose,request,response);
+  });
+  app.post('/admin_page/board_list/board_comment_point', function(request, response) {
+    global.ADMIN_DB.AdminDbSetting(mongoose,request,response);
+    global.ADMIN_DB.setBoardCommentPoint(mongoose,request,response);
+  });
 }

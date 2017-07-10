@@ -122,7 +122,7 @@ $.fn.onMovingFllowingItem = function(options){
       });
     });
   }
-  
+
   if(obj.find("img").length != 0){
     var img = new Image();
     var img_src;
@@ -133,8 +133,9 @@ $.fn.onMovingFllowingItem = function(options){
     });
     img.src = img_src;
     img.onload = function(){
-      console.log("이미지 전부 로드됨");
-      obj.check_item_width();
+      setTimeout(function(){
+        obj.check_item_width();
+      },1000);
     };
   }else{
     obj.check_item_width();

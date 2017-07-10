@@ -268,5 +268,106 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         });
       });
     },true);
+  },setBoardTemplate : function (mongoose,request,response){
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var board_id = request.body.board_id;
+    var data = {"board": board_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var board_template = request.body.board_template;
+    if(board_template == 'default'){
+      board_template = "";
+    }else{
+      board_template = "/"+board_template;
+    }
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    global.BOARD_STYLE_MODEL.findOne(data, function(err, board_list){
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        board_list.template = board_template;
+        board_list.save(function(err){
+          admin_data.save(function(err){});
+          response.send({'board_template': board_template});
+        });
+      },'check_admin');
+    });
+  },setBoardCategory : function (mongoose,request,response){
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var board_id = request.body.board_id;
+    var data = {"board": board_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var board_category = request.body.board_category;
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    global.BOARD_STYLE_MODEL.findOne(data, function(err, board_list){
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        board_list.category = board_category;
+        board_list.save(function(err){
+          admin_data.save(function(err){});
+          response.send({'board_category': board_category});
+        });
+      },'check_admin');
+    });
+  },setBoardWritingLevel : function (mongoose,request,response){
+
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var board_id = request.body.board_id;
+    var data = {"board": board_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var board_writing_level = request.body.board_writing_level;
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    global.BOARD_STYLE_MODEL.findOne(data, function(err, board_list){
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        board_list.writing_level = board_writing_level;
+        board_list.save(function(err){
+          admin_data.save(function(err){});
+          response.send({'board_writing_level': board_writing_level});
+        });
+      },'check_admin');
+    });
+  },setBoardPostPoint : function (mongoose,request,response){
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var board_id = request.body.board_id;
+    var data = {"board": board_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var board_post_point = request.body.board_post_point;
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    global.BOARD_STYLE_MODEL.findOne(data, function(err, board_list){
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        board_list.post_point = board_post_point;
+        board_list.save(function(err){
+          admin_data.save(function(err){});
+          response.send({'board_post_point': board_post_point});
+        });
+      },'check_admin');
+    });
+  },setBoardCommentPoint : function (mongoose,request,response){
+    var admin_db = global.ADMIN_DIRAY_DB;
+    var board_id = request.body.board_id;
+    var data = {"board": board_id};
+    var admin_data = new admin_db(admin_db.schema);
+    var board_comment_point = request.body.board_comment_point;
+    admin_data.working_date = new Date();
+    admin_data.working_type = request.body.working_type;
+    admin_data.woring_reason = request.body.woring_reason;
+    admin_data.woring_admin = request.session.userid;
+    global.BOARD_STYLE_MODEL.findOne(data, function(err, board_list){
+      global.MEMBERLIB.CheckAuthenfication('',request.session.userid,request,response,function(value_){
+        board_list.comment_point = board_comment_point;
+        board_list.save(function(err){
+          admin_data.save(function(err){});
+          response.send({'board_comment_point': board_comment_point});
+        });
+      },'check_admin');
+    });
   }
 }

@@ -33,9 +33,10 @@
           <ul class="board_list_ul">
             <li class="long alone">
               <input id="AdminBoardNameInput" type="text" name="board_name" value="<%= board_list[i].board_name %>" readonly />
+              <input id="AdminBoardIdInput" type="hidden" name="board_id" value="<%= board_list[i].board %>" />
             </li>
             <li class="long">
-              <select id="AdminBoardTemplateSelect<%= i %>" class="AdminBoardTemplateSelect" name="template" data-value="<%= board_list[i].template %>" value="<%= board_list[i].template %>">
+              <select id="AdminBoardTemplateSelect" class="AdminBoardTemplateSelect" name="template" data-value="<%= board_list[i].template %>" value="<%= board_list[i].template %>">
                 <% for(var j=0; j < template_list.length; j++) { %>
                   <option>
                     <%= template_list[j] %>
@@ -46,7 +47,7 @@
             </li>
             <li class="long_">
               <input id="AdminBoardCategoryInput" type="text" name="category_list"  value="<%= board_list[i].category_list %>" />
-              <button id="AdminBoardCategoryButton" class="linebutton board_writing_level small">카테고리변경</button>
+              <button id="AdminBoardCategoryButton" class="linebutton board_category small">카테고리변경</button>
             </li>
             <li>
               <input id="AdminBoardLevelInput" type="number" name="writing_level" min="0" value="<%= board_list[i].writing_level %>" />
