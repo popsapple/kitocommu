@@ -14,7 +14,7 @@ module.exports.rss_builder = function (app,mongoose) {
     var url = doc.ele('url');
     var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com');
     var lastmod = url.ele('lastmod',{},new Date());
-    var changefreq = url.ele('changefreq',{},'always');
+    var changefreq = url.ele('changefreq',{},'hourly');
     var priority = url.ele('priority',{},'0.9');
 
     global.BOARD_DB.getBoardData(data,request,response,mongoose,['writed'],100,'MemberDiary',function(data){
@@ -22,7 +22,7 @@ module.exports.rss_builder = function (app,mongoose) {
         var url = doc.ele('url');
         var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com'+arr['link']);
         var lastmod = url.ele('lastmod',{},arr['writed']);
-        var changefreq = url.ele('changefreq',{},'always');
+        var changefreq = url.ele('changefreq',{},'hourly');
         var priority = url.ele('priority',{},'0.5');
       });
       global.BOARD_DB.getBoardData(data,request,response,mongoose,['writed'],100,'MemberIntroduce',function(data){
@@ -30,7 +30,7 @@ module.exports.rss_builder = function (app,mongoose) {
           var url = doc.ele('url');
           var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com'+arr['link']);
           var lastmod = url.ele('lastmod',{},arr['writed']);
-          var changefreq = url.ele('changefreq',{},'always');
+          var changefreq = url.ele('changefreq',{},'hourly');
           var priority = url.ele('priority',{},'0.5');
         });
         global.BOARD_DB.getBoardData(data,request,response,mongoose,['writed'],100,'DiteFaq',function(data){
@@ -38,7 +38,7 @@ module.exports.rss_builder = function (app,mongoose) {
             var url = doc.ele('url');
             var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com'+arr['link']);
             var lastmod = url.ele('lastmod',{},arr['writed']);
-            var changefreq = url.ele('changefreq',{},'always');
+            var changefreq = url.ele('changefreq',{},'hourly');
             var priority = url.ele('priority',{},'0.5');
           });
           global.BOARD_DB.getBoardData(data,request,response,mongoose,['writed'],100,'RecipeIntroduce',function(data){
@@ -46,7 +46,7 @@ module.exports.rss_builder = function (app,mongoose) {
               var url = doc.ele('url');
               var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com'+arr['link']);
               var lastmod = url.ele('lastmod',{},arr['writed']);
-              var changefreq = url.ele('changefreq',{},'always');
+              var changefreq = url.ele('changefreq',{},'hourly');
               var priority = url.ele('priority',{},'0.5');
             });
             return callback(that, now_date, request, response, next, doc.end({ pretty: true}));
