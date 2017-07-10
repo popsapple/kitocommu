@@ -4,7 +4,7 @@ module.exports.rss_builder = function (app,mongoose) {
     var builder = require('xmlbuilder');
     var dateFormat = require('dateformat');
     var now = new Date();
-    var now_date = dateFormat(now, "yyyy")+dateFormat(now, "mm")+dateFormat(now, "dd")+dateFormat(now, "hh")+dateFormat(now, "MM")+dateFormat(now, "ss");
+    var now_date = dateFormat(now, "yyyy")+"-"+dateFormat(now, "mm")+"-"+dateFormat(now, "dd");
     var data = {};
     data.board_data = [];
     var doc = builder.create('urlset', {encoding: 'utf-8',version: '1.0'})
@@ -13,7 +13,7 @@ module.exports.rss_builder = function (app,mongoose) {
     /*** 게시판이 아닌 페이지는 수동으로 추가 ***/
     var url = doc.ele('url');
     var loc = url.ele('loc',{},'https://kitocommu.herokuapp.com');
-    var lastmod = url.ele('lastmod',{},new Date());
+    var lastmod = url.ele('lastmod',{},now_date);
     var changefreq = url.ele('changefreq',{},'always');
     var priority = url.ele('priority',{},'0.9');
     /** 서브페이지인 경우는 이렇게 **/
