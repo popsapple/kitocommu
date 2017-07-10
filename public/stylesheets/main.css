@@ -829,6 +829,8 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
 }
 .main_kito_faq > ul > li.open h2+div {
   display:block;
+  max-height: 20rem;
+  overflow: hidden;
 }
 .main_kito_faq > ul > li h2+div p{
   font-size:1.4rem;
