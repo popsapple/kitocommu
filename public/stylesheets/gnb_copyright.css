@@ -139,13 +139,14 @@ body.ie9 .loading_div > div > div > span > b {
 
 div.modal .blind,
 body > .blind,
-.designcustom .blind {
+.designcustom .blind,
+html .blind {
   position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden !important;
+  clip: rect(1px 1px 1px 1px) !important; /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px) !important;
 }
 
 .designcustom .container {
@@ -233,7 +234,7 @@ body > .modal .linebutton.middle,
 
 /******** gnb **********/
 
-.designcustom .navbar {
+html .navbar {
   position:relative;
   background:none;
   display:block;
@@ -246,21 +247,21 @@ body > .modal .linebutton.middle,
   box-shadow: none;
 }
 
-.designcustom .navbar .container {
+html .navbar .container {
   display:block;
   width:100%;
   margin:0rem;
   padding:0rem;
 }
 
-.designcustom .navbar-default {
+html .navbar-default {
   background:none;
   border:0rem;
   padding:0rem;
   box-shadow: none;
   border-radius: 0rem;
 }
-.designcustom .navbar-header {
+html nav.navbar > .container .navbar-header {
   position:absolute;
   z-index:9;
   display:table;
@@ -272,7 +273,7 @@ body > .modal .linebutton.middle,
   line-height:inherit;
 }
 
-.designcustom .navbar-default.scroll {
+html .navbar-default.scroll {
   position:fixed;
   z-index:3;
   top:0;
@@ -280,14 +281,14 @@ body > .modal .linebutton.middle,
   border-bottom:1px solid #cbc8c2;
 }
 
-html.sub .designcustom .navbar-default {
+html.sub html .navbar-default {
   background:#ffffff;
   border-bottom:1px solid #e5e5e5;
 }
 
 /*
 @media (max-width:767px) and (orientation:landscape) {
-  .designcustom .navbar-default.scroll {
+  html .navbar-default.scroll {
     position:static;
     z-index:1;
     background:none;
@@ -296,18 +297,18 @@ html.sub .designcustom .navbar-default {
 }
 */
 
-.designcustom .navbar-header > h1 img{
+html nav.navbar > .container .navbar-header > h1 img{
   display:inline-block;
   width: 8rem;
   height: auto;
   vertical-align:inherit;
 }
-.designcustom .navbar-header > h1 > a{
+html nav.navbar > .container .navbar-header > h1 > a{
   padding:0rem;
   height:auto;
   margin-left:1rem;
 }
-.designcustom .navbar-header > h1  {
+html nav.navbar > .container .navbar-header > h1  {
   display:table-cell;
   width:50%;
   height:inherit;
@@ -318,9 +319,9 @@ html.sub .designcustom .navbar-default {
   line-height:inherit;
   text-align:left;
 }
-.designcustom .navbar-header > button:hover,
-.designcustom .navbar-header > button:focus,
-.designcustom .navbar-header > button {
+html nav.navbar > .container .navbar-header > button:hover,
+html nav.navbar > .container .navbar-header > button:focus,
+html nav.navbar > .container .navbar-header > button {
   position:relative;
   display:table-cell;
   width:50%;
@@ -334,7 +335,7 @@ html.sub .designcustom .navbar-default {
   text-align:right;
   background:none;
 }
-.designcustom .navbar-header button img {
+html nav.navbar > .container .navbar-header button img {
   display:inline-block;
   width: 5.5rem;
   height: auto;
@@ -347,7 +348,7 @@ html.sub .designcustom .navbar-default {
   }
 }
 
-.designcustom .navbar-collapse {
+html .navbar-collapse {
   position:absolute;
   z-index:10;
   display:block;
@@ -369,7 +370,7 @@ html.sub .designcustom .navbar-default {
   transition:opacity 1s 0s,height 1s 1s;
 }
 
-.designcustom .navbar-collapse.in {
+html .navbar-collapse.in {
   opacity:1;
   height:100vh;
   visibility:visible;
@@ -392,7 +393,7 @@ html.sub .designcustom .navbar-default {
   }
 }
 
-.designcustom .navbar-collapse > div > ul {
+html .navbar-collapse > div > ul {
   display:block;
   width:100%;
   height:auto;
@@ -408,7 +409,7 @@ html.sub .designcustom .navbar-default {
   animation-fill-mode:both;
 }
 
-body.ie9 .designcustom .navbar-collapse > div > ul {
+body.ie9 html .navbar-collapse > div > ul {
   margin-top:-50rem;
 }
 
@@ -423,31 +424,31 @@ body.ie9 .designcustom .navbar-collapse > div > ul {
   }
 }
 
-.designcustom .navbar-collapse.in > div > ul {
+html .navbar-collapse.in > div > ul {
   animation-name: openmenu;
   animation-duration: 1s;
   animation-delay: 0.5s;
   -webkit-animation-fill-mode:both;
 }
 
-body.ie9 .designcustom .navbar-collapse.in > div > ul {
+body.ie9 html .navbar-collapse.in > div > ul {
   margin-top:0rem;
 }
 
-.designcustom .navbar-collapse > div > ul * {
+html .navbar-collapse > div > ul * {
   margin:0rem;
   padding:0rem;
 }
-.designcustom .navbar-collapse > div > ul > li {
+html .navbar-collapse > div > ul > li {
   display:block;
   height:auto;
   margin-bottom:2.2rem;
   overflow-y: hidden;
   text-align:center;
 }
-.designcustom .navbar .navbar-collapse > div > ul > li > a,
-.designcustom .navbar .navbar-collapse > div > ul > li > a:hover,
-.designcustom .navbar .navbar-collapse > div > ul > li > a:focus {
+html nav.navbar > .container .navbar-collapse > div > ul > li > a,
+html nav.navbar > .container .navbar-collapse > div > ul > li > a:hover,
+html nav.navbar > .container .navbar-collapse > div > ul > li > a:focus {
   display:block;
   height:1.5rem;
   line-height: 1.5rem;
@@ -461,11 +462,11 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   background: none;
   box-shadow: none;
 }
-.designcustom .navbar-collapse > div > ul > li > a+ul {
+html .navbar-collapse > div > ul > li > a+ul {
   display:block;
   height:auto;
 }
-.designcustom .navbar-collapse > div > ul > li > a+ul li {
+html .navbar-collapse > div > ul > li > a+ul li {
   display:block;
   height:1.6rem;
   text-align:center;
@@ -473,12 +474,12 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   margin-bottom:2rem;
 }
 
-.designcustom .navbar-collapse > div > ul > li > a+ul li.last,
-.designcustom .navbar-collapse > div > ul > li.last {
+html .navbar-collapse > div > ul > li > a+ul li.last,
+html .navbar-collapse > div > ul > li.last {
   margin-bottom:0rem;
 }
 
-.designcustom .navbar .navbar-collapse > div > ul > li > a+ul li a {
+html nav.navbar > .container .navbar-collapse > div > ul > li > a+ul li a {
   font-size:1.5rem;
   font-weight:400;
   padding:0rem;
@@ -486,7 +487,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   text-decoration: none;
 }
 
-.designcustom .navbar-collapse > div > ul > li > ul {
+html .navbar-collapse > div > ul > li > ul {
   position:relative;
   display:block;
   visibility:hidden;
@@ -494,21 +495,21 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   overflow:hidden;
   transition: max-height 0.5s ease-out 0.5s;
 }
-.designcustom .navbar-collapse > div > ul > li.open > ul {
+html .navbar-collapse > div > ul > li.open > ul {
   display:block;
   visibility:visible;
   max-height:20rem;
   transition:max-height 1s ease-in 0s;
 }
 
-.designcustom .navbar-collapse > div > ul > li.member_side {
+html .navbar-collapse > div > ul > li.member_side {
   display:table;
   width:60%;
   height:auto;
   margin:0rem auto;
 }
 
-.designcustom .navbar-collapse > div > ul > li.member_side > ul.menu {
+html .navbar-collapse > div > ul > li.member_side > ul.menu {
   display:table-row;
   visibility:visible !important;
   width:100%;
@@ -516,16 +517,16 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   max-height:20rem;
 }
 
-.designcustom .navbar-collapse > div > ul > li.member_side > ul.menu > li {
+html .navbar-collapse > div > ul > li.member_side > ul.menu > li {
   display:table-cell;
   width:50%;
   text-align:center;
   vertical-align:middle;
 }
-.designcustom .navbar-collapse > div > ul > li.member_side > ul.admin_menu > li {
+html .navbar-collapse > div > ul > li.member_side > ul.admin_menu > li {
   width:33.3%;
 }
-.designcustom .navbar-collapse > div > ul > li.member_side > ul.menu > li * {
+html .navbar-collapse > div > ul > li.member_side > ul.menu > li * {
   font-size:1.3rem;
   font-weight:900;
   color:#000000;
@@ -568,7 +569,7 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   content: "\f013";
 }
 
-.designcustom .navbar-collapse > div+button {
+html .navbar-collapse > div+button {
   position:relative;
   display:block;
   width:5rem;
@@ -581,8 +582,8 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
   border: 0px;
 }
 
-.designcustom .navbar-collapse > div+button:before,
-.designcustom .navbar-collapse > div+button:after {
+html .navbar-collapse > div+button:before,
+html .navbar-collapse > div+button:after {
   position:absolute;
   left:50%;
   top:50%;
@@ -600,21 +601,21 @@ body.ie9 .designcustom .navbar-collapse.in > div > ul {
 }
 
 @media (max-width:767px) and (orientation:landscape) {
-  .designcustom .navbar-collapse > div+button {
+  html .navbar-collapse > div+button {
     position:absolute;
     right:2rem;
     top:2rem;
   }
-  .designcustom .navbar-collapse > div+button:before,
-  .designcustom .navbar-collapse > div+button:after {
+  html .navbar-collapse > div+button:before,
+  html .navbar-collapse > div+button:after {
     background:#000000;
   }
 }
 
-body.ie9 .designcustom .navbar-collapse > div+button:before {
+body.ie9 html .navbar-collapse > div+button:before {
   display:none;
 }
-body.ie9 .designcustom .navbar-collapse > div+button:after {
+body.ie9 html .navbar-collapse > div+button:after {
   content:"\f00d";
   width:2rem;
   height:2rem;
@@ -626,14 +627,14 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
   margin-left:-1rem;
 }
 
-.designcustom .navbar-collapse.in > div+button:before,
-.designcustom .navbar-collapse.in > div+button:after {
+html .navbar-collapse.in > div+button:before,
+html .navbar-collapse.in > div+button:after {
   transform: rotate(45deg);
   opacity:1;
   -webkit-transition: opacity 1s 1s, transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s;
   transition: opacity 1s 1s, transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s;
 }
-.designcustom .navbar-collapse.in > div+button:after {
+html .navbar-collapse.in > div+button:after {
   transform: rotate(-45deg);
 }
 
@@ -643,7 +644,7 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
   .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
     margin-left:1rem;
   }
-  .designcustom .navbar-default {
+  html .navbar-default {
     max-width:none;
   }
   .navbar-collapse.collapse {
@@ -664,16 +665,16 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
       padding-bottom: 0;
   }
 
-  .designcustom .navbar .container {
+  html .navbar .container {
     max-width: 750px;
   }
-  .designcustom .navbar-header {
+  html nav.navbar > .container .navbar-header {
     max-width: 750px;
     margin: auto;
     left: 50%;
     margin-left: -375px;
   }
-  .designcustom .navbar-nav > li {
+  html .navbar-nav > li {
     float:none;
   }
   .navbar-nav {
@@ -684,10 +685,10 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
 
 /** PC 이상 **/
 @media (min-width: 992px) {
-  .designcustom .navbar .container {
+  html .navbar .container {
     max-width: 970px;
   }
-  .designcustom .navbar-header {
+  html nav.navbar > .container .navbar-header {
     max-width: 970px;
     margin-left: -485px;
   }
@@ -705,14 +706,14 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
     text-align: left;
     background: #ffce00;
   }
-  .designcustom .navbar-collapse > div > ul {
+  html .navbar-collapse > div > ul {
     position:relative;
     text-align:left;
     line-height:100%;
     max-width:1170px;
     margin:auto;
   }
-  .designcustom .navbar-collapse > div > ul > li {
+  html .navbar-collapse > div > ul > li {
     display:inline-block;
     vertical-align:top;
     text-align:left;
@@ -720,31 +721,31 @@ body.ie9 .designcustom .navbar-collapse > div+button:after {
     min-width: 5rem;
     margin-right: 10rem;
   }
-  .designcustom .navbar-collapse > div > ul > li > a+ul li {
+  html .navbar-collapse > div > ul > li > a+ul li {
     height:1.3rem;
     line-height:1.3rem;
     margin-bottom:1.5rem;
     text-align: left;
   }
-  .designcustom .navbar-collapse > div > ul > li.member_side {
+  html .navbar-collapse > div > ul > li.member_side {
     width: 19rem;
     position: absolute;
     top: 5rem;
     right: 0rem;
   }
-  .designcustom .navbar-collapse>div>ul>li.member_side>ul.menu>li {
+  html .navbar-collapse>div>ul>li.member_side>ul.menu>li {
     text-align:right;
     min-height:4.5rem;
   }
-  .designcustom .navbar .container {
+  html .navbar .container {
     max-width: 1170px;
   }
-  .designcustom .navbar-header {
+  html nav.navbar > .container .navbar-header {
     max-width: 1170px;
     margin-left: -585px;
   }
 
-  .designcustom .navbar-collapse > div > ul > li > a+ul {
+  html .navbar-collapse > div > ul > li > a+ul {
     min-height:10rem;
   }
 }
