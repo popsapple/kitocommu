@@ -4,8 +4,9 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
     <% include ../partials/header.ejs %>
-    <div class="sub designcustom" role="main">
     <% include ../partials/nav.ejs %>
+    <main role="main">
+    <div class="sub designcustom">
       <div class="container" itemscope itemtype="http://schema.org/BlogPosting">
         <section>
           <%if(!locals.title){%>

@@ -3,8 +3,9 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <% include ../partials/header.ejs %>
-  <div class="sub designcustom" role="main">
-    <% include ../partials/nav.ejs %>
+  <% include ../partials/nav.ejs %>
+  <main role="main">
+  <div class="sub designcustom">
       <div class="container board normal">
         <% include ../partials/sub_visual.ejs %>
         <% if(locals.notice_list) { %>

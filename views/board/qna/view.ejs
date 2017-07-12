@@ -4,9 +4,10 @@
   <meta name="keywords" content="<%= tags_list %>" />
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <link rel="stylesheet" type="text/css" href="/board/recipe/<%= css_skin %>?token='<%= locals.nowtime %>'" />
-  <% include ../../partials/header.ejs %>
-  <div class="sub designcustom" role="main">
-    <% include ../../partials/nav.ejs %>
+  <% include ../partials/header.ejs %>
+  <% include ../partials/nav.ejs %>
+  <main role="main">
+  <div class="sub designcustom">
       <div class="view_container container">
         <section class="post_view" itemscope itemtype="http://schema.org/BlogPosting">
             <ul>

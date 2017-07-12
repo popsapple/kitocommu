@@ -3,9 +3,10 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/board/<%= css_skin %>?token='<%= locals.nowtime %>'" />
   <link rel="stylesheet" type="text/css" href="/board/recipe/<%= css_skin %>?token='<%= locals.nowtime %>'" />
-  <% include ../../partials/header.ejs %>
-  <div class="sub designcustom" role="main">
-    <% include ../../partials/nav.ejs %>
+  <% include ../partials/header.ejs %>
+  <% include ../partials/nav.ejs %>
+  <main role="main">
+  <div class="sub designcustom">
       <div class="container board normal recipe">
         <% include ../../partials/sub_visual.ejs %>
         <% if(locals.notice_list) { %>
