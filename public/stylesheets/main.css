@@ -665,12 +665,12 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   .main_kito_desc figure .circle {
     top : 3700%;
     left: auto;
-    right:37%;
+    right:23%;
   }
   .main_kito_desc figure img.liver {
     top: 2900%;
     left: auto;
-    right: 64%;
+    right: -1%;
   }
   .main_kito_desc figure .avocado {
     top: 500%;
@@ -713,6 +713,12 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   }
   .main_kito_desc h1 {
     margin-bottom: 0rem;
+  }
+  .main_kito_desc figure .circle {
+    right:35%;
+  }
+  .main_kito_desc figure img.liver {
+    right: 11%;
   }
   .main_kito_desc figure .meet {
     left:-17%;
