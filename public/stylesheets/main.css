@@ -913,12 +913,16 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
   .main_kito_faq > ul > li .dropdown-toggle {
     display:none;
   }
+
+  body.ie9 .main_kito_faq>ul>li h2+div,
   .main_kito_faq > ul > li h2+div p {
     color: #8e6a14;
     padding:0rem;
     padding-right:1rem;
     line-height: 2.3rem;
   }
+  
+  body.ie9 .main_kito_faq>ul>li h2+div,
   .main_kito_faq > ul > li h2+div p * {
     font-size: inherit;
   }
