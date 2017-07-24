@@ -516,7 +516,7 @@ body.ie9 .main_kito_desc figure .circle .circle02{
 body.ie9 .main_kito_desc figure .circle .circle03{
   width:18rem;
   height:18rem;
-  margin-left:-9em;
+  margin-left:-9rem;
   margin-top:-9rem;
 }
 
@@ -664,10 +664,13 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   }
   .main_kito_desc figure .circle {
     top : 3700%;
+    left: auto;
+    right:37%;
   }
   .main_kito_desc figure img.liver {
     top: 2900%;
-    left: 64%;
+    left: auto;
+    right: 64%;
   }
   .main_kito_desc figure .avocado {
     top: 500%;
@@ -691,10 +694,12 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     left: -15%;
   }
   body.ie9 .main_kito_desc figure img.liver {
-    left: 45%;
+    right: 11%;
+    left: auto;
   }
   body.ie9 .main_kito_desc figure .circle {
-    left: 60%;
+    right:37%;
+    left: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -719,13 +724,13 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     left: -12%;
   }
   body.ie9 .main_kito_desc figure .avocado {
-    left: -15%;
-  }
-  body.ie9 .main_kito_desc figure .cheese {
     left: -5%;
   }
+  body.ie9 .main_kito_desc figure .cheese {
+    left: 1%;
+  }
   body.ie9 .main_kito_desc figure .meet {
-    left: -25%;
+    left: -5%;
   }
 }
 
