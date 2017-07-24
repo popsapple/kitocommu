@@ -569,6 +569,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     white-space:nowrap;
     overflow:hidden;
     margin-top: 5rem;
+    float: left;
   }
   .main_kito_desc h1 {
     display:inline-block;
@@ -592,22 +593,18 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     width: 200%;
     max-width: 50rem;
     height: auto;
-    bottom: -10%;
+    top: -200%;
     right: -60%;
   }
   .main_kito_desc figure img.liver {
     z-index: 2;
-    margin-top: -80%;
-    bottom: auto;
-    left: auto;
-    margin-left: -4.3rem;
+    top: 3000%;
+    left: 57%;
     max-width: 17.5rem;
   }
   .main_kito_desc figure .circle {
-    left:auto;
-    bottom:auto;
-    margin-left: 67%;
-    margin-top: -50%;
+    left:74%;
+    bottom:3800%;
   }
   .main_kito_desc figure .circle .circle_obj {
     width:21rem;
@@ -639,27 +636,26 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     position:relative;
     display:inline-block;
     width:40%;
-    height:auto;
+    height:1rem;
     white-space:normal;
     vertical-align:bottom;
+    float: right;
+    bottom:-5rem;
   }
   .main_kito_desc figure .avocado {
-    margin-top: -135%;
-    margin-left: -50%;
-    top: auto;
-    left: auto;
+    top: 500%;
+    left: 0%;
+    position:absolute;
   }
   .main_kito_desc figure .cheese {
-    margin-top: -155%;
-    margin-left: -60%;
-    top: auto;
-    left: auto;
+    top: 1200%;
+    left: 10%;
+    position:absolute;
   }
   .main_kito_desc figure .meet {
-    margin-top: -170%;
-    margin-left: -60%;
-    top: auto;
+    top: 1800%;
     left: auto;
+    position:absolute;
   }
 }
 @media (min-width: 992px) {
@@ -667,23 +663,23 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     right: -40%;
   }
   .main_kito_desc figure .circle {
-    margin-top: -40%;
+    top : 3700%;
   }
   .main_kito_desc figure img.liver {
-    margin-top: -65%;
-    margin-left: -2.3rem;
+    top: 2900%;
+    left: 64%;
   }
   .main_kito_desc figure .avocado {
-    margin-top: -95%;
-    margin-left: -35%;
+    top: 500%;
+    left: 10%;
   }
   .main_kito_desc figure .cheese {
-    margin-top: -110%;
-    margin-left: -45%;
+    top: 1200%;
+    left: 20%;
   }
   .main_kito_desc figure .meet {
-    margin-top: -125%;
-    margin-left: -35%;
+    top: 1800%;
+    left: 5%;
   }
 }
 @media (min-width: 1200px) {
@@ -697,31 +693,6 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   }
   .main_kito_desc h1 {
     margin-bottom: 0rem;
-  }
-  .main_kito_desc figure img.human {
-    right: -50%;
-    margin-bottom: -25%;
-    bottom: 0%;
-  }
-  .main_kito_desc figure .circle {
-    margin-top: -24%;
-    margin-left: 71%;
-  }
-  .main_kito_desc figure img.liver {
-    margin-top: -60%;
-    margin-left: -2.3rem;
-  }
-  .main_kito_desc figure .avocado {
-    margin-top: -95%;
-    margin-left: -43%;
-  }
-  .main_kito_desc figure .cheese {
-    margin-top: -115%;
-    margin-left: -58%;
-  }
-  .main_kito_desc figure .meet {
-    margin-top: -130%;
-    margin-left: -51%;
   }
 }
 
