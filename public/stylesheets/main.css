@@ -654,7 +654,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   }
   .main_kito_desc figure .meet {
     top: 1800%;
-    left: auto;
+    left: 0%;
     position:absolute;
   }
 }
@@ -921,7 +921,7 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
     padding-right:1rem;
     line-height: 2.3rem;
   }
-  
+
   body.ie9 .main_kito_faq>ul>li h2+div,
   .main_kito_faq > ul > li h2+div p * {
     font-size: inherit;

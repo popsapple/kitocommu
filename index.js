@@ -26,7 +26,10 @@ var ips = []; //['127.0.0.1'];
 app.use(ipfilter(ips));
 var usingSession = session({
   key: process.env.SESSIONKEY, // 세션키
-  secret: process.env.SECRETKEY // 비밀키
+  secret: process.env.SECRETKEY, // 비밀키
+  cookie: {
+    maxAge: 1000 * 60 * 180 // 3시간
+  }
 });
 app.use(usingSession);
 
@@ -65,20 +68,6 @@ app.get('/robots.txt', function (req, res) {
     res.send("User-agent: *\nDisallow:");
 });
 
-//에러 처리
-app.use(function(err, req, res, next) {
-  res.status(400).send('페이지가 응답하지 않습니다.');
-  res.status(401).send('페이지가 응답하지 않습니다.');
-  res.status(403).send('페이지가 응답하지 않습니다.');
-  res.status(404).send('페이지가 존재하지 않습니다.');
-  res.status(405).send('페이지가 응답하지 않습니다.');
-  res.status(301).send('페이지가 응답하지 않습니다.');
-  res.status(500).send('페이지가 응답하지 않습니다.');
-  res.status(501).send('페이지가 응답하지 않습니다.');
-  res.status(503).send('페이지가 응답하지 않습니다.');
-});
-
-
 var server = app.listen(app.get('port'), function() {});
 var socketio = require('socket.io').listen(server);
 socketio.of('/catting/list').use(function(socket, next){
@@ -108,3 +97,11 @@ require('./rss_builder.js').rss_builder(app,mongoose);
 
 // sitemap 관련
 require('./sitemap_builder.js').rss_builder(app,mongoose);
+
+
+//에러 처리
+app.use(function(err, req, res, next) {
+    console.log("에러 스테이터스 :: "+err.status);
+    res.status(err.status || 500);
+    res.render('error');
+});
