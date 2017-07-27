@@ -579,7 +579,11 @@ $(document).ready(function() {
       }else{
         $('.gnb_navbar').attr('aria-hidden','true');
       }
-      $(".navbar-collapse.collapse").height($('body').height());
+      if($(".navbar-collapse.collapse").hasClass('in')){
+        $(".navbar-collapse.collapse").css({'height':$('body').height()+'px !important'});
+      }else{
+        $(".navbar-collapse.collapse").css({'height':0+'px !important'});
+      }
     });
   }
 });
@@ -597,5 +601,9 @@ $(window).scroll(function(event) {
 $(window).resize(function(event){
   DisableGnbDropdown(".gnb_navbar .dropdown");
   DisableGnbDropdown(".main_kito_faq > ul > li");
-  $(".navbar-collapse.collapse").height($('body').height());
+  if($(".navbar-collapse.collapse").hasClass('in')){
+    $(".navbar-collapse.collapse").css({'height':$('body').height()+'px !important'});
+  }else{
+    $(".navbar-collapse.collapse").css({'height':0+'px !important'});
+  }
 });
