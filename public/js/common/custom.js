@@ -570,14 +570,14 @@ $(document).ready(function() {
 
 });
 
-$('#navbar').on('shown.bs.collapse', function () {
+$('#navbar').on('show.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').css({
     'min-height': newHeight
   });
 });
-$('#navbar').on('hidden.bs.collapse', function () {
+$('#navbar').on('hide.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
   var newHeight = 0;
   $('html .gnb_navbarcall').css({
