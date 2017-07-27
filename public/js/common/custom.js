@@ -579,7 +579,6 @@ $(document).ready(function() {
       }else{
         $('.gnb_navbar').attr('aria-hidden','true');
       }
-      console.log("클릭 :: "+$('body').height());
       $(".gnb_navbar").height($('body').height());
     });
   }
