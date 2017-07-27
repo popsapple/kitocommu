@@ -365,7 +365,7 @@ html .navbar-collapse {
   top:0rem;
   background:url(/images/main/transparent_black.png);
   filter:none;
-  opacity:0 !important;
+  opacity:0;
   font-size:0rem;
   -webkit-transition:opacity 1s 0s,height 1s 1s;
   -moz-transition:opacity 1s 0s,height 1s 1s;
