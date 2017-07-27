@@ -561,6 +561,7 @@ $(document).ready(function() {
         $(this).removeClass('in');
         return false;
       }
+      $(".navbar-collapse.collapse.in").height($(window).height());
     });
   }
 
