@@ -653,7 +653,6 @@ html .navbar-collapse.in > div+button:after {
   }
   .navbar-collapse.collapse {
       z-index: 10;
-      height: 0rem !important;
       overflow:hidden !important;
       padding-bottom: 0;
       -webkit-transition: opacity 2s 0s,height 0s 2s;
@@ -664,7 +663,6 @@ html .navbar-collapse.in > div+button:after {
   }
   .navbar-collapse.collapse.in {
       z-index: 10;
-      height: 100vh !important;
       display: block !important;
       padding-bottom: 0;
   }
