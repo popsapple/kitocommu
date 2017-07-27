@@ -655,13 +655,14 @@ html .navbar-collapse.in > div+button:after {
       z-index: 10;
       overflow:hidden !important;
       padding-bottom: 0;
+      margin:0;
       -webkit-transition: opacity 2s 0s,height 0s 2s;
       -moz-transition: opacity 2s 0s,height 0s 2s;
       -ms-transition: opacity 2s 0s,height 0s 2s;
       -o-transition: opacity 2s 0s,height 0s 2s;
       transition: opacity 2s 0s,height 0s 2s;
   }
-  .navbar-collapse.collapse.in {
+  .navbar-collapse.collapse {
       z-index: 10;
       display: block !important;
       padding-bottom: 0;
