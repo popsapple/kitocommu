@@ -365,13 +365,17 @@ html .navbar-collapse {
   top:0rem;
   background:url(/images/main/transparent_black.png);
   filter:none;
-  opacity:0;
+  opacity:0 !important;
   font-size:0rem;
   -webkit-transition:opacity 1s 0s,height 1s 1s;
   -moz-transition:opacity 1s 0s,height 1s 1s;
   -ms-transition:opacity 1s 0s,height 1s 1s;
   -o-transition:opacity 1s 0s,height 1s 1s;
   transition:opacity 1s 0s,height 1s 1s;
+}
+
+html .navbar-collapse.collapsing {
+  opacity:0 !important;
 }
 
 html .navbar-collapse.in {
