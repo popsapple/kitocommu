@@ -565,7 +565,8 @@ $(document).ready(function() {
   }
 
   $(".gnb_close_btn").on('click',function(event){
-    $('#navbar').trigger("hide.bs.dropdown");
+    $('#navbar').on('hide.bs.dropdown');
+    $('#navbar').on('hidden.bs.dropdown');
     return false;
   });
 
