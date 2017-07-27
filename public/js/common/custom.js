@@ -571,6 +571,7 @@ $(document).ready(function() {
 });
 
 $('#navbar').on('show.bs.collapse', function () {
+  console.log("오픈");
   $('.gnb_navbar').attr('aria-hidden','false');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').css({
@@ -578,6 +579,7 @@ $('#navbar').on('show.bs.collapse', function () {
   });
 });
 $('#navbar').on('hide.bs.collapse', function () {
+  console.log("클로즈");
   $('.gnb_navbar').attr('aria-hidden','true');
   var newHeight = 0;
   $('html .gnb_navbarcall').css({
