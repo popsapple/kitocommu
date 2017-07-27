@@ -574,14 +574,14 @@ $(document).ready(function() {
 
 });
 
-$('#navbar').on('show.bs.collapse', function () {
+$('#navbar').on('shown.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').height(newHeight);
   console.log("열림 :: "+$('html .gnb_navbarcall').height(newHeight));
   console.log("열림 :: "+newHeight);
 });
-$('#navbar').on('hide.bs.collapse', function () {
+$('#navbar').on('hidden.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
   var newHeight = 0;
   $('html .gnb_navbarcall').height(newHeight);
