@@ -224,6 +224,7 @@ body > .modal .linebutton.middle,
   color:#303030;
 }
 
+html > body .designcustom .section_title+.section_title_button,
 .designcustom .section_title span {
   font-size: 1.4rem;
   font-weight: 300;
