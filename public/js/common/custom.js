@@ -574,7 +574,12 @@ $(document).ready(function() {
 
   if($('.navbar-toggle')){
     $('.navbar-toggle').click(function(){
-      $('.gnb_navbar').attr('aria-hidden','false');
+      if($('.gnb_navbar').attr('aria-hidden') == 'true'){
+        $('.gnb_navbar').attr('aria-hidden','false');
+      }else{
+        $('.gnb_navbar').attr('aria-hidden','true');
+      }
+      console.log("클릭 :: "+$(window).height());
       $(".gnb_navbar").height($(window).height());
     });
   }
