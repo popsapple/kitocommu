@@ -100,8 +100,11 @@ require('./sitemap_builder.js').rss_builder(app,mongoose);
 
 console.log("")
 //에러 처리
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  console.log("에러 스테이터스 :::: "+req.status);
-  res.render('error');
+app.use(function(req, res) {
+   res.status(400);
+   res.render('views/pages/error.ejs');
+});
+app.use(function(error, req, res, next) {
+   res.status(500);
+   res.render('views/pages/error.ejs');
 });
