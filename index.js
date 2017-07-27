@@ -98,8 +98,10 @@ require('./rss_builder.js').rss_builder(app,mongoose);
 // sitemap 관련
 require('./sitemap_builder.js').rss_builder(app,mongoose);
 
-console.log("에러처리 이전");
+console.log("")
 //에러 처리
-app.use(function(req, res, next) {
-    console.log("에러 스테이터스 :: "+req.status);
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  console.log("에러 스테이터스 :::: "+req.status);
+  res.render('error');
 });
