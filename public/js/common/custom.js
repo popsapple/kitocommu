@@ -576,13 +576,13 @@ $(document).ready(function() {
 
 $('#navbar').on('show.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
-  let newHeight = $('body').height();
+  var newHeight = $('body').height();
   $('.gnb_navbar').css('height',newHeight);
   console.log("열림");
 });
 $('#navbar').on('hide.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
-  let newHeight = 0;
+  var newHeight = 0;
   $('.gnb_navbar').css('height',newHeight);
   console.log("닫힘");
 });
