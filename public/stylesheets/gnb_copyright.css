@@ -232,7 +232,10 @@ html > body .designcustom .section_title+.section_title_button,
   display: block;
   margin-top: 1.5rem;
 }
-
+html > body .designcustom .section_title+.section_title_button {
+  max-width: 18rem;
+  text-align: center;
+}
 /******** gnb **********/
 
 html .navbar {
