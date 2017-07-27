@@ -564,6 +564,10 @@ $(document).ready(function() {
     });
   }
 
+  $(".gnb_close_btn").on('click',function(event){
+    $(".gnb-navbar-toggle").click();
+  });
+
   if($('.main_recipe .event_obj')){
     $('.main_recipe .event_obj').MovingFollowMouse();
   }
