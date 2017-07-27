@@ -579,7 +579,10 @@ $(document).ready(function() {
       }else{
         $('.gnb_navbar').attr('aria-hidden','true');
       }
-      $(".gnb_navbar").height($('body').height());
+      if(!$(".gnb_navbar").hasClass('in')){
+        console.log("????? :: "+$('body').height());
+        $(".gnb_navbar").height($('body').height());
+      }
     });
   }
 });
