@@ -566,6 +566,7 @@ $(document).ready(function() {
 
   $(".gnb_close_btn").on('click',function(event){
     $(".gnb-navbar-toggle").click();
+    return false;
   });
 
   if($('.main_recipe .event_obj')){
