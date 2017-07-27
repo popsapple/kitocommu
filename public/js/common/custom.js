@@ -572,22 +572,18 @@ $(document).ready(function() {
     $('.main_recipe .event_obj').MovingFollowMouse();
   }
 
-  if($('.navbar-toggle')){
-    $('.navbar-toggle').click(function(){
-      if($('.gnb_navbar').attr('aria-hidden') == 'true'){
-        $('.gnb_navbar').attr('aria-hidden','false');
-      }else{
-        $('.gnb_navbar').attr('aria-hidden','true');
-      }
-      if($(".navbar-collapse.collapse").hasClass('in')){
-        $(".navbar-collapse.collapse").css({'height':$('body').height()+'px !important'});
-      }else{
-        $(".navbar-collapse.collapse").css({'height':0+'px !important'});
-      }
-    });
-  }
 });
 
+$('#navbar').on('show.bs.collapse', function () {
+  $('.gnb_navbar').attr('aria-hidden','false');
+  $('.gnb_navbar').height($('body').height());
+  console.log("열림");
+});
+$('#navbar').on('hide.bs.collapse', function () {
+  $('.gnb_navbar').attr('aria-hidden','true');
+  $('.gnb_navbar').height($('body').height());
+  console.log("닫힘");
+});
 $(window).scroll(function(event) {
   if($(".designcustom .navbar-default")){
     if($(window).scrollTop() > $(".designcustom .navbar-default").height()){
@@ -601,9 +597,4 @@ $(window).scroll(function(event) {
 $(window).resize(function(event){
   DisableGnbDropdown(".gnb_navbar .dropdown");
   DisableGnbDropdown(".main_kito_faq > ul > li");
-  if($(".navbar-collapse.collapse").hasClass('in')){
-    $(".navbar-collapse.collapse").css({'height':$('body').height()+'px !important'});
-  }else{
-    $(".navbar-collapse.collapse").css({'height':0+'px !important'});
-  }
 });
