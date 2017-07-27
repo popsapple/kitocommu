@@ -577,14 +577,14 @@ $(document).ready(function() {
 $('#navbar').on('show.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
   var newHeight = $('body').height();
-  $('html .navbar-collapse').css('height',newHeight);
-  console.log("열림 :: "+$('html .navbar-collapse').length);
+  $('html .gnb_navbarcall').css('height',newHeight);
+  console.log("열림 :: "+$('html .gnb_navbarcall').css('height'));
 });
 $('#navbar').on('hide.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
   var newHeight = 0;
-  $('html .navbar-collapse').css('height',newHeight);
-  console.log("닫힘");
+  $('html .gnb_navbarcall').css('height',newHeight);
+  console.log("닫힘 :: "+$('html .gnb_navbarcall').css('height'));
 });
 $(window).scroll(function(event) {
   if($(".designcustom .navbar-default")){
