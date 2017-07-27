@@ -579,7 +579,7 @@ $(document).ready(function() {
       }else{
         $('.gnb_navbar').attr('aria-hidden','true');
       }
-      $(".navbar-collapse.collapse.in").height($('body').height());
+      $(".navbar-collapse.collapse").height($('body').height());
     });
   }
 });
@@ -597,4 +597,5 @@ $(window).scroll(function(event) {
 $(window).resize(function(event){
   DisableGnbDropdown(".gnb_navbar .dropdown");
   DisableGnbDropdown(".main_kito_faq > ul > li");
+  $(".navbar-collapse.collapse").height($('body').height());
 });
