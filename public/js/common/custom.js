@@ -564,12 +564,6 @@ $(document).ready(function() {
     });
   }
 
-  $(".gnb_close_btn").on('click',function(event){
-    $('#navbar').on('hide.bs.dropdown');
-    $('#navbar').on('hidden.bs.dropdown');
-    return false;
-  });
-
   if($('.main_recipe .event_obj')){
     $('.main_recipe .event_obj').MovingFollowMouse();
   }
