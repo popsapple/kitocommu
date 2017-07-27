@@ -561,7 +561,6 @@ $(document).ready(function() {
         $(this).removeClass('in');
         return false;
       }
-      $(".navbar-collapse.collapse.in").height($(window).height());
     });
   }
 
@@ -576,6 +575,7 @@ $(document).ready(function() {
   if($('.navbar-toggle')){
     $('.navbar-toggle').click(function(){
       $('.gnb_navbar').attr('aria-hidden','false');
+      $(".gnb_navbar").height($(window).height());
     });
   }
 });
