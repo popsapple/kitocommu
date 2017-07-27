@@ -98,13 +98,10 @@ require('./rss_builder.js').rss_builder(app,mongoose);
 // sitemap 관련
 require('./sitemap_builder.js').rss_builder(app,mongoose);
 
-console.log("")
 //에러 처리
 app.use(function(req, res) {
-   res.status(400);
-   res.render('views/pages/error.ejs');
+   res.status(400).render('pages/error');
 });
 app.use(function(error, req, res, next) {
-   res.status(500);
-   res.render('views/pages/error.ejs');
+   res.status(500).render('pages/error');
 });
