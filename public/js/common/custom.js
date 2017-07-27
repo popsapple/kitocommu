@@ -565,7 +565,7 @@ $(document).ready(function() {
   }
 
   $(".gnb_close_btn").on('click',function(event){
-    $(".gnb-navbar-toggle").click();
+    $('#navbar').trigger("hide.bs.dropdown");
     return false;
   });
 
