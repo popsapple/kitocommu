@@ -2018,13 +2018,24 @@ $(document).ready(function() {
     $('.main_recipe .event_obj').MovingFollowMouse();
   }
 
-  if($('.navbar-toggle')){
-    $('.navbar-toggle').click(function(){
-      $('.gnb_navbar').attr('aria-hidden','false');
-    });
-  }
 });
 
+$('#navbar').on('show.bs.collapse', function () {
+  console.log("오픈");
+  $('.gnb_navbar').attr('aria-hidden','false');
+  var newHeight = $('body').height();
+  $('html .gnb_navbarcall').css({
+    'min-height': newHeight
+  });
+});
+$('#navbar').on('hide.bs.collapse', function () {
+  console.log("클로즈");
+  $('.gnb_navbar').attr('aria-hidden','true');
+  var newHeight = 0;
+  $('html .gnb_navbarcall').css({
+    'min-height': newHeight
+  });
+});
 $(window).scroll(function(event) {
   if($(".designcustom .navbar-default")){
     if($(window).scrollTop() > $(".designcustom .navbar-default").height()){
