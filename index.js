@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
 // 접근제한 할 IP들.... 나중에 관리자페이지에서 작업할 수 있게 해야지...
 var ips = []; //['127.0.0.1'];
 app.use(ipfilter(ips));
@@ -98,10 +99,14 @@ require('./rss_builder.js').rss_builder(app,mongoose);
 // sitemap 관련
 require('./sitemap_builder.js').rss_builder(app,mongoose);
 
+
 //에러 처리
-app.use(function(req, res) {
-   res.status(400).render('pages/error');
+app.use(function(req, res, next) {
+  res.status(400).render('pages/error');
+  res.end();
 });
 app.use(function(error, req, res, next) {
-   res.status(500).render('pages/error');
+  console.log("500 에러");
+  res.status(500).render('pages/error');
+  res.end();
 });

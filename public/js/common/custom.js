@@ -457,8 +457,16 @@ function LoadingPage(){
 }
 
 
-function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드롭다운 중지
+function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때 드롭다운 중지
   var width_check = viewport().width;
+  var selector = " > a";
+  if(type == "faq"){
+    selector = " > button";
+    $(obj+" > a").click(function(){
+      console.log("AAA");
+      window.location.href = $(this).attr('href');
+    });
+  }
   if(width_check > 1199){
     $(obj).each(function(){
       $(this).attr('data-toggle','');
@@ -467,26 +475,26 @@ function DisableGnbDropdown(obj,callback,callback02){ // PC판 이상일때 드�
   }
   if(width_check > 1199){
     $(obj).unbind("click");
-    $(obj+" > a").unbind("click");
+    $(obj+selector).unbind("click");
     $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
       $(this).addClass('open');
     });
-    $(obj+" > a").each(function(){
+    $(obj+selector).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
     });
     callback ? callback() : '';
   }else{
     $(obj).bind("click");
-    $(obj+" > a").bind("click");
+    $(obj+selector).bind("click");
     $(obj).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
       $(this).removeClass('open');
     });
-    $(obj+" > a").each(function(){
+    $(obj+selector).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
     });
@@ -522,7 +530,7 @@ $(document).ready(function() {
       'first_left': 0,
       'item_id': 'FaqSlideritem'
     });
-    DisableGnbDropdown(".main_kito_faq > ul > li");
+    DisableGnbDropdown(".main_kito_faq > ul > li","","","faq");
   }
   if($('.main_visual')){
     $('.main_visual').flexslider({
@@ -570,8 +578,8 @@ $(document).ready(function() {
 
 });
 
+
 $('#navbar').on('show.bs.collapse', function () {
-  console.log("오픈");
   $('.gnb_navbar').attr('aria-hidden','false');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').css({
@@ -579,12 +587,13 @@ $('#navbar').on('show.bs.collapse', function () {
   });
 });
 $('#navbar').on('hide.bs.collapse', function () {
-  console.log("클로즈");
   $('.gnb_navbar').attr('aria-hidden','true');
   var newHeight = 0;
-  $('html .gnb_navbarcall').css({
-    'min-height': newHeight
-  });
+  setTimeout(function(){
+    $('html .gnb_navbarcall').css({
+      'min-height': newHeight
+    });
+  },1000);
 });
 $(window).scroll(function(event) {
   if($(".designcustom .navbar-default")){
@@ -598,5 +607,5 @@ $(window).scroll(function(event) {
 
 $(window).resize(function(event){
   DisableGnbDropdown(".gnb_navbar .dropdown");
-  DisableGnbDropdown(".main_kito_faq > ul > li");
+  DisableGnbDropdown(".main_kito_faq > ul > li","","","faq");
 });
