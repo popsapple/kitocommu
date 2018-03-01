@@ -55,21 +55,18 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
           data = {member_level: value};
         }
       }
-        console.log("멤버 찾기 옵션 "+search_option);
       that.db_model.find(data, function(err, member_list){
-        console.log("멤버 찾기 find ");
-        console.log("page_length ::" +page_length);
-        console.log("page_length_max ::" +page_length_max);
         var count = 0;
+        if(search_option == "member_level"){
+          member_list = member_list.splice(page_length,page_length_max);
+        }
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
-          console.log("멤버 찾음 01");
           if(arr.nickname != undefined){
             member_list.member_list[count] = arr; //member_list.splice(page_length,page_length_);
             count++;
           }
           if(index == (member_list.length-1)){
-            console.log("멤버 찾음 02");
             member_list.page_ = page_num_;
             global.ADMIN_DB.getMemberPagingByIndex(member_list,mongoose,request,response,type);
           }
