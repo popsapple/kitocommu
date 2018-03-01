@@ -165,6 +165,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       });
     }();
   },getBoardListBySearch : function (obj,mongoose,request,response,callback){
+    console.log("찾기 클릭");
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
@@ -190,6 +191,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
     }
     BOARD_DB_MODEL.find(search_hint, function(err, board){
+      console.log("find 요청 :: "+board);
       data.board_list = board;
       obj.board_post_length = data.board_list.length;
       data.board_list.sort(sortList);
