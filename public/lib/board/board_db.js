@@ -189,7 +189,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       var data = {};
 
-      BOARD_DB_MODEL.find(search_hint).sort( { "post_index": -1 }, function(err, board){
+      BOARD_DB_MODEL.find(search_hint, {"sort": { "post_index": -1 }}, function(err, board) {
+        console.log("거꾸로정렬");
         if(search_value != ""){
           console.log("검색으로들어옴");
           max_page_length = board.length-(page_num*page_length);
