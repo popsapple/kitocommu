@@ -48,6 +48,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         }else if(search_option == "member_level"){
           data = {member_level: value};
         }
+
       }else{
         page_num = numOfDocs-(page_num*page_length)-1;
         page_length = (page_num-page_length)+1;
@@ -57,12 +58,13 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list_){
         var count = 0;
-
-        page_num = member_list_.length-(page_num*page_length)-1;
-        page_length = (page_num-page_length)+1;
-        page_length < 0 ? page_length = 0 : '';
-        page_length_max = page_length+10;
-        
+        if(type == 'search'){
+          page_num = member_list_.length-(page_num*page_length)-1;
+          page_length = (page_num-page_length)+1;
+          page_length < 0 ? page_length = 0 : '';
+          page_length_max = page_length+10;
+          member_list.numOfDocs = member_list_.length;
+        }
         console.log("멤버 찾기 member_list member_list_.length :: "+member_list_.length);
         console.log("멤버 찾기 member_list page_num :: "+page_num);
         console.log("멤버 찾기 member_list page_length :: "+page_length);
@@ -85,7 +87,6 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     });
   }();
 },getMemberPagingByIndex : function (member_list,mongoose,request,response,type){
-  console.log("리스트뿌리기");
     var member_db = global.MEMBER_DB.model;
     var page_num;
     var page_num_;
@@ -111,6 +112,9 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
 
     member_db.count({}, function(error, numOfDocs){
       numOfDocs = numOfDocs;
+      if(type == 'search'){
+        numOfDocs = member_list.numOfDocs;
+      }
       numOfDocs%page_length_ == 0 ? pageOfDocs = (numOfDocs/page_length_)-1 : pageOfDocs = (numOfDocs/page_length_);
       numOfDocs <= page_length_ ? pageOfDocs = 0 : '';
       for(var i = 0; i <= pageOfDocs; i++){
