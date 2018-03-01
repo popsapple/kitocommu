@@ -169,6 +169,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var BOARD_DB_MODEL = global.BOARD_DB.model;
     var page_num = parseInt(request.query.page);
     var page_length = parseInt(request.query.page_length);
+    var max_page_length;
     var search_option = request.query.searchoption;
     var search_value = request.query.searchvalue;
     if(request.query.searchvalue == undefined){
@@ -195,16 +196,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(search_value != ""){
           console.log("검색으로들어옴");
           page_num = board.length-(page_num*page_length)-1;
-          page_length = (page_num-page_length)+1;
+          max_page_length = page_num+page_length;
         }else{
           page_num = numOfDocs-(page_num*page_length)-1;
-          page_length = (page_num-page_length)+1;
+          max_page_length = (page_num-page_length)+1;
         }
         data.board_list = board;
-          console.log("검색으로들어옴 length 01 :: "+data.board_list.length);
+          console.log("검색으로들어옴 length page_num :: "+page_num);
+            console.log("검색으로들어옴 page_length :: "+page_length);
+              console.log("검색으로들어옴 max_page_length :: "+max_page_length);
         obj.board_post_length = data.board_list.length;
         data.board_list.sort(sortList);
-        data.board_list = data.board_list.slice(page_num,page_length);
+        data.board_list = data.board_list.slice(page_num,max_page_length);
           console.log("검색으로들어옴 length 02 :: "+data.board_list.length);
         data.page_ = request.query.page;
         data.searchoption = search_option;
