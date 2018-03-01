@@ -179,7 +179,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     if(search_option == "title"){
       search_hint = {title: {'$regex': search_value}};
     }else if(search_option == "tags"){
-      search_hint = {tag: {'$regex': search_value}};
+      search_hint = {tags: {'$regex': search_value}};
     }else if(search_option == "writer"){
       search_hint = {writer_nickname: {'$regex': search_value}};
     }else if(search_option == "category"){
