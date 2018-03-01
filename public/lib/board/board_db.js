@@ -187,23 +187,25 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     console.log("찾기 옵션 :: "+search_option);
     console.log("찾기 힌트 :: "+search_hint.title);
     console.log(search_hint);
-    page_num = numOfDocs-(page_num*page_length)-1;
-    page_length = (page_num-page_length)+1;
-    var data = {};
-    function sortList(a, b) {
-      if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
-    }
-    console.log("찾기 모델 :: "+BOARD_DB_MODEL);
-    BOARD_DB_MODEL.find(search_hint, function(err, board){
-      console.log("find 요청 :: "+board);
-      data.board_list = board;
-      obj.board_post_length = data.board_list.length;
-      data.board_list.sort(sortList);
-      data.board_list = data.board_list.slice(page_num,page_length);
-      data.page_ = request.query.page;
-      data.searchoption = search_option;
-      data.searchvalue = search_value;
-      callback(data,mongoose,request,response);
+    BOARD_DB_MODEL.count({}, function(error, numOfDocs){
+      page_num = numOfDocs-(page_num*page_length)-1;
+      page_length = (page_num-page_length)+1;
+      var data = {};
+      function sortList(a, b) {
+        if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+      }
+      console.log("찾기 모델 :: "+BOARD_DB_MODEL);
+      BOARD_DB_MODEL.find(search_hint, function(err, board){
+        console.log("find 요청 :: "+board);
+        data.board_list = board;
+        obj.board_post_length = data.board_list.length;
+        data.board_list.sort(sortList);
+        data.board_list = data.board_list.slice(page_num,page_length);
+        data.page_ = request.query.page;
+        data.searchoption = search_option;
+        data.searchvalue = search_value;
+        callback(data,mongoose,request,response);
+      });
     });
   },getBoardListByNotice : function (obj,mongoose,request,response,callback){
     var BOARD_DB_MODEL = global.BOARD_DB.model;
