@@ -99,17 +99,14 @@ Board.write_coments = function(request,response,mongoose){
 module.exports.board_con = function(app,mongoose){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
-    console.log("접근");
       request.session.urlpath = request.protocol + '://' + request.get('host') + request.originalUrl;
       var board_id = 'Board_'+(request.query.board_table_id);
       var BoardList = new Board.list_render(request.query,request,response,mongoose,board_id);
   });
 
   app.get('/board/search_post', function(request, response) {
-    if(global.MEMBER_DB.CheckLoginUser(request,response)){
       var board_id = 'Board_'+(request.query.board_table_id);
       Board.search_render(request.query,request,response,mongoose,board_id);
-    }
   });
 
   app.get('/board/write', function(request, response) {
