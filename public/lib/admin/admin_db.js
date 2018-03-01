@@ -63,15 +63,14 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
           page_length = (page_num-page_length)+1;
           page_length < 0 ? page_length = 0 : '';
           page_length_max = page_length+10;
-          member_list.numOfDocs = member_list_.length;
         }
         console.log("멤버 찾기 member_list member_list_.length :: "+member_list_.length);
-        console.log("멤버 찾기 member_list page_num :: "+page_num);
         console.log("멤버 찾기 member_list page_length :: "+page_length);
         console.log("멤버 찾기 member_list page_length_max :: "+page_length_max);
         var member_list  = member_list_.slice(page_length,page_length_max);
-
-        console.log("멤버 찾기 member_list length :: "+member_list.length);
+        if(type == 'search'){
+          member_list.numOfDocs = member_list_.length;
+        }
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
           if(arr.nickname != undefined){
