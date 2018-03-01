@@ -93,12 +93,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         function sortList(a, b) {
           if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
         }
-        that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
+        that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}).sort("-post_index").exec(function(err, board) {
+          console.log("거꾸로");
           if(err){
             return response.render('/');
           }
           data.board_list = board;
-          data.board_list.sort(sortList);
+          //data.board_list.sort(sortList);
           data.page_ = request.query.page;
           that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, function(error, numOfDocReplys){
            if(!numOfDocReplys){
@@ -189,7 +190,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       var data = {};
 
-      BOARD_DB_MODEL.find(search_hint, {"sort": { "post_index": -1 }}).toArray(function(err, board) {
+      BOARD_DB_MODEL.find(search_hint).sort("-post_index").exec(function(err, board) {
         console.log("거꾸로정렬");
         if(search_value != ""){
           console.log("검색으로들어옴");
