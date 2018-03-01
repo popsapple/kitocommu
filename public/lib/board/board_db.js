@@ -201,7 +201,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           max_page_length < 0 ? max_page_length = 0 : '';
         }else{
           max_page_length = numOfDocs-(page_num*page_length);
-          max_page_length = (page_num-page_length);
+          page_num = (page_num-page_length);
           page_num < 0 ? page_num = 0 : '';
           max_page_length < 0 ? max_page_length = 0 : '';
         }
