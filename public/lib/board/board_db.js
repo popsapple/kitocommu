@@ -198,21 +198,18 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           max_page_length = board.length-(page_num*page_length)-1;
           page_num = page_num-page_length; //(page_num-page_length)+1;
           page_num < 0 ? page_num = 0 : '';
-          max_page_length < 0 ? max_page_length = 0 : '';
         }else{
-          page_num = numOfDocs-(page_num*page_length)-1;
-          max_page_length = (page_num-page_length);
+          max_page_length = numOfDocs-(page_num*page_length)-1;
+          page_num = (page_num-page_length);
           page_num < 0 ? page_num = 0 : '';
-          max_page_length < 0 ? max_page_length = 0 : '';
         }
         data.board_list = board;
         console.log("검색 page_length :: "+page_length);
         console.log("검색 length page_num :: "+page_num);
         console.log("검색 max_page_length :: "+max_page_length);
         obj.board_post_length = data.board_list.length;
-        //data.board_list.sort(sortList);
-        console.log("검색 length 01 :: "+data.board_list.length);
-        data.board_list = data.board_list.slice(page_num,max_page_length);
+        data.board_list.sort(sortList);
+        data.board_list = data.board_list.slice(page_num,page_length);
         console.log("검색 length 02 :: "+data.board_list.length);
         data.page_ = request.query.page;
         data.searchoption = search_option;

@@ -51,10 +51,8 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
 
       }else{
         page_num = numOfDocs-(page_num*page_length)-1;
-        page_length = (page_num-page_length)+1;
-        page_length < 0 ? page_length = 0 : '';
-        page_length_max = page_length+10;
-        page_length_max > (numOfDocs-1) ? page_length_max = (numOfDocs-1) : '';
+        page_num = (page_num-page_length)+1;
+        page_num < 0 ? page_num = 0 : '';
       }
       that.db_model.find(data, function(err, member_list_){
         var count = 0;
@@ -65,11 +63,10 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         }
         if(type == 'search'){
           page_num = member_list_.length-(page_num*page_length)-1;
-          page_length = (page_num-page_length)+1;
-          page_length < 0 ? page_length = 0 : '';
-          page_length_max = page_length+10;
+          page_num = (page_num-page_length)+1;
+          page_num < 0 ? page_num = 0 : '';
         }
-        var member_list  = member_list_.slice(page_length,page_length_max);
+        var member_list  = member_list_.slice(page_num,page_length);
         if(type == 'search'){
           member_list.numOfDocs = member_list_.length;
         }
