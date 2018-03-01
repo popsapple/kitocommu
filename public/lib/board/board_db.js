@@ -195,11 +195,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       BOARD_DB_MODEL.find(search_hint, function(err, board){
         if(search_value != ""){
           console.log("검색으로들어옴");
-          page_num = board.length-(page_num*page_length)-1;
-          max_page_length = page_num+page_length; //(page_num-page_length)+1;
+          max_page_length = board.length-(page_num*page_length)-1;
+          page_num = page_num-page_length+1; //(page_num-page_length)+1;
         }else{
           page_num = numOfDocs-(page_num*page_length)-1;
-          max_page_length = page_num+page_length; //(page_num-page_length)+1;
+          max_page_length = (page_num-page_length)+1;
         }
         data.board_list = board;
           console.log("검색으로들어옴 length page_num :: "+page_num);
