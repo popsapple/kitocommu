@@ -63,7 +63,10 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         page_length < 0 ? page_length = 0 : '';
         page_length_max = page_length+10;
         page_length_max > (member_list_.length-1) ? page_length_max = (member_list_.length-1) : '';
-
+        console.log("멤버 찾기 member_list member_list_.length :: "+member_list_.length);
+        console.log("멤버 찾기 member_list page_num :: "+page_num);
+        console.log("멤버 찾기 member_list page_length :: "+page_length);
+        console.log("멤버 찾기 member_list page_length_max :: "+page_length_max);
         var member_list  = member_list_.slice(page_length,page_length_max);
 
         console.log("멤버 찾기 member_list length :: "+member_list.length);
