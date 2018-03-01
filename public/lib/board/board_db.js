@@ -188,11 +188,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
 
       var data = {};
-      function sortList(a, b) {
-        if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
-      }
 
-      BOARD_DB_MODEL.find(search_hint, function(err, board){
+      BOARD_DB_MODEL.find(search_hint).sort( { "post_index": -1 }, function(err, board){
         if(search_value != ""){
           console.log("검색으로들어옴");
           max_page_length = board.length-(page_num*page_length);
@@ -210,7 +207,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           console.log("검색 length page_num :: "+page_num);
           console.log("검색 max_page_length :: "+max_page_length);
         obj.board_post_length = data.board_list.length;
-        data.board_list.sort(sortList);
           console.log("검색으로들어옴 length 01 :: "+data.board_list.length);
         data.board_list = data.board_list.slice(page_num,max_page_length);
           console.log("검색으로들어옴 length 02 :: "+data.board_list.length);
