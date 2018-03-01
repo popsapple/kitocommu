@@ -438,10 +438,14 @@ function LoadingPage(){
         },
         beforeSend:function(){
           $('.loading_div').show();
+          $("nav").attr('aria-hidden','true');
+          $("main").attr('aria-hidden','true');
         },
         complete:function(){
           setTimeout(function(){
             $('.loading_div').fadeOut(500);
+            $("nav").attr('aria-hidden','false');
+            $("main").attr('aria-hidden','false');
             $('.loading_complete').addClass('active');
           },1000);
         },
@@ -463,7 +467,6 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
   if(type == "faq"){
     selector = " > button";
     $(obj+" > a").click(function(){
-      console.log("AAA");
       window.location.href = $(this).attr('href');
     });
   }
@@ -471,6 +474,9 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
+      $("main").attr('aria-hidden','true');
+      $(".navbar-header").attr('aria-hidden','true');
+      $(".loading_div").attr('aria-hidden','true');
     });
   }
   if(width_check > 1199){
@@ -479,11 +485,15 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
+      $(".navbar-header").attr('aria-hidden','true');
+      $(".loading_div").attr('aria-hidden','true');
       $(this).addClass('open');
     });
     $(obj+selector).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
+      $(".navbar-header").attr('aria-hidden','true');
+      $(".loading_div").attr('aria-hidden','true');
     });
     callback ? callback() : '';
   }else{
@@ -492,11 +502,15 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
+      $(".navbar-header").attr('aria-hidden','false');
+      $(".loading_div").attr('aria-hidden','false');
       $(this).removeClass('open');
     });
     $(obj+selector).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
+      $(".navbar-header").attr('aria-hidden','false');
+      $(".loading_div").attr('aria-hidden','false');
     });
 
     $('li.dropdown ul li').on('click', function() {
