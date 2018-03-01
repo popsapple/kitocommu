@@ -582,6 +582,7 @@ $('#navbar').on('show.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
   $(".loading_div").attr('aria-hidden','true');
   $("main").attr('aria-hidden','true');
+  $("footer").attr('aria-hidden','true');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').css({
     'min-height': newHeight
@@ -591,6 +592,7 @@ $('#navbar').on('hide.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
   $(".loading_div").attr('aria-hidden','false');
   $("main").attr('aria-hidden','false');
+  $("footer").attr('aria-hidden','false');
   var newHeight = 0;
   setTimeout(function(){
     $('html .gnb_navbarcall').css({
