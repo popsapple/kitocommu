@@ -35,10 +35,10 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
   var board_id = 'Memberschema';
   that.getListing = function(){
     that.db_model.count({}, function(error, numOfDocs){
-      console.log("멤버 찾기 카운트");
       //slice를 사용하기 때문에..
       page_num = numOfDocs-(page_num*page_length)-1;
       page_length = (page_num-page_length)+1;
+      page_length == undefined ? page_length = 0 : ''; // 검색시 기본적으로 0부터 시작해야 하므로...
       page_length_max = page_length+10;
       page_length_max > (numOfDocs-1) ? page_length_max = (numOfDocs-1) : '';
       page_length < 0 ? page_length = 0 : '';
@@ -57,11 +57,11 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list){
         var count = 0;
-        console.log("옵션 자르기 카운트 :: "+request.query.searchoption);
-        if(request.query.searchoption != "nickname" || request.query.searchoption != "id"){
-          member_list = member_list.splice(page_length,page_length_max);
-        }
-        console.log("옵션 자르기 길이 :: "+member_list.length);
+        console.log("멤버 찾기 page_length :: "+page_length);
+        console.log("멤버 찾기 page_length_max :: "+page_length_max);
+        member_list = member_list.splice(page_length,page_length_max);
+
+        console.log("멤버 찾기 member_list length :: "+member_list.length);
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
           if(arr.nickname != undefined){
