@@ -438,12 +438,14 @@ function LoadingPage(){
         },
         beforeSend:function(){
           $('.loading_div').show();
+          $(".loading_div").attr('aria-hidden','false');
           $("nav").attr('aria-hidden','true');
           $("main").attr('aria-hidden','true');
         },
         complete:function(){
           setTimeout(function(){
             $('.loading_div').fadeOut(500);
+            $(".loading_div").attr('aria-hidden','true');
             $("nav").attr('aria-hidden','false');
             $("main").attr('aria-hidden','false');
             $('.loading_complete').addClass('active');
