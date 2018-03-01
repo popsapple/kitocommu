@@ -57,8 +57,8 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list){
         var count = 0;
-        console.log("옵션 자르기 카운트 :: "+search_option);
-        if(search_option == "member_level"){
+        console.log("옵션 자르기 카운트 :: "+request.query.searchoption);
+        if(request.query.searchoption != "nickname" || request.query.searchoption != "id"){
           member_list = member_list.splice(page_length,page_length_max);
         }
         console.log("옵션 자르기 길이 :: "+member_list.length);
