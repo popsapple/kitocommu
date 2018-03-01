@@ -63,11 +63,13 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         member_list = member_list.splice(page_length,page_length_max);
         member_list.member_list = [];
         member_list.forEach(function(arr,index){
+          console.log("멤버 찾음 01");
           if(arr.nickname != undefined){
             member_list.member_list[count] = arr; //member_list.splice(page_length,page_length_);
             count++;
           }
           if(index == (member_list.length-1)){
+            console.log("멤버 찾음 02");
             member_list.page_ = page_num_;
             global.ADMIN_DB.getMemberPagingByIndex(member_list,mongoose,request,response,type);
           }
