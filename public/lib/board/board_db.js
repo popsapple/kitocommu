@@ -185,7 +185,8 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       search_hint = {category: search_value};
     }
     console.log("찾기 옵션 :: "+search_option);
-    console.log("찾기 힌트 :: "+search_hint);
+    console.log("찾기 힌트 :: "+search_hint.title);
+    console.log(search_hint);
     page_num = numOfDocs-(page_num*page_length)-1;
     page_length = (page_num-page_length)+1;
     var data = {};

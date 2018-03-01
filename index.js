@@ -106,7 +106,8 @@ app.use(function(req, res, next) {
   res.end();
 });
 app.use(function(error, req, res, next) {
-  console.log("500 에러");
+  console.log("500 에러 :: ");
+  console.log(error);
   res.status(500).render('pages/error');
   res.end();
 });
