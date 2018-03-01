@@ -198,6 +198,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
         data.board_list = board;
         obj.board_post_length = data.board_list.length;
+        console.log("제대로 들어갔는지 확인 :: "+data.board_list.length)
         data.board_list = data.board_list.slice(page_num,max_page_length);
         data.page_ = request.query.page;
         data.searchoption = search_option;
