@@ -172,7 +172,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     var search_option = request.query.searchoption;
     var search_value = request.query.searchvalue;
     if(request.query.searchvalue == undefined){
-      search_value = " ";
+      search_value = "";
     }
     var search_hint;
     if(search_option == "title"){
@@ -185,14 +185,20 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       search_hint = {category: search_value};
     }
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
-      page_num = numOfDocs-(page_num*page_length)-1;
-      page_length = (page_num-page_length)+1;
+
       var data = {};
       function sortList(a, b) {
         if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
       }
+
       BOARD_DB_MODEL.find(search_hint, function(err, board){
-        console.log("find 요청 :: "+board);
+        if(search_value != ""){
+          page_num = board.length-(page_num*page_length)-1;
+          page_length = (page_num-page_length)+1;
+        }else{
+          page_num = numOfDocs-(page_num*page_length)-1;
+          page_length = (page_num-page_length)+1;
+        }
         data.board_list = board;
         obj.board_post_length = data.board_list.length;
         data.board_list.sort(sortList);
