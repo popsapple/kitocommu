@@ -435,8 +435,10 @@ function LoadingPage(){
         url:'http://192.168.219.104:5000',
         async: true,
         success:function(res){
+          console.log("\성공");
         },
         beforeSend:function(){
+          console.log("\이전");
           $('.loading_div').show();
           $(".loading_div").attr('aria-hidden','false');
           $("nav").attr('aria-hidden','true');
@@ -444,6 +446,7 @@ function LoadingPage(){
           $("main").attr('aria-hidden','true');
         },
         complete:function(){
+          console.log("\컴플리트");
           setTimeout(function(){
             $(".loading_div").attr('aria-hidden','true');
             $("nav").attr('aria-hidden','false');
