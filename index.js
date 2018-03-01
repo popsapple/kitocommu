@@ -102,14 +102,10 @@ require('./sitemap_builder.js').rss_builder(app,mongoose);
 
 //에러 처리
 app.use(function(error, req, res, next) {
-  console.log("400 에러 :: ");
-  console.log(error);
-  res.status(400).render('pages/error');
-  res.end();
-});
-app.use(function(error, req, res, next) {
   console.log("500 에러 :: ");
   console.log(error);
   res.status(500).render('pages/error');
+  res.status(503).render('pages/error');
+  res.status(400).render('pages/error');
   res.end();
 });
