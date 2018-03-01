@@ -42,11 +42,11 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         var search_option = request.query.searchoption;
         var value = request.query.searchvalue.toString();
         if(search_option == "nickname"){
-          data = {nickname: value};
+          data = {nickname: {'$regex': value}};
         }else if(search_option == "id"){
-          data = {id: value};
+          data = {id: {'$regex': value}};
         }else if(search_option == "member_level"){
-          data = {member_level: value};
+          data = {member_level: {'$regex': value}};
         }
 
       }else{
