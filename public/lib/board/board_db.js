@@ -210,7 +210,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         console.log("검색 length page_num :: "+page_num);
         console.log("검색 max_page_length :: "+max_page_length);
         obj.board_post_length = data.board_list.length;
-        data.board_list.sort(sortList);
+        //data.board_list.sort(sortList);
         console.log("검색 length 01 :: "+data.board_list.length);
         data.board_list = data.board_list.slice(page_num,max_page_length);
         console.log("검색 length 02 :: "+data.board_list.length);
