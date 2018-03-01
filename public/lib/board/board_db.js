@@ -177,13 +177,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     }
     var search_hint;
     if(search_option == "title"){
-      search_hint = {title: search_value};
+      search_hint = {title: {'$regex': search_value}};
     }else if(search_option == "tags"){
-      search_hint = {tag: search_value};
+      search_hint = {tag: {'$regex': search_value}};
     }else if(search_option == "writer"){
-      search_hint = {writer_nickname: search_value};
+      search_hint = {writer_nickname: {'$regex': search_value}};
     }else if(search_option == "category"){
-      search_hint = {category: search_value};
+      search_hint = {category: {'$regex': search_value}};
     }
     BOARD_DB_MODEL.count({}, function(error, numOfDocs){
 
