@@ -193,6 +193,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       BOARD_DB_MODEL.find(search_hint, function(err, board){
         if(search_value != ""){
+          console.log("검색으로들어옴");
           page_num = board.length-(page_num*page_length)-1;
           page_length = (page_num-page_length)+1;
         }else{
@@ -200,9 +201,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           page_length = (page_num-page_length)+1;
         }
         data.board_list = board;
+          console.log("검색으로들어옴 length 01 :: "+data.board_list.length);
         obj.board_post_length = data.board_list.length;
         data.board_list.sort(sortList);
         data.board_list = data.board_list.slice(page_num,page_length);
+          console.log("검색으로들어옴 length 02 :: "+data.board_list.length);
         data.page_ = request.query.page;
         data.searchoption = search_option;
         data.searchvalue = search_value;
