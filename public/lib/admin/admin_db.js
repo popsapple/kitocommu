@@ -59,7 +59,9 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       that.db_model.find(data, function(err, member_list_){
         var count = 0;
         if(member_list_.length == 0){ // 결과가 없으면
-          response.render('admin/member_list',member_list);
+          console.log("결과없음");
+          member_list_.member_list = undefined;
+          response.render('admin/member_list',member_list_);
           return false;
         }
         if(type == 'search'){
