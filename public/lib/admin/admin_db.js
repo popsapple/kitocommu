@@ -58,15 +58,16 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
       }
       that.db_model.find(data, function(err, member_list_){
         var count = 0;
+        if(member_list_.length == 0){ // 결과가 없으면
+          response.render('admin/member_list',member_list);
+          return false;
+        }
         if(type == 'search'){
           page_num = member_list_.length-(page_num*page_length)-1;
           page_length = (page_num-page_length)+1;
           page_length < 0 ? page_length = 0 : '';
           page_length_max = page_length+10;
         }
-        console.log("멤버 찾기 member_list member_list_.length :: "+member_list_.length);
-        console.log("멤버 찾기 member_list page_length :: "+page_length);
-        console.log("멤버 찾기 member_list page_length_max :: "+page_length_max);
         var member_list  = member_list_.slice(page_length,page_length_max);
         if(type == 'search'){
           member_list.numOfDocs = member_list_.length;
