@@ -93,11 +93,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         function sortList(a, b) {
           if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
         }
-        that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}, {"sort": { "post_index": -1 }}, function(err, board) {
+        that.db_model.find({post_index: { $gte: page_length, $lte: page_num }}, function(err, board){
           if(err){
             return response.render('/');
           }
           data.board_list = board;
+          data.board_list.sort(sortList);
           data.page_ = request.query.page;
           that.db_reply_model.count({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, function(error, numOfDocReplys){
            if(!numOfDocReplys){
@@ -108,7 +109,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
               callback(data,mongoose,request,response);
               return false;
             } else{
-              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, {"sort": { "post_index": -1 }}, function(err, reply) {
+              that.db_reply_model.find({reply_index: { $gte: page_length, $lte: page_num }, reply_table: board_table_id}, function(err, reply){
                 if(!reply){
                   callback(data,mongoose,request,response);
                   return false;
@@ -130,6 +131,10 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                         if(data.board_list[post_count].post_index == reply_doc[reply_count].reply_index) {
                           reply_doc[reply_count].board_table_id = "ReplyList";
                           data.board_list[post_count].reply_list.push(reply_doc[reply_count]);
+                          function sortList(a, b) {
+                            if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
+                          }
+                          data.board_list[post_count].reply_list.sort(sortList);
                         }
                         if(post_count == max_post_length){
                           if(reply_count < max_reply_length) {
@@ -184,8 +189,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
 
       var data = {};
 
-      BOARD_DB_MODEL.find(search_hint, {"sort": { "post_index": -1 }}, function(err, board) {
+      BOARD_DB_MODEL.find(search_hint).sort( { "post_index": -1 }, function(err, board){
         if(search_value != ""){
+          console.log("검색으로들어옴");
           max_page_length = board.length-(page_num*page_length);
           page_num = max_page_length-page_length; //(page_num-page_length)+1;
           page_num < 0 ? page_num = 0 : '';
@@ -198,7 +204,6 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         }
         data.board_list = board;
         obj.board_post_length = data.board_list.length;
-        console.log("제대로 들어갔는지 확인 :: "+data.board_list.length)
         data.board_list = data.board_list.slice(page_num,max_page_length);
         data.page_ = request.query.page;
         data.searchoption = search_option;
@@ -213,8 +218,9 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
     function sortList(a, b) {
       if(a.post_index == b.post_index){ return 0} return  a.post_index > b.post_index ? -1 : 1;
     }
-    BOARD_DB_MODEL.find(search_hint, {"sort": { "post_index": -1 }}, function(err, board) {
+    BOARD_DB_MODEL.find(search_hint, function(err, board){
       obj.notice_list = board;
+      obj.notice_list.sort(sortList);
       obj.notice_list = obj.notice_list.slice(0,page_length);
       global.BOARD_DB.ChangeWritedDate(obj,callback(obj,mongoose,request,response),'notice');
     });
