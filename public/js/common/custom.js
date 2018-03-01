@@ -440,26 +440,29 @@ function LoadingPage(){
           $('.loading_div').show();
           $(".loading_div").attr('aria-hidden','false');
           $("nav").attr('aria-hidden','true');
+          $(".navbar-header").attr('aria-hidden','true');
           $("main").attr('aria-hidden','true');
         },
         complete:function(){
           setTimeout(function(){
-            $('.loading_div').fadeOut(500);
             $(".loading_div").attr('aria-hidden','true');
             $("nav").attr('aria-hidden','false');
+            $(".navbar-header").attr('aria-hidden','false');
             $("main").attr('aria-hidden','false');
             $('.loading_complete').addClass('active');
-          },1000);
+            $('.loading_div').fadeOut(1000);
+          },10);
         },
         error:function(e){
           console.log("에러");
         }
     });
   }else{
-    $('.loading_div').fadeOut(1500);
     $(".loading_div").attr('aria-hidden','true');
     $("nav").attr('aria-hidden','false');
+    $(".navbar-header").attr('aria-hidden','false');
     $("main").attr('aria-hidden','false');
+    $('.loading_div').fadeOut(1500);
     if($('.loading_complete')){$('.loading_complete').addClass('active');}
     return false;
   }
