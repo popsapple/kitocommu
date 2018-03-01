@@ -13,6 +13,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     global.ADMIN_DIRAY_DB = mongoose.model('admin_diray', Memberschema);
 
   },getMemberListByIndex : function (mongoose,request,response,callback,type){
+    console.log("멤버 찾기");
   var that = this;
   that.db_model = global.MEMBER_DB.model;
   var page_num;
@@ -34,6 +35,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
   var board_id = 'Memberschema';
   that.getListing = function(){
     that.db_model.count({}, function(error, numOfDocs){
+      console.log("멤버 찾기 카운트");
       //slice를 사용하기 때문에..
       page_num = numOfDocs-(page_num*page_length)-1;
       page_length = (page_num-page_length)+1;
@@ -46,14 +48,16 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         var search_option = request.query.searchoption;
         var value = request.query.searchvalue.toString();
         if(search_option == "nickname"){
-          data = {"nickname": value};
+          data = {nickname: value};
         }else if(search_option == "id"){
-          data = {"id": value};
+          data = {id: value};
         }else if(search_option == "member_level"){
-          data = {"member_level": value};
+          data = {member_level: value};
         }
       }
+        console.log("멤버 찾기 옵션 "+search_option);
       that.db_model.find(data, function(err, member_list){
+        console.log("멤버 찾기 find ");
         var count = 0;
         member_list = member_list.splice(page_length,page_length_max);
         member_list.member_list = [];
