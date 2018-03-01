@@ -59,7 +59,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         var count = 0;
         console.log("멤버 찾기 page_length :: "+page_length);
         console.log("멤버 찾기 page_length_max :: "+page_length_max);
-        member_list = member_list.splice(page_length,page_length_max);
+        member_list.splice(page_length,page_length_max);
 
         console.log("멤버 찾기 member_list length :: "+member_list.length);
         member_list.member_list = [];
