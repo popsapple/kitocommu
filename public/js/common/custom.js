@@ -428,30 +428,19 @@ $.fn.MovingFollowMouse = function(options) {
 };
 
 function LoadingPage(){
-  if($(location).attr('href') == 'http://192.168.219.104:5000'){
+  if($(location).attr('href') == 'https://kitocommu.herokuapp.com/'){
     $.ajax({
         type:"GET",
         cache:false,
-        url:'http://192.168.219.104:5000',
+        url:'https://kitocommu.herokuapp.com/',
         async: true,
         success:function(res){
-          console.log("\성공");
         },
         beforeSend:function(){
-          console.log("\이전");
           $('.loading_div').show();
-          $(".loading_div").attr('aria-hidden','false');
-          $("nav").attr('aria-hidden','true');
-          $(".navbar-header").attr('aria-hidden','true');
-          $("main").attr('aria-hidden','true');
         },
         complete:function(){
-          console.log("\컴플리트");
           setTimeout(function(){
-            $(".loading_div").attr('aria-hidden','true');
-            $("nav").attr('aria-hidden','false');
-            $(".navbar-header").attr('aria-hidden','false');
-            $("main").attr('aria-hidden','false');
             $('.loading_complete').addClass('active');
             $('.loading_div').fadeOut(1000);
           },10);
@@ -461,10 +450,6 @@ function LoadingPage(){
         }
     });
   }else{
-    $(".loading_div").attr('aria-hidden','true');
-    $("nav").attr('aria-hidden','false');
-    $(".navbar-header").attr('aria-hidden','false');
-    $("main").attr('aria-hidden','false');
     $('.loading_div').fadeOut(1500);
     if($('.loading_complete')){$('.loading_complete').addClass('active');}
     return false;
@@ -485,9 +470,6 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
-      $("main").attr('aria-hidden','true');
-      $(".navbar-header").attr('aria-hidden','true');
-      $(".loading_div").attr('aria-hidden','true');
     });
   }
   if(width_check > 1199){
@@ -496,15 +478,11 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
-      $(".navbar-header").attr('aria-hidden','true');
-      $(".loading_div").attr('aria-hidden','true');
       $(this).addClass('open');
     });
     $(obj+selector).each(function(){
       $(this).attr('data-toggle','');
       $(this).attr('aria-expanded','true');
-      $(".navbar-header").attr('aria-hidden','true');
-      $(".loading_div").attr('aria-hidden','true');
     });
     callback ? callback() : '';
   }else{
@@ -513,15 +491,11 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
     $(obj).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
-      $(".navbar-header").attr('aria-hidden','false');
-      $(".loading_div").attr('aria-hidden','false');
       $(this).removeClass('open');
     });
     $(obj+selector).each(function(){
       $(this).attr('data-toggle','dropdown');
       $(this).attr('aria-expanded','false');
-      $(".navbar-header").attr('aria-hidden','false');
-      $(".loading_div").attr('aria-hidden','false');
     });
 
     $('li.dropdown ul li').on('click', function() {
