@@ -58,6 +58,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         console.log("멤버 찾기 옵션 "+search_option);
       that.db_model.find(data, function(err, member_list){
         console.log("멤버 찾기 find ");
+        console.log(member_list);
         var count = 0;
         member_list = member_list.splice(page_length,page_length_max);
         member_list.member_list = [];
@@ -75,6 +76,7 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
     });
   }();
 },getMemberPagingByIndex : function (member_list,mongoose,request,response,type){
+  console.log("리스트뿌리기");
     var member_db = global.MEMBER_DB.model;
     var page_num;
     var page_num_;
@@ -125,11 +127,13 @@ exports = module.exports = {AdminDbSetting  : function (mongoose,request,respons
         }
       };
       if(page_num_ < (page_length_-1)){
+        console.log("리스트뿌리기01");
         this.getCountArray(member_list,'all',function(member_list){ // 맨 마지막 페이지일때
           member_list.board_id = board_id;
           response.render('admin/member_list',member_list);
         });
       }else{
+        console.log("리스트뿌리기02");
         this.getCountArray(member_list,'',function(member_list){
           member_list.board_id = board_id;
           response.render('admin/member_list',member_list);
