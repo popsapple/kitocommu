@@ -89,7 +89,9 @@
           <ul>
             <li>
             <form method="get" action="/admin_page/member_list">
-              <input type="hidden" name="board_id" value="<%= board_id %>" />
+              <% if(locals.board_id) { %>
+                <input type="hidden" name="board_id" value="<%= board_id %>" />
+              <%}%>
               <input type="hidden" name="search" value="true" />
               <% if(locals.page) { %>
                 <input type="hidden" name="page" value="<%= page %>" />
