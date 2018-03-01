@@ -196,12 +196,12 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         if(search_value != ""){
           console.log("검색으로들어옴");
           max_page_length = board.length-(page_num*page_length);
-          page_num = page_num-page_length; //(page_num-page_length)+1;
+          page_num = max_page_length-page_length; //(page_num-page_length)+1;
           page_num < 0 ? page_num = 0 : '';
           max_page_length < 0 ? max_page_length = 0 : '';
         }else{
           max_page_length = numOfDocs-(page_num*page_length);
-          page_num = (page_num-page_length);
+          page_num = (max_page_length-page_length);
           page_num < 0 ? page_num = 0 : '';
           max_page_length < 0 ? max_page_length = 0 : '';
         }
