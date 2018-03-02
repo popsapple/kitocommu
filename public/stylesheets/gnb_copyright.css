@@ -301,18 +301,18 @@ html.sub html .navbar-default {
 }
 */
 
-html nav.navbar > .container .navbar-header > h1 img{
+html nav.navbar > .container .navbar-header > .h1 img{
   display:inline-block;
   width: 8rem;
   height: auto;
   vertical-align:inherit;
 }
-html nav.navbar > .container .navbar-header > h1 a{
+html nav.navbar > .container .navbar-header > .h1 a{
   padding:0rem;
   height:auto;
   margin-left:1rem;
 }
-html nav.navbar > .container .navbar-header > h1  {
+html nav.navbar > .container .navbar-header > .h1  {
   display:table-cell;
   width:50%;
   height:inherit;
