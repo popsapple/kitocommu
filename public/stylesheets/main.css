@@ -216,7 +216,9 @@
   width:100%;
   height:auto;
 }
-
+.main_recipe > ul > li > .box > * img {
+  max-width:189px;
+}
 .main_recipe > ul > li > .box > div {
   position:absolute;
   z-index:1;
