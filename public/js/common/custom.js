@@ -201,10 +201,10 @@ $.fn.onSliderQna = function(options)
 
           var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
           $(options['control_button']).each(function(){
-            $(this).attr("aria-selected","false");
+            $(this).attr("aria-pressed","false");
             $(this).removeClass("active");
           });
-          $(options['control_button']).eq(index).attr("aria-selected","true");
+          $(options['control_button']).eq(index).attr("aria-pressed","true");
           $(options['control_button']).eq(index).addClass("active");
 
           $(options['items']).each(function(){
@@ -227,10 +227,10 @@ $.fn.onSliderQna = function(options)
 
             var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
@@ -283,10 +283,10 @@ $.fn.onSliderQna = function(options)
   				{
   					$(options['item_wrapper']).find('.temp').remove();
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
@@ -324,10 +324,10 @@ $.fn.onSliderQna = function(options)
             $(options['item_wrapper']).css('left',options['first_left']);
             $(options['item_wrapper']).find('.temp').remove();
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
