@@ -307,7 +307,7 @@ html nav.navbar > .container .navbar-header > h1 img{
   height: auto;
   vertical-align:inherit;
 }
-html nav.navbar > .container .navbar-header > h1 > a{
+html nav.navbar > .container .navbar-header > h1 a{
   padding:0rem;
   height:auto;
   margin-left:1rem;
@@ -323,9 +323,9 @@ html nav.navbar > .container .navbar-header > h1  {
   line-height:inherit;
   text-align:left;
 }
-html nav.navbar > .container .navbar-header > button:hover,
-html nav.navbar > .container .navbar-header > button:focus,
-html nav.navbar > .container .navbar-header > button {
+html nav.navbar > .container .navbar-header button:hover,
+html nav.navbar > .container .navbar-header button:focus,
+html nav.navbar > .container .navbar-header button {
   position:relative;
   display:table-cell;
   width:50%;
