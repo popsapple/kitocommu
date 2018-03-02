@@ -778,20 +778,20 @@ body > footer.designcustom {
   padding:5rem 0rem;
   margin-top:5rem;
 }
-body > footer h1 {
+body > footer .h1 {
   margin:auto auto 2rem auto;
 }
-html body > footer h1 *{
+html body > footer .h1 *{
   display:block;
   height: auto;
   margin: auto;
 }
-html body > footer h1 img
+html body > footer .h1 img
 {
   width: 100%;
   max-width: 8rem;
 }
-html body > footer h1 .navbar-brand {
+html body > footer .h1 .navbar-brand {
   display:block;
   height: auto;
   margin: auto;
@@ -852,7 +852,7 @@ body > footer ul li+li.email:before {
     vertical-align:middle;
     width:80%;
   }
-  html body > footer > div h1 .navbar-brand {
+  html body > footer > div .h1 .navbar-brand {
     display:inline-block;
     margin:0rem;
     padding:0rem;
@@ -869,7 +869,7 @@ body > footer ul li+li.email:before {
   body > footer.designcustom > div {
     max-width: 970px;
   }
-  body > footer.designcustom > div > h1 {
+  body > footer.designcustom > div > .h1 {
     width:16%;
   }
   body > footer.designcustom > div > ul {
@@ -896,7 +896,7 @@ body > footer ul li+li.email:before {
   body > footer.designcustom > div {
     max-width: 1170px;
   }
-  body > footer.designcustom > div > h1 {
+  body > footer.designcustom > div > .h1 {
     width:20%;
   }
   body > footer.designcustom > div > ul {

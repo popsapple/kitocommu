@@ -4,10 +4,10 @@
   <li class="dropdown active" aria-hidden="false" id="<%= FaqSlideritem %>">
     <button class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></button>
     <a href="<%= board_data.Board_DiteFaq[i].link %>" itemprop="url">
-      <h2 itemtype="http://schema.org/Question">
+      <h2 itemscope itemtype="http://schema.org/Question">
         <span itemprop="name"><%= board_data.Board_DiteFaq[i].title %></span>
       </h2>
-      <div itemtype="http://schema.org/Answer" class="faq_con">
+      <div itemscope itemtype="http://schema.org/Answer" class="faq_con">
         <p itemprop="text">
           <%= board_data.Board_DiteFaq[i].contents %>
         </p>
