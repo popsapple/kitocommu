@@ -1,7 +1,7 @@
 <ul id="MainFaqSlider" class="no_padding no_margin" aria-live="polite">
   <% for(var i=0; i < board_data.Board_DiteFaq.length; i++) { %>
-  <%= i %>
-  <li class="dropdown active" aria-hidden="false">
+  <% var FaqSlideritem = "FaqSlideritem"+i %>
+  <li class="dropdown active" aria-hidden="false" id="<%= FaqSlideritem %>">
     <button class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></button>
     <a href="<%= board_data.Board_DiteFaq[i].link %>" itemprop="url">
       <h2 itemtype="http://schema.org/Question">
