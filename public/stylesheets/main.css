@@ -32,7 +32,7 @@
   height:auto;
 }
 
-.main_visual.flexslider .slides > li h1 > div {
+.main_visual.flexslider .slides > li h1 > .div {
   position:relative;
   display:table;
   width:100%;
@@ -42,7 +42,7 @@
   white-space:normal;
 }
 
-.main_visual.flexslider .slides > li h1 > div > div {
+.main_visual.flexslider .slides > li h1 > .div > .div {
   display:table-cell;
   vertical-align:middle;
   width:100%;
@@ -52,7 +52,7 @@
 /** 태블릿 이상 **/
 
 @media (min-width: 768px) {
-  .main_visual.flexslider .slides > li h1 > div > div {
+  .main_visual.flexslider .slides > li h1 > .div > .div {
     width:90%;
   }
 }
