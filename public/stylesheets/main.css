@@ -199,7 +199,13 @@
   height:100%;
 }
 
-.main_recipe > ul > li > .box > a {
+.main_recipe > ul > li > .box > *,
+.main_recipe > ul > li > .box > * img {
+  display:block;
+  width:100%;
+  height:auto;
+}
+.main_recipe > ul > li > .box > * figcaption a {
   position:absolute;
   top: 0px;
   left: 0px;
@@ -209,14 +215,7 @@
   z-index:2;
   font-size:0px;
 }
-
-.main_recipe > ul > li > .box > *,
-.main_recipe > ul > li > .box > * img {
-  display:block;
-  width:100%;
-  height:auto;
-}
-.main_recipe > ul > li > .box > * img.meal_icon {
+.main_recipe > ul > li > .box > figure.meal_icon img {
   max-width:189px;
 }
 .main_recipe > ul > li > .box > div {
