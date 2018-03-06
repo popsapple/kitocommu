@@ -20,7 +20,7 @@
                     <%= notice_list[i].title %>
                   </a>
                 </h2>
-                <time itemprop="dateCreated" datetime="<%= notice_list[i].writed_date %>" class="visible-sm visible-md visible-lg">
+                <time itemprop="dateCreated" datetime="<%= notice_list[i].writed_time %>" class="visible-sm visible-md visible-lg">
                   <span class="blind">작성일</span>
                   <%= notice_list[i].writed_date %>
                 </time>
@@ -53,7 +53,7 @@
                     <%= board_list[i].title %>
                   </a>
                 </h2>
-                <time itemprop="dateCreated" datetime="<%= board_list[i].writed_date %>" class="visible-sm visible-md visible-lg">
+                <time itemprop="dateCreated" datetime="<%= board_list[i].writed_time %>" class="visible-sm visible-md visible-lg">
                   <span class="blind">작성일</span>
                   <%= board_list[i].writed_date %>
                 </time>
@@ -74,7 +74,7 @@
                           </span> <%= board_list[i].reply_list[j].title %>
                         </a>
                       </h2>
-                      <time itemprop="dateCreated" datetime="<%= board_list[i].reply_list[j].writed_date %>" class="visible-sm visible-md visible-lg">
+                      <time itemprop="dateCreated" datetime="<%= board_list[i].reply_list[j].writed_time %>" class="visible-sm visible-md visible-lg">
                         <span class="blind">작성일</span>
                         <%= board_list[i].reply_list[j].writed_date %>
                       </time>
