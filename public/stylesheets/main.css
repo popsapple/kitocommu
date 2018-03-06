@@ -216,7 +216,7 @@
   width:100%;
   height:auto;
 }
-.main_recipe > ul > li > .box > * img {
+.main_recipe > ul > li > .box > * img.meal_icon {
   max-width:189px;
 }
 .main_recipe > ul > li > .box > div {
