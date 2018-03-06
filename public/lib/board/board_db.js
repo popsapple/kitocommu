@@ -853,13 +853,13 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
       DateChange(time_pattern,date);
 
       obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
-      obj[key][index].writed_time = date[1]+"-"+date[2]+"-"+date[3];
+      obj[key][index].writed_time = date[3]+"-"+date[1]+"-"+date[2];
       var reply_idx = 0;
       if((obj[key].length-1) == index && (JSON.stringify(obj[key][index]['reply_list']) == "[]" || JSON.stringify(obj[key][index]['reply_list']) == undefined)){
         (function RenderWeitredDateLastindex(index,obj,key){
           if(obj[key][index].writed_date == undefined || obj[key][index].writed_date == null){
             obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
-            obj[key][index].writed_time = date[1]+"-"+date[2]+"-"+date[3];
+            obj[key][index].writed_time = date[3]+"-"+date[1]+"-"+date[2];
             RenderWeitredDateLastindex(index,obj,key);
           //  return;
           }
@@ -875,14 +875,14 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
           var date_reple = String.prototype.match.apply(obj[key][index]['reply_list'][reply_idx].writed,[time_pattern]);
           DateChange(time_pattern,date_reple);
           obj[key][index]['reply_list'][reply_idx].writed_date = date_reple[1]+"."+date_reple[2]+"."+date_reple[3];
-          obj[key][index]['reply_list'][reply_idx].writed_time = date_reple[1]+"-"+date_reple[2]+"-"+date_reple[3];
+          obj[key][index]['reply_list'][reply_idx].writed_time = date_reple[3]+"-"+date_reple[1]+"-"+date_reple[2];
           if((obj[key].length-1) == index && (obj[key][index]['reply_list'].length-1) == reply_idx){ // 맨 마지막 아무래도 맨 마지막 게 위의 swich나 for문이 다 돌기 전에 실행되는 듯 하여 복잡하게 추가...
             (function RenderWeitredDateLastindex(index,obj,key){
               if(obj[key][index].writed_date == undefined || obj[key][index].writed_date == null){
                 obj[key][index].writed_date = date[1]+"."+date[2]+"."+date[3];
-                obj[key][index].writed_time = date[1]+"-"+date[2]+"-"+date[3];
+                obj[key][index].writed_time = date[3]+"-"+date[1]+"-"+date[2];
                 obj[key][index]['reply_list'][reply_idx].writed_date = date_reple[1]+"."+date_reple[2]+"."+date_reple[3];
-                obj[key][index]['reply_list'][reply_idx].writed_time = date_reple[1]+"-"+date_reple[2]+"-"+date_reple[3];
+                obj[key][index]['reply_list'][reply_idx].writed_time = date_reple[3]+"-"+date_reple[1]+"-"+date_reple[2];
                 RenderWeitredDateLastindex(index,obj,key);
               //  return;
               }
