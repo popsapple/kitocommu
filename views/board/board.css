@@ -486,3 +486,10 @@ html.sub .comment_container section {
     padding:0rem !important;
   }
 }
+
+html.sub .blind {
+  width:0px !important;
+  text-indent: 10px !important;
+  height: 0px !important;
+  overflow: hidden !important;
+}

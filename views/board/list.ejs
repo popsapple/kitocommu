@@ -95,14 +95,18 @@
             <form method="get" action="/board/search_post">
               <input type="hidden" name="board_table_id" value="<%= board_table_id %>" />
               <% if(locals.page) { %>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <input type="hidden" name="page" value="<%= page %>" />
               <%}else {%>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <input type="hidden" name="page" value="0" />
               <%}%>
               <input type="hidden" name="page_length" value="10" />
               <% if(locals.searchoption) { %>
+                <label for="BoardSearchValue" class="blind">찾을 내용</label>
                 <select itemprop="object" name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
               <%}else {%>
+                <label for="BoardSearchValue" class="blind">찾을 내용</label>
                 <select itemprop="object" name="searchoption" value="" id="BoardSearchOption">
               <%}%>
                 <option value="title">제목</option>

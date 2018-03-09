@@ -53,7 +53,7 @@
                   <figure itemprop="thumbnailUrl" class='thumnail_list'>
                     <picture>
                       <a href="/board/view?board_table_id=<%= board_table_id %>&post_index=<%= board_list[i].post_index %>">
-                        <img src="<%= board_list[i].thumnail %>" />
+                        <img src="<%= board_list[i].thumnail %>" alt="<%= board_list[i].title %>" />
                       </a>
                     </picture>
                       <figcaption class="blind"><%= board_list[i].title %></figcaption>
@@ -85,8 +85,10 @@
               <%}%>
               <input type="hidden" name="page_length" value="10" />
               <% if(locals.searchoption) { %>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <select itemprop="object" name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
               <%}else {%>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <select itemprop="object" name="searchoption" value="" id="BoardSearchOption">
               <%}%>
                 <option value="title">제목</option>
@@ -95,8 +97,10 @@
                 <option value="category">카테고리</option>
               </select>
               <% if(locals.searchvalue) { %>
+                <label for="BoardSearchValue" class="blind">찾을 내용</label>
                 <input itemprop="object" name="searchvalue" value="<%= searchvalue %>" id="BoardSearchValue" type="text" />
               <%}else {%>
+                <label for="BoardSearchValue" class="blind">찾을 내용</label>
                 <input itemprop="object" name="searchvalue" value="" id="BoardSearchValue" type="text" />
               <%}%>
               <input itemprop="target" type="submit" class="linebutton small search_button" value="검색하기" />

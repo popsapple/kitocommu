@@ -100,14 +100,17 @@
               <%}%>
               <input type="hidden" name="page_length" value="10" />
               <% if(locals.searchoption) { %>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <select name="searchoption" value="<%= searchoption %>" id="BoardSearchOption">
               <%}else {%>
+                <label for="BoardSearchOption" class="blind">찾기 옵션</label>
                 <select name="searchoption" value="" id="BoardSearchOption">
               <%}%>
                 <option value="nickname">닉네임</option>
                 <option value="id">아이디</option>
                 <option value="member_level">레벨</option>
               </select>
+              <label for="BoardSearchValue" class="blind">찾을 내용</label>
               <input name="searchvalue" value="" id="BoardSearchValue" type="text" />
               <input type="submit" class="linebutton small search_button" value="검색하기" />
             </form>
