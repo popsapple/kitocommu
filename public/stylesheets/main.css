@@ -794,6 +794,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
   width:3rem;
   height:3rem;
   text-align: center;
+  font-size: 0px;
 }
 .main_kito_faq > ul > li .dropdown-toggle:before,
 .main_kito_faq > ul > li .dropdown-toggle:after {

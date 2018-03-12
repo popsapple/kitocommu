@@ -1,5 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+html *[aria-hidden="true"] {
+  visibility: hidden !important;
+}
+
 ul, li, ol {
   list-style:none;
 }
@@ -395,6 +399,7 @@ html .navbar-collapse.collapsing {
 html .navbar-collapse.in {
   opacity:1;
   height:100vh;
+  margin:auto;
   visibility:visible;
   font-size:1rem;
   -webkit-transition:opacity 1s 0s,height 0s 0s;
