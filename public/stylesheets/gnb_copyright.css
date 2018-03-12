@@ -1,9 +1,5 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-html *[aria-hidden="true"] {
-  visibility: hidden !important;
-}
-
 ul, li, ol {
   list-style:none;
 }
@@ -369,6 +365,8 @@ html .navbar-collapse {
   top:0rem;
   background:url(/images/main/transparent_black.png);
   filter:none;
+}
+html .navbar-collapse {
   opacity:0;
   font-size:0rem;
   -webkit-transition:opacity 1s 0s,height 1s 1s;
@@ -376,10 +374,6 @@ html .navbar-collapse {
   -ms-transition:opacity 1s 0s,height 1s 1s;
   -o-transition:opacity 1s 0s,height 1s 1s;
   transition:opacity 1s 0s,height 1s 1s;
-}
-
-html .navbar-collapse.collapsing {
-  opacity:0 !important;
 }
 
 /*html .navbar-collapse.collapsing{
