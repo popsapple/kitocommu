@@ -145,9 +145,10 @@ module.exports.board_con = function(app,mongoose){
   });
 
   app.post('/board_write_submit', function(request, response) {
+    console.log("submit01 ======");
     if(global.MEMBER_DB.CheckLoginUser(request,response)){
       app.post('/board_write_submit', function(request, response) {
-        console.log("submit ======");
+        console.log("submit02 ======");
         if(request.body['g-recaptcha-response'] === undefined || request.body['g-recaptcha-response'] === '' || request.body['g-recaptcha-response'] === null) {
           response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
         }
