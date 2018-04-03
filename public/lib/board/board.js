@@ -147,18 +147,17 @@ module.exports.board_con = function(app,mongoose,request_fun){
   });
 
   app.post('/board_write_submit', function(request, response) {
-    console.log("submit01 ======");
     var request_ = request;
     var response_ = response;
     if(global.MEMBER_DB.CheckLoginUser(request,response)){
-      console.log("submit02 ======");
       if(request.body['g-recaptcha-response'] === undefined || request.body['g-recaptcha-response'] === '' || request.body['g-recaptcha-response'] === null) {
         response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
       }
       // Put your secret key here.
       var secretKey = "6LdSolAUAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
       // req.connection.remoteAddress will provide IP address of connected user.
-      var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'] + "&remoteip=" + request.connection.remoteAddress;
+      console.log("request.body['g-recaptcha-response'] ====== :: "+request.body['g-recaptcha-response']);
+      var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'];
       // Hitting GET request to the URL, Google will respond with success or error scenario.
       request_fun(verificationUrl,function(error, response, body) {
         console.log("response ====== :: "+request_.body.board_table_id);
