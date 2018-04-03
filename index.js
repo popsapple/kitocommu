@@ -4,6 +4,7 @@ var multer = require('multer');
 var multerS3 = require('multer-s3');
 var fs = require('file-system');
 var aws = require('aws-sdk');
+var request_fun = require('request');
 var bodyParser = require('body-parser');
 global.crypto = require('crypto');
 var cookieParser = require('cookie-parser');
