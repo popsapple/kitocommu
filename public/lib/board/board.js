@@ -160,8 +160,9 @@ module.exports.board_con = function(app,mongoose,request_fun){
       var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'];
       // Hitting GET request to the URL, Google will respond with success or error scenario.
       request_fun(verificationUrl,function(error, response, body) {
-        console.log("response ====== :: "+request_.body.board_table_id);
         body = JSON.parse(body);
+          console.log("response ====== :: ");
+            console.log(body);
         // Success will be true or false depending upon captcha validation.
         if(body.success !== undefined && !body.success) {
           return response_.send("<script>location.href='"+request_.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
