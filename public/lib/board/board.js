@@ -147,26 +147,24 @@ module.exports.board_con = function(app,mongoose){
   app.post('/board_write_submit', function(request, response) {
     console.log("submit01 ======");
     if(global.MEMBER_DB.CheckLoginUser(request,response)){
-      app.post('/board_write_submit', function(request, response) {
-        console.log("submit02 ======");
-        if(request.body['g-recaptcha-response'] === undefined || request.body['g-recaptcha-response'] === '' || request.body['g-recaptcha-response'] === null) {
-          response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
+      console.log("submit02 ======");
+      if(request.body['g-recaptcha-response'] === undefined || request.body['g-recaptcha-response'] === '' || request.body['g-recaptcha-response'] === null) {
+        response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
+      }
+      // Put your secret key here.
+      var secretKey = "6LdSolAUAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
+      // req.connection.remoteAddress will provide IP address of connected user.
+      var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'] + "&remoteip=" + request.connection.remoteAddress;
+      // Hitting GET request to the URL, Google will respond with success or error scenario.
+      app.get(verificationUrl, function(error,response) {
+        console.log("response ======");
+        console.log(response.body);
+        // Success will be true or false depending upon captcha validation.
+        if(body.success !== undefined && !body.success) {
+          return response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
         }
-        // Put your secret key here.
-        var secretKey = "6LdSolAUAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
-        // req.connection.remoteAddress will provide IP address of connected user.
-        var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'] + "&remoteip=" + request.connection.remoteAddress;
-        // Hitting GET request to the URL, Google will respond with success or error scenario.
-        app.get(verificationUrl, function(error,response) {
-          console.log("response ======");
-          console.log(response.body);
-          // Success will be true or false depending upon captcha validation.
-          if(body.success !== undefined && !body.success) {
-            return response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
-          }
-          var board_id = 'Board_'+(request.body.board_table_id);
-          Board.write(request.body,request,response,mongoose,board_id,'save');
-        });
+        var board_id = 'Board_'+(request.body.board_table_id);
+        Board.write(request.body,request,response,mongoose,board_id,'save');
       });
     }
   });
