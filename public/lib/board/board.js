@@ -157,7 +157,7 @@ module.exports.board_con = function(app,mongoose){
         // Hitting GET request to the URL, Google will respond with success or error scenario.
         app.post(verificationUrl, function(error,response) {
           console.log("response ======");
-          console.log(response);
+          console.log(response.body);
           // Success will be true or false depending upon captcha validation.
           if(body.success !== undefined && !body.success) {
             return response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
