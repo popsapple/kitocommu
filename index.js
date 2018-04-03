@@ -83,7 +83,7 @@ require('./public/lib/food/food_search.js').food_search(app);
 require('./public/lib/editor/editor.js').editor_con(app,aws,multer,multerS3,fs);
 
 // 게시판관련
-require('./public/lib/board/board.js').board_con(app,mongoose);
+require('./public/lib/board/board.js').board_con(app,mongoose,request_fun);
 
 // 메인페이지
 require('./public/lib/main_page/main_page.js').index_page(app,mongoose);

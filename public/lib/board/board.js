@@ -96,7 +96,7 @@ Board.write_coments = function(request,response,mongoose){
   global.BOARD_DB.BoardCommentSave(mongoose,request,response);
 };
 
-module.exports.board_con = function(app,mongoose){
+module.exports.board_con = function(app,mongoose,request_fun){
   global.BOARD_DB = require('./board_db.js');
   app.get('/board/list', function(request, response) {
       request.session.urlpath = request.protocol + '://' + request.get('host') + request.originalUrl;
