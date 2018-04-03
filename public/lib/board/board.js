@@ -154,7 +154,7 @@ module.exports.board_con = function(app,mongoose,request_fun){
         response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
       }
       // Put your secret key here.
-      var secretKey = "6LdSolAUAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
+      var secretKey = "6LdSolAUAAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
       // req.connection.remoteAddress will provide IP address of connected user.
       console.log("request.body['g-recaptcha-response'] ====== :: "+request.body['g-recaptcha-response']);
       var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + request.body['g-recaptcha-response'];
