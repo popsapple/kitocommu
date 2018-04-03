@@ -151,6 +151,8 @@ module.exports.board_con = function(app,mongoose){
       if(request.body['g-recaptcha-response'] === undefined || request.body['g-recaptcha-response'] === '' || request.body['g-recaptcha-response'] === null) {
         response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
       }
+      var request_ = request;
+      var response_ = response;
       // Put your secret key here.
       var secretKey = "6LdSolAUAAAAEv57qOqv0dD-o9T5VNU82UDNo54";
       // req.connection.remoteAddress will provide IP address of connected user.
@@ -163,8 +165,8 @@ module.exports.board_con = function(app,mongoose){
         if(body.success !== undefined && !body.success) {
           return response.send("<script>location.href='"+request.session.urlpath+"';alert('스팸방지 코드를 다시 확인해주세요');</script>");
         }
-        var board_id = 'Board_'+(request.body.board_table_id);
-        Board.write(request.body,request,response,mongoose,board_id,'save');
+        var board_id = 'Board_'+(request_.body.board_table_id);
+        Board.write(request_.body,request_,response_,mongoose,board_id,'save');
       });
     }
   });
