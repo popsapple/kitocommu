@@ -1,66 +1,65 @@
 ﻿/*********  메인비주얼  *********/
 .main_visual.flexslider,
 .main_visual.flexslider .slides {
-  margin:0rem;
-  padding:0rem;
-  position:relative;
-  white-space:nowrap;
+  margin: 0rem;
+  padding: 0rem;
+  position: relative;
+  white-space: nowrap;
 }
 .main_visual.flexslider .slides > li {
-  position:relative;
-  width:100%;
+  position: relative;
+  width: 100%;
 }
 .main_visual.flexslider .slides > li {
-  display:none !important;
+  display: none !important;
 }
 .main_visual.active.flexslider .slides > li {
-  display:block !important;
+  display: block !important;
 }
-.main_visual.flexslider .slides > li  > h1 {
-  position:absolute;
-  display:block;
-  width:91%;
-  height:83%;
-  margin:0rem;
-  top:0rem;
-  left:4.5%;
+.main_visual.flexslider .slides > li > h1 {
+  position: absolute;
+  display: block;
+  width: 91%;
+  height: 83%;
+  margin: 0rem;
+  top: 0rem;
+  left: 4.5%;
 }
 
 .main_visual.flexslider .slides > li img {
-  display:block;
-  width:100%;
-  height:auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .main_visual.flexslider .slides > li h1 > .div {
-  position:relative;
-  display:table;
-  width:100%;
-  height:100%;
-  padding-left:5%;
-  vertical-align:middle;
-  white-space:normal;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 100%;
+  padding-left: 5%;
+  vertical-align: middle;
+  white-space: normal;
 }
 
 .main_visual.flexslider .slides > li h1 > .div > .div {
-  display:table-cell;
-  vertical-align:middle;
-  width:100%;
-  height:100%;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 
 /** 태블릿 이상 **/
 
 @media (min-width: 768px) {
   .main_visual.flexslider .slides > li h1 > .div > .div {
-    width:90%;
+    width: 90%;
   }
 }
 
-
 .main_visual.flexslider .slides > li h1 .div * {
-  display:block;
-  color:#ffffff;
+  display: block;
+  color: #ffffff;
 }
 
 .main_visual.flexslider .slides > li h1 .div strong {
@@ -75,39 +74,39 @@
 }
 
 .main_visual.flexslider .slides > li h1 .div span {
-  font-size:1.4rem;
+  font-size: 1.4rem;
   line-height: 2.2rem;
-  font-weight:300;
+  font-weight: 300;
 }
 
 .main_visual_control {
-  position:absolute;
-  z-index:1;
-  display:block;
-  width:100%;
-  height:20%;
-  bottom:0rem;
-  font-size:0rem;
-  vertical-align:middle;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 20%;
+  bottom: 0rem;
+  font-size: 0rem;
+  vertical-align: middle;
   text-align: center;
 }
 
 .main_visual_control > div > * {
-  display:inline-block;
-  font-size:1rem;
+  display: inline-block;
+  font-size: 1rem;
 }
 
 .main_visual_control > div > ul {
-  padding:0rem;
-  margin:0rem;
+  padding: 0rem;
+  margin: 0rem;
 }
 
 .main_visual_control > div > ul li {
-  display:block;
+  display: block;
   margin-right: 3rem;
-  float:left;
+  float: left;
 }
-.main_visual_control > div > ul li+li+li {
+.main_visual_control > div > ul li + li + li {
   margin-right: 0rem;
 }
 
@@ -116,171 +115,170 @@
   height: 0.6rem;
   background: #fff;
   transform: skewY(15deg);
-  border:0rem;
+  border: 0rem;
 }
 
-.main_visual_control > div > ul button+button+button {
-  margin-right:0rem;
+.main_visual_control > div > ul button + button + button {
+  margin-right: 0rem;
 }
 
 .main_visual_control > div > ul button.flex-active {
-  background:#ffce00;
+  background: #ffce00;
 }
 
 /** 태블릿 이상 **/
 
 @media (min-width: 768px) {
   .main_visual.flexslider .slides > li > h1 {
-    height:100%;
+    height: 100%;
     left: 1.5rem;
   }
-  .main_visual.flexslider .slides>li h1 .div span {
-    font-size:1.8rem;
+  .main_visual.flexslider .slides > li h1 .div span {
+    font-size: 1.8rem;
   }
-  .main_visual.flexslider .slides>li h1 .div strong {
+  .main_visual.flexslider .slides > li h1 .div strong {
     font-size: 3.5rem;
     line-height: 5rem;
     width: 80%;
   }
   .main_visual.flexslider.active {
-    position:relative;
+    position: relative;
   }
   .main_visual_control {
-    position:absolute;
-    width:5.3rem;
-    height:100%;
+    position: absolute;
+    width: 5.3rem;
+    height: 100%;
     top: 0rem;
-    right:5%;
-    bottom:none;
+    right: 5%;
+    bottom: none;
   }
   .main_visual_control > div {
-    position:absolute;
-    top:50%;
-    margin-top:-3rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -3rem;
   }
   .main_visual_control > div > ul button {
-    display:block;
-    height:0.7rem;
-    margin-bottom:2rem;
+    display: block;
+    height: 0.7rem;
+    margin-bottom: 2rem;
   }
   .main_visual_control > div > ul li {
-    display:block;
+    display: block;
     margin-right: 0rem;
-    float:none;
+    float: none;
   }
 }
-
 
 /*********  레시피  *********/
 
 .main_recipe {
-  text-align:center;
+  text-align: center;
 }
 
 .main.designcustom .main_recipe .linebutton {
-  margin:2em 6rem 8em 6em;
+  margin: 2em 6em 8em 6em;
 }
 
 .main_recipe > ul {
-  display:block;
-  white-space:nowrap;
-  margin:0rem;
-  padding:0rem;
+  display: block;
+  white-space: nowrap;
+  margin: 0rem;
+  padding: 0rem;
 }
 
 .main_recipe > ul > li {
-  display:block;
+  display: block;
 }
 
 .main_recipe > ul > li > .box {
-  position:relative;
-  display:block;
-  width:100%;
-  height:100%;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .main_recipe > ul > li > .box > * img {
-  display:block;
-  width:100%;
-  height:auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .main_recipe > ul > li > .box > * figcaption a {
-  position:absolute;
+  position: absolute;
   top: 0px;
   left: 0px;
-  display:block;
-  width:100%;
-  height:100%;
-  z-index:2;
-  font-size:0px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  font-size: 0px;
 }
 .main_recipe > ul > li > .box > figure.meal_icon img {
-  max-width:189px;
+  max-width: 189px;
 }
 .main_recipe > ul > li > .box > div {
-  position:absolute;
-  z-index:1;
-  display:block;
-  vertical-align:middle;
-  width:100%;
-  height:100%;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 
 .main_recipe > ul > li > .box > div > div {
-  display:table;
-  vertical-align:middle;
-  width:100%;
-  height:100%;
+  display: table;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 .main_recipe > ul > li > .box h2 {
-  display:table-cell;
-  vertical-align:middle;
-  width:100%;
-  height:100%;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 .main_recipe > ul > li > .box h2 strong {
-  position:relative;
-  display:block;
-  padding-top:2.7rem;
-  color:#ffffff;
-  font-weight:700;
-  font-size:1.8rem;
+  position: relative;
+  display: block;
+  padding-top: 2.7rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.8rem;
   text-align: center;
 }
 
 .main_recipe > ul > li > .box h2 strong:before {
-  position:absolute;
-  content:"";
-  display:block;
+  position: absolute;
+  content: "";
+  display: block;
   width: 4rem;
   height: 0.6rem;
   background: #fff;
   transform: skewY(15deg);
   margin-right: 3rem;
-  top:0rem;
+  top: 0rem;
   left: 50%;
   margin-left: -2rem;
 }
 
 .designcustom .main_recipe .linebutton {
-  margin:5rem 0rem;
+  margin: 5rem 0rem;
 }
 
 .main_recipe .meal_icon {
-  display:none;
+  display: none;
 }
 
 /** 태블릿 이상 **/
 @media (min-width: 768px) {
   .main_recipe > ul.container {
-    width:90%;
+    width: 90%;
     margin-left: 5%;
   }
   .main_recipe > ul.container > li {
     padding-bottom: 10%;
   }
   .main_recipe > ul > li > .box h2 strong {
-    top:12%;
+    top: 12%;
     font-weight: 500;
     font-size: 1.6rem;
   }
@@ -292,62 +290,64 @@
   }
 
   .main_recipe .meal_icon {
-    position:absolute;
-    z-index:1;
-    display:block;
-    left:50%;
-    bottom:-5rem;
-    width:12.6rem;
-    height:auto;
-    margin-left:-6.3rem;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    left: 50%;
+    bottom: -5rem;
+    width: 12.6rem;
+    height: auto;
+    margin-left: -6.3rem;
   }
   .main_recipe .meal_icon img {
-    position:relative;
+    position: relative;
   }
   .main_recipe .meal_icon img:horver {
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 @media (min-width: 992px) {
   .main_recipe .meal_icon {
     width: 15.6rem;
-  height: auto;
-  margin-left: -7.8rem;
+    height: auto;
+    margin-left: -7.8rem;
   }
 }
 
 /***** 키토제닉 다이어트 설명 *****/
 
 .main_kito_desc {
-  display:block;
-  background:#f0ede6;
-  padding-top : 5rem;
+  display: block;
+  background: #f0ede6;
+  padding-top: 5rem;
 }
 
-.main_kito_desc h1 {margin:0rem;}
+.main_kito_desc h1 {
+  margin: 0rem;
+}
 
 .main_kito_desc h1 strong {
-  display:block;
-  font-size:2.5rem;
-  color:#464646;
-  font-weight:800;
-  margin-bottom:1.5rem;
+  display: block;
+  font-size: 2.5rem;
+  color: #464646;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
 }
 
 .main_kito_desc h1 span {
-  display:block;
-  font-size:1.4rem;
-  line-height:2.3rem;
-  color:#707070;
-  font-weight:400;
+  display: block;
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  color: #707070;
+  font-weight: 400;
 }
 
 .main_kito_desc h1 span em {
-  display:inline-block;
-  color:#303030;
-  background:#fac304;
-  font-style:normal;
-  margin-bottom:2rem;
+  display: inline-block;
+  color: #303030;
+  background: #fac304;
+  font-style: normal;
+  margin-bottom: 2rem;
 }
 
 .main_kito_desc h1 span em {
@@ -359,66 +359,66 @@
   margin-bottom: 0rem;
 }
 .main_kito_desc figure {
-  position:relative;
+  position: relative;
 }
 
 @keyframes kitoliver {
   0% {
-    transform: scale(0.06,0.06);
+    transform: scale(0.06, 0.06);
   }
   32% {
-    transform: scale(0.4,0.4);
+    transform: scale(0.4, 0.4);
   }
   100% {
-    transform: scale(0.4,0.4);
+    transform: scale(0.4, 0.4);
   }
 }
 
 @keyframes kitoliver2 {
   0% {
-    transform: scale(0.06,0.06);
+    transform: scale(0.06, 0.06);
   }
   32% {
-    transform: scale(0.4,0.4);
+    transform: scale(0.4, 0.4);
   }
   64% {
-    transform: scale(0.7,0.7);
+    transform: scale(0.7, 0.7);
   }
   100% {
-    transform: scale(0.7,0.7);
+    transform: scale(0.7, 0.7);
   }
 }
 
 @keyframes kitoliver3 {
   0% {
-    transform: scale(0.06,0.06);
+    transform: scale(0.06, 0.06);
   }
   32% {
-    transform: scale(0.4,0.4);
+    transform: scale(0.4, 0.4);
   }
   64% {
-    transform: scale(0.7,0.7);
+    transform: scale(0.7, 0.7);
   }
   81% {
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
   100% {
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
 }
 
 .main_kito_desc {
-  text-align:center;
+  text-align: center;
 }
 .main_kito_desc figure {
-  position:relative;
+  position: relative;
 }
 
 .main_kito_desc figure img {
-  position:absolute;
-  z-index:1;
-  width:100%;
-  height:auto;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: auto;
 }
 
 .main_kito_desc figure img.human {
@@ -432,110 +432,109 @@
 }
 
 .main_kito_desc figure .meet {
-  top:10%;
-  left:10%;
-  max-width:4rem;
+  top: 10%;
+  left: 10%;
+  max-width: 4rem;
 }
 .main_kito_desc figure .cheese {
-  top:21%;
-  left:4%;
-  max-width:4rem;
+  top: 21%;
+  left: 4%;
+  max-width: 4rem;
 }
 .main_kito_desc figure .avocado {
-  top:34.5%;
-  left:0%;
-  max-width:4.2rem;
+  top: 34.5%;
+  left: 0%;
+  max-width: 4.2rem;
 }
 
 @media (min-width: 480px) {
   .main_kito_desc figure .meet,
   .main_kito_desc figure .cheese,
   .main_kito_desc figure .avocado {
-    max-width:5.4rem;
+    max-width: 5.4rem;
   }
 }
 
 .main_kito_desc figure .liver {
-  z-index:2;
-  bottom:15%;
-  left:50%;
-  margin-left:-4.3rem;
-  max-width:10.4rem;
+  z-index: 2;
+  bottom: 15%;
+  left: 50%;
+  margin-left: -4.3rem;
+  max-width: 10.4rem;
 }
 
 .main_kito_desc figure .circle {
-  position:absolute;
-  z-index:1;
-  display:block;
-  width:1rem;
-  height:1rem;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 1rem;
+  height: 1rem;
   left: 50%;
   bottom: 28.5%;
 }
 
 .main_kito_desc figure .circle > span {
-  position:relative;
-  display:block;
-  width:1rem;
-  height:1rem;
+  position: relative;
+  display: block;
+  width: 1rem;
+  height: 1rem;
 }
 
-.main_kito_desc figure .circle .circle_obj{
-  position:absolute;
-  left:50%;
-  height:50%;
-  margin-left:-9rem;
-  margin-top:-9rem;
-  display:block;
-  width:18rem;
-  height:18rem;
-  background:#ff4f0a;
-  border-radius:50%;
-  opacity:0.3;
-  animation-name:kitoliver;
+.main_kito_desc figure .circle .circle_obj {
+  position: absolute;
+  left: 50%;
+  height: 50%;
+  margin-left: -9rem;
+  margin-top: -9rem;
+  display: block;
+  width: 18rem;
+  height: 18rem;
+  background: #ff4f0a;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation-name: kitoliver;
   animation-duration: 5s;
-  animation-fill-mode:both;
+  animation-fill-mode: both;
   animation-iteration-count: infinite;
 }
 
-.main_kito_desc figure .circle .circle02{
-  background:#ffa00a;
-  animation-name:kitoliver2;
+.main_kito_desc figure .circle .circle02 {
+  background: #ffa00a;
+  animation-name: kitoliver2;
   animation-duration: 5s;
 }
 
-.main_kito_desc figure .circle .circle03{
-  background:#ffbd0a;
-  animation-name:kitoliver3;
+.main_kito_desc figure .circle .circle03 {
+  background: #ffbd0a;
+  animation-name: kitoliver3;
   animation-duration: 5s;
 }
 
-body.ie9 .main_kito_desc figure .circle .circle01{
-  width:7.6rem;
-  height:7.6rem;
-  margin-left:-3.8rem;
-  margin-top:-3.8rem;
+body.ie9 .main_kito_desc figure .circle .circle01 {
+  width: 7.6rem;
+  height: 7.6rem;
+  margin-left: -3.8rem;
+  margin-top: -3.8rem;
 }
 
-body.ie9 .main_kito_desc figure .circle .circle02{
-  width:13rem;
-  height:13rem;
-  margin-left:-6.5rem;
-  margin-top:-6.5rem;
+body.ie9 .main_kito_desc figure .circle .circle02 {
+  width: 13rem;
+  height: 13rem;
+  margin-left: -6.5rem;
+  margin-top: -6.5rem;
 }
 
-body.ie9 .main_kito_desc figure .circle .circle03{
-  width:18rem;
-  height:18rem;
-  margin-left:-9rem;
-  margin-top:-9rem;
+body.ie9 .main_kito_desc figure .circle .circle03 {
+  width: 18rem;
+  height: 18rem;
+  margin-left: -9rem;
+  margin-top: -9rem;
 }
 
 .main_kito_desc figure .liver {
-  position:absolute;
-  z-index:2;
+  position: absolute;
+  z-index: 2;
 }
-
 
 /** 520,670 이상  **/
 
@@ -546,7 +545,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     max-width: 6.5rem;
   }
   .main_kito_desc figure .meet {
-    left:19%;
+    left: 19%;
   }
   .main_kito_desc figure .cheese {
     top: 23%;
@@ -560,7 +559,7 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 
 @media (min-width: 670px) {
   .main_kito_desc figure .meet {
-    left:23%;
+    left: 23%;
   }
   .main_kito_desc figure .cheese {
     top: 23%;
@@ -576,28 +575,28 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 
 @media (min-width: 768px) {
   .main_kito_desc {
-    position:relative;
-    white-space:nowrap;
-    overflow:hidden;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
     margin-top: 5rem;
     float: left;
   }
   .main_kito_desc h1 {
-    display:inline-block;
-    width:60%;
-    height:auto;
-    margin-bottom:5rem;
-    white-space:normal;
-    text-align:left;
+    display: inline-block;
+    width: 60%;
+    height: auto;
+    margin-bottom: 5rem;
+    white-space: normal;
+    text-align: left;
   }
   .main_kito_desc h1 strong {
-    width:90%;
-    margin-bottom:3rem;
+    width: 90%;
+    margin-bottom: 3rem;
     font-size: 4.5rem;
     line-height: 5.5rem;
   }
   .main_kito_desc h1 span {
-    width:90%;
+    width: 90%;
   }
   .main_kito_desc figure img.human {
     position: absolute;
@@ -614,59 +613,59 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     max-width: 17.5rem;
   }
   .main_kito_desc figure .circle {
-    left:74%;
-    top:3800%;
+    left: 74%;
+    top: 3800%;
   }
   .main_kito_desc figure .circle .circle_obj {
-    width:21rem;
-    height:21rem;
-    margin-left:-10.5rem;
-    margin-top:-10.5rem;
+    width: 21rem;
+    height: 21rem;
+    margin-left: -10.5rem;
+    margin-top: -10.5rem;
   }
-  body.ie9 .main_kito_desc figure .circle .circle01{
-    width:8.6rem;
-    height:8.6rem;
-    margin-left:-4.3rem;
-    margin-top:-4.3rem;
-  }
-
-  body.ie9 .main_kito_desc figure .circle .circle02{
-    width:14.5rem;
-    height:14.5rem;
-    margin-left:-7.25rem;
-    margin-top:-7.25rem;
+  body.ie9 .main_kito_desc figure .circle .circle01 {
+    width: 8.6rem;
+    height: 8.6rem;
+    margin-left: -4.3rem;
+    margin-top: -4.3rem;
   }
 
-  body.ie9 .main_kito_desc figure .circle .circle03{
-    width:21rem;
-    height:21rem;
-    margin-left:-10.5rem;
-    margin-top:-10.5rem;
+  body.ie9 .main_kito_desc figure .circle .circle02 {
+    width: 14.5rem;
+    height: 14.5rem;
+    margin-left: -7.25rem;
+    margin-top: -7.25rem;
+  }
+
+  body.ie9 .main_kito_desc figure .circle .circle03 {
+    width: 21rem;
+    height: 21rem;
+    margin-left: -10.5rem;
+    margin-top: -10.5rem;
   }
   .main_kito_desc figure {
-    position:relative;
-    display:inline-block;
-    width:40%;
-    height:1rem;
-    white-space:normal;
-    vertical-align:bottom;
+    position: relative;
+    display: inline-block;
+    width: 40%;
+    height: 1rem;
+    white-space: normal;
+    vertical-align: bottom;
     float: right;
-    bottom:-5rem;
+    bottom: -5rem;
   }
   .main_kito_desc figure .avocado {
     top: 500%;
     left: 0%;
-    position:absolute;
+    position: absolute;
   }
   .main_kito_desc figure .cheese {
     top: 1200%;
     left: 10%;
-    position:absolute;
+    position: absolute;
   }
   .main_kito_desc figure .meet {
     top: 1800%;
     left: 0%;
-    position:absolute;
+    position: absolute;
   }
 }
 @media (min-width: 992px) {
@@ -674,9 +673,9 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     right: -40%;
   }
   .main_kito_desc figure .circle {
-    top : 3700%;
+    top: 3700%;
     left: auto;
-    right:23%;
+    right: 23%;
   }
   .main_kito_desc figure img.liver {
     top: 2900%;
@@ -709,15 +708,15 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     left: auto;
   }
   body.ie9 .main_kito_desc figure .circle {
-    right:37%;
+    right: 37%;
     left: auto;
   }
 }
 @media (min-width: 1200px) {
   .main_design_section {
-    position:relative;
-    padding:0rem;
-    margin:0em;
+    position: relative;
+    padding: 0rem;
+    margin: 0em;
   }
   .main_kito_desc {
     padding: 5rem;
@@ -726,13 +725,13 @@ body.ie9 .main_kito_desc figure .circle .circle03{
     margin-bottom: 0rem;
   }
   .main_kito_desc figure .circle {
-    right:35%;
+    right: 35%;
   }
   .main_kito_desc figure img.liver {
     right: 11%;
   }
   .main_kito_desc figure .meet {
-    left:-17%;
+    left: -17%;
   }
   .main_kito_desc figure .cheese {
     left: 2%;
@@ -754,56 +753,56 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 /***** 자주하는 질문  *****/
 
 .main_kito_faq > ul > li * {
-  display:block;
-  padding:0rem;
-  margin:0rem;
-  border:0rem;
-  background:none;
-  box-shadow:none;
-  text-shadow:none;
+  display: block;
+  padding: 0rem;
+  margin: 0rem;
+  border: 0rem;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
 }
 .main_kito_faq > ul > li {
-  position:relative;
-  display:block;
-  padding:1rem;
-  box-sizing:border-box;
-  border:1px solid #cbc8c2;
-  margin-bottom:0.7rem;
+  position: relative;
+  display: block;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #cbc8c2;
+  margin-bottom: 0.7rem;
 }
 
 @media (max-width: 1199px) {
   .main_kito_faq > ul {
-    width:auto !important;
+    width: auto !important;
   }
   .main_kito_faq > ul > li {
-    width:auto !important;
+    width: auto !important;
   }
 }
 
-.main_kito_faq > ul > li:last-child{
-  margin-bottom:0rem;
+.main_kito_faq > ul > li:last-child {
+  margin-bottom: 0rem;
 }
 .main_kito_faq > ul > li.open {
-  border:3px solid #cbc8c2;
+  border: 3px solid #cbc8c2;
 }
 .main_kito_faq > ul > li .dropdown-toggle {
   position: absolute;
   z-index: 1;
   right: 0.7rem;
   top: 0rem;
-  width:3rem;
-  height:3rem;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
   font-size: 0px;
 }
 .main_kito_faq > ul > li .dropdown-toggle:before,
 .main_kito_faq > ul > li .dropdown-toggle:after {
-  display:block;
-  content:"";
-  width:2.5rem;
-  height:0.3rem;
+  display: block;
+  content: "";
+  width: 2.5rem;
+  height: 0.3rem;
   transform: rotate(0deg);
-  background:#cbc8c2;
+  background: #cbc8c2;
 }
 .main_kito_faq > ul > li .dropdown-toggle:before {
   position: relative;
@@ -821,27 +820,27 @@ body.ie9 .main_kito_desc figure .circle .circle03{
 }
 
 body.ie9 .main_kito_faq > ul > li .dropdown-toggle:after {
-  margin-top:-1.25rem;
-  margin-left:1.1rem;
-  width:0.3rem;
-  height:2.5rem;
+  margin-top: -1.25rem;
+  margin-left: 1.1rem;
+  width: 0.3rem;
+  height: 2.5rem;
 }
 body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
-  width:2.5rem;
-  height:0.3rem;
+  width: 2.5rem;
+  height: 0.3rem;
 }
 .main_kito_faq > ul > li h2 span {
-  width:80%;
-  font-size:1.6rem;
-  line-height:2.6rem;
-  font-weight:700;
-  color:#464646;
+  width: 80%;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  color: #464646;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .main_kito_faq > ul > li.open h2 span {
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
   white-space: normal;
   text-overflow: none;
 }
@@ -851,19 +850,19 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
 .main_kito_faq > ul > li a:hover h2 span {
   text-decoration: underline;
 }
-.main_kito_faq > ul > li h2+div {
-  display:none;
+.main_kito_faq > ul > li h2 + div {
+  display: none;
 }
-.main_kito_faq > ul > li.open h2+div {
-  display:block;
+.main_kito_faq > ul > li.open h2 + div {
+  display: block;
   max-height: 20rem;
   overflow: hidden;
 }
-.main_kito_faq > ul > li h2+div p{
-  font-size:1.4rem;
-  line-height:2.2rem;
-  font-weight:300;
-  color:#606060;
+.main_kito_faq > ul > li h2 + div p {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  font-weight: 300;
+  color: #606060;
 }
 
 /** PC판 이상 **/
@@ -879,144 +878,143 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
     background: #fac304;
   }
   .designcustom .main_kito_faq .section_title {
-    text-align:left;
-    padding:2rem 2rem 0rem 2rem;
+    text-align: left;
+    padding: 2rem 2rem 0rem 2rem;
   }
   .designcustom .main_kito_faq .section_title strong {
-    margin-bottom:3rem;
+    margin-bottom: 3rem;
     font-size: 4.5rem;
     font-weight: 800;
     line-height: 5.5rem;
-    text-align:left;
+    text-align: left;
   }
   .designcustom .main_kito_faq .section_title span {
-    display:none;
+    display: none;
   }
   .main_kito_faq > ul {
-    position:relative;
-    left:0rem;
-    white-space:nowrap;
+    position: relative;
+    left: 0rem;
+    white-space: nowrap;
   }
   .main_kito_faq > ul > li {
-    position:relative;
-    display:inline-block;
-    white-space:normal;
-    padding:0rem;
-    overflow:hidden;
-    border:0rem;
-    opacity:1;
-    vertical-align:top;
+    position: relative;
+    display: inline-block;
+    white-space: normal;
+    padding: 0rem;
+    overflow: hidden;
+    border: 0rem;
+    opacity: 1;
+    vertical-align: top;
   }
   .main_kito_faq > ul > li > a {
-    padding:2rem;
+    padding: 2rem;
   }
   .main_kito_faq > ul > li *:hover {
-    text-decoration:none;
+    text-decoration: none;
   }
   .main_kito_faq > ul > li.active {
-    max-height:100rem;
-    border:0rem;
-    opacity:1;
+    max-height: 100rem;
+    border: 0rem;
+    opacity: 1;
   }
   .main_kito_faq > ul > li.active h2 span {
     padding: 1rem;
     padding-left: 0rem;
   }
   .main_kito_faq > ul > li .dropdown-toggle {
-    display:none;
+    display: none;
   }
 
-  body.ie9 .main_kito_faq>ul>li h2+div,
-  .main_kito_faq > ul > li h2+div p {
+  body.ie9 .main_kito_faq > ul > li h2 + div,
+  .main_kito_faq > ul > li h2 + div p {
     color: #8e6a14;
-    padding:0rem;
-    padding-right:1rem;
+    padding: 0rem;
+    padding-right: 1rem;
     line-height: 2.3rem;
   }
 
-  body.ie9 .main_kito_faq>ul>li h2+div,
-  .main_kito_faq > ul > li h2+div p * {
+  body.ie9 .main_kito_faq > ul > li h2 + div,
+  .main_kito_faq > ul > li h2 + div p * {
     font-size: inherit;
   }
   .main_kito_faq .main_faq_control {
-    padding-left:2rem;
+    padding-left: 2rem;
     position: absolute;
     bottom: 5rem;
   }
   .main_kito_faq .main_faq_control button {
-    display:inline-block;
-    width:1rem;
-    height:1rem;
-    margin-right:0.5rem;
-    margin-bottom:0rem;
-    border-radius:50%;
-    border:0rem;
-    background:#ffffff;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0rem;
+    border-radius: 50%;
+    border: 0rem;
+    background: #ffffff;
   }
   .main_kito_faq .main_faq_control button.active {
-    background:#8e6a14;
+    background: #8e6a14;
   }
   .main_kito_faq .main_faq_control ul {
-    margin:0rem;
-    padding:0rem;
+    margin: 0rem;
+    padding: 0rem;
   }
-  .main_kito_faq .main_faq_control ul:after{
-    content:"";
-    width:100%;
-    height:1px;
-    clear:both;
+  .main_kito_faq .main_faq_control ul:after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    clear: both;
   }
   .main_kito_faq .main_faq_control li {
-    display:block;
-    float:left;
+    display: block;
+    float: left;
   }
 }
-
 
 /****** 키토제닉 일상톡톡 ******/
 
 .main_post_section > ul {
-  display:block;
+  display: block;
 }
 .main_post_section > ul > li {
-  position:relative;
-  display:block;
-  padding:1rem;
-  box-sizing:border-box;
-  border:1px solid #cbc8c2;
-  margin-bottom:0.7rem;
+  position: relative;
+  display: block;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #cbc8c2;
+  margin-bottom: 0.7rem;
 }
-.main_post_section > ul > li:last-child{
-  margin-bottom:0rem;
+.main_post_section > ul > li:last-child {
+  margin-bottom: 0rem;
 }
 .main_post_section > ul > li:hover {
-  border:3px solid #cbc8c2;
+  border: 3px solid #cbc8c2;
 }
 .main_post_section > ul > li a:hover {
-  text-decoration:none;
+  text-decoration: none;
 }
 .main_post_section > ul > li h2 strong {
-  display:block;
-  font-size:1.4rem;
-  font-weight:400;
-  color:#606060;
-  margin-bottom:1rem;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #606060;
+  margin-bottom: 1rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .main_post_section > ul > li time {
-  display:inline-block;
-  font-size:1.2rem;
-  font-weight:700;
-  color:#999999;
-  margin-right:0.5rem;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #999999;
+  margin-right: 0.5rem;
 }
 .main_post_section > ul > li span {
-  display:inline-block;
-  font-size:1.2rem;
-  font-weight:400;
-  color:#999999;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #999999;
 }
 
 /*
@@ -1034,67 +1032,67 @@ body.ie9 .main_kito_faq > ul > li.open .dropdown-toggle:after {
 
 @media (min-width: 1200px) {
   .main_post_section > ul {
-    position:relative;
+    position: relative;
   }
   .main_post_section > ul:before,
   .main_post_section > ul:after {
-    content:"";
-    display:block;
-    margin-bottom:5rem;
-    height:1px;
-    width:100%;
-    background:#ebeae8;
+    content: "";
+    display: block;
+    margin-bottom: 5rem;
+    height: 1px;
+    width: 100%;
+    background: #ebeae8;
   }
   .main_post_section > ul:after {
-    margin-bottom:0rem;
-    margin-top:5rem;
+    margin-bottom: 0rem;
+    margin-top: 5rem;
   }
   .main_post_section > ul > li {
-    margin-bottom:2rem;
-    padding:1rem;
-    border:0rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 0rem;
     white-space: nowrap;
   }
   .main_post_section > ul > li:hover {
-    border:0rem;
-    background:#ffce00;
+    border: 0rem;
+    background: #ffce00;
   }
   .main_post_section > ul > li > a {
-    display:block;
+    display: block;
     white-space: nowrap;
   }
   .main_post_section > ul > li > a > * {
-    display:inline-block;
-    vertical-align:middle;
-    width:15%;
-    text-align:right;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15%;
+    text-align: right;
   }
   .main_post_section > ul > li > a > h2 {
-    width:85%;
+    width: 85%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
   .main_post_section > ul > li > a > *,
   .main_post_section > ul > li > a > * * {
-      display: inline-block;
-      font-size: 1.3rem;
-      font-weight: normal;
-      color: #808080;
-      margin:0rem;
-      padding-right: .5rem;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: #808080;
+    margin: 0rem;
+    padding-right: 0.5rem;
   }
   .main_post_section > ul > li:hover > a > *,
   .main_post_section > ul > li:hover > a > * * {
-      color: #303030;
+    color: #303030;
   }
   .main_post_section > ul > li h2 strong {
-    margin-bottom:0rem;
+    margin-bottom: 0rem;
     font-size: 1.3rem;
     color: #808080;
-    text-align:left;
+    text-align: left;
   }
   html body .main_post_section > ul > li > a > span {
-      margin-right:0rem;
+    margin-right: 0rem;
   }
 }

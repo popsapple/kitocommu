@@ -1651,10 +1651,10 @@ $.fn.onSliderQna = function(options)
 
           var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
           $(options['control_button']).each(function(){
-            $(this).attr("aria-selected","false");
+            $(this).attr("aria-pressed","false");
             $(this).removeClass("active");
           });
-          $(options['control_button']).eq(index).attr("aria-selected","true");
+          $(options['control_button']).eq(index).attr("aria-pressed","true");
           $(options['control_button']).eq(index).addClass("active");
 
           $(options['items']).each(function(){
@@ -1677,10 +1677,10 @@ $.fn.onSliderQna = function(options)
 
             var index = parseInt($(options['items']).eq(0).attr('id').replace(options['item_id'],''));
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
@@ -1733,10 +1733,10 @@ $.fn.onSliderQna = function(options)
   				{
   					$(options['item_wrapper']).find('.temp').remove();
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
@@ -1774,10 +1774,10 @@ $.fn.onSliderQna = function(options)
             $(options['item_wrapper']).css('left',options['first_left']);
             $(options['item_wrapper']).find('.temp').remove();
             $(options['control_button']).each(function(){
-              $(this).attr("aria-selected","false");
+              $(this).attr("aria-pressed","false");
               $(this).removeClass("active");
             });
-            $(options['control_button']).eq(index).attr("aria-selected","true");
+            $(options['control_button']).eq(index).attr("aria-pressed","true");
             $(options['control_button']).eq(index).addClass("active");
 
             $(options['items']).each(function(){
@@ -1878,11 +1878,11 @@ $.fn.MovingFollowMouse = function(options) {
 };
 
 function LoadingPage(){
-  if($(location).attr('href') == 'http://192.168.219.104:5000'){
+  if($(location).attr('href') == 'https://kitocommu.herokuapp.com/'){
     $.ajax({
         type:"GET",
         cache:false,
-        url:'http://192.168.219.104:5000',
+        url:'https://kitocommu.herokuapp.com/',
         async: true,
         success:function(res){
         },
@@ -1891,9 +1891,9 @@ function LoadingPage(){
         },
         complete:function(){
           setTimeout(function(){
-            $('.loading_div').fadeOut(500);
             $('.loading_complete').addClass('active');
-          },1000);
+            $('.loading_div').fadeOut(1000);
+          },10);
         },
         error:function(e){
           console.log("에러");
@@ -1913,7 +1913,6 @@ function DisableGnbDropdown(obj,callback,callback02,type){ // PC판 이상일때
   if(type == "faq"){
     selector = " > button";
     $(obj+" > a").click(function(){
-      console.log("AAA");
       window.location.href = $(this).attr('href');
     });
   }
@@ -2031,6 +2030,9 @@ $(document).ready(function() {
 
 $('#navbar').on('show.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','false');
+  $(".loading_div").attr('aria-hidden','true');
+  $("main").attr('aria-hidden','true');
+  $("footer").attr('aria-hidden','true');
   var newHeight = $('body').height();
   $('html .gnb_navbarcall').css({
     'min-height': newHeight
@@ -2038,6 +2040,9 @@ $('#navbar').on('show.bs.collapse', function () {
 });
 $('#navbar').on('hide.bs.collapse', function () {
   $('.gnb_navbar').attr('aria-hidden','true');
+  $(".loading_div").attr('aria-hidden','false');
+  $("main").attr('aria-hidden','false');
+  $("footer").attr('aria-hidden','false');
   var newHeight = 0;
   setTimeout(function(){
     $('html .gnb_navbarcall').css({
