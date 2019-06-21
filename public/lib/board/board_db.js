@@ -295,6 +295,11 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
                   var member_data = global.MEMBER_DB.model;
                   var now_account = request.session.userid;
                   member_data.findOne({id: now_account}, function(err, member){
+                    if(member == null) {
+                      member = {
+                        member_level: 0
+                      }
+                    }
                     if(parseInt(member.member_level) > 3){ // 4등급 이상이 관리자등급.
                       is_admin = true;
                     }
