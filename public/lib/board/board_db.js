@@ -914,7 +914,7 @@ exports = module.exports = {BoardDbSetting  : function (mongoose,request,respons
         var count = (board_count-1);
         var count_ = 0;
         for(var i = count; i >= 0; i--){
-          if(count_ < post_length){
+          if(count_ < post_length && board__data[i]){
             var board_paging = Math.floor(parseInt(board__data[i].post_index)/10);
             if (!data.board_data[collection][count_]) {
               data.board_data[collection][count_] = [];
