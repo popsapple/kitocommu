@@ -100,7 +100,7 @@ socketio.of("/catting/list").use(function(socket, next) {
 require("./public/lib/food/food_search.js").food_search(app);
 
 // 기타페이지들
-require("./public/lib/others/page.js").food_search(app);
+require("./public/lib/others/page.js").index_page(app);
 
 // 에디터관련
 require("./public/lib/editor/editor.js").editor_con(
