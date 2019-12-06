@@ -3,7 +3,7 @@ exports = module.exports = {
     // 처음 접속
     app.get("/introduce", function(request, response, next) {
       var data = {};
-      response.render("others/introduce", data);
+      response.render("other/introduce", data);
       response.end();
     });
   }

@@ -1,59 +1,59 @@
 .container.board.normal {
-  display:block;
+  display: block;
 }
 
 .container.board.normal #boardNoticeList {
-  display:block;
-  margin: 6rem .5rem 0rem .5rem;
+  display: block;
+  margin: 6rem 0.5rem 0rem 0.5rem;
   border-bottom: 1px solid #e5e5e5;
   border-top: 1px solid #e5e5e5;
 }
 .container.board.normal #boardNoticeList.notice_index0 {
-  border-bottom:0px;
+  border-bottom: 0px;
 }
 .container.board.normal #boardList *,
 .container.board.normal #boardNoticeList * {
-  margin:0rem;
-  padding:0rem;
+  margin: 0rem;
+  padding: 0rem;
 }
 
 .container.board.normal #boardList li,
 .container.board.normal #boardNoticeList li {
-  display:block;
-  opacity:0;
+  display: block;
+  opacity: 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
 .container.board.normal #boardNoticeList.active li {
-  opacity:1;
-  transition:opacity 0.3s 0.3s;
+  opacity: 1;
+  transition: opacity 0.3s 0.3s;
 }
 
 .container.board.normal #boardList.active li {
-  opacity:1;
-  transition:opacity 0.3s 1.2s;
+  opacity: 1;
+  transition: opacity 0.3s 1.2s;
 }
 
-.container.board.normal #boardNoticeList.active li+li{
-  opacity:1;
-  transition:opacity 0.3s 0.3s;
+.container.board.normal #boardNoticeList.active li + li {
+  opacity: 1;
+  transition: opacity 0.3s 0.3s;
 }
-.container.board.normal #boardNoticeList.active li+li+li{
-  transition:opacity 0.3s 0.6s;
+.container.board.normal #boardNoticeList.active li + li + li {
+  transition: opacity 0.3s 0.6s;
 }
-.container.board.normal #boardNoticeList.active li+li+li+li{
-  transition:opacity 0.3s 0.9s;
+.container.board.normal #boardNoticeList.active li + li + li + li {
+  transition: opacity 0.3s 0.9s;
 }
-.container.board.normal #boardNoticeList.active li+li+li+li+li{
-  transition:opacity 0.3s 1.2s;
+.container.board.normal #boardNoticeList.active li + li + li + li + li {
+  transition: opacity 0.3s 1.2s;
 }
 
 .container.board.normal #boardList li > * > *,
 .container.board.normal #boardNoticeList li > * > *,
 .container.board.normal #boardList li > * > * > *,
 .container.board.normal #boardNoticeList li > * > * > * {
-  display:block;
-  float:left;
+  display: block;
+  float: left;
   margin: 0rem;
   padding: 0rem;
   font-size: 1.8rem;
@@ -64,39 +64,39 @@
 }
 
 .container.board.normal #boardList li > * > h2 a {
-  margin-left:0rem;
+  margin-left: 0rem;
 }
 
 .container.board.normal #boardNoticeList li > * > * > .label {
   padding: 0.4rem 0.7rem 0.5rem 0.7rem;
-  margin-left:0rem;
+  margin-left: 0rem;
   font-size: 1.2rem;
   font-weight: normal;
-  border:0rem;
+  border: 0rem;
   background: #ffce00;
   color: #000;
 }
 
 .container.board.normal #boardList li > * > h2 a,
 .container.board.normal #boardNoticeList li > * > h2 a {
-  width:70%;
-  overflow:hidden;
+  width: 70%;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .container.board.normal #boardList li > * > h2 {
-  width:65%;
+  width: 65%;
 }
 .container.board.normal #boardNoticeList li > * > h2 {
-  width:70%;
+  width: 70%;
 }
 
 .container.board.normal #boardList li > * > h3,
 .container.board.normal #boardList li > * > time,
 .container.board.normal #boardNoticeList li > * > h3,
 .container.board.normal #boardNoticeList li > * > time {
-  position:relative;
+  position: relative;
   font-size: 1.3rem;
   color: #999999;
   float: right;
@@ -104,7 +104,7 @@
 }
 .container.board.normal #boardList li > * > time,
 .container.board.normal #boardNoticeList li > * > time {
-  position:relative;
+  position: relative;
   font-size: 1.3rem;
   color: #999999;
   float: right;
@@ -112,7 +112,7 @@
 }
 .container.board.normal #boardList li > * > h2,
 .container.board.normal #boardNoticeList li > * > h2 {
-  padding:2rem 0rem;
+  padding: 2rem 0rem;
   margin: 0rem;
 }
 .container.board.normal #boardList li > * > h3,
@@ -122,10 +122,10 @@
 
 .container.board.normal #boardList li:after,
 .container.board.normal #boardNoticeList li:after {
-  display:block;
-  content:"";
-  float:none;
-  clear:both;
+  display: block;
+  content: "";
+  float: none;
+  clear: both;
 }
 
 .container.board.normal #boardNoticeList li:last-child {
@@ -134,7 +134,7 @@
 
 .container.board.normal #boardList li > *,
 .container.board.normal #boardNoticeList li > * {
-  padding:0rem 1.5rem;
+  padding: 0rem 1.5rem;
 }
 
 .container.board.normal #boardList li > * > h2 .reple_icon {
@@ -152,139 +152,138 @@
 }
 
 .borad_spam_con > div {
-  width:170px;
+  width: 170px;
 }
 .borad_spam_con > * {
-  display:block;
-  float:left;
+  display: block;
+  float: left;
 }
-.borad_spam_con:after{
-  content:"";
-  display:block;
-  clear:both;
+.borad_spam_con:after {
+  content: "";
+  display: block;
+  clear: both;
 }
-
 
 /********* 페이징 및 찾기 ***********/
 
 .container.board.normal select {
-  margin-right:0.5rem;
-  height:4.2rem;
+  margin-right: 0.5rem;
+  height: 4.2rem;
 }
 .container.board.normal .search_con {
-  text-align:center;
-  margin:5rem auto;
+  text-align: center;
+  margin: 5rem auto;
 }
 
 .sub .container .search_con form input {
-  display:block;
-  float:left;
-  margin-right:0.5rem;
+  display: block;
+  float: left;
+  margin-right: 0.5rem;
 }
 .sub .container .search_con form input.search_button {
-  display:block;
-  width:100%;
+  display: block;
+  width: 100%;
 }
 .sub .container .search_con ul:after {
-  display:block;
-  content:"";
-  float:none;
-  clear:both;
+  display: block;
+  content: "";
+  float: none;
+  clear: both;
 }
 .sub .container .search_con form > * {
-  display:block;
-  width:100%;
-  margin-bottom:0.8rem;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.8rem;
 }
 @media (min-width: 768px) {
   .sub .container .search_con form {
-    margin:auto;
+    margin: auto;
     width: 57.5rem;
   }
   .sub .container .search_con form:after {
-    display:block;
-    content:"";
-    float:none;
-    clear:both;
+    display: block;
+    content: "";
+    float: none;
+    clear: both;
   }
 
   .sub .container .search_con form > * {
-    width:auto;
-    margin-bottom:0rem;
-    float:left;
+    width: auto;
+    margin-bottom: 0rem;
+    float: left;
   }
   .sub .container .search_con form input.search_button {
-    width:10rem;
-    margin-right:0rem;
+    width: 10rem;
+    margin-right: 0rem;
   }
 }
 
 .container.board.normal #boardPaging ul {
-  position:relative;
-  left:0rem;
-  display:table;
-  width:100%;
-  white-space:nowrap;
-  text-align:center;
-  margin:auto;
+  position: relative;
+  left: 0rem;
+  display: table;
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+  margin: auto;
 }
 .container.board.normal #boardPaging li {
-  display:block;
-  float:left;
-  width:10%;
-  height:3.5rem;
-  border:1px solid #bfbfbf;
+  display: block;
+  float: left;
+  width: 10%;
+  height: 3.5rem;
+  border: 1px solid #bfbfbf;
   box-sizing: border-box;
-  margin-bottom:0.5rem;
+  margin-bottom: 0.5rem;
 }
 .container.board.normal #boardPaging .button_li {
-  display:block;
-  width:100%;
-  height:3.5rem;
-  margin-top:1.3rem;
-  border:0px;
+  display: block;
+  width: 100%;
+  height: 3.5rem;
+  margin-top: 1.3rem;
+  border: 0px;
 }
 
 @media (min-width: 768px) {
   .container.board.normal #boardPaging ul.write_yes {
-    left:-5rem;
+    left: -5rem;
   }
   .container.board.normal #boardPaging ul {
-    width:auto;
+    width: auto;
   }
   .container.board.normal #boardPaging li {
-    width:3.5rem;
-    margin-bottom:0rem;
+    width: 3.5rem;
+    margin-bottom: 0rem;
   }
   .container.board.normal #boardPaging .button_li {
-    position:absolute;
-    right:-9.5rem;
-    display:block;
-    width:8.5rem;
-    height:3.5rem;
-    border:0px;
-    margin:0rem;
+    position: absolute;
+    right: -9.5rem;
+    display: block;
+    width: 8.5rem;
+    height: 3.5rem;
+    border: 0px;
+    margin: 0rem;
   }
 }
 
 .container.board.normal #boardPaging li.button_li a {
-  padding:0rem;
-  line-height:1.5rem;
+  padding: 0rem;
+  line-height: 1.5rem;
 }
 .container.board.normal #boardPaging li.button_li a:hover {
-  color:#303030;
+  color: #303030;
 }
 
-.container.board.normal #boardPaging li+li {
-  border-left:0px;
+.container.board.normal #boardPaging li + li {
+  border-left: 0px;
 }
 .container.board.normal #boardPaging li a {
-  display:block;
-  width:100%;
-  height:100%;
-  line-height:3.5rem;
-  color:#707070;
-  text-align:center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 3.5rem;
+  color: #707070;
+  text-align: center;
 }
 .container.board.normal #boardPaging li a.active,
 .container.board.normal #boardPaging li a:hover {
@@ -299,10 +298,10 @@
   background: #ffce00;
 }
 .container.board.normal #boardPaging ul:after {
-  display:block;
-  content:"";
-  float:none;
-  clear:both;
+  display: block;
+  content: "";
+  float: none;
+  clear: both;
 }
 
 /*********** 쓰기페이지 ************/
@@ -314,35 +313,35 @@
   border: 1px solid #d0d0d0;
 }
 .sub .container form input.width100 {
-  width:100%;
+  width: 100%;
   max-width: 300rem;
-  margin:0%;
+  margin: 0%;
 }
 .sub.designcustom .cke_toolgroup {
-    margin: 0 6px 3px 0;
-    padding: 2px;
+  margin: 0 6px 3px 0;
+  padding: 2px;
 }
 .sub.designcustom a.cke_button {
-    padding: 2px 4px !important;
+  padding: 2px 4px !important;
 }
 .sub .container .file_form {
-  position:relative;
-  overflow:hidden;
+  position: relative;
+  overflow: hidden;
 }
 .sub .container .file_form .file_input {
-  position:absolute;
+  position: absolute;
   display: inline-block;
   left: -101%;
 }
 .sub .container .file_form > * {
-  display:block;
-  float:left;
+  display: block;
+  float: left;
 }
 .sub .container .file_form:after {
-  display:block;
-  content:"";
-  float:none;
-  clear:both;
+  display: block;
+  content: "";
+  float: none;
+  clear: both;
 }
 .sub .container .file_form label {
   display: block;
@@ -352,85 +351,84 @@
   border: 1px solid #bfbfbf;
   border-color: #bfbfbf;
   background-color: #fff;
-  overflow:hidden;
-  white-space:nowrap;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .sub .container #ajaxform.file_form > * {
   width: 100%;
-  margin-bottom:0.5rem;
+  margin-bottom: 0.5rem;
   max-width: none;
 }
 @media (min-width: 768px) {
   .sub .container #ajaxform.file_form > * {
     width: 30%;
     max-width: 15rem;
-    margin-left:1rem;
-    margin-bottom:0rem;
+    margin-left: 1rem;
+    margin-bottom: 0rem;
   }
   .sub .container #ajaxform.file_form > label {
     width: 40%;
-    margin-left:0rem;
+    margin-left: 0rem;
     max-width: 50rem;
   }
 }
 
-
 /**************/
 
-html .sub.designcustom>.view_container.container,
-html .sub.designcustom>.comment_container.container {
-  min-height:0rem;
+html .sub.designcustom > .view_container.container,
+html .sub.designcustom > .comment_container.container {
+  min-height: 0rem;
 }
-html .sub.designcustom>.comment_container.container {
+html .sub.designcustom > .comment_container.container {
   padding: 2rem 0;
 }
 
 .sub.designcustom .comment_container > section:before {
-  display:block;
-  content:"";
+  display: block;
+  content: "";
   margin: 0rem 0rem 5rem 0rem;
-  width:100%;
-  height:1px;
-  background:#e5e5e5;
+  width: 100%;
+  height: 1px;
+  background: #e5e5e5;
 }
 .view_container .post_view li {
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
 .view_container .post_view .ckeditor-col-container li {
   font-size: 1.4rem;
 }
 .view_container .post_view .ckeditor-col-container ul li {
-  list-style:circle;
+  list-style: circle;
   list-style: inside;
 }
 .view_container .post_view .ckeditor-col-container ol {
-  padding-left:1.4rem;
+  padding-left: 1.4rem;
 }
 .view_container .post_view .ckeditor-col-container ol li {
-  list-style:decimal;
+  list-style: decimal;
 }
 .sub.designcustom .view_container .buttonbox {
-  margin-bottom:2rem;
+  margin-bottom: 2rem;
 }
 html.sub .comment_container textarea {
-  padding:1rem;
-  width:100%;
-  height:8rem;
-  font-size:1.4rem;
-  line-height:2rem;
-  margin-bottom:0.5rem;
-  resize:none;
-  background:#fdfdfd;
+  padding: 1rem;
+  width: 100%;
+  height: 8rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+  resize: none;
+  background: #fdfdfd;
   border: 1px solid #bfbfbf;
 }
 .sub .container h3.writed_ok_info {
-  font-size:1.4rem;
-  line-height:2rem;
-  margin-bottom:2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
 }
 .sub .container strong.commentSecret_info {
-  font-size:1.4rem;
+  font-size: 1.4rem;
 }
 html.sub .comment_container label {
   font-size: 1.4rem;
@@ -446,13 +444,13 @@ html.sub .comment_container label {
   font-size: 1.6rem;
   color: #808080;
 }
-.view_container .post_view li > div#BoardViewContents{
+.view_container .post_view li > div#BoardViewContents {
   overflow-x: auto;
   overflow-y: visible;
   min-height: 400px;
 }
 .view_container .post_view li > div#BoardViewContents * {
-  font-size:1.4rem;
+  font-size: 1.4rem;
 }
 @media (min-width: 992px) {
   .view_container .post_view li > div {
@@ -460,36 +458,68 @@ html.sub .comment_container label {
   }
 }
 html.sub .comment_container form:before {
-  display:block;
-  content:"";
-  clear:both;
+  display: block;
+  content: "";
+  clear: both;
 }
 html.sub .comment_container .check_secret {
-  float:left;
-  width:15rem;
+  float: left;
+  width: 15rem;
 }
 html.sub .comment_container .submit_btn {
-  float:right;
+  float: right;
 }
 html.sub .comment_container section {
   margin-bottom: 6rem;
 }
 
 @media (max-width: 767px) {
-  .view_container .post_view .ckeditor-col-container .first-col{
-    width:100% !important;
-    padding:0rem !important;
-    padding-bottom:2rem !important;
+  .view_container .post_view .ckeditor-col-container .first-col {
+    width: 100% !important;
+    padding: 0rem !important;
+    padding-bottom: 2rem !important;
   }
-  .view_container .post_view .ckeditor-col-container .last-col{
-    width:100% !important;
-    padding:0rem !important;
+  .view_container .post_view .ckeditor-col-container .last-col {
+    width: 100% !important;
+    padding: 0rem !important;
   }
 }
 
 html.sub .blind {
-  width:0px !important;
+  width: 0px !important;
   text-indent: 10px !important;
   height: 0px !important;
   overflow: hidden !important;
+}
+
+html.sub .introduce_foods h1,
+html.sub .introduce_foods h2,
+html.sub .introduce_foods p {
+  font-weight: 400;
+}
+
+html.sub .introduce_foods h1 {
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 30px;
+}
+html.sub .introduce_foods h2 {
+  font-size: 20px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+html.sub .introduce_foods p {
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+html.sub .introduce_foods img {
+  width: 50%;
+  max-width: 600px;
+  min-width: 280px;
+  margin: auto;
+  margin-bottom: 20px;
 }
