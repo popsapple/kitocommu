@@ -2,6 +2,7 @@ html.sub .introduce_foods h1,
 html.sub .introduce_foods h2,
 html.sub .introduce_foods p {
   font-weight: 400;
+  word-break: keep-all;
 }
 html.sub .introduce_foods {
   text-align: center;
