@@ -491,35 +491,3 @@ html.sub .blind {
   height: 0px !important;
   overflow: hidden !important;
 }
-
-html.sub .introduce_foods h1,
-html.sub .introduce_foods h2,
-html.sub .introduce_foods p {
-  font-weight: 400;
-}
-
-html.sub .introduce_foods h1 {
-  font-size: 30px;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 30px;
-}
-html.sub .introduce_foods h2 {
-  font-size: 20px;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 20px;
-}
-html.sub .introduce_foods p {
-  font-size: 14px;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 10px;
-}
-html.sub .introduce_foods img {
-  width: 50%;
-  max-width: 600px;
-  min-width: 280px;
-  margin: auto;
-  margin-bottom: 20px;
-}
