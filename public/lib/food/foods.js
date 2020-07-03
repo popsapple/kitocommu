@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+exports = module.exports = {
+  foodlist: `<Root>
 	<food>
 		<name>가자미구이</name>
 		<weight>200</weight>
@@ -4870,4 +4870,5 @@
 		<fiber>1.13570221660323</fiber>
 		<water>9.74727662921468</water>
 	<imgurl>sample_food</imgurl></food>
-</Root>
+</Root>`,
+};
