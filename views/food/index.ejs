@@ -12,18 +12,45 @@
           <h1>
             식품정보찾기 (제작중입니다)
           </h1>
-          <form method="post" action="/food_search">
+          <form>
             <ul>
                 <li>
                     <label>식품명</label>
                     <input type="text" name="foodname" id="foodname" />
                 </li>
             </ul>
-            <button type="submit" class="btn btn-default">조회</button accesskey="s">
+            <button type="button" id="search_food"class="btn btn-default">조회</button accesskey="s">
           </form>
         </article>
       </div>
     </div>
 <% include ../partials/footer.ejs %>
+
+<script>
+    
+
+    $("#search_food").on('click', function(){
+        $.ajax({
+          type: "POST",
+              url: "/food_search",
+              data: JSON.stringify({
+                "foodname" : $("#foodname").val()
+              }),
+              contentType: "application/json",
+              success: function(data) {
+                if(!data.foodname){
+                  alert("입력하신 조건에 맞는 음식을 찾지 못했습니다.");
+                  return false;
+                }
+                alert("찾으시는 음식은"+data.foodname+"입니다");
+                self.close();
+              },
+              error: function(data) {
+                  console.log("Error!!!!!!!!!!!!");
+              }
+        });
+      return false;
+    });
+</script>
 </body>
 </html>
