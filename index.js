@@ -33,12 +33,12 @@ var usingSession = session({
   key: process.env.SESSIONKEY, // 세션키
   secret: process.env.SECRETKEY, // 비밀키
   cookie: {
-    maxAge: 1000 * 60 * 180 // 3시간
-  }
+    maxAge: 1000 * 60 * 180, // 3시간
+  },
 });
 app.use(usingSession);
 
-app.use(function(request, response, next) {
+app.use(function (request, response, next) {
   response.set("Cache-Control", "no-cache"); // 뒤로가기시 로그인 유지 막기
   response.set("Cache-Control", "no-store"); // 뒤로가기시 로그인 유지 막기
   response.locals.nickname = request.session.nickname;
@@ -70,7 +70,7 @@ var mongoose = require("mongoose");
 
 var db = mongoose.connection;
 db.on("error", console.error);
-db.once("open", function() {
+db.once("open", function () {
   console.log("몽고디비-에 연결되었습니다.");
 });
 
@@ -85,14 +85,14 @@ global.MEMBERLIB = require("./public/lib/member/member.js").member(
 );
 
 // 봇 처리
-app.get("/robots.txt", function(req, res) {
+app.get("/robots.txt", function (req, res) {
   res.type("text/plain");
   res.send("User-agent: *\nDisallow:");
 });
 
-var server = app.listen(app.get("port"), function() {});
+var server = app.listen(app.get("port"), function () {});
 var socketio = require("socket.io").listen(server);
-socketio.of("/catting/list").use(function(socket, next) {
+socketio.of("/catting/list").use(function (socket, next) {
   usingSession(socket.request, socket.request.res, next);
   //  next();
 });
@@ -130,9 +130,7 @@ require("./rss_builder.js").rss_builder(app, mongoose);
 require("./sitemap_builder.js").rss_builder(app, mongoose);
 
 //에러 처리
-app.use(function(error, req, res, next) {
-  console.log("500 에러 :: ");
-  console.log(error);
+app.use(function (error, req, res, next) {
   res.status(500).render("pages/error");
   res.status(503).render("pages/error");
   res.status(400).render("pages/error");
