@@ -10,6 +10,9 @@ module.exports.food_search = function (app) {
   app.post("/food_search", function (request, response) {
     parseString(foodxml.foodlist, function (err, result) {
       // result
+      result = result.Root.food.filter((item) => {
+        return result.name.indexOf(request.body.foodname) !== -1;
+      });
       response.send({ foodname: request.body.foodname, foodlist: result });
     });
   });

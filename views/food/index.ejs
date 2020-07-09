@@ -21,6 +21,10 @@
             </ul>
             <button type="button" id="search_food"class="btn btn-default">조회</button accesskey="s">
           </form>
+          <hr />
+          <div id="food_result">
+            <h2></h2>
+          </div>
         </article>
       </div>
     </div>
@@ -42,7 +46,21 @@
                   alert("입력하신 조건에 맞는 음식을 찾지 못했습니다.");
                   return false;
                 }
-                alert("찾으시는 음식은"+data.foodname+"입니다");
+                $("#food_result ul").html("");
+                $("#food_result h2").html(data.foodname+"의 검색결과는 다음과 같습니다.");
+                var foodlist = JSON.parse( data.foodlist);
+                foodlist.forEach(function(item,idx){
+                  var food = $("#food_result ul").append("<li></li>");
+                  food.html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
+                    "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
+                    "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
+                    "<li><strong>탄수화물(g)</strong>"+item.carbon[0]+"</li>"+
+                    "<li><strong>단백질(g)</strong>"+item.protein[0]+"</li>"+
+                    "<li><strong>지방(g)</strong>"+item.fat[0]+"</li>"+
+                    "<li><strong>식이섬유(g)</strong>"+item.fiber[0]+"</li>"+
+                    "<li><strong>물(g)</strong>"+item.water[0]+"</li>"+
+                    "</ul>")
+                })
                 self.close();
               },
               error: function(data) {
