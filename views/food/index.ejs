@@ -52,7 +52,8 @@
 
                 var foodlist = JSON.parse( data.foodlist);
                 foodlist.forEach(function(item,idx){
-                  $("#food_result > ul").append("<li></li>");
+                  console.log("신규추가");
+                  $("#food_result > ul").prepend("<li></li>");
                   $("#food_result > ul > li").eq(0).html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
                     "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
                     "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
