@@ -52,8 +52,8 @@
 
                 var foodlist = JSON.parse( data.foodlist);
                 foodlist.forEach(function(item,idx){
-                  var food = $("#food_result > ul").append("<li></li>");
-                  food.html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
+                  $("#food_result > ul").append("<li></li>");
+                  $("#food_result > ul > li").eq(0).html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
                     "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
                     "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
                     "<li><strong>탄수화물(g)</strong>"+item.carbon[0]+"</li>"+
