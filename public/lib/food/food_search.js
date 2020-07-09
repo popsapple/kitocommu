@@ -8,6 +8,7 @@ module.exports.food_search = function (app) {
   });
 
   app.post("/food_search", function (request, response) {
+    var result = [];
     parseString(foodxml.foodlist, function (err, result) {
       // result
       console.log("result.Root.food", result.Root.food.length);
@@ -15,6 +16,7 @@ module.exports.food_search = function (app) {
         return result.name.indexOf(request.body.foodname) !== -1;
       });
     });
+    console.log("보내기에러");
     response.send({ foodname: request.body.foodname, foodlist: result }).end();
   });
 };
