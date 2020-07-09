@@ -9,18 +9,22 @@
       <div class="container board normal">
         <% include ../partials/sub_visual.ejs %>
         <article class="introduce_foods">
-          <h1>
-            식품정보찾기 (제작중입니다)
-          </h1>
+          <h2>
+            식품정보찾기
+          </h2>
           <form>
             <ul>
                 <li>
-                    <label>식품명</label>
+                    <h3><label>식품명</label></h3>
                     <input type="text" name="foodname" id="foodname" />
                 </li>
             </ul>
-            <button type="button" id="search_food"class="btn btn-default">조회</button accesskey="s">
           </form>
+          <div class="buttonbox">
+            <div>
+              <button type="button" id="search_food" class="linebutton middle">조회</button accesskey="s">
+            </div>
+          </div>
           <hr />
           <div id="food_result">
             <h2></h2>
