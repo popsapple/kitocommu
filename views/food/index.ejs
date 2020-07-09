@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="sub" lang="ko">
 <head>
-  <link rel="stylesheet" type="text/css" href="/other/others.css" />
+  <link rel="stylesheet" type="text/css" href="/other/others.css" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <% include ../partials/header.ejs %>
   <% include ../partials/nav.ejs %>
   <main role="main">
@@ -56,7 +56,15 @@
 
                 var foodlist = JSON.parse( data.foodlist);
                 foodlist.forEach(function(item,idx){
-                  console.log("신규추가");
+                  var ad = "";
+                  if(idx !== 0 && idx % 5 === 0) {
+                    ad = "<ins class='adsbygoogle'"+
+                    "style='display:block; text-align:center;'"+
+                    "data-ad-layout='in-article'"+
+                    "data-ad-format='fluid'"+
+                    "data-ad-client='ca-pub-1230275671093952'"+
+                    "data-ad-slot='1360757593'></ins>";
+                  }
                   $("#food_result > ul").prepend("<li></li>");
                   $("#food_result > ul > li").eq(0).html("<span class='img'>준비중인 이미지입니다</span>"+"<ul>"+
                     "<li><h3>"+item.name[0]+"</h3></li>"+
@@ -65,10 +73,12 @@
                     "<li><strong>탄수화물(g)</strong>"+parseFloat(item.carbon[0]).toFixed(1)+"</li>"+
                     "<li><strong>단백질(g)</strong>"+parseFloat(item.protein[0]).toFixed(1)+"</li>"+
                     "<li><strong>지방(g)</strong>"+parseFloat(item.fat[0]).toFixed(1)+"</li>"+
+                    ad+
                     "<li><strong>식이섬유(g)</strong>"+parseFloat(item.fiber[0]).toFixed(1)+"</li>"+
                     "<li><strong>물(g)</strong>"+parseFloat(item.water[0]).toFixed(1)+"</li>"+
                     "</ul>")
                 })
+                (adsbygoogle = window.adsbygoogle || []).push({});
                 self.close();
               },
               error: function(data) {
