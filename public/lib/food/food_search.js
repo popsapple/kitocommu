@@ -8,20 +8,25 @@ module.exports.food_search = function (app) {
   });
 
   app.post("/food_search", function (request, response) {
-    var result = [];
-    parseString(foodxml.foodlist, function (err, result) {
-      // result
-      console.log("===============================================");
-      console.log("보내기에러" + JSON.stringify(result.Root.food[0]));
-      result = result.Root.food.filter((item) => {
-        return result.name.indexOf(request.body.foodname) !== -1;
+    console.log("===============================================");
+    (async () => {
+      var result = [];
+      await parseString(foodxml.foodlist, function (err, result) {
+        // result
+        console.log("보내기에러" + JSON.stringify(result.Root.food[0]));
+        result = result.Root.food.filter((item) => {
+          return result.name.indexOf(request.body.foodname) !== -1;
+        });
       });
+
+      console.log("보낼때" + result);
       response
         .send({
           foodname: request.body.foodname,
-          foodlist: JSON.stringify(result.Root.food),
+          foodlist: JSON.stringify(result),
         })
         .end();
-    });
+    })();
+    console.log("==================== end ===========================");
   });
 };
