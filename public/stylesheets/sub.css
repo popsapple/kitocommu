@@ -254,9 +254,9 @@ html.sub .sub_visual img {
   }
 }
 
-#food_result h3 {
-  display: inline-block;
-  margin-right: 15px;
+#search_food_form h3 {
+  display: inline-block !important;
+  margin-right: 15px !important;
 }
 
 #food_result .buttonbox {

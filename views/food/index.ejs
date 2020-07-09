@@ -12,7 +12,7 @@
           <h2>
             식품정보찾기
           </h2>
-          <form>
+          <form id="search_food_form">
             <ul>
                 <li>
                     <h3><label>식품명</label></h3>
@@ -60,13 +60,13 @@
                   $("#food_result > ul").prepend("<li></li>");
                   $("#food_result > ul > li").eq(0).html("<span class='img'>준비중인 이미지입니다</span>"+"<ul>"+
                     "<li><h3>"+item.name[0]+"</h3></li>"+
-                    "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
-                    "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
-                    "<li><strong>탄수화물(g)</strong>"+item.carbon[0]+"</li>"+
-                    "<li><strong>단백질(g)</strong>"+item.protein[0]+"</li>"+
-                    "<li><strong>지방(g)</strong>"+item.fat[0]+"</li>"+
-                    "<li><strong>식이섬유(g)</strong>"+item.fiber[0]+"</li>"+
-                    "<li><strong>물(g)</strong>"+item.water[0]+"</li>"+
+                    "<li><strong>중량(g)</strong>"+item.weight[0].toFixed(1)+"</li>"+
+                    "<li><strong>칼로리</strong>"+item.kcal[0].toFixed(1)+"</li>"+
+                    "<li><strong>탄수화물(g)</strong>"+item.carbon[0].toFixed(1)+"</li>"+
+                    "<li><strong>단백질(g)</strong>"+item.protein[0].toFixed(1)+"</li>"+
+                    "<li><strong>지방(g)</strong>"+item.fat[0].toFixed(1)+"</li>"+
+                    "<li><strong>식이섬유(g)</strong>"+item.fiber[0].toFixed(1)+"</li>"+
+                    "<li><strong>물(g)</strong>"+item.water[0].toFixed(1)+"</li>"+
                     "</ul>")
                 })
                 self.close();
