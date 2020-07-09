@@ -258,10 +258,20 @@ html.sub .sub_visual img {
   font-size: 15px;
 }
 
+#food_result>ul>li>ul>li strong {
+  display: inline-block;
+  width: 70px;
+  margin-right: 10px;
+}
+
+#food_result>ul>li>ul>li {
+  margin-bottom: 15px;
+}
+
 @media (min-width: 768px) {
   #food_result>ul>li>* {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     max-width: 200px;
     text-align: left;
   }

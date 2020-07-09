@@ -58,7 +58,8 @@
                 foodlist.forEach(function(item,idx){
                   console.log("신규추가");
                   $("#food_result > ul").prepend("<li></li>");
-                  $("#food_result > ul > li").eq(0).html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
+                  $("#food_result > ul > li").eq(0).html("<img src='' alt='준비중'/>"+"<ul>"+
+                    "<li><h3>"+item.name[0]+"</h3></li>"+
                     "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
                     "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
                     "<li><strong>탄수화물(g)</strong>"+item.carbon[0]+"</li>"+
