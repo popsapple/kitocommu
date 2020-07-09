@@ -14,7 +14,7 @@ module.exports.food_search = function (app) {
       result = result.Root.food.filter((item) => {
         return result.name.indexOf(request.body.foodname) !== -1;
       });
-      response.send({ foodname: request.body.foodname, foodlist: result });
     });
+    response.send({ foodname: request.body.foodname, foodlist: result }).end();
   });
 };
