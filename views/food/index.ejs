@@ -47,11 +47,12 @@
                   alert("입력하신 조건에 맞는 음식을 찾지 못했습니다.");
                   return false;
                 }
-                $("#food_result ul").html("");
-                $("#food_result h2").html(data.foodname+"의 검색결과는 다음과 같습니다.");
+                $("#food_result > ul").html("");
+                $("#food_result > h2").html(data.foodname+"의 검색결과는 다음과 같습니다.");
+
                 var foodlist = JSON.parse( data.foodlist);
                 foodlist.forEach(function(item,idx){
-                  var food = $("#food_result ul").append("<li></li>");
+                  var food = $("#food_result > ul").append("<li></li>");
                   food.html("<h3>"+item.name[0]+"</h3>"+"<ul>"+
                     "<li><strong>중량(g)</strong>"+item.weight[0]+"</li>"+
                     "<li><strong>칼로리</strong>"+item.kcal[0]+"</li>"+
