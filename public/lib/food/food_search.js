@@ -11,14 +11,15 @@ module.exports.food_search = function (app) {
     var result = [];
     parseString(foodxml.foodlist, function (err, result) {
       // result
-      console.log("보내기에러" + JSON.parse(result.Root.food[0]));
+      console.log("===============================================");
+      console.log("보내기에러" + JSON.stringify(result.Root.food[0]));
       result = result.Root.food.filter((item) => {
         return result.name.indexOf(request.body.foodname) !== -1;
       });
       response
         .send({
           foodname: request.body.foodname,
-          foodlist: JSON.parse(result.Root.food),
+          foodlist: JSON.stringify(result.Root.food),
         })
         .end();
     });
