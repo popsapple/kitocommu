@@ -19,7 +19,7 @@ module.exports.food_search = function (app) {
         });
       });
 
-      console.log("보낼때" + result);
+      console.log("보낼때" + JSON.stringify(result));
       response
         .send({
           foodname: request.body.foodname,
