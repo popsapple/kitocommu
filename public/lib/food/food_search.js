@@ -15,7 +15,7 @@ module.exports.food_search = function (app) {
         // result
         console.log("보내기에러" + JSON.stringify(result.Root.food[0]));
         result = result.Root.food.filter((item) => {
-          return result.name.indexOf(request.body.foodname) !== -1;
+          return item.name.indexOf(request.body.foodname) !== -1;
         });
       });
 
