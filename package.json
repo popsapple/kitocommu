@@ -28,7 +28,7 @@
     "express-session": "^1.15.2",
     "file-system": "2.2.2",
     "grunt": "1.0.1",
-    "grunt-cli": "0.1.13",
+    "grunt-cli": "1.4.3",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-cssmin": "2.1.0",
     "grunt-contrib-uglify": "2.3.0",
