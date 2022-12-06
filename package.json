@@ -22,7 +22,7 @@
     "crypto": "0.0.3",
     "dateformat": "2.0.0",
     "ejs": "2.4.1",
-    "express": "4.13.3",
+    "express": "4.17.3",
     "express-body-parser-json-error": "0.1.0",
     "express-ipfilter": "0.2.4",
     "express-session": "^1.15.2",
