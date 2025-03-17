@@ -16,7 +16,7 @@
     "postinstall": "grunt concat cssmin uglify"
   },
   "dependencies": {
-    "aws-sdk": "2.49.0",
+    "aws-sdk": "2.814.0",
     "body-parser": "1.17.1",
     "cookie-parser": "1.4.3",
     "crypto": "0.0.3",
